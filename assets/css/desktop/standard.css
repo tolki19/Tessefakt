@@ -1,15 +1,6 @@
 /* mögliche farbpalette
 
 					voll			56%				35%				13%
-marine				24,55,87
-corporate-blau		0,68,113		-				-				-
-corporate-grau		174,187,196		-				-				-
-Schmuckfarbe 1		198,214,222						-
-Schmuckfarbe 2		166,184,195						-
-Schmuckfarbe 3		100,123,138		168,181,177		-				235,238,240
-Akzent 1			230,17,12						-
-Akzent 2			242,145,0						-
-Akzent 3			249,182,0						-
 
 */
 
@@ -43,6 +34,71 @@ Akzent 3			249,182,0						-
 	font-style:normal;
 	font-weight:800;
 	src:url('../../fonts/inter-v13-latin-800.woff2') format('woff2');
+}
+
+/* jetbrains-mono-200 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../../fonts/jetbrains-mono-v18-latin-200.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: 200;
+  src: url('../../fonts/jetbrains-mono-v18-latin-200italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/jetbrains-mono-v18-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../../fonts/jetbrains-mono-v18-latin-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../../fonts/jetbrains-mono-v18-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: 600;
+  src: url('../../fonts/jetbrains-mono-v18-latin-600italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../../fonts/jetbrains-mono-v18-latin-800.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: 800;
+  src: url('../../fonts/jetbrains-mono-v18-latin-800italic.woff2') format('woff2');
 }
 
 *{
@@ -84,7 +140,7 @@ blockquote+figcaption{ margin:-.5rem 0 1.5rem 0; }
 ul{ margin:-.5rem 0 1.2em 0; padding:0 0 0 .3rem; }
 ul>li{ margin:0 0 .3em 0; padding:0 0 0 .3rem; }
 
-blockquote{ font-family:PT Sans Italic; }
+blockquote{ font-family:'JetBrains Mono'; }
 ul>li{ list-style:square inside; }
 
 [data-mdf-role="null"]{
@@ -92,7 +148,7 @@ ul>li{ list-style:square inside; }
 
 [data-mdf-role="null"]::before{
 	content:"Kein Wert";
-	font-family:PT Sans Italic;
+	font-family:'Inter';
 	opacity:.2;
 }
 
@@ -270,13 +326,12 @@ ul>li{ list-style:square inside; }
 html{
 	font-size:clamp(16px,1.5vmin,24px);
 	line-height:var(--mdf-line-height);
-	font-family:PT Sans;
+	font-family:'Inter';
 	font-style:normal;
 	font-weight:400;
 	height:100%;
 	--mdf-color-gen-fore:rgb(245,245,245);
 	--mdf-color-gen-back:rgb(89,94,57);
-	--mdf-image-gen-back:url(../../layout/polygon_gruen.jpg);
 	--mdf-mode-gen-back:normal;
 	--mdf-color-header-menu-fore:rgb(0,68,113);
 	--mdf-color-header-menu-back:rgb(245,245,245);
@@ -309,7 +364,6 @@ html{
 	html{
 		--mdf-color-gen-fore:rgb(15,15,15);
 		--mdf-color-gen-back:rgb(186,206,215);
-		--mdf-image-gen-back:url(../../layout/polygon_grau.jpg);
 		--mdf-mode-gen-back:soft-light;
 		--mdf-color-header-menu-fore:rgb(235,235,235);
 		--mdf-color-header-menu-back:rgb(15,15,15);
@@ -336,7 +390,6 @@ html h3,
 html h4,
 html h5,
 html h6{
-	font-family:Bebas Neue Bold;
 	font-style:normal;
 	font-weight:600;
 }
@@ -351,8 +404,7 @@ body{
 	grid-template-columns:100%;
 	grid-template-rows:100%;
 	color:var(--mdf-color-gen-fore);
-	background:var(--mdf-image-gen-back) fixed 0 0 / cover,var(--mdf-color-gen-back);
-	background-blend-mode:var(--mdf-mode-gen-back);
+	background:var(--mdf-color-gen-back);
 	height:100%;
 	position:relative;
 }
@@ -640,7 +692,7 @@ body>[data-mdf-role~="pages-pan"]>main>[data-mdf-role="page"]>main table{
 body>[data-mdf-role~="pages-pan"]>main>[data-mdf-role="page"]>main thead{
 	position:sticky;
 	top:-1rem;
-	background:var(--mdf-image-gen-back) fixed 0 0 / cover,var(--mdf-color-gen-back);
+	background:var(--mdf-color-gen-back);
 	background-blend-mode:var(--mdf-mode-gen-back);
 }
 
