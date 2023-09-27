@@ -49,7 +49,7 @@ var cMdfElementFormPan=class{
 		}
 	}
 	_display(){
-		this._dPan=new Element('div',{'data-mdf-control-role':'pan'}).inject(this._oParent.inject);
+		this._dPan=new Element('div',{'data-tessefakt-control-role':'pan'}).inject(this._oParent.inject);
 		if(!(this._oConfig.sequence&&this._oConfig.collection)) this._displayChildren({water:this.water});
 	}
 	_displayCycle(){

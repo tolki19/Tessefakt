@@ -1,8 +1,8 @@
 var cMdfHTMLElementSelect=class extends cMdfElementForm{
 	_display(){
 		this._dSpan=new Element('span',{
-			'data-mdf-role':'control',
-			'data-mdf-control':this._oConfig.name
+			'data-tessefakt-role':'control',
+			'data-tessefakt-control':this._oConfig.name
 		}).inject(this._oParent.inject);
 		this._oLabel=new cMdfElementSelectLabel({mdf:this._oMdf,parent:this,config:this._oConfig});
 		this._oPan=new cMdfElementSelectPan({mdf:this._oMdf,parent:this,config:this._oConfig.pan});

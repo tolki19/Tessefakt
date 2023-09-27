@@ -12,7 +12,7 @@ var cMdfHTMLElementMscript=class extends cMdfElementText{
 			water:this.water
 		}).value;
 		if(mValue===null){
-			this._aSubjects.push((new Element('span',{'data-mdf-role':'null'})).inject(this._oParent.inject));
+			this._aSubjects.push((new Element('span',{'data-tessefakt-role':'null'})).inject(this._oParent.inject));
 		}else{
 			this._aSubjects.push(this._oParent.inject.appendChild(document.createTextNode(mValue)));
 		}

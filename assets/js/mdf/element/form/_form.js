@@ -32,10 +32,10 @@ var cMdfElementForm=class extends cMdfElement{
 		else if(!(this._oConfig.sequence&&this._oConfig.collection)) this._displayChildren({water:this.water});
 	}
 	_display(){
-		this._dSpan=new Element('span',{'data-mdf-role':'control','data-mdf-control':this._oConfig.name}).inject(this._oParent.inject);
-		this._dLabel=new Element('label',{'data-mdf-control-role':'label'}).inject(this._dSpan);
-		if(this._oConfig.caption) this._dCaption=new Element('span',{'data-mdf-control-role':'caption','html':this._oConfig.caption}).inject(this._dLabel);
-		this._dElement=new Element('input',{'data-mdf-control-role':'display'}).inject(this._dLabel);
+		this._dSpan=new Element('span',{'data-tessefakt-role':'control','data-tessefakt-control':this._oConfig.name}).inject(this._oParent.inject);
+		this._dLabel=new Element('label',{'data-tessefakt-control-role':'label'}).inject(this._dSpan);
+		if(this._oConfig.caption) this._dCaption=new Element('span',{'data-tessefakt-control-role':'caption','html':this._oConfig.caption}).inject(this._dLabel);
+		this._dElement=new Element('input',{'data-tessefakt-control-role':'display'}).inject(this._dLabel);
 		if((this._oConfig.autocomplete??true)===false) this._dElement.set('autocomplete','off');
 		if(this._oConfig.desc) this.registerDescription(this._oConfig.desc,this);
 		if(this._oConfig.events) this._dElement.addEvents(this._oConfig.events);
@@ -162,8 +162,8 @@ console.debug(false);
 		return this._dElement.value;
 	}
 	set states(aStates){
-		var aCurrs=(this._dElement.get('data-mdf-state')??'').split(' '),aAdds=aStates.filter(v=>!aCurrs.includes(v)),aDels=aCurrs.filter(v=>!aStates.includes(v));
-		this._dElement.set('data-mdf-state',aStates.join(' '));
+		var aCurrs=(this._dElement.get('data-tessefakt-state')??'').split(' '),aAdds=aStates.filter(v=>!aCurrs.includes(v)),aDels=aCurrs.filter(v=>!aStates.includes(v));
+		this._dElement.set('data-tessefakt-state',aStates.join(' '));
 	}
 	get water(){
 		return this._oWater;

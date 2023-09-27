@@ -2,7 +2,7 @@ var cMdfGadgetMultiselectable=class extends cMdfGadget{
 	constructor(o){
 		super(o);
 		this.$change=this._change.bind(this);
-		this._dElement.set('data-mdf-gadgets',(this._dElement.get('data-mdf-gadgets')??'').split(' ').concat(['selectable']).join(' ').trim());
+		this._dElement.set('data-tessefakt-gadgets',(this._dElement.get('data-tessefakt-gadgets')??'').split(' ').concat(['selectable']).join(' ').trim());
 		this._dElement.addEvent('click',this._click.bind(this));
 		this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water}).addEventListener('change',this.$change);
 		this._display();
@@ -31,7 +31,7 @@ var cMdfGadgetMultiselectable=class extends cMdfGadget{
 	_display(){
 		var oSequence=this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water});
 		var oValue=this._oMdf.mscript({script:this._oConfig.value,water:this.water});
-		if(oSequence.indexOf(oValue.value)==-1) this._dElement.set('data-mdf-select',false);
-		else this._dElement.set('data-mdf-select',true);
+		if(oSequence.indexOf(oValue.value)==-1) this._dElement.set('data-tessefakt-select',false);
+		else this._dElement.set('data-tessefakt-select',true);
 	}
 };

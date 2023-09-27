@@ -17,17 +17,17 @@ var cMdfElementSelectPan=class extends cMdfElementFormPan{
 	}
 	_enter(e){
 		if(e.target!=this._dPan) return;
-		this._oParent.addFlag('data-mdf-control-state','pan');
+		this._oParent.addFlag('data-tessefakt-control-state','pan');
 	}
 	_leave(e){
 		if(e.target!=this._dPan) return;
-		this._oParent.removeFlag('data-mdf-control-state','pan');
+		this._oParent.removeFlag('data-tessefakt-control-state','pan');
 	}
 	_focus(e){
-		this._oParent.addFlag('data-mdf-control-state','search');
+		this._oParent.addFlag('data-tessefakt-control-state','search');
 	}
 	_blur(e){
-		this._oParent.removeFlag('data-mdf-control-state','search');
+		this._oParent.removeFlag('data-tessefakt-control-state','search');
 	}
 	_keydown(e){
 		if(this._oKeyTimer) clearTimeout(this._oKeyTimer);

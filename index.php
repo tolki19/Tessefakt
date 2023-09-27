@@ -113,8 +113,8 @@
 		<link rel="stylesheet" href="<?=$url;?>assets/css/desktop/standard.css">
 	</head>
 	<body>
-		<div data-mdf-role="dialog-pan">
-			<div data-mdf-role="dialog" data-mdf-ref="fatal" data-mdf-state="open">
+		<div data-tessefakt-role="dialog-pan">
+			<div data-tessefakt-role="dialog" data-tessefakt-ref="fatal" data-tessefakt-state="open">
 				<header>
 					<h1>Fataler Fehler</h1>
 				</header>
@@ -131,19 +131,19 @@
 					<h2>SG IT-Infrastr</h2>
 				</main>
 				<footer>
-					<span data-mdf-control="a">
-						<span data-mdf-control-role="label">
-							<a href="mailto:test@bundeswehr.org" data-mdf-control-role="display">E-Mail</a>
+					<span data-tessefakt-control="a">
+						<span data-tessefakt-control-role="label">
+							<a href="mailto:test@bundeswehr.org" data-tessefakt-control-role="display">E-Mail</a>
 						</span>
 					</span>
-					<span data-mdf-control="a">
-						<span data-mdf-control-role="label">
-							<a href="tel:90250067590" data-mdf-control-role="display">Telefon</a>
+					<span data-tessefakt-control="a">
+						<span data-tessefakt-control-role="label">
+							<a href="tel:90250067590" data-tessefakt-control-role="display">Telefon</a>
 						</span>
 					</span>
-					<span data-mdf-control="button" data-mdf-state="default">
-						<span data-mdf-control-role="label">
-							<button data-mdf-control-role="display">Schockschwerenot</button>
+					<span data-tessefakt-control="button" data-tessefakt-state="default">
+						<span data-tessefakt-control-role="label">
+							<button data-tessefakt-control-role="display">Schockschwerenot</button>
 						</span>
 					</span>
 				</footer>

@@ -40,14 +40,14 @@ var cMdfRenderNavigationSubjectDialog=class{
 	}
 	flag(key){
 		if(key.app.value==this._oConfig.key.app&&key.index.value==this._oConfig.key.index){
-			this._dA.set('data-mdf-state','active');
+			this._dA.set('data-tessefakt-state','active');
 			return true;
 		}
 		return false;
 	}
 	unflag(key){
 		if(key.app.formerValue==this._oConfig.key.app&&key.index.formerValue==this._oConfig.key.index){
-			this._dA.erase('data-mdf-state');
+			this._dA.erase('data-tessefakt-state');
 			return true;
 		}
 		return false;

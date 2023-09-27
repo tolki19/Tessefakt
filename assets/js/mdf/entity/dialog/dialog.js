@@ -30,8 +30,8 @@ var cMdfEntityDialog=class extends cMdfEntity{
 			this._oRequest=new cMdfServiceRequest({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
 			if(this._oConfig.request.post) this._oRequestChange=new cMdfServiceRequestChange({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
 		}
-		this._dFrame=new Element('div',{'data-mdf-role':'dialog','data-mdf-state':'open'}).inject(this._oParent.inject);
-		if(this._oConfig.ref) this._dFrame.set('data-mdf-ref',this._oConfig.ref);
+		this._dFrame=new Element('div',{'data-tessefakt-role':'dialog','data-tessefakt-state':'open'}).inject(this._oParent.inject);
+		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
 		this._oHeader=new cMdfEntityDialogHeader({
 			mdf:this._oMdf,
 			parent:this,

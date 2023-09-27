@@ -10,7 +10,7 @@ var cMdfRenderNavigationDepartment=class{
 		this._oConfig=config;
 		this._sDescriptor=descriptor;
 		this._dMenu=new Element('menu',{
-			'data-mdf-role':'department'
+			'data-tessefakt-role':'department'
 		}).inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.navigation.length;++i){
 			switch(this._oConfig.navigation[i].type){
@@ -64,13 +64,13 @@ var cMdfRenderNavigationDepartment=class{
 	flag(key){
 		var b=false;
 		for(var i=0;i<this._aSubjects.length;++i) b|=this._aSubjects[i].flag(key);
-		this._dMenu.set('data-mdf-state','active');
+		this._dMenu.set('data-tessefakt-state','active');
 		return b;
 	}
 	unflag(key){
 		var b=false;
 		for(var i=0;i<this._aSubjects.length;++i) b|=this._aSubjects[i].unflag(key);
-		this._dMenu.erase('data-mdf-state');
+		this._dMenu.erase('data-tessefakt-state');
 		return b;
 	}
 	get indice(){

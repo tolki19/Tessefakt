@@ -11,7 +11,7 @@ var cMdfEntityAction=class{
 		this._display();
 	}
 	_display(){
-		this._dLi=new Element('li',{'data-mdf-role':this._oConfig.type}).inject(this._oParent.inject);
+		this._dLi=new Element('li',{'data-tessefakt-role':this._oConfig.type}).inject(this._oParent.inject);
 	}
 	presentLoading(){}
 	presentUpdate(){}

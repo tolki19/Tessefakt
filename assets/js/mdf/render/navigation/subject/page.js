@@ -42,14 +42,14 @@ var cMdfRenderNavigationSubjectPage=class{
 	}
 	flag(sKey){
 		if(sKey.app.value==this._oConfig.key.app&&sKey.index.value==this._oConfig.key.index){
-			this._dA.set('data-mdf-state','active');
+			this._dA.set('data-tessefakt-state','active');
 			return true;
 		}
 		return false;
 	}
 	unflag(sKey){
 		if(sKey.app.formerValue==this._oConfig.key.app&&sKey.index.formerValue==this._oConfig.key.index){
-			this._dA.erase('data-mdf-state');
+			this._dA.erase('data-tessefakt-state');
 			return true;
 		}
 		return false;

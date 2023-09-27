@@ -8,7 +8,7 @@ var cMdfRenderDialogs=class{
 		this._oMdf=mdf;
 		this._oParent=parent;
 		this._oConfig=config;
-		this._dPan=new Element('div',{'data-mdf-role':'dialog-pan'}).inject(this._oParent.inject);
+		this._dPan=new Element('div',{'data-tessefakt-role':'dialog-pan'}).inject(this._oParent.inject);
 	}
 	destructor(){
 		for(var i=0;i<this._aSubjects.length;++i) this._aSubjects[i].close();

@@ -53,7 +53,7 @@ var cMdfElementFormDisplay=class{
 		}
 	}
 	_display(){
-		this._dElement=new Element('span',{'data-mdf-control-role':'display'}).inject(this._oParent.inject);
+		this._dElement=new Element('span',{'data-tessefakt-control-role':'display'}).inject(this._oParent.inject);
 		this._oMdf.mscript({script:this._oConfig.index,water:this.water}).addEventListener('change',this.$change);
 	}
 	_displayCycle(){

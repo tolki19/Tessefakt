@@ -1,11 +1,11 @@
 var cMdfEntityActionSearch=class extends cMdfEntityAction{
 	_display(){
 		super._display();
-		this._dSpan=new Element('span',{'data-mdf-role':'control','data-mdf-control':this._oConfig.type}).inject(this._dLi);
-		this._dLabel=new Element('label',{'data-mdf-control-role':'label'}).inject(this._dSpan);
+		this._dSpan=new Element('span',{'data-tessefakt-role':'control','data-tessefakt-control':this._oConfig.type}).inject(this._dLi);
+		this._dLabel=new Element('label',{'data-tessefakt-control-role':'label'}).inject(this._dSpan);
 		this._dElement=new Element('input',{
 			type:'search',
-			'data-mdf-control-role':'display',
+			'data-tessefakt-control-role':'display',
 			events:{
 				input:this._input.bind(this)
 			},

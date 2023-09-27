@@ -9,7 +9,7 @@ var cMdfRenderPages=class{
 		this._oMdf=mdf;
 		this._oParent=parent;
 		this._oConfig=config;
-		this._dPan=new Element('div',{'data-mdf-role':'pages-pan'}).inject(this._oParent.inject);
+		this._dPan=new Element('div',{'data-tessefakt-role':'pages-pan'}).inject(this._oParent.inject);
 		this._oHeader=new cMdfRenderPagesHeader({mdf:this._oMdf,parent:this,config:this._oConfig});
 		this._oMain=new cMdfRenderPagesMain({mdf:this._oMdf,parent:this,config:this._oConfig});
 	}

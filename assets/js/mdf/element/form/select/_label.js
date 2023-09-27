@@ -7,9 +7,9 @@ var cMdfElementSelectLabel=class extends cMdfElementFormLabel{
 		});
 	}
 	_blur(e){
-		this._oParent.removeFlag('data-mdf-control-state','switch');
+		this._oParent.removeFlag('data-tessefakt-control-state','switch');
 	}
 	_click(e){
-		this._oParent.toggleFlag('data-mdf-control-state','switch');
+		this._oParent.toggleFlag('data-tessefakt-control-state','switch');
 	}
 };

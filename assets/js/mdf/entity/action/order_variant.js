@@ -12,7 +12,7 @@ var cMdfEntityActionOrderVariant=class{
 		if(this._oConfig.action){
 			this._dElement=new Element('a',{
 				html:this._oConfig.caption,
-				'data-mdf-gadgets':'verifiable',
+				'data-tessefakt-gadgets':'verifiable',
 				events:{
 					click:this._click.bind(this),
 					keydown:this._keydown.bind(this)
@@ -22,7 +22,7 @@ var cMdfEntityActionOrderVariant=class{
 		}else if(this._oConfigkey){
 			this._dElement=new Element('a',{
 				html:this._oConfig.caption,
-				'data-mdf-gadgets':'verifiable',
+				'data-tessefakt-gadgets':'verifiable',
 				events:{
 					click:this._click.bind(this),
 					keydown:this._keydown.bind(this)
@@ -32,7 +32,7 @@ var cMdfEntityActionOrderVariant=class{
 		}else{
 			this._dElement=new Element('span',{
 				html:this._oConfig.caption,
-				'data-mdf-gadgets':'verifiable'
+				'data-tessefakt-gadgets':'verifiable'
 			}).inject(this._oParent.inject);
 		}
 	}
@@ -51,7 +51,7 @@ var cMdfEntityActionOrderVariant=class{
 		}else{
 			var bVerification=false;
 		}
-		this._dElement.set('data-mdf-verification',bVerification?'verified':'rejected');
+		this._dElement.set('data-tessefakt-verification',bVerification?'verified':'rejected');
 		return bVerification;
 	}
 	_click(e){

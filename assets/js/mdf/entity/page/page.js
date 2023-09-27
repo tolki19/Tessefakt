@@ -56,8 +56,8 @@ var cMdfEntityPage=class extends cMdfEntity{
 				});
 			}
 		}
-		this._dFrame=new Element('div',{'data-mdf-role':'page','data-mdf-visibility':'open'}).inject(this._oParent.inject);
-		if(this._oConfig.ref) this._dFrame.set('data-mdf-ref',this._oConfig.ref);
+		this._dFrame=new Element('div',{'data-tessefakt-role':'page','data-tessefakt-visibility':'open'}).inject(this._oParent.inject);
+		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
 		this._oHeader=new cMdfEntityPageHeader({
 			mdf:this._oMdf,
 			parent:this,
@@ -136,7 +136,7 @@ console.debug(false);
 	}
 	set order(value){
 		this._iOrder=value;
-		this._dFrame.set('data-mdf-visibility',this._iOrder?'close':'open');
+		this._dFrame.set('data-tessefakt-visibility',this._iOrder?'close':'open');
 	}
 	get inject(){
 		return this._dFrame;

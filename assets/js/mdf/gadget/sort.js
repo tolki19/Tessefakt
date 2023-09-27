@@ -2,7 +2,7 @@ var cMdfGadgetSort=class extends cMdfGadget{
 	constructor(o){
 		super(o);
 		this.$change=this._change.bind(this);
-		this._dElement.set('data-mdf-gadgets',(this._dElement.get('data-mdf-gadgets')??'').split(' ').concat(['sortable']).join(' ').trim());
+		this._dElement.set('data-tessefakt-gadgets',(this._dElement.get('data-tessefakt-gadgets')??'').split(' ').concat(['sortable']).join(' ').trim());
 		this._dElement.addEvent('click',this._click.bind(this));
 		this._oMdf.mscript({script:this._oConfig.field,water:this.water}).addEventListener('change',this.$change);
 		this._display();
@@ -27,7 +27,7 @@ var cMdfGadgetSort=class extends cMdfGadget{
 	_display(){
 		var oField=this._oMdf.mscript({script:this._oConfig.field,water:this.water});
 		var iToggle=this._oConfig.toggles.findIndex(v=>v.value===oField.value);
-		if(iToggle>=0) this._dElement.set('data-mdf-sort',this._oConfig.toggles[iToggle].sort);
-		else this._dElement.erase('data-mdf-sort');
+		if(iToggle>=0) this._dElement.set('data-tessefakt-sort',this._oConfig.toggles[iToggle].sort);
+		else this._dElement.erase('data-tessefakt-sort');
 	}
 };

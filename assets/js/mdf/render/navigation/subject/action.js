@@ -40,11 +40,11 @@ var cMdfRenderNavigationSubjectAction=class{
 		delete this._sDescriptor;
 	}
 	flag(sKey){
-		if(false) this._dA.set('data-mdf-state','active');
+		if(false) this._dA.set('data-tessefakt-state','active');
 		return false;
 	}
 	unflag(sKey){
-		if(false) this._dA.erase('data-mdf-state');
+		if(false) this._dA.erase('data-tessefakt-state');
 		return false;
 	}
 	_click(e){

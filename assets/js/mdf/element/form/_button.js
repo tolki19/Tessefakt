@@ -47,11 +47,11 @@ var cMdfFormButton=class{
 		}
 	}
 	_display(){
-		this._dSpan=new Element('span',{'data-mdf-role':'control','data-mdf-control':this._oConfig.name}).inject(this._oParent.inject);
-		this._dLabel=new Element('label',{'data-mdf-control-role':'label'}).inject(this._dSpan);
-		this._dElement=new Element(this._oConfig.name,{'data-mdf-control-role':'display'}).inject(this._dLabel);
-		if(this._oConfig.role??false) this._dSpan.set('data-mdf-function',this._oConfig.role);
-		if((this._oConfig.default??false)===true) this._dSpan.set('data-mdf-state','default');
+		this._dSpan=new Element('span',{'data-tessefakt-role':'control','data-tessefakt-control':this._oConfig.name}).inject(this._oParent.inject);
+		this._dLabel=new Element('label',{'data-tessefakt-control-role':'label'}).inject(this._dSpan);
+		this._dElement=new Element(this._oConfig.name,{'data-tessefakt-control-role':'display'}).inject(this._dLabel);
+		if(this._oConfig.role??false) this._dSpan.set('data-tessefakt-function',this._oConfig.role);
+		if((this._oConfig.default??false)===true) this._dSpan.set('data-tessefakt-state','default');
 	}
 	_send(e){
 		this._oParent.dispatch('send',e);
@@ -95,8 +95,8 @@ var cMdfFormButton=class{
 		return this._dElement.value;
 	}
 	set states(aStates){
-		var aCurrs=(this._dElement.get('data-mdf-state')??'').split(' '),aAdds=aStates.filter(v=>!aCurrs.includes(v)),aDels=aCurrs.filter(v=>!aStates.includes(v));
-		this._dElement.set('data-mdf-state',aStates.join(' '));
+		var aCurrs=(this._dElement.get('data-tessefakt-state')??'').split(' '),aAdds=aStates.filter(v=>!aCurrs.includes(v)),aDels=aCurrs.filter(v=>!aStates.includes(v));
+		this._dElement.set('data-tessefakt-state',aStates.join(' '));
 	}
 	get inject(){
 		return this._dElement;

@@ -52,11 +52,11 @@ var cMdfRenderNavigationApp=class{
 		delete this._oSubjectDepartment;
 	}
 	flag(key){
-		this._dA.set('data-mdf-state','active');
+		this._dA.set('data-tessefakt-state','active');
 		this._oSubjectDepartment.flag(key);
 	}
 	unflag(key){
-		this._dA.erase('data-mdf-state');
+		this._dA.erase('data-tessefakt-state');
 		this._oSubjectDepartment.unflag(key);
 	}
 	_click(e){

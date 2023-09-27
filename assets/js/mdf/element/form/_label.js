@@ -8,11 +8,11 @@ var cMdfElementFormLabel=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dLabel=new Element('label',{
-			'data-mdf-control-role':'label',
+			'data-tessefakt-control-role':'label',
 			'tabindex':this._oConfig.tabindex??0
 		}).inject(this._oParent.inject);
 		if(this._oConfig.caption) this._dCaption=new Element('span',{
-				'data-mdf-control-role':'caption',
+				'data-tessefakt-control-role':'caption',
 				'html':this._oConfig.caption
 			}).inject(this._dLabel);
 		this._oDisplay=new cMdfElementSelectDisplay({mdf:this._oMdf,parent:this,config:this._oConfig.display});

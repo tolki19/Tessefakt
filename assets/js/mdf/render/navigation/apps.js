@@ -9,7 +9,7 @@ var cMdfRenderNavigationApps=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dMenu=new Element('menu',{
-			'data-mdf-role':'appmenu'
+			'data-tessefakt-role':'appmenu'
 		}).inject(this._oParent.inject);
 		for(var key in this._oConfig){
 			this._oApps[key]=new cMdfRenderNavigationApp({mdf:this._oMdf,parent:this,config:this._oConfig[key],descriptor:key});
