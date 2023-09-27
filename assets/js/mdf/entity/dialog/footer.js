@@ -1,4 +1,4 @@
-var cMdfEntityDialogFooter=class extends cMdfEntityFooter{
+var cTessefaktEntityDialogFooter=class extends cTessefaktEntityFooter{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -11,7 +11,7 @@ var cMdfEntityDialogFooter=class extends cMdfEntityFooter{
 		this._oConfig=config;
 		this._dFooter=new Element('footer').inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.buttons?.length;++i){
-			var sObject='cMdfHTMLElement'+this._oConfig.buttons[i].name.camelize();
+			var sObject='cTessefaktHTMLElement'+this._oConfig.buttons[i].name.camelize();
 			try{
 				this._aSubjects.push(new window[sObject]({mdf:this._oMdf,parent:this,config:this._oConfig.buttons[i],water:this.water}));
 			}catch(ex){

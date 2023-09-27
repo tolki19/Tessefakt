@@ -1,4 +1,4 @@
-var cMdfCollectionSet=class extends cMdfCollection{
+var cTessefaktCollectionSet=class extends cTessefaktCollection{
 	_oTable;
 	_oController;
 	_oFields={};
@@ -49,7 +49,7 @@ var cMdfCollectionSet=class extends cMdfCollection{
 		}
 		if(target._oFields[key]==undefined){
 			target._oFormer={...this._oFields};
-			target._oFields[key]=new cMdfCollectionField({
+			target._oFields[key]=new cTessefaktCollectionField({
 				mdf:target._oMdf,
 				set:target
 			});
@@ -81,7 +81,7 @@ var cMdfCollectionSet=class extends cMdfCollection{
 		}
 		if(target._oFields[key]==undefined){
 			target._oFormer={...this._oFields};
-			target._oFields[key]=new cMdfCollectionField({
+			target._oFields[key]=new cTessefaktCollectionField({
 				mdf:target._oMdf,
 				set:target
 			});
@@ -168,7 +168,7 @@ var cMdfCollectionSet=class extends cMdfCollection{
 			}
 		}
 		for(var sKey in values){
-			this._oFields[sKey]=new cMdfCollectionField({
+			this._oFields[sKey]=new cTessefaktCollectionField({
 				mdf:this._oMdf,
 				set:this
 			});
@@ -216,7 +216,7 @@ var cMdfCollectionSet=class extends cMdfCollection{
 		return {...this._oFormer};
 	}
 	_clone(){
-		var oClone=new cMdfCollectionSet({
+		var oClone=new cTessefaktCollectionSet({
 			mdf:this._oMdf,
 			table:this._oTable
 		});

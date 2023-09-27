@@ -1,4 +1,4 @@
-var cMdfEntityAction=class{
+var cTessefaktEntityAction=class{
 	_oMdf;
 	_oParent;
 	_oConfig;

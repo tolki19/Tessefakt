@@ -1,4 +1,4 @@
-var cMdfCourierString=class extends cMdfCourier{
+var cTessefaktCourierString=class extends cTessefaktCourier{
 	_sValue;
 	_sFormer;
 	constructor({mdf,controller,courier,config,delivery}){
@@ -67,7 +67,7 @@ var cMdfCourierString=class extends cMdfCourier{
 		return this._sFormer;
 	}
 	_clone(){
-		var oClone=new cMdfCourierString({
+		var oClone=new cTessefaktCourierString({
 			mdf:this._oMdf,
 			set:this._oSet
 		});

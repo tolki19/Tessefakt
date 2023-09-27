@@ -1,4 +1,4 @@
-var cMdfElementFormLabel=class{
+var cTessefaktElementFormLabel=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -15,7 +15,7 @@ var cMdfElementFormLabel=class{
 				'data-tessefakt-control-role':'caption',
 				'html':this._oConfig.caption
 			}).inject(this._dLabel);
-		this._oDisplay=new cMdfElementSelectDisplay({mdf:this._oMdf,parent:this,config:this._oConfig.display});
+		this._oDisplay=new cTessefaktElementSelectDisplay({mdf:this._oMdf,parent:this,config:this._oConfig.display});
 	}
 	destructor(){
 		this._oDisplay.destructor();

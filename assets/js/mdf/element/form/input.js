@@ -1,4 +1,4 @@
-var cMdfHTMLElementInput=class extends cMdfElementForm{
+var cTessefaktHTMLElementInput=class extends cTessefaktElementForm{
 	_display(){
 		super._display();
 		if(this._oConfig.tabindex!=undefined) this._dElement.set('tabindex',this._oConfig.tabindex);

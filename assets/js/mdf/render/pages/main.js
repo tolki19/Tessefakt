@@ -1,4 +1,4 @@
-var cMdfRenderPagesMain=class{
+var cTessefaktRenderPagesMain=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -21,7 +21,7 @@ var cMdfRenderPagesMain=class{
 	}
 	openPage({app,index,events,delivery,page}){
 		if(!this._oConfig.apps[app].entities[index]) throw new Error('Page "'+app+'"."'+index+'" not configured');
-		var oSubject=new cMdfEntityPage({
+		var oSubject=new cTessefaktEntityPage({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig.apps[app].entities[index],

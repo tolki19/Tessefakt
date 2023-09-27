@@ -1,4 +1,4 @@
-var cMdfRequest=class{
+var cTessefaktRequest=class{
 	_oMdf;
 	_oRoot;
 	_oEvents;

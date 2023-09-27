@@ -1,1 +1,1 @@
-var cMdfHTMLElementTfoot=class extends cMdfElementBlock{};
+var cTessefaktHTMLElementTfoot=class extends cTessefaktElementBlock{};

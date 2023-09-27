@@ -1,4 +1,4 @@
-var cMdfRenderNavigationSubjectAction=class{
+var cTessefaktRenderNavigationSubjectAction=class{
 	_oMdf;
 	_oParent;
 	_oConfig;

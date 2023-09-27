@@ -1,4 +1,4 @@
-var cMdfEntityActionSearch=class extends cMdfEntityAction{
+var cTessefaktEntityActionSearch=class extends cTessefaktEntityAction{
 	_display(){
 		super._display();
 		this._dSpan=new Element('span',{'data-tessefakt-role':'control','data-tessefakt-control':this._oConfig.type}).inject(this._dLi);

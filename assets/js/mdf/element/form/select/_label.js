@@ -1,4 +1,4 @@
-var cMdfElementSelectLabel=class extends cMdfElementFormLabel{
+var cTessefaktElementSelectLabel=class extends cTessefaktElementFormLabel{
 	constructor({mdf,parent,config}){
 		super({mdf,parent,config});
 		this._dLabel.addEvents({

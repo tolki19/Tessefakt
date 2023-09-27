@@ -1,4 +1,4 @@
-var cMdfElementSelectPan=class extends cMdfElementFormPan{
+var cTessefaktElementSelectPan=class extends cTessefaktElementFormPan{
 	_display(){
 		if(this._oConfig.search) this._oConfig.contents.unshift({
 				name: "input",

@@ -1,4 +1,4 @@
-var cMdfRenderNavigationSubjectGroup=class{
+var cTessefaktRenderNavigationSubjectGroup=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -30,7 +30,7 @@ var cMdfRenderNavigationSubjectGroup=class{
 			this._dSpan=new Element('span',{html:this._oConfig.caption}).inject(this._dLabel);
 		}
 		this._dDiv=new Element('div').inject(this._dLi);
-		this._oSubjectMenu=new cMdfRenderNavigationDepartment({mdf:this._oMdf,parent:this,config:this._oConfig,descriptor:this._sDescriptor});
+		this._oSubjectMenu=new cTessefaktRenderNavigationDepartment({mdf:this._oMdf,parent:this,config:this._oConfig,descriptor:this._sDescriptor});
 	}
 	destructor(){
 		if(this._dI) this._dI.dispose();

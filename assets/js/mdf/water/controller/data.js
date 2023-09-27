@@ -1,4 +1,4 @@
-var cMdfControllerData=class extends cMdfController{
+var cTessefaktControllerData=class extends cTessefaktController{
 	_oController;
 	_oSubjects={};
 	_oFormer;
@@ -43,7 +43,7 @@ var cMdfControllerData=class extends cMdfController{
 			case 'controller': return target._oController;
 			case 'sequences':
 				if(target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfControllerSequences({
+					target._oSubjects[key]=new cTessefaktControllerSequences({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -51,7 +51,7 @@ var cMdfControllerData=class extends cMdfController{
 				return target._oSubjects[key];
 			case 'sequence':
 				if(target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfSequenceTable({
+					target._oSubjects[key]=new cTessefaktSequenceTable({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -59,7 +59,7 @@ var cMdfControllerData=class extends cMdfController{
 				return target._oSubjects[key];
 			case 'collections':
 				if(!target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfControllerCollections({
+					target._oSubjects[key]=new cTessefaktControllerCollections({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -67,7 +67,7 @@ var cMdfControllerData=class extends cMdfController{
 				return target._oSubjects[key];
 			case 'collection':
 				if(target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfCollectionTable({
+					target._oSubjects[key]=new cTessefaktCollectionTable({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -75,7 +75,7 @@ var cMdfControllerData=class extends cMdfController{
 				return target._oSubjects[key];
 			case 'set':
 				if(target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfCollectionSet({
+					target._oSubjects[key]=new cTessefaktCollectionSet({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -98,7 +98,7 @@ var cMdfControllerData=class extends cMdfController{
 			case 'controller':
 				throw new Error('Key "'+key+'" not allowed');
 			case 'sequences':
-				if(value instanceof cMdfControllerSequences){
+				if(value instanceof cTessefaktControllerSequences){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -107,7 +107,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfControllerSequences({
+					target._oSubjects[key]=new cTessefaktControllerSequences({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -121,7 +121,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}
 			case 'sequence':
-				if(value instanceof cMdfSequenceTable){
+				if(value instanceof cTessefaktSequenceTable){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -130,7 +130,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfSequenceTable({
+					target._oSubjects[key]=new cTessefaktSequenceTable({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -144,7 +144,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}
 			case 'collections':
-				if(value instanceof cMdfControllerCollections){
+				if(value instanceof cTessefaktControllerCollections){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -153,7 +153,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfControllerCollections({
+					target._oSubjects[key]=new cTessefaktControllerCollections({
 						mdf:target._oMdf,
 						controlle:target
 					});
@@ -167,7 +167,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}
 			case 'collection':
-				if(value instanceof cMdfCollectionTable){
+				if(value instanceof cTessefaktCollectionTable){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -176,7 +176,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfCollectionTable({
+					target._oSubjects[key]=new cTessefaktCollectionTable({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -190,7 +190,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}
 			case 'set':
-				if(value instanceof cMdfCollectionSet){
+				if(value instanceof cTessefaktCollectionSet){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -199,7 +199,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfCollectionTable({
+					target._oSubjects[key]=new cTessefaktCollectionTable({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -301,7 +301,7 @@ var cMdfControllerData=class extends cMdfController{
 			switch(sKey){
 				case 'sequences':
 					if(target._oSubjects[sKey]==undefined){
-						target._oSubjects[sKey]=new cMdfControllerSequences({
+						target._oSubjects[sKey]=new cTessefaktControllerSequences({
 							mdf:target._oMdf,
 							controller:target
 						});
@@ -310,7 +310,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				case 'sequence':
 					if(target._oSubjects[sKey]==undefined){
-						target._oSubjects[sKey]=new cMdfSequenceTable({
+						target._oSubjects[sKey]=new cTessefaktSequenceTable({
 							mdf:target._oMdf,
 							controller:target
 						});
@@ -319,7 +319,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				case 'collections':
 					if(target._oSubjects[sKey]==undefined){
-						target._oSubjects[sKey]=new cMdfControllerCollections({
+						target._oSubjects[sKey]=new cTessefaktControllerCollections({
 							mdf:target._oMdf,
 							controller:target
 						});
@@ -328,7 +328,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				case 'collection':
 					if(target._oSubjects[sKey]==undefined){
-						target._oSubjects[sKey]=new cMdfCollectionTable({
+						target._oSubjects[sKey]=new cTessefaktCollectionTable({
 							mdf:target._oMdf,
 							controller:target
 						});
@@ -337,7 +337,7 @@ var cMdfControllerData=class extends cMdfController{
 					return true;
 				case 'set':
 					if(target._oSubjects[sKey]==undefined){
-						target._oSubjects[sKey]=new cMdfCollectionSet({
+						target._oSubjects[sKey]=new cTessefaktCollectionSet({
 							mdf:target._oMdf,
 							collection:target
 						});
@@ -376,27 +376,27 @@ var cMdfControllerData=class extends cMdfController{
 				default:
 					throw new Error('Key "'+sKey+'" not allowed');
 				case 'sequences':
-					if(!objects[sKey] instanceof cMdfControllerSequences){
+					if(!objects[sKey] instanceof cTessefaktControllerSequences){
 						throw new Error('Key "'+sKey+'" wrong type');
 					}
 					break;
 				case 'sequence':
-					if(!objects[sKey] instanceof cMdfSequenceTable){
+					if(!objects[sKey] instanceof cTessefaktSequenceTable){
 						throw new Error('Key "'+sKey+'" wrong type');
 					}
 					break;
 				case 'collections':
-					if(!objects[sKey] instanceof cMdfControllerCollections){
+					if(!objects[sKey] instanceof cTessefaktControllerCollections){
 						throw new Error('Key "'+sKey+'" wrong type');
 					}
 					break;
 				case 'collection':
-					if(!objects[sKey] instanceof cMdfCollectionTable){
+					if(!objects[sKey] instanceof cTessefaktCollectionTable){
 						throw new Error('Key "'+sKey+'" wrong type');
 					}
 					break;
 				case 'set':
-					if(!objects[sKey] instanceof cMdfCollectionSet){
+					if(!objects[sKey] instanceof cTessefaktCollectionSet){
 						throw new Error('Key "'+sKey+'" wrong type');
 					}
 					break;
@@ -411,7 +411,7 @@ var cMdfControllerData=class extends cMdfController{
 		return {...this._oFormer};
 	}
 	_clone(){
-		var oClone=new cMdfControllerData({
+		var oClone=new cTessefaktControllerData({
 			mdf:this._oMdf,
 			controller:this._oController
 		});

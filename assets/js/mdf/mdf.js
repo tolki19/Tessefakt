@@ -1,4 +1,4 @@
-var cMdf=class{
+var cTessefakt=class{
 	_sUri;
 	_oConfig;
 	_oRender;
@@ -58,14 +58,14 @@ var cMdf=class{
 		this._oRender.refresh();
 	}
 	request({root,get,post,water,events}){
-		var oRequest=new cMdfRequest({mdf:this,root:root,uri:this._sUri,get:get,post:post,water:water,events:events,credentials:this._oCredentials});
+		var oRequest=new cTessefaktRequest({mdf:this,root:root,uri:this._sUri,get:get,post:post,water:water,events:events,credentials:this._oCredentials});
 		this._aRequests.push(oRequest);
 		return oRequest;
 	}
 	_loadBootstrap(e){
 		this._oConfig=e.target.responseJson.data.config;
 		if(e.target.responseJson.data.config.settings.credentials!=undefined) this._oCredentials=e.target.responseJson.data.config.settings.credentials;
-		this._oRender=new cMdfRender({mdf:this,config:this._oConfig});
+		this._oRender=new cTessefaktRender({mdf:this,config:this._oConfig});
 		if(e.target.responseJson.recommendation.indexOf('login')!=-1){
 			if((this._oCredentials?.uid??false)&&(this._oCredentials?.password??false)){
 				this.request({

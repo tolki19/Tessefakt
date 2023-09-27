@@ -1,4 +1,4 @@
-var cMdfEntityDialog=class extends cMdfEntity{
+var cTessefaktEntityDialog=class extends cTessefaktEntity{
 	_oMdf;
 	_oConfig;
 	_oParent;
@@ -25,24 +25,24 @@ var cMdfEntityDialog=class extends cMdfEntity{
 		this._oWater=this._oParent.water.clone;
 		if(this._oConfig.bucket) this._oBucket=this._oWater[this._oConfig.bucket];
 		else this._oBucket=this._oWater;
-		if(this._oConfig.couriers) this._oCourier=new cMdfServiceCouriers({mdf:this._oMdf,parent:this,config:this._oConfig.couriers});
+		if(this._oConfig.couriers) this._oCourier=new cTessefaktServiceCouriers({mdf:this._oMdf,parent:this,config:this._oConfig.couriers});
 		if(this._oConfig.request){
-			this._oRequest=new cMdfServiceRequest({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
-			if(this._oConfig.request.post) this._oRequestChange=new cMdfServiceRequestChange({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
+			this._oRequest=new cTessefaktServiceRequest({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
+			if(this._oConfig.request.post) this._oRequestChange=new cTessefaktServiceRequestChange({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
 		}
 		this._dFrame=new Element('div',{'data-tessefakt-role':'dialog','data-tessefakt-state':'open'}).inject(this._oParent.inject);
 		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
-		this._oHeader=new cMdfEntityDialogHeader({
+		this._oHeader=new cTessefaktEntityDialogHeader({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig
 		});
-		this._oMain=new cMdfEntityDialogMain({
+		this._oMain=new cTessefaktEntityDialogMain({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig
 		});
-		this._oFooter=new cMdfEntityDialogFooter({
+		this._oFooter=new cTessefaktEntityDialogFooter({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig

@@ -1,4 +1,4 @@
-var cMdfServiceUnselect=class extends cMdfService{
+var cTessefaktServiceUnselect=class extends cTessefaktService{
 	execute(){
 		var oSelectSequence=this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water});
 		var oSequence=this._oMdf.mscript({script:this._oConfig['target-sequence'],water:this.water});

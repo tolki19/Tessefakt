@@ -1,2 +1,2 @@
-var cMdfEntityFooter=class{
+var cTessefaktEntityFooter=class{
 };

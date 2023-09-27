@@ -1,4 +1,4 @@
-var cMdfRenderPages=class{
+var cTessefaktRenderPages=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -10,8 +10,8 @@ var cMdfRenderPages=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dPan=new Element('div',{'data-tessefakt-role':'pages-pan'}).inject(this._oParent.inject);
-		this._oHeader=new cMdfRenderPagesHeader({mdf:this._oMdf,parent:this,config:this._oConfig});
-		this._oMain=new cMdfRenderPagesMain({mdf:this._oMdf,parent:this,config:this._oConfig});
+		this._oHeader=new cTessefaktRenderPagesHeader({mdf:this._oMdf,parent:this,config:this._oConfig});
+		this._oMain=new cTessefaktRenderPagesMain({mdf:this._oMdf,parent:this,config:this._oConfig});
 	}
 	destructor(){
 		this._oHeader.destructor();

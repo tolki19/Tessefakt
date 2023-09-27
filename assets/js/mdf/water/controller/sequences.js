@@ -1,4 +1,4 @@
-var cMdfControllerSequences=class extends cMdfController{
+var cTessefaktControllerSequences=class extends cTessefaktController{
 	_oController;
 	_oSequences={};
 	_oFormer;
@@ -43,7 +43,7 @@ var cMdfControllerSequences=class extends cMdfController{
 			case 'controller': return target._oController;
 		}
 		if(target._oSequences[key]==undefined){
-			return new cMdfSequenceTable({
+			return new cTessefaktSequenceTable({
 				mdf:target._oMdf,
 				controller:target
 			});
@@ -69,7 +69,7 @@ var cMdfControllerSequences=class extends cMdfController{
 		}
 		if(target._oSequences[key]==undefined){
 			this._oFormer={...target._oSequences};
-			target._oSequences[key]=new cMdfSequenceTable({
+			target._oSequences[key]=new cTessefaktSequenceTable({
 				mdf:target._oMdf,
 				controller:target
 			});
@@ -154,7 +154,7 @@ var cMdfControllerSequences=class extends cMdfController{
 		}
 		for(var sKey in values){
 			if(this._oSequences[sKey]==undefined){
-				this._oSequences[sKey]=new cMdfSequenceTable({
+				this._oSequences[sKey]=new cTessefaktSequenceTable({
 					mdf:this._oMdf,
 					controller:this
 				});
@@ -194,7 +194,7 @@ var cMdfControllerSequences=class extends cMdfController{
 		}
 		for(var sKey in objects){
 			if(this._oSequences[sKey]==undefined){
-				this._oSequences[sKey]=new cMdfSequenceTable({
+				this._oSequences[sKey]=new cTessefaktSequenceTable({
 					mdf:this._oMdf,
 					controller:this
 				});
@@ -210,7 +210,7 @@ var cMdfControllerSequences=class extends cMdfController{
 		return {...this._oFormer};
 	}
 	_clone(){
-		var oClone=new cMdfControllerSequences({
+		var oClone=new cTessefaktControllerSequences({
 			mdf:this._oMdf,
 			controller:this._oController
 		});

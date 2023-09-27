@@ -1,4 +1,4 @@
-var cMdfGadgetMultiselectable=class extends cMdfGadget{
+var cTessefaktGadgetMultiselectable=class extends cTessefaktGadget{
 	constructor(o){
 		super(o);
 		this.$change=this._change.bind(this);

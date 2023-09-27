@@ -1,4 +1,4 @@
-var cMdfEntityDialogHeader=class extends cMdfEntityHeader{
+var cTessefaktEntityDialogHeader=class extends cTessefaktEntityHeader{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -12,7 +12,7 @@ var cMdfEntityDialogHeader=class extends cMdfEntityHeader{
 		this._oConfig=config;
 		this._dHeader=new Element('header').inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.titles?.length;++i){
-			var sObject='cMdfHTMLElement'+this._oConfig.titles[i].name.camelize();
+			var sObject='cTessefaktHTMLElement'+this._oConfig.titles[i].name.camelize();
 			try{
 				this._aSubjects.push(new window[sObject]({mdf:this._oMdf,parent:this,config:this._oConfig.titles[i],water:this.water}));
 			}catch(ex){

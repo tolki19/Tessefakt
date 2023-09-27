@@ -1,4 +1,4 @@
-var cMdfControllerBucket=class extends cMdfController{
+var cTessefaktControllerBucket=class extends cTessefaktController{
 	_oController;
 	_oSubjects={};
 	_oFormer;
@@ -43,7 +43,7 @@ var cMdfControllerBucket=class extends cMdfController{
 			case 'controller': return target._oController;
 			case 'couriers':
 				if(target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfControllerCouriers({
+					target._oSubjects[key]=new cTessefaktControllerCouriers({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -51,7 +51,7 @@ var cMdfControllerBucket=class extends cMdfController{
 				return target._oSubjects[key];
 			case 'data': 
 				if(target._oSubjects[key]==undefined){
-					target._oSubjects[key]=new cMdfControllerData({
+					target._oSubjects[key]=new cTessefaktControllerData({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -77,7 +77,7 @@ var cMdfControllerBucket=class extends cMdfController{
 			case 'controller':
 				throw new Error('Key "'+key+'" not allowed');
 			case 'couriers':
-				if(value instanceof cMdfControllerCouriers){
+				if(value instanceof cTessefaktControllerCouriers){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -86,7 +86,7 @@ var cMdfControllerBucket=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfControllerCouriers({
+					target._oSubjects[key]=new cTessefaktControllerCouriers({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -103,7 +103,7 @@ var cMdfControllerBucket=class extends cMdfController{
 					return true;
 				}
 			case 'data':
-				if(value instanceof cMdfControllerData){
+				if(value instanceof cTessefaktControllerData){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=value;
 					var e=new Event('change');
@@ -112,7 +112,7 @@ var cMdfControllerBucket=class extends cMdfController{
 					return true;
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
-					target._oSubjects[key]=new cMdfControllerData({
+					target._oSubjects[key]=new cTessefaktControllerData({
 						mdf:target._oMdf,
 						controller:target
 					});
@@ -208,7 +208,7 @@ var cMdfControllerBucket=class extends cMdfController{
 			switch(sKey){
 				case 'couriers':
 					if(this._oSubjects[sKey]==undefined){
-						this._oSubjects[sKey]=new cMdfControllerCouriers({
+						this._oSubjects[sKey]=new cTessefaktControllerCouriers({
 							mdf:this._oMdf,
 							controller:this
 						});
@@ -217,7 +217,7 @@ var cMdfControllerBucket=class extends cMdfController{
 					return true;
 				case 'data':
 					if(this._oSubjects[sKey]==undefined){
-						this._oSubjects[sKey]=new cMdfControllerData({
+						this._oSubjects[sKey]=new cTessefaktControllerData({
 							mdf:this._oMdf,
 							controller:this
 						});
@@ -272,7 +272,7 @@ var cMdfControllerBucket=class extends cMdfController{
 		return {...this._oFormer};
 	}
 	_clone(){
-		var oClone=new cMdfControllerBucket({
+		var oClone=new cTessefaktControllerBucket({
 			mdf:this._oMdf,
 			controller:this._oController
 		});

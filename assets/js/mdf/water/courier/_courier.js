@@ -1,4 +1,4 @@
-var cMdfCourier=class{
+var cTessefaktCourier=class{
 	_oMdf;
 	_oController;
 	_oCourier;

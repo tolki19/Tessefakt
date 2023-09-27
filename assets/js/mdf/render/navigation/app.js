@@ -1,4 +1,4 @@
-var cMdfRenderNavigationApp=class{
+var cTessefaktRenderNavigationApp=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -28,7 +28,7 @@ var cMdfRenderNavigationApp=class{
 		if(this._oConfig.navigation.caption){
 			this._dSpan=new Element('span',{html:this._oConfig.navigation.caption}).inject(this._dA);
 		}
-		this._oSubjectDepartment=new cMdfRenderNavigationDepartment({
+		this._oSubjectDepartment=new cTessefaktRenderNavigationDepartment({
 			mdf:this._oMdf,
 			parent:this._oParent._oParent,
 			config:this._oConfig.navigation,

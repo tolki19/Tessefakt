@@ -1,4 +1,4 @@
-var cMdfCollection=class{
+var cTessefaktCollection=class{
 	_oMdf;
 	_oEvents={};
 	destructor(){

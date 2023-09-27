@@ -1,4 +1,4 @@
-var cMdfCollectionField=class extends cMdfCollection{
+var cTessefaktCollectionField=class extends cTessefaktCollection{
 	_oSet;
 	_mValue;
 	_mFormer;
@@ -74,7 +74,7 @@ var cMdfCollectionField=class extends cMdfCollection{
 		return this._mFormer;
 	}
 	_clone(){
-		var oClone=new cMdfCollectionField({
+		var oClone=new cTessefaktCollectionField({
 			mdf:this._oMdf,
 			set:this._oSet
 		});

@@ -1,4 +1,4 @@
-var cMdfHTMLElementPassword=class extends cMdfElementForm{
+var cTessefaktHTMLElementPassword=class extends cTessefaktElementForm{
 	_display(){
 		super._display();
 		this._dElement.set('type','password');

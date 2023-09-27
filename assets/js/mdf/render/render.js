@@ -1,4 +1,4 @@
-var cMdfRender=class{
+var cTessefaktRender=class{
 	_oMdf;
 	_oConfig;
 	_oDelivery;
@@ -12,23 +12,23 @@ var cMdfRender=class{
 		this._oConfig=config;
 		this._oDelivery=delivery;
 		for(var a=document.querySelectorAll('body>*'),i=0;i<a.length;++i) a[i].dispose();
-		this._oWater=new cMdfControllerWater({
+		this._oWater=new cTessefaktControllerWater({
 			mdf:this._oMdf
 		});
 		if(this._oConfig.construct.bucket) this._oBucket=this._oWater[this._oConfig.construct.bucket];
 		else this._oBucket=this._oWater;
-		if(this._oConfig.construct.couriers) this._oCourier=new cMdfServiceCouriers({
+		if(this._oConfig.construct.couriers) this._oCourier=new cTessefaktServiceCouriers({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.construct.couriers,
 				delivery:this._oDelivery
 			});
-		this._oPages=new cMdfRenderPages({
+		this._oPages=new cTessefaktRenderPages({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig
 		});
-		this._oDialogs=new cMdfRenderDialogs({
+		this._oDialogs=new cTessefaktRenderDialogs({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig

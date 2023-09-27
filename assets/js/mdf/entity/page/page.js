@@ -1,4 +1,4 @@
-var cMdfEntityPage=class extends cMdfEntity{
+var cTessefaktEntityPage=class extends cTessefaktEntity{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -28,7 +28,7 @@ var cMdfEntityPage=class extends cMdfEntity{
 		if(this._oConfig.bucket) this._oBucket=this._oWater[this._oConfig.bucket];
 		else this._oBucket=this._oWater;
 		if(this._oConfig.couriers){
-			this._oCourier=new cMdfServiceCouriers({
+			this._oCourier=new cTessefaktServiceCouriers({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.couriers,
@@ -36,7 +36,7 @@ var cMdfEntityPage=class extends cMdfEntity{
 			});
 		}
 		if(this._oConfig.request){
-			this._oRequest=new cMdfServiceRequest({
+			this._oRequest=new cTessefaktServiceRequest({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.request,
@@ -46,7 +46,7 @@ var cMdfEntityPage=class extends cMdfEntity{
 				}
 			});
 			if(this._oConfig.request.post){
-				this._oRequestChange=new cMdfServiceRequestChange({
+				this._oRequestChange=new cTessefaktServiceRequestChange({
 					mdf:this._oMdf,
 					parent:this,
 					config:this._oConfig.request,
@@ -58,17 +58,17 @@ var cMdfEntityPage=class extends cMdfEntity{
 		}
 		this._dFrame=new Element('div',{'data-tessefakt-role':'page','data-tessefakt-visibility':'open'}).inject(this._oParent.inject);
 		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
-		this._oHeader=new cMdfEntityPageHeader({
+		this._oHeader=new cTessefaktEntityPageHeader({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig
 		});
-		this._oMain=new cMdfEntityPageMain({
+		this._oMain=new cTessefaktEntityPageMain({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig
 		});
-		this._oFooter=new cMdfEntityPageFooter({
+		this._oFooter=new cTessefaktEntityPageFooter({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig

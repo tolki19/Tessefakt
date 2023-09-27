@@ -1,4 +1,4 @@
-var cMdfSequence=class{
+var cTessefaktSequence=class{
 	_oMdf;
 	_oEvents={};
 	destructor(){

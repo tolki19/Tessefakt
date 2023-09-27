@@ -1,11 +1,11 @@
-var cMdfCourierObject=class extends cMdfCourier{
+var cTessefaktCourierObject=class extends cTessefaktCourier{
 	_oValues={};
 	_oFormer;
 	constructor({mdf,controller,courier,config,delivery={}}){
 		super({mdf,controller,courier,config});
 		if(this._oConfig.couriers){
 			 for(var i=0;i<this._oConfig.couriers.length;++i){
-				// this._oValues[this._oConfig.couriers[i].name]=new window['cMdfCourier'+this._oConfig.couriers[i].type.camelize()]({
+				// this._oValues[this._oConfig.couriers[i].name]=new window['cTessefaktCourier'+this._oConfig.couriers[i].type.camelize()]({
 				// 	mdf:this._oMdf,
 				// 	courier:this,
 				// 	config:this._oConfig.couriers[i]
@@ -65,7 +65,7 @@ var cMdfCourierObject=class extends cMdfCourier{
 			case 'courier':
 				throw new Error('Key "'+key+'" not allowed');
 		}
-		if(value instanceof cMdfCourier){
+		if(value instanceof cTessefaktCourier){
 			target._oFormer={...target._oValues};
 			for(var key in value) target._oValues[key].value=value[key];
 			var e=new Event('change');
@@ -154,7 +154,7 @@ var cMdfCourierObject=class extends cMdfCourier{
 		return this._oFormer;
 	}
 	_clone(){
-		var oClone=new cMdfCourierObject({
+		var oClone=new cTessefaktCourierObject({
 			mdf:this._oMdf,
 			controller:this._oController,
 			courier:this._oCourier,

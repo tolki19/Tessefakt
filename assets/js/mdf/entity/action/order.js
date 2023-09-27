@@ -1,10 +1,10 @@
-var cMdfEntityActionOrder=class extends cMdfEntityAction{
+var cTessefaktEntityActionOrder=class extends cTessefaktEntityAction{
 	_aVariants=[];
 	constructor({mdf,parent,config}){
 		super({mdf:mdf,parent:parent,config:config});
 		var aRods=[];
 		for(var i=0;i<this._oConfig.variants.length;++i){
-			this._aVariants.push(new cMdfEntityActionOrderVariant({mdf:mdf,parent:this,config:this._oConfig.variants[i]}));
+			this._aVariants.push(new cTessefaktEntityActionOrderVariant({mdf:mdf,parent:this,config:this._oConfig.variants[i]}));
 			aRods=aRods.concat(this._oMdf.mscriptRods({script:this._oConfig.variants[i]}));
 		}
 		this._aRods=aRods.filter(function(v,k,r){

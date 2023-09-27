@@ -1,1 +1,1 @@
-var cMdfElementSelectHandles=class extends cMdfElementFormHandles{};
+var cTessefaktElementSelectHandles=class extends cTessefaktElementFormHandles{};

@@ -1,4 +1,4 @@
-var cMdfRenderNavigationSubjectDialog=class{
+var cTessefaktRenderNavigationSubjectDialog=class{
 	_oMdf;
 	_oParent;
 	_oConfig;

@@ -1,4 +1,4 @@
-var cMdfFormButton=class{
+var cTessefaktFormButton=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -20,16 +20,16 @@ var cMdfFormButton=class{
 		this._oWater=water.clone;
 		if(this._oConfig.bucket) this._oBucket=this.water[this._oConfig.bucket];
 		else this._oBucket=this.water;
-		if(this._oConfig.couriers) this._oCourier=new cMdfServiceCouriers({mdf:this._oMdf,parent:this,config:this._oConfig.couriers});
+		if(this._oConfig.couriers) this._oCourier=new cTessefaktServiceCouriers({mdf:this._oMdf,parent:this,config:this._oConfig.couriers});
 		if(this._oConfig.request){
-			this._oRequest=new cMdfServiceRequest({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
-			if(this._oConfig.request.post) this._oRequestChange=new cMdfServiceRequestChange({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
+			this._oRequest=new cTessefaktServiceRequest({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
+			if(this._oConfig.request.post) this._oRequestChange=new cTessefaktServiceRequestChange({mdf:this._oMdf,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
 		}
 		this._display();
 		if(this._oConfig.desc) this._oRoot.registerDescription(this._oConfig.desc,this);
-		if(this._oConfig.unselect) this._oUnselect=new cMdfServiceUnselect({mdf:this._oMdf,parent:this,config:this._oConfig.unselect});
+		if(this._oConfig.unselect) this._oUnselect=new cTessefaktServiceUnselect({mdf:this._oMdf,parent:this,config:this._oConfig.unselect});
 		for(var i=0;i<(this._oConfig.gadgets??[]).length;++i){
-			var sObject='cMdfGadget'+this._oConfig.gadgets[i].type.camelize();
+			var sObject='cTessefaktGadget'+this._oConfig.gadgets[i].type.camelize();
 			try{
 				this._oGadgets[this._oConfig.gadgets[i].type]=new window[sObject]({mdf:this._oMdf,parent:this,config:this._oConfig.gadgets[i],element:this._dElement});
 			}catch(ex){
@@ -42,7 +42,7 @@ var cMdfFormButton=class{
 			case 'close': this._dElement.addEvent('click',this._close.bind(this)); break;
 		}
 		for(var i=0;i<(this._oConfig.contents??[]).length;++i){
-			var sObject='cMdfHTMLElement'+this._oConfig.contents[i].name.camelize();
+			var sObject='cTessefaktHTMLElement'+this._oConfig.contents[i].name.camelize();
 			this._aSubjects.push(new window[sObject]({mdf:this._oMdf,parent:this,config:this._oConfig.contents[i],water:this.water}));
 		}
 	}

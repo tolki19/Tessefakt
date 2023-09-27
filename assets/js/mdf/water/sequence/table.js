@@ -1,4 +1,4 @@
-var cMdfSequenceTable=class extends cMdfSequence{
+var cTessefaktSequenceTable=class extends cTessefaktSequence{
 	_oController;
 	_aSequence=[];
 	_aFormer;
@@ -139,7 +139,7 @@ var cMdfSequenceTable=class extends cMdfSequence{
 		return this._aFormer;
 	}
 	_clone(){
-		var oClone=new cMdfSequenceTable({
+		var oClone=new cTessefaktSequenceTable({
 			mdf:this._oMdf,
 			controller:this._oController
 		});

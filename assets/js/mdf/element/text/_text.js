@@ -1,4 +1,4 @@
-var cMdfElementText=class extends cMdfElement{
+var cTessefaktElementText=class extends cTessefaktElement{
 	_oMdf;
 	_oParent;
 	_oConfig;

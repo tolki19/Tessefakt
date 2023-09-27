@@ -1,4 +1,4 @@
-var cMdfRenderDialogs=class{
+var cTessefaktRenderDialogs=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -21,7 +21,7 @@ var cMdfRenderDialogs=class{
 	}
 	openDialog({app,index,events,delivery}){
 		if(!this._oConfig.apps[app].entities[index]) throw new Error('Dialog "'+app+'"."'+index+'" not configured');
-		var oSubject=new cMdfEntityDialog({mdf:this._oMdf,parent:this,config:this._oConfig.apps[app].entities[index],events:events,delivery:delivery});
+		var oSubject=new cTessefaktEntityDialog({mdf:this._oMdf,parent:this,config:this._oConfig.apps[app].entities[index],events:events,delivery:delivery});
 		this._aSubjects.push(oSubject);
 		return oSubject;
 	}

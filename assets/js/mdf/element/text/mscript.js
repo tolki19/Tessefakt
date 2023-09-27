@@ -1,4 +1,4 @@
-var cMdfHTMLElementMscript=class extends cMdfElementText{
+var cTessefaktHTMLElementMscript=class extends cTessefaktElementText{
 	constructor({mdf,parent,config,water}){
 		super({mdf,parent,config,water});
 		this._oMdf.mscript({

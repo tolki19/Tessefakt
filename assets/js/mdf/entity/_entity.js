@@ -1,2 +1,2 @@
-var cMdfEntity=class{
+var cTessefaktEntity=class{
 };

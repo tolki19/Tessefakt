@@ -1,4 +1,4 @@
-var cMdfRenderPagesHeader=class{
+var cTessefaktRenderPagesHeader=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -10,7 +10,7 @@ var cMdfRenderPagesHeader=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dHeader=new Element('header').inject(this._oParent.inject);
-		this._oAppsMenu=new cMdfRenderNavigationApps({
+		this._oAppsMenu=new cTessefaktRenderNavigationApps({
 			mdf:this._oMdf,
 			parent:this,
 			config:this._oConfig.apps

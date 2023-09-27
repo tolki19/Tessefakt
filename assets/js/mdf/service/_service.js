@@ -1,4 +1,4 @@
-var cMdfService=class{
+var cTessefaktService=class{
 	_oMdf;
 	_oParent;
 	_oConfig;

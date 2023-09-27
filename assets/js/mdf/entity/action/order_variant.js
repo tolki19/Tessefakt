@@ -1,4 +1,4 @@
-var cMdfEntityActionOrderVariant=class{
+var cTessefaktEntityActionOrderVariant=class{
 	_oMdf;
 	_oParent;
 	_oConfig;

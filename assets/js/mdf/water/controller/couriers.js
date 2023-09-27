@@ -1,4 +1,4 @@
-var cMdfControllerCouriers=class extends cMdfController{
+var cTessefaktControllerCouriers=class extends cTessefaktController{
 	_oController;
 	_oCouriers={};
 	_oFormer;
@@ -60,7 +60,7 @@ var cMdfControllerCouriers=class extends cMdfController{
 			case 'controller':
 				throw new Error('Key "'+key+'" not allowed');
 		}
-		if(value instanceof cMdfCourier){
+		if(value instanceof cTessefaktCourier){
 			target._oCouriers[key]=value;
 			return true;
 		}
@@ -150,7 +150,7 @@ var cMdfControllerCouriers=class extends cMdfController{
 		return {...this._oFormer};
 	}
 	_clone(){
-		var oClone=new cMdfControllerCouriers({
+		var oClone=new cTessefaktControllerCouriers({
 			mdf:this._oMdf,
 			controller:this._oController
 		});

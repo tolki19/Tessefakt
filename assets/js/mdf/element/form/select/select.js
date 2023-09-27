@@ -1,11 +1,11 @@
-var cMdfHTMLElementSelect=class extends cMdfElementForm{
+var cTessefaktHTMLElementSelect=class extends cTessefaktElementForm{
 	_display(){
 		this._dSpan=new Element('span',{
 			'data-tessefakt-role':'control',
 			'data-tessefakt-control':this._oConfig.name
 		}).inject(this._oParent.inject);
-		this._oLabel=new cMdfElementSelectLabel({mdf:this._oMdf,parent:this,config:this._oConfig});
-		this._oPan=new cMdfElementSelectPan({mdf:this._oMdf,parent:this,config:this._oConfig.pan});
+		this._oLabel=new cTessefaktElementSelectLabel({mdf:this._oMdf,parent:this,config:this._oConfig});
+		this._oPan=new cTessefaktElementSelectPan({mdf:this._oMdf,parent:this,config:this._oConfig.pan});
 		if(this._oConfig.desc) this.registerDescription(this._oConfig.desc,this);
 	}
 	destructor(){

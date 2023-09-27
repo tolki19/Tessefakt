@@ -1,4 +1,4 @@
-var cMdfCourierArray=class extends cMdfCourier{
+var cTessefaktCourierArray=class extends cTessefaktCourier{
 	_aValues=[];
 	_aFormer;
 	constructor({mdf,controller,courier,config,delivery}){
@@ -142,7 +142,7 @@ var cMdfCourierArray=class extends cMdfCourier{
 		return this._aFormer;
 	}
 	_clone(){
-		var oClone=new cMdfCourierArray({
+		var oClone=new cTessefaktCourierArray({
 			mdf:this._oMdf,
 			controller:this._oController,
 			courier:this._oCourier,

@@ -1,4 +1,4 @@
-var cMdfHTMLElementTd=class extends cMdfElementBlock{
+var cTessefaktHTMLElementTd=class extends cTessefaktElementBlock{
 	_display(){
 		super._display();
 		if(this._oConfig.colspan) this._dElement.set('colspan',this._oConfig.colspan);

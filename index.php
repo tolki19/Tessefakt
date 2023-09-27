@@ -109,7 +109,7 @@
 		<script src="<?=$url;?>assets/js/mdf/water/courier/string.js"></script>
 		<script src="<?=$url;?>assets/js/mdf/water/sequence/_sequence.js"></script>
 		<script src="<?=$url;?>assets/js/mdf/water/sequence/table.js"></script>
-		<script>window.addEventListener('load',function(e){new cMdf({uri:'<?=$url;?>'});},true);</script>
+		<script>window.addEventListener('load',function(e){new cTessefakt({uri:'<?=$url;?>'});},true);</script>
 		<link rel="stylesheet" href="<?=$url;?>assets/css/desktop/standard.css">
 	</head>
 	<body>

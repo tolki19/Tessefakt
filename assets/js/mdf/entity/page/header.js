@@ -1,4 +1,4 @@
-var cMdfEntityPageHeader=class  extends cMdfEntityHeader{
+var cTessefaktEntityPageHeader=class  extends cTessefaktEntityHeader{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -13,7 +13,7 @@ var cMdfEntityPageHeader=class  extends cMdfEntityHeader{
 		this._dHeader=new Element('header').inject(this._oParent.inject);
 		this._dMenu=new Element('menu').inject(this._dHeader);
 		for(var i=0;i<(this._oConfig.headers??[]).length;++i){
-			this._aSubjects.push(new window['cMdfEntityAction'+this._oConfig.headers[i].type.camelize()]({
+			this._aSubjects.push(new window['cTessefaktEntityAction'+this._oConfig.headers[i].type.camelize()]({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.headers[i]

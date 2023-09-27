@@ -1,4 +1,4 @@
-var cMdfGadget=class{
+var cTessefaktGadget=class{
 	_oMdf;
 	_oParent;
 	_oConfig;

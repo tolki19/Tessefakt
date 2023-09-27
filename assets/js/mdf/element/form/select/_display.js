@@ -1,4 +1,4 @@
-var cMdfElementSelectDisplay=class extends cMdfElementFormDisplay{
+var cTessefaktElementSelectDisplay=class extends cTessefaktElementFormDisplay{
 	destructor(){
 		super.destructor();
 		this._oHandles.destructor();
@@ -14,6 +14,6 @@ var cMdfElementSelectDisplay=class extends cMdfElementFormDisplay{
 				}
 			]
 		};
-		this._oHandles=new cMdfElementSelectHandles({mdf:this._oMdf,parent:this,config:oConfig});
+		this._oHandles=new cTessefaktElementSelectHandles({mdf:this._oMdf,parent:this,config:oConfig});
 	}
 };

@@ -1,4 +1,4 @@
-var cMdfServiceRequestChange=class extends cMdfService{
+var cTessefaktServiceRequestChange=class extends cTessefaktService{
 	_oEvents;
 	constructor({mdf,parent,config,events}){
 		super({mdf,parent,config});

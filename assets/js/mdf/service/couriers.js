@@ -1,9 +1,9 @@
-var cMdfServiceCouriers=class extends cMdfService{
+var cTessefaktServiceCouriers=class extends cTessefaktService{
 	_aCouriers=[];
 	constructor({mdf,parent,config,events,delivery={}}){
 		super({mdf,parent,config});
 		for(var i=0;i<this._oConfig.length;++i){
-			var oCouriers=new window['cMdfCourier'+this._oConfig[i].type.camelize()]({
+			var oCouriers=new window['cTessefaktCourier'+this._oConfig[i].type.camelize()]({
 				mdf:this._oMdf,
 				config:this._oConfig[i],
 				delivery:delivery[this._oConfig[i].name]

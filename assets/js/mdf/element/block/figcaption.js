@@ -1,1 +1,1 @@
-var cMdfHTMLElementFigcaption=class extends cMdfElementBlock{};
+var cTessefaktHTMLElementFigcaption=class extends cTessefaktElementBlock{};

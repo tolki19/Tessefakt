@@ -1,4 +1,4 @@
-var cMdfEntityDialogMain=class extends cMdfEntityMain{
+var cTessefaktEntityDialogMain=class extends cTessefaktEntityMain{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -11,7 +11,7 @@ var cMdfEntityDialogMain=class extends cMdfEntityMain{
 		this._oConfig=config;
 		this._dMain=new Element('main').inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.contents?.length;++i){
-			var sObject='cMdfHTMLElement'+this._oConfig.contents[i].name.camelize();
+			var sObject='cTessefaktHTMLElement'+this._oConfig.contents[i].name.camelize();
 			try{
 				this._aSubjects.push(new window[sObject]({mdf:this._oMdf,parent:this,config:this._oConfig.contents[i],water:this.water}));
 			}catch(ex){

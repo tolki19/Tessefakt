@@ -1,4 +1,4 @@
-var cMdfRenderNavigationDepartment=class{
+var cTessefaktRenderNavigationDepartment=class{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -15,7 +15,7 @@ var cMdfRenderNavigationDepartment=class{
 		for(var i=0;i<this._oConfig.navigation.length;++i){
 			switch(this._oConfig.navigation[i].type){
 				case 'group':
-					this._aSubjects.push(new cMdfRenderNavigationSubjectGroup({
+					this._aSubjects.push(new cTessefaktRenderNavigationSubjectGroup({
 							mdf:this._oMdf,
 							parent:this,
 							config:this._oConfig.navigation[i],
@@ -27,7 +27,7 @@ var cMdfRenderNavigationDepartment=class{
 					var dLi=new Element('li',{html:'<hr>'}).inject(this.inject);
 					break;
 				case 'action':
-					this._aSubjects.push(new cMdfRenderNavigationSubjectAction({
+					this._aSubjects.push(new cTessefaktRenderNavigationSubjectAction({
 							mdf:this._oMdf,
 							parent:this,
 							config:this._oConfig.navigation[i]
@@ -35,7 +35,7 @@ var cMdfRenderNavigationDepartment=class{
 					);
 					break;
 				case 'page':
-					this._aSubjects.push(new cMdfRenderNavigationSubjectPage({
+					this._aSubjects.push(new cTessefaktRenderNavigationSubjectPage({
 							mdf:this._oMdf,
 							parent:this,
 							config:this._oConfig.navigation[i]
@@ -43,7 +43,7 @@ var cMdfRenderNavigationDepartment=class{
 					);
 					break;
 				case 'dialog':
-					this._aSubjects.push(new cMdfRenderNavigationSubjectDialog({
+					this._aSubjects.push(new cTessefaktRenderNavigationSubjectDialog({
 							mdf:this._oMdf,
 							parent:this,
 							config:this._oConfig.navigation[i]

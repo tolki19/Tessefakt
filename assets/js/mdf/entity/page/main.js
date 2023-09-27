@@ -1,4 +1,4 @@
-var cMdfEntityPageMain=class extends cMdfEntityMain{
+var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
 	_oMdf;
 	_oParent;
 	_oConfig;
@@ -10,9 +10,9 @@ var cMdfEntityPageMain=class extends cMdfEntityMain{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dMain=new Element('main').inject(this._oParent.inject);
-		if(this._oConfig.unselect) this._oUnselect=new cMdfServiceUnselect({mdf:this._oMdf,parent:this,config:this._oConfig.unselect});
+		if(this._oConfig.unselect) this._oUnselect=new cTessefaktServiceUnselect({mdf:this._oMdf,parent:this,config:this._oConfig.unselect});
 		for(var i=0;i<(this._oConfig.gadgets??[]).length;++i){
-			this._oGadgets[this._oConfig.gadgets[i].type]=new window['cMdfGadget'+this._oConfig.gadgets[i].type.camelize()]({mdf:this._oMdf,parent:this,config:this._oConfig.gadgets[i],element:this._dElement});
+			this._oGadgets[this._oConfig.gadgets[i].type]=new window['cTessefaktGadget'+this._oConfig.gadgets[i].type.camelize()]({mdf:this._oMdf,parent:this,config:this._oConfig.gadgets[i],element:this._dElement});
 		}
 		if(!(this._oConfig.sequence&&this._oConfig.collection)){
 			this._displayChildren({
@@ -59,7 +59,7 @@ var cMdfEntityPageMain=class extends cMdfEntityMain{
 	}
 	_displayChildren({water}){
 		for(var i=0;i<(this._oConfig.contents??[]).length;++i){
-			this._aSubjects.push(new window['cMdfHTMLElement'+this._oConfig.contents[i].name.camelize()]({
+			this._aSubjects.push(new window['cTessefaktHTMLElement'+this._oConfig.contents[i].name.camelize()]({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.contents[i],
@@ -69,7 +69,7 @@ var cMdfEntityPageMain=class extends cMdfEntityMain{
 	}
 	_displayLoading({water}){
 		for(var i=0;i<(this._oConfig.loading??[]).length;++i){
-			this._aSubjects.push(new window['cMdfHTMLElement'+this._oConfig.loading[i].name.camelize()]({
+			this._aSubjects.push(new window['cTessefaktHTMLElement'+this._oConfig.loading[i].name.camelize()]({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.loading[i],
@@ -79,7 +79,7 @@ var cMdfEntityPageMain=class extends cMdfEntityMain{
 	}
 	_displayEmpty({water}){
 		for(var i=0;i<(this._oConfig.empty??[]).length;++i){
-			this._aSubjects.push(new window['cMdfHTMLElement'+this._oConfig.empty[i].name.camelize()]({
+			this._aSubjects.push(new window['cTessefaktHTMLElement'+this._oConfig.empty[i].name.camelize()]({
 				mdf:this._oMdf,
 				parent:this,
 				config:this._oConfig.empty[i],

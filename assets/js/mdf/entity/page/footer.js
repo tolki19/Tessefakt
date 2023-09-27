@@ -1,4 +1,4 @@
-var cMdfEntityPageFooter=class extends cMdfEntityFooter{
+var cTessefaktEntityPageFooter=class extends cTessefaktEntityFooter{
 	_oMdf;
 	_oParent;
 	_oConfig;
