@@ -1,0 +1,2 @@
+var cMdfEntityMain=class{
+};

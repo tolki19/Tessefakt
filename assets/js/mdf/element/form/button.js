@@ -1,0 +1,1 @@
+var cMdfHTMLElementButton=class extends cMdfFormButton{};

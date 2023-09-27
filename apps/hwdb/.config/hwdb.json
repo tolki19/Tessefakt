@@ -1,0 +1,1247 @@
+{
+	"version": {
+		"major": "1",
+		"minor": "0",
+		"build": "1812",
+		"name": "la paloma"
+	},
+	"navigation": {
+		"caption": "Hardware-Datenbank",
+		"navigation": [
+			{
+				"type": "group",
+				"caption": "Zuweisung",
+				"navigation": [
+					{
+						"type": "page",
+						"caption": "Registrieren",
+						"key": {
+							"app": "hwdb",
+							"index": "allocRegister"
+						}
+					},
+					{
+						"type": "page",
+						"caption": "Suchen",
+						"key": {
+							"app": "hwdb",
+							"index": "allocSearch"
+						}
+					}
+				]
+			},
+			{
+				"type": "group",
+				"caption": "Stammdaten",
+				"navigation": [
+					{
+						"type": "group",
+						"caption": "Personal",
+						"navigation": [
+							{
+								"type": "page",
+								"caption": "Anlegen",
+								"key": {
+									"app": "hwdb",
+									"index": "persCreate"
+								}
+							},
+							{
+								"type": "page",
+								"caption": "Suchen",
+								"key": {
+									"app": "hwdb",
+									"index": "persSearch"
+								}
+							}
+						]
+					},
+					{
+						"type": "group",
+						"caption": "Raum",
+						"navigation": [
+							{
+								"type": "page",
+								"caption": "Anlegen",
+								"key": {
+									"app": "hwdb",
+									"index": "roomCreate"
+								}
+							},
+							{
+								"type": "page",
+								"caption": "Suchen",
+								"key": {
+									"app": "hwdb",
+									"index": "roomSearch"
+								}
+							}
+						]
+					},
+					{
+						"type": "group",
+						"caption": "Material",
+						"navigation": [
+							{
+								"type": "page",
+								"caption": "Anlegen",
+								"key": {
+									"app": "hwdb",
+									"index": "matCreate"
+								}
+							},
+							{
+								"type": "page",
+								"caption": "Suchen",
+								"key": {
+									"app": "hwdb",
+									"index": "matSearch"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"entities": {
+		"allocDetailsEdit": {
+			"type": "page",
+			"bucket": "page",
+			"request": {
+				"get": {
+					"app": "hwdb",
+					"controller": "test",
+					"method": "details"
+				},
+				"post": [
+					{
+						"name": "test-sequence",
+						"field": {
+							"type": "rod",
+							"trace": [
+								"page",
+								"couriers",
+								"test-sequence"
+							]
+						}
+					}
+				]
+			},
+			"couriers": [
+				{
+					"type": "array",
+					"name": "test-sequence",
+					"value": []
+				},
+				{
+					"type": "array",
+					"name": "test-select-sequence",
+					"value": []
+				},
+				{
+					"type": "array",
+					"name": "test-select-collection",
+					"value": []
+				}
+			],
+			"sequence": {
+				"type": "rod",
+				"trace": [
+					"page",
+					"data",
+					"sequences",
+					"test"
+				]
+			},
+			"collection": {
+				"type": "rod",
+				"trace": [
+					"page",
+					"data",
+					"collections",
+					"test"
+				]
+			},
+			"loading": [
+				{
+					"name": "tr",
+					"contents": [
+						{
+							"name": "th",
+							"colspan": "3",
+							"contents": [
+								{
+									"name": "text",
+									"text": "Ich arbeite hier doch auch nur. Bitte warten."
+								}
+							]
+						}
+					]
+				}
+			],
+			"empty": [
+				{
+					"name": "tr",
+					"contents": [
+						{
+							"name": "th",
+							"colspan": "3",
+							"contents": [
+								{
+									"name": "text",
+									"text": "Null. Nada. Rien. Gar nichts. Sie sehen 0 Zeilen. Noch weniger geht nicht. Entweder ist diese Ansicht für Sie leer oder Ihre Anzeigeparameter schließen alle Datensätze aus."
+								}
+							]
+						}
+					]
+				}
+			],
+			"headers": [
+				{
+					"type": "order",
+					"id": "save",
+					"variants": [
+						{
+							"caption": "Speichern",
+							"action": {
+								"get": {
+									"app": "hwdb",
+									"controller": "test",
+									"method": "save"
+								},
+								"post":[
+									{
+										"name": "test",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"page",
+												"data",
+												"collections",
+												"test"
+											],
+											"enum": false
+										}
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"type": "order",
+					"id": "cancel",
+					"variants": [
+						{
+							"caption": "Abbrechen",
+							"action": {
+								"get": {
+									"app": "hwdb",
+									"controller": "test",
+									"method": "cancel"
+								}
+							}
+						}
+					]
+				}
+			],
+			"contents": [
+				{
+					"name":"h2",
+					"contents":[
+						{
+							"name":"mscript",
+							"script":{
+								"type": "rod",
+								"trace": [
+									"page",
+									"data",
+									"set",
+									"caption"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name":"fieldset",
+					"contents":[
+						{
+							"name":"h3",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Test2"
+								}
+							]
+						},
+						{
+							"name":"input",
+							"caption":"Example",
+							"value":{
+								"type": "rod",
+								"trace": [
+									"page",
+									"data",
+									"set",
+									"example"
+								]
+							}
+						},
+						{
+							"name":"input",
+							"caption":"Caption",
+							"value":{
+								"type": "rod",
+								"trace": [
+									"page",
+									"data",
+									"set",
+									"caption"
+								]
+							}
+						},
+						{
+							"name":"select",
+							"caption":"Vertretung 1",
+							"bucket": "control",
+							"request": {
+								"get": {
+									"app": "hwdb",
+									"controller": "test",
+									"method": "list"
+								},
+								"post": [
+									{
+										"name": "test-id",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"page",
+												"data",
+												"set",
+												"id"
+											]
+										}
+									},
+									{
+										"name": "test-interim-replacement",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"page",
+												"data",
+												"set",
+												"replacement"
+											]
+										}
+									}
+								]
+							},
+							"display": {
+								"bucket": "control",
+								"index":{
+									"type": "rod",
+									"trace": [
+										"page",
+										"data",
+										"set",
+										"replacement"
+									]
+								},
+								"key":{
+									"type": "rod",
+									"trace": [
+										"control",
+										"data",
+										"set",
+										"id"
+									]
+								},
+								"contents": [
+									{
+										"name": "mscript",
+										"script": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"data",
+												"set",
+												"caption"
+											]
+										}
+									}
+								],
+								"sequence": {
+									"type": "rod",
+									"trace": [
+										"control",
+										"data",
+										"sequences",
+										"test"
+									]
+								},
+								"collection": {
+									"type": "rod",
+									"trace": [
+										"control",
+										"data",
+										"collections",
+										"test"
+									]
+								},
+								"loading": [
+									{
+										"name": "text",
+										"text": "Lade"
+									}
+								],
+								"empty": [
+									{
+										"name": "text",
+										"text": "Leer"
+									}
+								]
+							},
+							"pan": {
+								"index":{
+									"type": "rod",
+									"trace": [
+										"page",
+										"data",
+										"set",
+										"replacement"
+									]
+								},
+								"contents": [
+									{
+										"name": "ul",
+										"bucket": "pan",
+										"sequence": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"data",
+												"sequences",
+												"test"
+											]
+										},
+										"collection": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"data",
+												"collections",
+												"test"
+											]
+										},
+										"contents": [
+											{
+												"name": "li",
+												"gadgets":[
+													{
+														"type":"singleselectable",
+														"select-index":{
+															"type":"rod",
+															"trace":[
+																"page",
+																"data",
+																"set",
+																"replacement"
+															]
+														},
+														"value": {
+															"type": "rod",
+															"trace": [
+																"pan",
+																"data",
+																"set",
+																"id"
+															]
+														}
+													}
+												],
+												"contents": [
+													{
+														"name": "mscript",
+														"script": {
+															"type": "rod",
+															"trace": [
+																"pan",
+																"data",
+																"set",
+																"caption"
+															]
+														}
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						},
+						{
+							"name":"select",
+							"caption":"Vertretung 2",
+							"bucket": "control",
+							"request": {
+								"get": {
+									"app": "hwdb",
+									"controller": "test",
+									"method": "list"
+								},
+								"post": [
+									{
+										"name": "test-id",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"page",
+												"data",
+												"set",
+												"id"
+											]
+										}
+									},
+									{
+										"name": "test-interim-replacement",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"page",
+												"data",
+												"set",
+												"replacement"
+											]
+										}
+									},
+									{
+										"name": "test-search",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"couriers",
+												"test-search"
+											]
+										}
+									}
+								]
+							},
+							"couriers": [
+								{
+									"type": "string",
+									"name": "test-search",
+									"value": ""
+								}
+							],
+							"display": {
+								"bucket": "control",
+								"index":{
+									"type": "rod",
+									"trace": [
+										"page",
+										"data",
+										"set",
+										"replacement"
+									]
+								},
+								"key":{
+									"type": "rod",
+									"trace": [
+										"control",
+										"data",
+										"set",
+										"id"
+									]
+								},
+								"contents": [
+									{
+										"name": "mscript",
+										"script": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"data",
+												"set",
+												"caption"
+											]
+										}
+									}
+								],
+								"sequence": {
+									"type": "rod",
+									"trace": [
+										"control",
+										"data",
+										"sequences",
+										"test"
+									]
+								},
+								"collection": {
+									"type": "rod",
+									"trace": [
+										"control",
+										"data",
+										"collections",
+										"test"
+									]
+								},
+								"loading": [
+									{
+										"name": "text",
+										"text": "Lade"
+									}
+								],
+								"empty": [
+									{
+										"name": "text",
+										"text": "Leer"
+									}
+								]
+							},
+							"pan": {
+								"index":{
+									"type": "rod",
+									"trace": [
+										"page",
+										"data",
+										"set",
+										"replacement"
+									]
+								},
+								"search": {
+									"field": {
+										"type": "rod",
+										"trace": [
+											"control",
+											"couriers",
+											"test-search"
+										]
+									}
+								},
+								"contents": [
+									{
+										"name": "ul",
+										"bucket": "pan",
+										"sequence": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"data",
+												"sequences",
+												"test"
+											]
+										},
+										"collection": {
+											"type": "rod",
+											"trace": [
+												"control",
+												"data",
+												"collections",
+												"test"
+											]
+										},
+										"contents": [
+											{
+												"name": "li",
+												"gadgets":[
+													{
+														"type":"singleselectable",
+														"select-index":{
+															"type":"rod",
+															"trace":[
+																"page",
+																"data",
+																"set",
+																"replacement"
+															]
+														},
+														"value": {
+															"type": "rod",
+															"trace": [
+																"pan",
+																"data",
+																"set",
+																"id"
+															]
+														}
+													}
+												],
+												"contents": [
+													{
+														"name": "mscript",
+														"script": {
+															"type": "rod",
+															"trace": [
+																"pan",
+																"data",
+																"set",
+																"caption"
+															]
+														}
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		"allocRegister": {
+			"type": "page",
+			"bucket": "page",
+			"request": {
+				"get": {
+					"app": "hwdb",
+					"controller": "test",
+					"method": "complex"
+				},
+				"post": [
+					{
+						"name": "test-sort",
+						"field": {
+							"type": "rod",
+							"trace": [
+								"page",
+								"couriers",
+								"test-sort"
+							]
+						}
+					},
+					{
+						"name": "test-search",
+						"field": {
+							"type": "rod",
+							"trace": [
+								"page",
+								"couriers",
+								"test-search"
+							]
+						}
+					}
+				]
+			},
+			"couriers": [
+				{
+					"type": "string",
+					"name": "test-sort",
+					"value": "id asc"
+				},
+				{
+					"type": "string",
+					"name": "test-search",
+					"value": ""
+				},
+				{
+					"type": "array",
+					"name": "test-select-sequence",
+					"value": []
+				},
+				{
+					"type": "array",
+					"name": "test-select-collection",
+					"value": []
+				}
+			],
+			"headers": [
+				{
+					"type": "order",
+					"id": "create",
+					"variants": [
+						{
+							"caption": "Anlegen",
+							"action": {
+								"get": {
+									"app": "hwdb",
+									"controller": "test",
+									"method": "create"
+								}
+							},
+							"select-sequence": {
+								"type": "rod",
+								"trace": [
+									"page",
+									"couriers",
+									"test-select-sequence"
+								]
+							}
+						}
+					]
+				},
+				{
+					"type": "order",
+					"id": "delete",
+					"variants": [
+						{
+							"caption": "Löschen",
+							"verification": {
+								"type":"operation",
+								"operator":">",
+								"left":{
+									"type":"function",
+									"function":"length",
+									"array":{
+										"type":"rod",
+										"trace":[
+											"page",
+											"couriers",
+											"test-select-sequence"
+										]
+									}
+								},
+								"right":{
+									"type":"value",
+									"value":0
+								}
+							},
+							"action": {
+								"get": {
+									"app": "hwdb",
+									"controller": "test",
+									"method": "delete"
+								},
+								"post": [
+									{
+										"name": "id",
+										"field": {
+											"type": "rod",
+											"trace": [
+												"page",
+												"couriers",
+												"test-select-sequence"
+											]
+										}
+									}
+								]
+							},
+							"select-sequence": {
+								"type": "rod",
+								"trace": [
+									"page",
+									"couriers",
+									"test-select-sequence"
+								]
+							}
+						},
+						{
+							"caption": "Löschen"
+						}
+					]
+				},
+				{
+					"type": "order",
+					"id": "details",
+					"variants": [
+						{
+							"caption": "Details",
+							"verification": {
+								"type":"operation",
+								"operator":"==",
+								"left":{
+									"type":"function",
+									"function":"length",
+									"array":{
+										"type":"rod",
+										"trace":[
+											"page",
+											"couriers",
+											"test-select-sequence"
+										]
+									}
+								},
+								"right":{
+									"type":"value",
+									"value":1
+								}
+							},
+							"key": {
+								"app": "hwdb",
+								"index": "allocDetailsEdit"
+							},
+							"delivery": [
+								{
+									"name":"test-sequence",
+									"field": {
+										"type": "rod",
+										"trace":[
+											"page",
+											"couriers",
+											"test-select-sequence"
+										]
+									}
+								}
+							]
+						},
+						{
+							"caption": "Details"
+						}
+					]
+				},
+				{
+					"type": "search",
+					"id": "search",
+					"placeholder": "Suche",
+					"field": {
+						"type": "rod",
+						"trace": [
+							"page",
+							"couriers",
+							"test-search"
+						]
+					}
+				}
+			],
+			"contents": [
+				{
+					"name": "table",
+					"contents": [
+						{
+							"name": "thead",
+							"contents": [
+								{
+									"name": "tr",
+									"contents": [
+										{
+											"name": "th",
+											"contents": [
+												{
+													"name": "text",
+													"text": "ID"
+												}
+											],
+											"gadgets": [
+												{
+													"type": "sort",
+													"field": {
+														"type": "rod",
+														"trace": [
+															"page",
+															"couriers",
+															"test-sort"
+														]
+													},
+													"toggles": [
+														{
+															"value": "id asc",
+															"sort": "up"
+														},
+														{
+															"value": "id desc",
+															"sort": "down"
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "th",
+											"contents": [
+												{
+													"name": "text",
+													"text": "Bezeichnung"
+												}
+											],
+											"gadgets": [
+												{
+													"type": "sort",
+													"field": {
+														"type": "rod",
+														"trace": [
+															"page",
+															"couriers",
+															"test-sort"
+														]
+													},
+													"toggles": [
+														{
+															"value": "caption asc",
+															"sort": "up"
+														},
+														{
+															"value": "caption desc",
+															"sort": "down"
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "th",
+											"contents": [
+												{
+													"name": "text",
+													"text": "Beispiel"
+												}
+											],
+											"gadgets": [
+												{
+													"type": "sort",
+													"field": {
+														"type": "rod",
+														"trace": [
+															"page",
+															"couriers",
+															"test-sort"
+														]
+													},
+													"toggles": [
+														{
+															"value": "example asc",
+															"sort": "up"
+														},
+														{
+															"value": "example desc",
+															"sort": "down"
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "th",
+											"contents": [
+												{
+													"name": "text",
+													"text": "Vertretung"
+												}
+											],
+											"gadgets": [
+												{
+													"type": "sort",
+													"field": {
+														"type": "rod",
+														"trace": [
+															"page",
+															"couriers",
+															"test-sort"
+														]
+													},
+													"toggles": [
+														{
+															"value": "replacement asc",
+															"sort": "up"
+														},
+														{
+															"value": "replacement desc",
+															"sort": "down"
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "tbody",
+							"bucket": "cycle",
+							"sequence": {
+								"type": "rod",
+								"trace": [
+									"page",
+									"data",
+									"sequences",
+									"test"
+								]
+							},
+							"collection": {
+								"type": "rod",
+								"trace": [
+									"page",
+									"data",
+									"collections",
+									"test"
+								]
+							},
+							"unselect":{
+								"select-sequence":{
+									"type":"rod",
+									"trace":[
+										"page",
+										"couriers",
+										"test-select-sequence"
+									]
+								},
+								"target-sequence": {
+									"type": "rod",
+									"trace": [
+										"cycle",
+										"data",
+										"sequence"
+									]
+								}
+							},
+							"loading": [
+								{
+									"name": "tr",
+									"contents": [
+										{
+											"name": "th",
+											"colspan": "4",
+											"contents": [
+												{
+													"name": "text",
+													"text": "Ich arbeite hier doch auch nur. Bitte warten."
+												}
+											]
+										}
+									]
+								}
+							],
+							"empty": [
+								{
+									"name": "tr",
+									"contents": [
+										{
+											"name": "th",
+											"colspan": "4",
+											"contents": [
+												{
+													"name": "text",
+													"text": "Null. Nada. Rien. Gar nichts. Sie sehen 0 Zeilen. Noch weniger geht nicht. Entweder ist diese Ansicht für Sie leer oder Ihre Anzeigeparameter schließen alle Datensätze aus."
+												}
+											]
+										}
+									]
+								}
+							],
+							"contents": [
+								{
+									"name": "tr",
+									"gadgets":[
+										{
+											"type":"multiselectable",
+											"select-sequence":{
+												"type":"rod",
+												"trace":[
+													"page",
+													"couriers",
+													"test-select-sequence"
+												]
+											},
+											"value": {
+												"type": "rod",
+												"trace": [
+													"cycle",
+													"data",
+													"set",
+													"id"
+												]
+											}
+										}
+									],
+									"contents": [
+										{
+											"name": "td",
+											"contents": [
+												{
+													"name": "mscript",
+													"script": {
+														"type": "rod",
+														"trace": [
+															"cycle",
+															"data",
+															"set",
+															"id"
+														]
+													}
+												}
+											]
+										},
+										{
+											"name": "td",
+											"contents": [
+												{
+													"name": "mscript",
+													"script": {
+														"type": "rod",
+														"trace": [
+															"cycle",
+															"data",
+															"set",
+															"caption"
+														]
+													}
+												}
+											]
+										},
+										{
+											"name": "td",
+											"contents": [
+												{
+													"name": "mscript",
+													"script": {
+														"type": "rod",
+														"trace": [
+															"cycle",
+															"data",
+															"set",
+															"example"
+														]
+													}
+												}
+											]
+										},
+										{
+											"name": "td",
+											"contents": [
+												{
+													"name": "mscript",
+													"script": {
+														"type": "rod",
+														"trace": [
+															"cycle",
+															"data",
+															"set",
+															"replacement"
+														]
+													}
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"allocSearch": {
+			"type": "page",
+			"contents": []
+		},
+		"persCreate": {
+			"type": "page",
+			"contents": []
+		},
+		"persSearch": {
+			"type": "page",
+			"contents": []
+		},
+		"roomCreate": {
+			"type": "page",
+			"contents": []
+		},
+		"roomSearch": {
+			"type": "page",
+			"contents": []
+		},
+		"matCreate": {
+			"type": "page",
+			"contents": []
+		},
+		"matSearch": {
+			"type": "page",
+			"contents": []
+		}
+	}
+}

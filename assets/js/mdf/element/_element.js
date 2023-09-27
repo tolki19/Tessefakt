@@ -1,0 +1,2 @@
+var cMdfElement=class{
+};

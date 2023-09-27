@@ -1,0 +1,1 @@
+var cMdfHTMLElementFigcaption=class extends cMdfElementBlock{};

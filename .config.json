@@ -1,0 +1,52 @@
+{
+	"settings": {
+		"apps": {
+			"mdf": {
+				"config": "apps/mdf/.config/mdf.json",
+				"db": {
+					"username": "mdf",
+					"password": "5AHENkIRUHOvrQHI",
+					"dbname": "mdf_test",
+					"host": "localhost"
+				}
+			},
+			"hwdb": {
+				"config": "apps/hwdb/.config/hwdb.json",
+				"db": {
+					"username": "mdf",
+					"password": "5AHENkIRUHOvrQHI",
+					"dbname": "mdf_test",
+					"host": "localhost"
+				}
+			},
+            "nutzerplatzantrag":{
+                "config": "apps/nutzerplatzantrag/.config/nutzerplatz.json",
+                "db": {
+					"username": "root",
+					"password": "c19x?47z",
+					"dbname": "nutzerplatzantrag",
+					"host": "localhost"
+				}
+            }
+		},
+		"defaults": {
+			"key": {
+				"app": "hwdb",
+				"index": "allocDetailsEdit"
+			},
+			"delivery": [
+				{
+					"name":"test-sequence",
+					"value": [ "219" ]
+				}
+			]
+		},
+		"dev": {
+			"state": true
+		},
+		"credentials": {
+			"uid": "FlorianTolk",
+			"password": "Sxuyq783!"
+		}
+	}
+}

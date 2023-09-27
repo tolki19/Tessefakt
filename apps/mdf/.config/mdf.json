@@ -1,0 +1,632 @@
+{
+	"version": {
+		"major": "1",
+		"minor": "0",
+		"build": "815",
+		"name": "olt loescher"
+	},
+	"navigation": {
+		"caption": "mdf",
+		"icon": "apps/mdf/assets/icons/hexagon.svg",
+		"navigation": [
+			{
+				"type": "page",
+				"caption": "Startseite",
+				"icon" : "apps/mdf/assets/icons/home.svg",
+				"key": {
+					"app": "mdf",
+					"index": "home"
+				}
+			},
+			{
+				"type": "sep"
+			},
+			{
+				"type": "group",
+				"caption": "Einstellungen",
+				"icon": "apps/mdf/assets/icons/control.svg",
+				"navigation": [
+					{
+						"type": "page",
+						"caption": "Persönliche Daten",
+						"icon": "apps/mdf/assets/icons/user.svg",
+						"key": {
+							"app": "mdf",
+							"index": "changeData"
+						}
+					},
+					{
+						"type": "page",
+						"caption": "Passwort ändern",
+						"icon": "apps/mdf/assets/icons/password.svg",
+						"key": {
+							"app": "mdf",
+							"index": "changePassword"
+						}
+					},
+					{
+						"type": "page",
+						"caption": "Sprache ändern",
+						"icon": "apps/mdf/assets/icons/language.svg",
+						"key": {
+							"app": "mdf",
+							"index": "changeLoc"
+						}
+					}
+				]
+			},
+			{
+				"type": "sep"
+			},
+			{
+				"type": "group",
+				"caption": "Hilfe",
+				"icon": "apps/mdf/assets/icons/help.svg",
+				"navigation": [
+					{
+						"type":"page",
+						"caption":"Impressum",
+						"icon": "apps/mdf/assets/icons/legal.svg",
+						"key":{
+							"app": "mdf",
+							"index":"imprint"
+						}
+					},
+					{
+						"type":"page",
+						"caption":"Datenschutz",
+						"icon": "apps/mdf/assets/icons/lock.svg",
+						"key":{
+							"app": "mdf",
+							"index":"dp"
+						}
+					},
+					{
+						"type":"page",
+						"caption":"FAQ",
+						"icon": "apps/mdf/assets/icons/faq.svg",
+						"key":{
+							"app": "mdf",
+							"index":"faq"
+						}
+					},
+					{
+						"type":"page",
+						"caption":"Handbuch",
+						"icon": "apps/mdf/assets/icons/manual.svg",
+						"key":{
+							"app": "mdf",
+							"index":"manual"
+						}
+					},
+					{
+						"type":"page",
+						"caption":"Hilfe &amp; Kontakt",
+						"icon": "apps/mdf/assets/icons/email.svg",
+						"key":{
+							"app": "mdf",
+							"index":"help"
+						}
+					}
+				]
+			},
+			{
+				"type": "sep"
+			},
+			{
+				"type": "action",
+				"caption": "Logout",
+				"icon": "apps/mdf/assets/icons/logout.svg",
+				"key": {
+					"app": "mdf",
+					"action": "logout"
+				}
+			}
+		]
+	},
+	"entities":{
+		"changeData": {
+			"type": "page",
+			"contents": []
+		},
+		"changePassword": {
+			"type": "page",
+			"contents": []
+		},
+		"changeLoc": {
+			"type": "page",
+			"contents": []
+		},
+		"home": {
+			"type": "page",
+			"ref": "home",
+			"contents": [
+				{
+					"name": "h1",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Wichtige Testseite"
+						}
+					]
+				},
+				{
+					"name": "p",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Lorem ipsum dolor sit amet"
+						}
+					]
+				},
+				{
+					"name": "h2",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Ordnung ist das halbe Leben"
+						}
+					]
+				},
+				{
+					"name": "p",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Die zum Betrieb der Buchdruckkunst erforderlichen Typen oder Lettern werden in verschiedene Gruppen Fraktur-, Antiqua- und Kursivschrift mit den dazugehörigen Interpunktions- und sonstigen Zeichen (Sternchen, Paragraphen etc.) eingeteilt. Die Verschiedenartigkeit und die Reichhaltigkeit der Typen sind außerordentlich. Man unterscheidet sie nach ihrer Gattung in Brot- und Zierschriften sowie nach ihrer Zeichnung in gotische, Fraktur, Grotesk- etc. Schriften. Ferner werden sie nach ihrer Kegelgröße unterschieden, etwa 8 Punkt oder 24 Punkt. Zu den Schriften gehört auch der Ausschluss, das sind Metallstückchen ohne Schriftbild. Diese sind etwa ein Fünftel niedriger als die eigentlichen Typen (Spatien, Viertel-, Drittel-, Halbgevierte, Gevierte, Quadrate). Sie dienen zur Trennung der Wörter, zum Ausfüllen leerer Zeilen etc. Ähnlichen Zwecken dient der Durchschuss, Metallplättchen von ein bis zehn typographischen Punkt Stärke und in genormten Längen bei 54 Punkt Höhe, oft aber auch von der ganzen Breite der Zeilen (Regletten). Man durchschießt damit den Zeilensatz, das heißt man legt die Regletten zwischen die Zeilen, welche dann auseinandergerückt werden. Der physische Ablauf des Druckens mit einzelnen Lettern kann als typographischer Kreislauf bezeichnet werden."
+						}
+					]
+				},
+				{
+					"name": "blockquote",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Mehr als das Gold hat das Blei die Welt verändert und mehr als das Blei in der Flinte das Blei im Setzkasten."
+						}
+					]
+				},
+				{
+					"name": "figcaption",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Georg Christoph Lichtenberg"
+						}
+					]
+				},
+				{
+					"name": "h2",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Schrott zum Schluss"
+						}
+					]
+				},
+				{
+					"name": "blockquote",
+					"contents": [
+						{
+							"name": "text",
+							"text": "Carpe diem.",
+							"cite": "https://de.wikipedia.org/wiki/Carpe_diem"
+						}
+					]
+				}
+			]
+		},
+		"imprint":{
+			"type": "page",
+			"ref":"imprint",
+			"contents":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Impressum"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"MUKdo IIC2\r\nE-Mail: test@bundeswehr.org\r\nTelefon: 90 2500 67590"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Dieses Framework und alle seine Bestandteile wurden von uns geschrieben. Wir haben insbesondere kein vollständiges Framework weiterentwickelt, keine vorgefertigten Bestandteile verwendet und bei unserer Arbeit sind keine Tiere zu Schaden gekommen."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Für Fragen, bei Problemen und bei Wünschen sind wir gerne erreichbar."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Die urheberrechtliche Situation bedarf einer detaillierten Klärung. Nach meiner Auslegung liegt das Urheberrecht bei der Bundesrepublik Deutschland. Insoweit habe ich keine Bedenken, dieses Framework zur Erfüllung anderer Aufgaben innerhalb der Bundesverwaltung zur Verfügung zu stellen."
+						}
+					]
+				}
+			]
+		},
+		"dp":{
+			"type": "page",
+			"ref":"dp",
+			"contents":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Datenschutz"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Dieses Framework kommt ohne Cookies und anderweitige Speicherung von Daten in Ihrem Browser zurecht. Clientseitig werden keine Daten gespeichert."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Serverseitig werden Ihre Zugangsdaten grundsätzlich nicht gespeichert. Ihre Zugangsdaten werden an den Server des ZVDBw übergeben und freigegeben."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Zur Sicherstellung Ihres Zugriffs im Ausnahmefall speichern wir den Hash Ihrer Zugangsdaten für bis zu sieben Tage. Ein solcher Ausnahmefall kann etwa die fehlende Erreichbarkeit des Servers des ZVDBW sein. Bei der Berechnung eines Hashes handelt es sich um ein irreversibles aber deterministisches maschinelles Verfahren etwa zur Überprüfung der Richtigkeit von Zugangsdaten; Ihre Benutzername oder Ihr Passwort wird also weder gespeichert noch ist es für uns einsehbar."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Zur Erfüllung unserer Aufgaben ist es notwendig, Funktionsträgerdaten zu speichern und zu verarbeiten. Alle diese Daten beziehen wir automatisiert vom Server des ZVDBw; diese Daten sind also auch über weitere Dienste abrufbar. Als weiterer Dienst gilt etwa das IAM."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Zur Einordnung Ihrer Berechtigungen werden Ihre Zugriffsrechte gespeichert."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Zur Auffindung von Problemen speichern wir Daten zu Ihren Handlungen innerhalb dieses Frameworks für einige Zeit. Diese Daten werden im Normalfall nach spätestens vierzehn Tagen gelöscht. Die Verknüpfung mit Ihren Zugangsdaten wird nicht gespeichert, sondern kann nur durch Ihre aktive Zuarbeit hergestellt werden. Diese Daten geben wir grundsätzlich nicht weiter; andernfalls weisen wir darauf gesondert hin."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Für Fragen, bei Problemen und bei Wünschen sind wir gerne erreichbar."
+						}
+					]
+				}
+			]
+		},
+		"help":{
+			"type": "page",
+			"ref":"help",
+			"contents":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Hilfe & Kontakt"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Bitte wenden Sie sich an den Ihnen bekannten, zuständigen Administrator."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Falls Sie der ratlose Administrator sind, wenden Sie sich an uns. Die Kontaktdaten finden Sie im Impressum."
+						}
+					]
+				}
+			]
+		},
+		"faq":{
+			"type": "page",
+			"ref":"faq",
+			"contents":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"FAQ"
+						}
+					]
+				},
+				{
+					"name":"h2",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Organisatorische Fragen"
+						}
+					]
+				},
+				{
+					"name":"h3",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Wofür steht FAQ?"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"FAQ steht für Frequently Asked Questions.\r\nDas ist englisch und bedeutet Häufig gestellte Fragen."
+						}
+					]
+				}
+			]
+		},
+		"manual":{
+			"type": "page",
+			"ref":"manual",
+			"contents":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Handbuch"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Wir beabsichtigen, ein Handbuch zu schreiben und an dieser Stelle zu veröffentlichen."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Schauen Sie mal da, hinter Ihnen ist ein dreiköpfiger Affe!"
+						}
+					]
+				}
+			]
+		},
+		"fatal":{
+			"type": "dialog",
+			"ref":"fatal",
+			"titles":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Fataler Fehler"
+						}
+					]
+				}
+			],
+			"contents":[
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Dieses Dialogfeld verheißt nichts Gutes: offenbar ist das mdf derzeit nicht einsatzbereit.\r\nDas tut uns Leid und das sollte nicht passieren."
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Dafür gibt es mehrere mögliche Erklärungen:"
+						}
+					]
+				},
+				{
+					"name":"ul",
+					"contents":[
+						{
+							"name":"li",
+							"contents":[
+								{
+									"name":"text",
+									"text":"wir vollziehen gerade einen technischen Umzug,"
+								}
+							]
+						},
+						{
+							"name":"li",
+							"contents":[
+								{
+									"name":"text",
+									"text":"wir führen Wartungs- oder Reparaturarbeiten durch,"
+								}
+							]
+						},
+						{
+							"name":"li",
+							"contents":[
+								{
+									"name":"text",
+									"text":"es gibt eine Inkompatibilität zwischen dem mdf und Ihrem lokalen System oder"
+								}
+							]
+						},
+						{
+							"name":"li",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Sie begegnen gerade einem unabgefangenen Fehler."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Wahrscheinlich arbeiten wir bereits an einer Lösung.\r\nFalls Sie aber vermuten, dass uns dieses Problem entgangen ist oder in dringenden Einzelfällen wenden Sie sich gerne an uns:"
+						}
+					]
+				},
+				{
+					"name":"h2",
+					"contents":[
+						{
+							"name":"text",
+							"text":"SG IT-Infrastr"
+						}
+					]
+				}
+			],
+			"buttons":[
+				{
+					"name":"a",
+					"role":"button",
+					"contents":[
+						{
+							"name":"text",
+							"text":"E-Mail"
+						}
+					],
+					"href":"mailto:test@bundeswehr.org"
+				},
+				{
+					"name":"a",
+					"role":"button",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Telefon"
+						}
+					],
+					"href":"tel:90250067590"
+				},
+				{
+					"name":"button",
+					"role":"button",
+					"default":true,
+					"contents":[
+						{
+							"name":"text",
+							"text":"Schockschwerenot"
+						}
+					],
+					"action":"close",
+					"keys":["enter"]
+				}
+			]
+		},
+		"login":{
+			"type": "dialog",
+			"ref":"login",
+			"titles":[
+				{
+					"name":"h1",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Login"
+						}
+					]
+				}
+			],
+			"contents":[
+				{
+					"name":"input",
+					"desc":"login-uid",
+					"caption":"Benutzer ID (uid)",
+					"autocomplete":false
+				},
+				{
+					"name":"password",
+					"desc":"login-password",
+					"caption":"Passwort",
+					"autocomplete":false
+				}
+			],
+			"buttons":[
+				{
+					"name":"button",
+					"role":"button",
+					"default":true,
+					"contents":[
+						{
+							"name":"text",
+							"text":"Login"
+						}
+					],
+					"action":"send",
+					"keys":["enter"]
+				}
+			]
+		}
+	}
+}
