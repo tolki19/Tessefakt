@@ -1,11 +1,11 @@
 var cTessefaktRenderNavigationDepartment=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_sDescriptor;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config,descriptor}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._sDescriptor=descriptor;
@@ -16,7 +16,7 @@ var cTessefaktRenderNavigationDepartment=class{
 			switch(this._oConfig.navigation[i].type){
 				case 'group':
 					this._aSubjects.push(new cTessefaktRenderNavigationSubjectGroup({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							parent:this,
 							config:this._oConfig.navigation[i],
 							descriptor:this._sDescriptor+'-'+i
@@ -28,7 +28,7 @@ var cTessefaktRenderNavigationDepartment=class{
 					break;
 				case 'action':
 					this._aSubjects.push(new cTessefaktRenderNavigationSubjectAction({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							parent:this,
 							config:this._oConfig.navigation[i]
 						})
@@ -36,7 +36,7 @@ var cTessefaktRenderNavigationDepartment=class{
 					break;
 				case 'page':
 					this._aSubjects.push(new cTessefaktRenderNavigationSubjectPage({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							parent:this,
 							config:this._oConfig.navigation[i]
 						})
@@ -44,7 +44,7 @@ var cTessefaktRenderNavigationDepartment=class{
 					break;
 				case 'dialog':
 					this._aSubjects.push(new cTessefaktRenderNavigationSubjectDialog({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							parent:this,
 							config:this._oConfig.navigation[i]
 						})
@@ -55,7 +55,7 @@ var cTessefaktRenderNavigationDepartment=class{
 	}
 	destructor(){
 		for(var i=0;i<this._aSubjects.length;++i) this._aSubjects[i].destructor();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._sDescriptor;

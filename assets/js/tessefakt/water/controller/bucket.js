@@ -4,7 +4,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 	_oFormer;
 	constructor({tessefakt,controller}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -44,7 +44,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 			case 'couriers':
 				if(target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktControllerCouriers({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -52,7 +52,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 			case 'data': 
 				if(target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktControllerData({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -87,7 +87,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktControllerCouriers({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oSubjects[key].parse(value);
@@ -113,7 +113,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktControllerData({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oSubjects[key].parse(value);
@@ -209,7 +209,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 				case 'couriers':
 					if(this._oSubjects[sKey]==undefined){
 						this._oSubjects[sKey]=new cTessefaktControllerCouriers({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							controller:this
 						});
 					}
@@ -218,7 +218,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 				case 'data':
 					if(this._oSubjects[sKey]==undefined){
 						this._oSubjects[sKey]=new cTessefaktControllerData({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							controller:this
 						});
 					}
@@ -273,7 +273,7 @@ var cTessefaktControllerBucket=class extends cTessefaktController{
 	}
 	_clone(){
 		var oClone=new cTessefaktControllerBucket({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController
 		});
 		oClone.import(this.export());

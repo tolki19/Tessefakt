@@ -1,16 +1,16 @@
 <?php
 namespace tessefakt;
 class app_router{
-	private $__oMdf;
+	private $__oTessefakt;
 	private $__aApps=[];
 	public function __construct(\tessefakt\tessefakt $tessefakt){
-		$this->__oMdf=$tessefakt;
+		$this->__oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){
 		if(\array_key_exists($key,$this->__aApps)) return $this->__aApps[$key];
 		include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
 		$sClass='\tessefakt\apps\\'.$key;
-		$this->__aApps[$key]=new $sClass($this->__oMdf,$this->__oMdf->config['apps'][$key]['db']??false);
+		$this->__aApps[$key]=new $sClass($this->__oTessefakt,$this->__oTessefakt->config['apps'][$key]['db']??false);
 		return $this->__aApps[$key];
 	}
 	public function __set(string $key,$value){}

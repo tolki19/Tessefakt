@@ -3,7 +3,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 	_oFormer;
 	constructor({tessefakt}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		return new Proxy(this,{
 			get:this._get.bind(this),
 			set:this._set.bind(this),
@@ -36,7 +36,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 			case 'couriers':
 				if(target._oBuckets[key]==undefined){
 					target._oBuckets[key]=new cTessefaktControllerCouriers({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -44,7 +44,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 			case 'data': 
 				if(target._oBuckets[key]==undefined){
 					target._oBuckets[key]=new cTessefaktControllerData({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -52,7 +52,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 		}
 		if(target._oBuckets[key]==undefined){
 			target._oBuckets[key]=new cTessefaktControllerBucket({
-				tessefakt:target._oMdf,
+				tessefakt:target._oTessefakt,
 				controller:target
 			});
 		}
@@ -81,7 +81,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 				}else if(target._oBuckets[key]==undefined){
 					target._oFormer={...target._oBuckets};
 					target._oBuckets[key]=new cTessefaktControllerCouriers({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oBuckets[key].parse(value);
@@ -104,7 +104,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 				}else if(target._oBuckets[key]==undefined){
 					target._oFormer={...target._oBuckets};
 					target._oBuckets[key]=new cTessefaktControllerData({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oBuckets[key].parse(value);
@@ -127,7 +127,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 		}else if(target._oBuckets[key]==undefined){
 			target._oFormer={...target._oBuckets};
 			target._oBuckets[key]=new cTessefaktControllerBucket({
-				tessefakt:target._oMdf,
+				tessefakt:target._oTessefakt,
 				controller:target
 			});
 			target._oBuckets[key].parse(value);
@@ -208,7 +208,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 				case 'couriers':
 					if(!this._oBuckets[sKey]==undefined){
 						this._oBuckets[sKey]=new cTessefaktControllerCouriers({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							controller:this
 						});
 					}
@@ -217,7 +217,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 				case 'data':
 					if(this._oBuckets[sKey]==undefined){
 						this._oBuckets[sKey]=new cTessefaktControllerData({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							controller:this
 						});
 					}
@@ -226,7 +226,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 				default:
 					if(this._oBuckets[sKey]==undefined){
 						this._oBuckets[sKey]=new cTessefaktControllerBucket({
-							tessefakt:this._oMdf,
+							tessefakt:this._oTessefakt,
 							controller:this
 						});
 					}
@@ -278,7 +278,7 @@ var cTessefaktControllerWater=class extends cTessefaktController{
 	}
 	_clone(){
 		var oClone=new cTessefaktControllerWater({
-			tessefakt:this._oMdf
+			tessefakt:this._oTessefakt
 		});
 		oClone.import(this.export());
 		return oClone;

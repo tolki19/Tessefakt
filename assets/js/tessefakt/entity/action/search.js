@@ -9,7 +9,7 @@ var cTessefaktEntityActionSearch=class extends cTessefaktEntityAction{
 			events:{
 				input:this._input.bind(this)
 			},
-			value:this._oMdf.mscript({script:this._oConfig.field,water:this.water}).value,
+			value:this._oTessefakt.mscript({script:this._oConfig.field,water:this.water}).value,
 			autocapitalize:'off',
 			autofill:'off',
 			spellcheck:'off',
@@ -37,7 +37,7 @@ var cTessefaktEntityActionSearch=class extends cTessefaktEntityAction{
 	}
 	_timeout(e){
 		clearTimeout(this._oRequestTimeout);
-		this._oMdf.mscript({script:this._oConfig.field,water:this.water}).value=this.value;
+		this._oTessefakt.mscript({script:this._oConfig.field,water:this.water}).value=this.value;
 	}
 	get value(){
 		return this._dElement.value;

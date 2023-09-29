@@ -1,5 +1,5 @@
 var cTessefaktRender=class{
-	_oMdf;
+	_oTessefakt;
 	_oConfig;
 	_oDelivery;
 	_oIndice={};
@@ -8,28 +8,28 @@ var cTessefaktRender=class{
 	_oWater;
 	_oBucket;
 	constructor({tessefakt,config,delivery={}}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oConfig=config;
 		this._oDelivery=delivery;
 		for(var a=document.querySelectorAll('body>*'),i=0;i<a.length;++i) a[i].dispose();
 		this._oWater=new cTessefaktControllerWater({
-			tessefakt:this._oMdf
+			tessefakt:this._oTessefakt
 		});
 		if(this._oConfig.construct.bucket) this._oBucket=this._oWater[this._oConfig.construct.bucket];
 		else this._oBucket=this._oWater;
 		if(this._oConfig.construct.couriers) this._oCourier=new cTessefaktServiceCouriers({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.construct.couriers,
 				delivery:this._oDelivery
 			});
 		this._oPages=new cTessefaktRenderPages({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
 		this._oDialogs=new cTessefaktRenderDialogs({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
@@ -49,7 +49,7 @@ var cTessefaktRender=class{
 	destructor(){
 		this._oPages.destructor();
 		this._oDialogs.destructor();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oConfig;
 		delete this._oDelivery;
 		delete this._oIndice;

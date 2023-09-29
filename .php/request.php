@@ -1,17 +1,17 @@
 <?php
 namespace tessefakt;
 class request{
-	private $__oMdf;
+	private $__oTessefakt;
 	private $__oGet;
 	private $__oPost;
 	private $__oServer;
 	private $__oHeader;
 	public function __construct(\tessefakt\tessefakt $tessefakt){
-		$this->__oMdf=$tessefakt;
-		$this->__oGet=new \tessefakt\requests\get($this->__oMdf);
-		$this->__oPost=new \tessefakt\requests\post($this->__oMdf);
-		$this->__oServer=new \tessefakt\requests\server($this->__oMdf);
-		$this->__oHeader=new \tessefakt\requests\header($this->__oMdf);
+		$this->__oTessefakt=$tessefakt;
+		$this->__oGet=new \tessefakt\requests\get($this->__oTessefakt);
+		$this->__oPost=new \tessefakt\requests\post($this->__oTessefakt);
+		$this->__oServer=new \tessefakt\requests\server($this->__oTessefakt);
+		$this->__oHeader=new \tessefakt\requests\header($this->__oTessefakt);
 	}
 	public function __get(string $key){
 		switch($key){

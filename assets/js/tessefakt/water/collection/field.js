@@ -4,7 +4,7 @@ var cTessefaktCollectionField=class extends cTessefaktCollection{
 	_mFormer;
 	constructor({tessefakt,set}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oSet=set;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -75,7 +75,7 @@ var cTessefaktCollectionField=class extends cTessefaktCollection{
 	}
 	_clone(){
 		var oClone=new cTessefaktCollectionField({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			set:this._oSet
 		});
 		oClone.import(this.export());

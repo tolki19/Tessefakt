@@ -1,5 +1,5 @@
 var cTessefaktEntityPageHeader=class  extends cTessefaktEntityHeader{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dHeader;
@@ -7,14 +7,14 @@ var cTessefaktEntityPageHeader=class  extends cTessefaktEntityHeader{
 	_aSubjects=[];
 	constructor({tessefakt,parent,config,}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dHeader=new Element('header').inject(this._oParent.inject);
 		this._dMenu=new Element('menu').inject(this._dHeader);
 		for(var i=0;i<(this._oConfig.headers??[]).length;++i){
 			this._aSubjects.push(new window['cTessefaktEntityAction'+this._oConfig.headers[i].type.camelize()]({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.headers[i]
 			}));
@@ -36,7 +36,7 @@ var cTessefaktEntityPageHeader=class  extends cTessefaktEntityHeader{
 		}
 		this._dMenu.dispose();
 		this._dHeader.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 	}

@@ -14,6 +14,6 @@ var cTessefaktElementSelectDisplay=class extends cTessefaktElementFormDisplay{
 				}
 			]
 		};
-		this._oHandles=new cTessefaktElementSelectHandles({tessefakt:this._oMdf,parent:this,config:oConfig});
+		this._oHandles=new cTessefaktElementSelectHandles({tessefakt:this._oTessefakt,parent:this,config:oConfig});
 	}
 };

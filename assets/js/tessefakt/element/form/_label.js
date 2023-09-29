@@ -1,10 +1,10 @@
 var cTessefaktElementFormLabel=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dElement;
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dLabel=new Element('label',{
@@ -15,7 +15,7 @@ var cTessefaktElementFormLabel=class{
 				'data-tessefakt-control-role':'caption',
 				'html':this._oConfig.caption
 			}).inject(this._dLabel);
-		this._oDisplay=new cTessefaktElementSelectDisplay({tessefakt:this._oMdf,parent:this,config:this._oConfig.display});
+		this._oDisplay=new cTessefaktElementSelectDisplay({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.display});
 	}
 	destructor(){
 		this._oDisplay.destructor();

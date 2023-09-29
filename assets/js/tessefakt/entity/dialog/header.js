@@ -1,5 +1,5 @@
 var cTessefaktEntityDialogHeader=class extends cTessefaktEntityHeader{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dHeader;
@@ -7,14 +7,14 @@ var cTessefaktEntityDialogHeader=class extends cTessefaktEntityHeader{
 	_aSubjects=[];
 	constructor({tessefakt,parent,config}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dHeader=new Element('header').inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.titles?.length;++i){
 			var sObject='cTessefaktHTMLElement'+this._oConfig.titles[i].name.camelize();
 			try{
-				this._aSubjects.push(new window[sObject]({tessefakt:this._oMdf,parent:this,config:this._oConfig.titles[i],water:this.water}));
+				this._aSubjects.push(new window[sObject]({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.titles[i],water:this.water}));
 			}catch(ex){
 				if(window[sObject]==undefined) throw new Error('DOM class "'+sObject+'" ("'+this._oConfig.titles[i].name+'") not defined');
 				throw ex;
@@ -31,7 +31,7 @@ var cTessefaktEntityDialogHeader=class extends cTessefaktEntityHeader{
 			this._aSubjects[i].destructor();
 		}
 		this._dHeader.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 	}

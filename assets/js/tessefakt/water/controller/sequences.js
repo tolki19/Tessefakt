@@ -4,7 +4,7 @@ var cTessefaktControllerSequences=class extends cTessefaktController{
 	_oFormer;
 	constructor({tessefakt,controller}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -44,7 +44,7 @@ var cTessefaktControllerSequences=class extends cTessefaktController{
 		}
 		if(target._oSequences[key]==undefined){
 			return new cTessefaktSequenceTable({
-				tessefakt:target._oMdf,
+				tessefakt:target._oTessefakt,
 				controller:target
 			});
 		}
@@ -70,7 +70,7 @@ var cTessefaktControllerSequences=class extends cTessefaktController{
 		if(target._oSequences[key]==undefined){
 			this._oFormer={...target._oSequences};
 			target._oSequences[key]=new cTessefaktSequenceTable({
-				tessefakt:target._oMdf,
+				tessefakt:target._oTessefakt,
 				controller:target
 			});
 			target._oSequences[key].parse(value);
@@ -155,7 +155,7 @@ var cTessefaktControllerSequences=class extends cTessefaktController{
 		for(var sKey in values){
 			if(this._oSequences[sKey]==undefined){
 				this._oSequences[sKey]=new cTessefaktSequenceTable({
-					tessefakt:this._oMdf,
+					tessefakt:this._oTessefakt,
 					controller:this
 				});
 			}
@@ -195,7 +195,7 @@ var cTessefaktControllerSequences=class extends cTessefaktController{
 		for(var sKey in objects){
 			if(this._oSequences[sKey]==undefined){
 				this._oSequences[sKey]=new cTessefaktSequenceTable({
-					tessefakt:this._oMdf,
+					tessefakt:this._oTessefakt,
 					controller:this
 				});
 			}
@@ -211,7 +211,7 @@ var cTessefaktControllerSequences=class extends cTessefaktController{
 	}
 	_clone(){
 		var oClone=new cTessefaktControllerSequences({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController
 		});
 		oClone.import(this.export());

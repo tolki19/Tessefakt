@@ -1,11 +1,11 @@
 var cTessefaktCourier=class{
-	_oMdf;
+	_oTessefakt;
 	_oController;
 	_oCourier;
 	_oConfig;
 	_oEvents={};
 	constructor({tessefakt,controller,courier,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		this._oCourier=courier;
 		this._oConfig=config;
@@ -15,7 +15,7 @@ var cTessefaktCourier=class{
 		delete this._oConfig;
 		delete this._oCourier;
 		delete this._oController;
-		delete this._oMdf;
+		delete this._oTessefakt;
 	}
 	addEventListener(event,callback){
 		if(this._oEvents[event]==undefined) this._oEvents[event]=[];

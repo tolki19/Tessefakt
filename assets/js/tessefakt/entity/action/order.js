@@ -5,7 +5,7 @@ var cTessefaktEntityActionOrder=class extends cTessefaktEntityAction{
 		var aRods=[];
 		for(var i=0;i<this._oConfig.variants.length;++i){
 			this._aVariants.push(new cTessefaktEntityActionOrderVariant({tessefakt:tessefakt,parent:this,config:this._oConfig.variants[i]}));
-			aRods=aRods.concat(this._oMdf.mscriptRods({script:this._oConfig.variants[i]}));
+			aRods=aRods.concat(this._oTessefakt.mscriptRods({script:this._oConfig.variants[i]}));
 		}
 		this._aRods=aRods.filter(function(v,k,r){
 			l: for(var i=0;i<k;++i){
@@ -17,13 +17,13 @@ var cTessefaktEntityActionOrder=class extends cTessefaktEntityAction{
 		});
 		this.$change=this._change.bind(this);
 		for(var i=0;i<this._aRods.length;++i){
-			this._oMdf.mscript({script:this._aRods[i],water:this.water}).addEventListener('change',this.$change);
+			this._oTessefakt.mscript({script:this._aRods[i],water:this.water}).addEventListener('change',this.$change);
 		}
 		this._verify();
 	}
 	destructor(){
 		for(var i=0;i<this._aRods.length;++i){
-			this._oMdf.mscript({script:this._aRods[i],water:this.water}).removeEventListener('change',this.$change);
+			this._oTessefakt.mscript({script:this._aRods[i],water:this.water}).removeEventListener('change',this.$change);
 		}
 		super.destructor();
 		for(var i=0;i<this._aVariants.length;++i){

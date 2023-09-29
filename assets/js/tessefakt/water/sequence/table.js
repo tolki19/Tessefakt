@@ -4,7 +4,7 @@ var cTessefaktSequenceTable=class extends cTessefaktSequence{
 	_aFormer;
 	constructor({tessefakt,controller}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -140,7 +140,7 @@ var cTessefaktSequenceTable=class extends cTessefaktSequence{
 	}
 	_clone(){
 		var oClone=new cTessefaktSequenceTable({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController
 		});
 		oClone.parse(this.value());

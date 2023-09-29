@@ -143,7 +143,7 @@ var cTessefaktCourierArray=class extends cTessefaktCourier{
 	}
 	_clone(){
 		var oClone=new cTessefaktCourierArray({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController,
 			courier:this._oCourier,
 			delivery:this.value()

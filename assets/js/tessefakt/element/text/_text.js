@@ -1,12 +1,12 @@
 var cTessefaktElementText=class extends cTessefaktElement{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_oWater;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config,water}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._oWater=water;
@@ -25,7 +25,7 @@ var cTessefaktElementText=class extends cTessefaktElement{
 		for(var i=0;i<this._aSubjects.length;++i){
 			this._aSubjects[i].parentNode.removeChild(this._aSubjects[i]);
 		}
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._oWater;

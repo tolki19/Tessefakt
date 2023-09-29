@@ -1,11 +1,11 @@
 var cTessefaktRenderPagesMain=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dMain;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dMain=new Element('main').inject(this._oParent.inject);
@@ -13,7 +13,7 @@ var cTessefaktRenderPagesMain=class{
 	destructor(){
 		for(var i=0;i<this._aSubjects.length;++i) this._aSubjects[i].subject.close();
 		this._dMain.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._dMain;
@@ -22,7 +22,7 @@ var cTessefaktRenderPagesMain=class{
 	openPage({app,index,events,delivery,page}){
 		if(!this._oConfig.apps[app].entities[index]) throw new Error('Page "'+app+'"."'+index+'" not configured');
 		var oSubject=new cTessefaktEntityPage({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig.apps[app].entities[index],
 			events:events,
@@ -31,7 +31,7 @@ var cTessefaktRenderPagesMain=class{
 		});
 		this._aSubjects.push({sKey:{app,index},subject:oSubject});
 		var aSubjects=[oSubject];
-		this._oMdf.mscript({
+		this._oTessefakt.mscript({
 			script:this._oConfig.construct.key,
 			water:this.water
 		}).parse({app,index});
@@ -65,8 +65,8 @@ var cTessefaktRenderPagesMain=class{
 					this._aSubjects.splice(i--,1);
 				}
 			}
-			if(aSubjects.length) this._oMdf.mscript({script:this._oConfig.construct.key,water:this.water}).value=this._aSubjects[this._aSubjects.findIndex((value)=>value.subject==aSubjects[0])].key;
-			else this._oMdf.mscript({script:this._oConfig.construct.key,water:this.water}).value={app:undefined,index:undefined};
+			if(aSubjects.length) this._oTessefakt.mscript({script:this._oConfig.construct.key,water:this.water}).value=this._aSubjects[this._aSubjects.findIndex((value)=>value.subject==aSubjects[0])].key;
+			else this._oTessefakt.mscript({script:this._oConfig.construct.key,water:this.water}).value={app:undefined,index:undefined};
 		}
 	}
 	refresh(){

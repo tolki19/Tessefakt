@@ -1,12 +1,12 @@
 var cTessefaktRenderNavigationSubjectPage=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dA;
 	_dI;
 	_dSpan;
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		if(!this._oParent.indice[this._oConfig.key.index]) this._oParent.indice[this._oConfig.key.index]=[];
@@ -35,7 +35,7 @@ var cTessefaktRenderNavigationSubjectPage=class{
 		delete this._dA;
 		delete this._dI;
 		delete this._dSpan;
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._sDescriptor;
@@ -56,6 +56,6 @@ var cTessefaktRenderNavigationSubjectPage=class{
 	}
 	_click(e){
 		e.preventDefault();
-		this._oMdf.open(this._oConfig.key);
+		this._oTessefakt.open(this._oConfig.key);
 	}
 };

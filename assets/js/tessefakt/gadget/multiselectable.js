@@ -4,18 +4,18 @@ var cTessefaktGadgetMultiselectable=class extends cTessefaktGadget{
 		this.$change=this._change.bind(this);
 		this._dElement.set('data-tessefakt-gadgets',(this._dElement.get('data-tessefakt-gadgets')??'').split(' ').concat(['selectable']).join(' ').trim());
 		this._dElement.addEvent('click',this._click.bind(this));
-		this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water}).addEventListener('change',this.$change);
+		this._oTessefakt.mscript({script:this._oConfig['select-sequence'],water:this.water}).addEventListener('change',this.$change);
 		this._display();
 	}
 	destructor(){
-		this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water}).removeEventListener('change',this.$change);
+		this._oTessefakt.mscript({script:this._oConfig['select-sequence'],water:this.water}).removeEventListener('change',this.$change);
 		super.destructor();
 		delete this.$change;
 	}
 	_click(e){
 		e.preventDefault();
-		var oSequence=this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water});
-		var oValue=this._oMdf.mscript({script:this._oConfig.value,water:this.water});
+		var oSequence=this._oTessefakt.mscript({script:this._oConfig['select-sequence'],water:this.water});
+		var oValue=this._oTessefakt.mscript({script:this._oConfig.value,water:this.water});
 		var i=oSequence.indexOf(oValue.value);
 		if(e.ctrlKey){
 			if(i==-1) oSequence.push(oValue.value);
@@ -29,8 +29,8 @@ var cTessefaktGadgetMultiselectable=class extends cTessefaktGadget{
 		this._display();
 	}
 	_display(){
-		var oSequence=this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water});
-		var oValue=this._oMdf.mscript({script:this._oConfig.value,water:this.water});
+		var oSequence=this._oTessefakt.mscript({script:this._oConfig['select-sequence'],water:this.water});
+		var oValue=this._oTessefakt.mscript({script:this._oConfig.value,water:this.water});
 		if(oSequence.indexOf(oValue.value)==-1) this._dElement.set('data-tessefakt-select',false);
 		else this._dElement.set('data-tessefakt-select',true);
 	}

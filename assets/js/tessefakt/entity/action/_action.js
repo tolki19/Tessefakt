@@ -1,11 +1,11 @@
 var cTessefaktEntityAction=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_oWater;
 	_dLi;
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._display();
@@ -17,7 +17,7 @@ var cTessefaktEntityAction=class{
 	presentUpdate(){}
 	destructor(){
 		this._dLi.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 	}

@@ -1,9 +1,9 @@
 var cTessefaktController=class{
-	_oMdf;
+	_oTessefakt;
 	_oEvents={};
 	destructor(){
 		delete this._oEvents;
-		delete this._oMdf;
+		delete this._oTessefakt;
 	}
 	addEventListener(event,callback){
 		if(this._oEvents[event]==undefined) this._oEvents[event]=[];

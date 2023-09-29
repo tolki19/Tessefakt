@@ -6,7 +6,7 @@ var cTessefaktCourierObject=class extends cTessefaktCourier{
 		if(this._oConfig.couriers){
 			 for(var i=0;i<this._oConfig.couriers.length;++i){
 				// this._oValues[this._oConfig.couriers[i].name]=new window['cTessefaktCourier'+this._oConfig.couriers[i].type.camelize()]({
-				// 	tessefakt:this._oMdf,
+				// 	tessefakt:this._oTessefakt,
 				// 	courier:this,
 				// 	config:this._oConfig.couriers[i]
 				// });
@@ -155,7 +155,7 @@ var cTessefaktCourierObject=class extends cTessefaktCourier{
 	}
 	_clone(){
 		var oClone=new cTessefaktCourierObject({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController,
 			courier:this._oCourier,
 			config:this._oConfig,

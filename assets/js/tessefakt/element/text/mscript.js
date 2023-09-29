@@ -1,13 +1,13 @@
 var cTessefaktHTMLElementMscript=class extends cTessefaktElementText{
 	constructor({tessefakt,parent,config,water}){
 		super({tessefakt,parent,config,water});
-		this._oMdf.mscript({
+		this._oTessefakt.mscript({
 			script:this._oConfig.script,
 			water:this.water
 		}).addEventListener('change',this._change.bind(this));
 	}
 	_display(){
-		var mValue=this._oMdf.mscript({
+		var mValue=this._oTessefakt.mscript({
 			script:this._oConfig.script,
 			water:this.water
 		}).value;

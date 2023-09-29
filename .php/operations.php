@@ -1,10 +1,10 @@
 <?php
 namespace tessefakt;
 class operations{
-	private $__oMdf;
+	private $__oTessefakt;
 	private $__oSpace;
 	public function __construct(\tessefakt\tessefakt $tessefakt){
-		$this->__oMdf=$tessefakt;
+		$this->__oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){
 		if(!array_key_exists($key,$this->__oSpace)) throw new Exception('not before handed');

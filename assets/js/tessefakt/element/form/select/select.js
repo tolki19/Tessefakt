@@ -4,8 +4,8 @@ var cTessefaktHTMLElementSelect=class extends cTessefaktElementForm{
 			'data-tessefakt-role':'control',
 			'data-tessefakt-control':this._oConfig.name
 		}).inject(this._oParent.inject);
-		this._oLabel=new cTessefaktElementSelectLabel({tessefakt:this._oMdf,parent:this,config:this._oConfig});
-		this._oPan=new cTessefaktElementSelectPan({tessefakt:this._oMdf,parent:this,config:this._oConfig.pan});
+		this._oLabel=new cTessefaktElementSelectLabel({tessefakt:this._oTessefakt,parent:this,config:this._oConfig});
+		this._oPan=new cTessefaktElementSelectPan({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.pan});
 		if(this._oConfig.desc) this.registerDescription(this._oConfig.desc,this);
 	}
 	destructor(){

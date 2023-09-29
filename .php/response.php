@@ -1,7 +1,7 @@
 <?php
 namespace tessefakt;
 class response{
-	private $__oMdf;
+	private $__oTessefakt;
 	private $__fStart;
 	private $__bSuccess=null;
 	private $__aException=[];
@@ -9,13 +9,13 @@ class response{
 	private $__aData=[];
 	public function __construct(\tessefakt\tessefakt $tessefakt){
 		$this->__fStart=\microtime(true);
-		$this->__oMdf=$tessefakt;
+		$this->__oTessefakt=$tessefakt;
 	}
 	public function reply(?int $status=200){
 		if(\headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
 		if($this->__bSuccess===null||$status<200||$status>=300) $this->__bSuccess=false;
-		if($this->__oMdf->load){
-			$aMetrics=$this->__oMdf->stats();
+		if($this->__oTessefakt->load){
+			$aMetrics=$this->__oTessefakt->stats();
 			$iFlags=\JSON_THROW_ON_ERROR;
 			if($this->tessefakt->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
 			\preg_match('#application\/json|\*\/\*#is',$this->tessefakt->request->header->Accept,$aMatches);
@@ -53,7 +53,7 @@ class response{
 	}
 	public function __get(string $key){
 		switch($key){
-			case 'tessefakt': return $this->__oMdf;
+			case 'tessefakt': return $this->__oTessefakt;
 			case 'exception': return !!count($this->__aException);
 		}
 	}

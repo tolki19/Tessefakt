@@ -4,7 +4,7 @@ var cTessefaktControllerCouriers=class extends cTessefaktController{
 	_oFormer;
 	constructor({tessefakt,controller}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -151,7 +151,7 @@ var cTessefaktControllerCouriers=class extends cTessefaktController{
 	}
 	_clone(){
 		var oClone=new cTessefaktControllerCouriers({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController
 		});
 		oClone.import(this.export());

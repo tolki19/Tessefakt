@@ -1,5 +1,5 @@
 var cTessefaktEntityDialog=class extends cTessefaktEntity{
-	_oMdf;
+	_oTessefakt;
 	_oConfig;
 	_oParent;
 	_oEvents;
@@ -17,7 +17,7 @@ var cTessefaktEntityDialog=class extends cTessefaktEntity{
 	_oUnselect;
 	constructor({tessefakt,parent,config,events={},delivery={}}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._oEvents=events;
@@ -25,25 +25,25 @@ var cTessefaktEntityDialog=class extends cTessefaktEntity{
 		this._oWater=this._oParent.water.clone;
 		if(this._oConfig.bucket) this._oBucket=this._oWater[this._oConfig.bucket];
 		else this._oBucket=this._oWater;
-		if(this._oConfig.couriers) this._oCourier=new cTessefaktServiceCouriers({tessefakt:this._oMdf,parent:this,config:this._oConfig.couriers});
+		if(this._oConfig.couriers) this._oCourier=new cTessefaktServiceCouriers({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.couriers});
 		if(this._oConfig.request){
-			this._oRequest=new cTessefaktServiceRequest({tessefakt:this._oMdf,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
-			if(this._oConfig.request.post) this._oRequestChange=new cTessefaktServiceRequestChange({tessefakt:this._oMdf,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
+			this._oRequest=new cTessefaktServiceRequest({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
+			if(this._oConfig.request.post) this._oRequestChange=new cTessefaktServiceRequestChange({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
 		}
 		this._dFrame=new Element('div',{'data-tessefakt-role':'dialog','data-tessefakt-state':'open'}).inject(this._oParent.inject);
 		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
 		this._oHeader=new cTessefaktEntityDialogHeader({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
 		this._oMain=new cTessefaktEntityDialogMain({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
 		this._oFooter=new cTessefaktEntityDialogFooter({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
@@ -64,7 +64,7 @@ var cTessefaktEntityDialog=class extends cTessefaktEntity{
 		this._oFooter.destructor();
 		delete this._oFooter;
 		this._dFrame.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oConfig;
 		delete this._oParent;
 		delete this._oEvents;
@@ -95,7 +95,7 @@ var cTessefaktEntityDialog=class extends cTessefaktEntity{
 	}
 	dispatch(descriptor,e){
 		switch(descriptor){
-			case 'close': this._oMdf.unpanic({dialog:this}); break;
+			case 'close': this._oTessefakt.unpanic({dialog:this}); break;
 			case 'send': this.send(e); break;
 		}
 	}

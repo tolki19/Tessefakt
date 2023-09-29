@@ -1,11 +1,11 @@
 var cTessefaktRenderDialogs=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dPan;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dPan=new Element('div',{'data-tessefakt-role':'dialog-pan'}).inject(this._oParent.inject);
@@ -13,7 +13,7 @@ var cTessefaktRenderDialogs=class{
 	destructor(){
 		for(var i=0;i<this._aSubjects.length;++i) this._aSubjects[i].close();
 		this._dPan.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._dPan;
@@ -21,7 +21,13 @@ var cTessefaktRenderDialogs=class{
 	}
 	openDialog({app,index,events,delivery}){
 		if(!this._oConfig.apps[app].entities[index]) throw new Error('Dialog "'+app+'"."'+index+'" not configured');
-		var oSubject=new cTessefaktEntityDialog({tessefakt:this._oMdf,parent:this,config:this._oConfig.apps[app].entities[index],events:events,delivery:delivery});
+		var oSubject=new cTessefaktEntityDialog({
+			tessefakt:this._oTessefakt,
+			parent:this,
+			config:this._oConfig.apps[app].entities[index],
+			events:events,
+			delivery:delivery
+		});
 		this._aSubjects.push(oSubject);
 		return oSubject;
 	}

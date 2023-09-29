@@ -1,5 +1,5 @@
 var cTessefaktEntityPage=class extends cTessefaktEntity{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_oEvents;
@@ -18,7 +18,7 @@ var cTessefaktEntityPage=class extends cTessefaktEntity{
 	_iOrder;
 	constructor({tessefakt,config,parent,events={},delivery={},page}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._oEvents=events;
@@ -29,7 +29,7 @@ var cTessefaktEntityPage=class extends cTessefaktEntity{
 		else this._oBucket=this._oWater;
 		if(this._oConfig.couriers){
 			this._oCourier=new cTessefaktServiceCouriers({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.couriers,
 				delivery:this._oDelivery
@@ -37,7 +37,7 @@ var cTessefaktEntityPage=class extends cTessefaktEntity{
 		}
 		if(this._oConfig.request){
 			this._oRequest=new cTessefaktServiceRequest({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.request,
 				events:{
@@ -47,7 +47,7 @@ var cTessefaktEntityPage=class extends cTessefaktEntity{
 			});
 			if(this._oConfig.request.post){
 				this._oRequestChange=new cTessefaktServiceRequestChange({
-					tessefakt:this._oMdf,
+					tessefakt:this._oTessefakt,
 					parent:this,
 					config:this._oConfig.request,
 					events:{
@@ -59,17 +59,17 @@ var cTessefaktEntityPage=class extends cTessefaktEntity{
 		this._dFrame=new Element('div',{'data-tessefakt-role':'page','data-tessefakt-visibility':'open'}).inject(this._oParent.inject);
 		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
 		this._oHeader=new cTessefaktEntityPageHeader({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
 		this._oMain=new cTessefaktEntityPageMain({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
 		this._oFooter=new cTessefaktEntityPageFooter({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig
 		});
@@ -109,7 +109,7 @@ console.debug(false);
 		this._oFooter.destructor();
 		delete this._oFooter;
 		this._dFrame.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._oEvents;

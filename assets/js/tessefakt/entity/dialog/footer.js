@@ -1,19 +1,19 @@
 var cTessefaktEntityDialogFooter=class extends cTessefaktEntityFooter{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dFooter;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dFooter=new Element('footer').inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.buttons?.length;++i){
 			var sObject='cTessefaktHTMLElement'+this._oConfig.buttons[i].name.camelize();
 			try{
-				this._aSubjects.push(new window[sObject]({tessefakt:this._oMdf,parent:this,config:this._oConfig.buttons[i],water:this.water}));
+				this._aSubjects.push(new window[sObject]({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.buttons[i],water:this.water}));
 			}catch(ex){
 				if(window[sObject]==undefined) throw new Error('DOM class "'+sObject+'" ("'+this._oConfig.buttons[i].name+'") not defined');
 				throw ex;
@@ -30,7 +30,7 @@ var cTessefaktEntityDialogFooter=class extends cTessefaktEntityFooter{
 			this._aSubjects[i].destructor();
 		}
 		this._dFooter.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 	}

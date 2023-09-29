@@ -68,7 +68,7 @@ var cTessefaktCourierString=class extends cTessefaktCourier{
 	}
 	_clone(){
 		var oClone=new cTessefaktCourierString({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			set:this._oSet
 		});
 		oClone.import(this.export());

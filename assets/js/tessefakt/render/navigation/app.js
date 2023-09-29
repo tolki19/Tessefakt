@@ -1,5 +1,5 @@
 var cTessefaktRenderNavigationApp=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_sDescriptor;
@@ -9,7 +9,7 @@ var cTessefaktRenderNavigationApp=class{
 	_dSpan;
 	_oSubjectDepartment;
 	constructor({tessefakt,parent,config,descriptor}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._sDescriptor=descriptor;
@@ -29,7 +29,7 @@ var cTessefaktRenderNavigationApp=class{
 			this._dSpan=new Element('span',{html:this._oConfig.navigation.caption}).inject(this._dA);
 		}
 		this._oSubjectDepartment=new cTessefaktRenderNavigationDepartment({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			parent:this._oParent._oParent,
 			config:this._oConfig.navigation,
 			descriptor:this._sDescriptor
@@ -41,7 +41,7 @@ var cTessefaktRenderNavigationApp=class{
 		this._dA.dispose();
 		this._dI?.dispose();
 		this._dSpan.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._sDescriptor;

@@ -4,7 +4,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 	_oFormer;
 	constructor({tessefakt,controller}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -44,7 +44,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 			case 'sequences':
 				if(target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktControllerSequences({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -52,7 +52,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 			case 'sequence':
 				if(target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktSequenceTable({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -60,7 +60,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 			case 'collections':
 				if(!target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktControllerCollections({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -68,7 +68,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 			case 'collection':
 				if(target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktCollectionTable({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -76,7 +76,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 			case 'set':
 				if(target._oSubjects[key]==undefined){
 					target._oSubjects[key]=new cTessefaktCollectionSet({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 				}
@@ -108,7 +108,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktControllerSequences({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oSubjects[key].parse(value);
@@ -131,7 +131,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktSequenceTable({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oSubjects[key].parse(value);
@@ -154,7 +154,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktControllerCollections({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controlle:target
 					});
 					target._oSubjects[key].parse(value);
@@ -177,7 +177,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktCollectionTable({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oSubjects[key].parse(value);
@@ -200,7 +200,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				}else if(target._oSubjects[key]==undefined){
 					target._oFormer={...target._oSubjects};
 					target._oSubjects[key]=new cTessefaktCollectionTable({
-						tessefakt:target._oMdf,
+						tessefakt:target._oTessefakt,
 						controller:target
 					});
 					target._oSubjects[key].parse(value);
@@ -302,7 +302,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				case 'sequences':
 					if(target._oSubjects[sKey]==undefined){
 						target._oSubjects[sKey]=new cTessefaktControllerSequences({
-							tessefakt:target._oMdf,
+							tessefakt:target._oTessefakt,
 							controller:target
 						});
 					}
@@ -311,7 +311,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				case 'sequence':
 					if(target._oSubjects[sKey]==undefined){
 						target._oSubjects[sKey]=new cTessefaktSequenceTable({
-							tessefakt:target._oMdf,
+							tessefakt:target._oTessefakt,
 							controller:target
 						});
 					}
@@ -320,7 +320,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				case 'collections':
 					if(target._oSubjects[sKey]==undefined){
 						target._oSubjects[sKey]=new cTessefaktControllerCollections({
-							tessefakt:target._oMdf,
+							tessefakt:target._oTessefakt,
 							controller:target
 						});
 					}
@@ -329,7 +329,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				case 'collection':
 					if(target._oSubjects[sKey]==undefined){
 						target._oSubjects[sKey]=new cTessefaktCollectionTable({
-							tessefakt:target._oMdf,
+							tessefakt:target._oTessefakt,
 							controller:target
 						});
 					}
@@ -338,7 +338,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 				case 'set':
 					if(target._oSubjects[sKey]==undefined){
 						target._oSubjects[sKey]=new cTessefaktCollectionSet({
-							tessefakt:target._oMdf,
+							tessefakt:target._oTessefakt,
 							collection:target
 						});
 					}
@@ -412,7 +412,7 @@ var cTessefaktControllerData=class extends cTessefaktController{
 	}
 	_clone(){
 		var oClone=new cTessefaktControllerData({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController
 		});
 		oClone.import(this.export());

@@ -1,9 +1,9 @@
 var cTessefaktEntityActionOrderVariant=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._display();
@@ -39,7 +39,7 @@ var cTessefaktEntityActionOrderVariant=class{
 	presentLoading(){}
 	presentUpdate(){}
 	destructor(){
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		this._dElement.dispose();
@@ -47,7 +47,7 @@ var cTessefaktEntityActionOrderVariant=class{
 	verify({verification}){
 		if(!verification){
 			var bVerification=true;
-			if(this._oConfig.verification) bVerification=this._oMdf.mscript({script:this._oConfig.verification,water:this.water});
+			if(this._oConfig.verification) bVerification=this._oTessefakt.mscript({script:this._oConfig.verification,water:this.water});
 		}else{
 			var bVerification=false;
 		}
@@ -68,9 +68,9 @@ var cTessefaktEntityActionOrderVariant=class{
 		if(this._oConfig.action){
 			var oPost={};
 			for(var i=0;i<(this._oConfig.action.post??[]).length;++i){
-				oPost[this._oConfig.action.post[i].name]=this._oMdf.mscript({script:this._oConfig.action.post[i].field,water:this.water}).value;
+				oPost[this._oConfig.action.post[i].name]=this._oTessefakt.mscript({script:this._oConfig.action.post[i].field,water:this.water}).value;
 			}
-			this._oMdf.request({
+			this._oTessefakt.request({
 				root:this._oRoot,
 				get:this._oConfig.action.get??{},
 				post:oPost,
@@ -82,21 +82,21 @@ var cTessefaktEntityActionOrderVariant=class{
 		}else if(this._oConfigkey){
 			var o={delivery:{},page:this._oParent._oParent._oParent};
 			for(var i=0;i<this._oConfig.delivery.length;++i){
-				o.delivery[this._oConfig.delivery[i].name]=this._oMdf.mscript({script:this._oConfig.delivery[i].field,water:this.water}).value;
+				o.delivery[this._oConfig.delivery[i].name]=this._oTessefakt.mscript({script:this._oConfig.delivery[i].field,water:this.water}).value;
 			}
-			this._oMdf.open({...this._oConfigkey,options:o});
+			this._oTessefakt.open({...this._oConfigkey,options:o});
 		}
 	}
 	_load(e){
 		if(e.target.responseJson.recommendation.indexOf('select')!=-1){
-			var oSelectSequence=this._oMdf.mscript({script:this._oConfig['select-sequence'],water:this.water});
+			var oSelectSequence=this._oTessefakt.mscript({script:this._oConfig['select-sequence'],water:this.water});
 			oSelectSequence.splice(0,oSelectSequence.length,...e.target.responseJson.data.insert);
 		}
 		if(e.target.responseJson.recommendation.indexOf('refresh')!=-1){
-			this._oMdf.refresh();
+			this._oTessefakt.refresh();
 		}
 		if(e.target.responseJson.recommendation.indexOf('return')!=-1){
-			this._oMdf.close({page:this._oParent._oParent._oParent,autovalidate:true});
+			this._oTessefakt.close({page:this._oParent._oParent._oParent,autovalidate:true});
 		}
 	}
 	get water(){

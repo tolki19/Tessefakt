@@ -4,7 +4,7 @@ var cTessefaktServiceCouriers=class extends cTessefaktService{
 		super({tessefakt,parent,config});
 		for(var i=0;i<this._oConfig.length;++i){
 			var oCouriers=new window['cTessefaktCourier'+this._oConfig[i].type.camelize()]({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				config:this._oConfig[i],
 				delivery:delivery[this._oConfig[i].name]
 			});

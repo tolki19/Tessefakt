@@ -1,23 +1,23 @@
 var cTessefaktRenderPages=class{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dPan;
 	_oHeader;
 	_oMain;
 	constructor({tessefakt,parent,config}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dPan=new Element('div',{'data-tessefakt-role':'pages-pan'}).inject(this._oParent.inject);
-		this._oHeader=new cTessefaktRenderPagesHeader({tessefakt:this._oMdf,parent:this,config:this._oConfig});
-		this._oMain=new cTessefaktRenderPagesMain({tessefakt:this._oMdf,parent:this,config:this._oConfig});
+		this._oHeader=new cTessefaktRenderPagesHeader({tessefakt:this._oTessefakt,parent:this,config:this._oConfig});
+		this._oMain=new cTessefaktRenderPagesMain({tessefakt:this._oTessefakt,parent:this,config:this._oConfig});
 	}
 	destructor(){
 		this._oHeader.destructor();
 		this._oMain.destructor();
 		this._dPan.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._dPan;

@@ -14,10 +14,10 @@ var cTessefaktServiceRequest=class extends cTessefaktService{
 		if(this._oRequest) this._oRequest.abort();
 		var oPost={};
 		for(var i=0;i<this._oConfig.post.length;++i){
-			if(this._oConfig.post[i].field) oPost[this._oConfig.post[i].name]=this._oMdf.mscript({script:this._oConfig.post[i].field,water:this.water}).value;
+			if(this._oConfig.post[i].field) oPost[this._oConfig.post[i].name]=this._oTessefakt.mscript({script:this._oConfig.post[i].field,water:this.water}).value;
 			else if(this._oConfig.post[i].value) oPost[this._oConfig.post[i].name]=this._oConfig.post[i].value;
 		}
-		this._oRequest=this._oMdf.request({
+		this._oRequest=this._oTessefakt.request({
 			root:this,
 			get:this._oConfig.get,
 			post:oPost,

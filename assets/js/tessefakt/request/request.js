@@ -1,5 +1,5 @@
 var cTessefaktRequest=class{
-	_oMdf;
+	_oTessefakt;
 	_oRoot;
 	_oEvents;
 	_sUri;
@@ -11,7 +11,7 @@ var cTessefaktRequest=class{
 	_oXhr;
 	_aXhrs=[];
 	constructor({tessefakt,root,water,events,uri='',url='ajax.php',flags,get,post,credentials={}}){
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oRoot=root;
 		this._sUri=uri;
 		this._sUrl=url;

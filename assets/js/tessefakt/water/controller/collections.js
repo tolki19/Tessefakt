@@ -4,7 +4,7 @@ var cTessefaktControllerCollections=class extends cTessefaktController{
 	_oFormer;
 	constructor({tessefakt,controller}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oController=controller;
 		return new Proxy(this,{
 			get:this._get.bind(this),
@@ -44,7 +44,7 @@ var cTessefaktControllerCollections=class extends cTessefaktController{
 		}
 		if(target._oCollections[key]==undefined){
 			return new cTessefaktCollectionTable({
-				tessefakt:target._oMdf,
+				tessefakt:target._oTessefakt,
 				controller:target
 			});
 		}
@@ -70,7 +70,7 @@ var cTessefaktControllerCollections=class extends cTessefaktController{
 		this._oFormer={...target._oCollections};
 		if(target._oCollections[key]==undefined){
 			target._oCollections[key]=new cTessefaktCollectionTable({
-				tessefakt:target._oMdf,
+				tessefakt:target._oTessefakt,
 				controller:target
 			});
 		}
@@ -146,7 +146,7 @@ var cTessefaktControllerCollections=class extends cTessefaktController{
 		for(var sKey in values){
 			if(this._oCollections[sKey]==undefined){
 				this._oCollections[sKey]=new cTessefaktCollectionTable({
-					tessefakt:this._oMdf,
+					tessefakt:this._oTessefakt,
 					controller:this
 				});
 			}
@@ -196,7 +196,7 @@ var cTessefaktControllerCollections=class extends cTessefaktController{
 	}
 	_clone(){
 		var oClone=new cTessefaktControllerCollections({
-			tessefakt:this._oMdf,
+			tessefakt:this._oTessefakt,
 			controller:this._oController
 		});
 		oClone.import(this.export());

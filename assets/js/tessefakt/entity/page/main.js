@@ -1,18 +1,18 @@
 var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
-	_oMdf;
+	_oTessefakt;
 	_oParent;
 	_oConfig;
 	_dMain;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config}){
 		super();
-		this._oMdf=tessefakt;
+		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dMain=new Element('main').inject(this._oParent.inject);
-		if(this._oConfig.unselect) this._oUnselect=new cTessefaktServiceUnselect({tessefakt:this._oMdf,parent:this,config:this._oConfig.unselect});
+		if(this._oConfig.unselect) this._oUnselect=new cTessefaktServiceUnselect({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.unselect});
 		for(var i=0;i<(this._oConfig.gadgets??[]).length;++i){
-			this._oGadgets[this._oConfig.gadgets[i].type]=new window['cTessefaktGadget'+this._oConfig.gadgets[i].type.camelize()]({tessefakt:this._oMdf,parent:this,config:this._oConfig.gadgets[i],element:this._dElement});
+			this._oGadgets[this._oConfig.gadgets[i].type]=new window['cTessefaktGadget'+this._oConfig.gadgets[i].type.camelize()]({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.gadgets[i],element:this._dElement});
 		}
 		if(!(this._oConfig.sequence&&this._oConfig.collection)){
 			this._displayChildren({
@@ -21,11 +21,11 @@ var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
 		}
 	}
 	_displayCycle(){
-		this.bucket.data.sequence=this._oMdf.mscript({
+		this.bucket.data.sequence=this._oTessefakt.mscript({
 			script:this._oConfig.sequence,
 			water:this.water
 		});
-		this.bucket.data.collection=this._oMdf.mscript({
+		this.bucket.data.collection=this._oTessefakt.mscript({
 			script:this._oConfig.collection,
 			water:this.water
 		});
@@ -60,7 +60,7 @@ var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
 	_displayChildren({water}){
 		for(var i=0;i<(this._oConfig.contents??[]).length;++i){
 			this._aSubjects.push(new window['cTessefaktHTMLElement'+this._oConfig.contents[i].name.camelize()]({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.contents[i],
 				water:water
@@ -70,7 +70,7 @@ var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
 	_displayLoading({water}){
 		for(var i=0;i<(this._oConfig.loading??[]).length;++i){
 			this._aSubjects.push(new window['cTessefaktHTMLElement'+this._oConfig.loading[i].name.camelize()]({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.loading[i],
 				water:water
@@ -80,7 +80,7 @@ var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
 	_displayEmpty({water}){
 		for(var i=0;i<(this._oConfig.empty??[]).length;++i){
 			this._aSubjects.push(new window['cTessefaktHTMLElement'+this._oConfig.empty[i].name.camelize()]({
-				tessefakt:this._oMdf,
+				tessefakt:this._oTessefakt,
 				parent:this,
 				config:this._oConfig.empty[i],
 				water:water
@@ -130,7 +130,7 @@ var cTessefaktEntityPageMain=class extends cTessefaktEntityMain{
 			this._oGadgets[k].destructor();
 		}
 		this._dMain.dispose();
-		delete this._oMdf;
+		delete this._oTessefakt;
 		delete this._oParent;
 		delete this._oConfig;
 		delete this._dMain;
