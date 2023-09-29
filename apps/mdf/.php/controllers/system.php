@@ -47,7 +47,7 @@ class system extends \mdf\controller{
 			$aTransmit['apps']['mdf']['navigation']['navigation'][]=[
 				'type'=>'group',
 				'caption'=>'Dev',
-				'icon'=>'apps/mdf/assets/icons/dev.svg',
+				'icon'=>'url("apps/mdf/assets/icons/dev.svg")',
 				'navigation'=>[
 					[
 						'type'=>'dialog',

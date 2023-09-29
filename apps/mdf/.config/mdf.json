@@ -7,12 +7,12 @@
 	},
 	"navigation": {
 		"caption": "mdf",
-		"icon": "apps/mdf/assets/icons/hexagon.svg",
+		"icon": "url('apps/mdf/assets/icons/hexagon.svg')",
 		"navigation": [
 			{
 				"type": "page",
 				"caption": "Startseite",
-				"icon" : "apps/mdf/assets/icons/home.svg",
+				"icon": "url('apps/mdf/assets/icons/home.svg')",
 				"key": {
 					"app": "mdf",
 					"index": "home"
@@ -24,12 +24,12 @@
 			{
 				"type": "group",
 				"caption": "Einstellungen",
-				"icon": "apps/mdf/assets/icons/control.svg",
+				"icon": "url('apps/mdf/assets/icons/control.svg')",
 				"navigation": [
 					{
 						"type": "page",
 						"caption": "Persönliche Daten",
-						"icon": "apps/mdf/assets/icons/user.svg",
+						"icon": "url('apps/mdf/assets/icons/user.svg')",
 						"key": {
 							"app": "mdf",
 							"index": "changeData"
@@ -38,7 +38,7 @@
 					{
 						"type": "page",
 						"caption": "Passwort ändern",
-						"icon": "apps/mdf/assets/icons/password.svg",
+						"icon": "url('apps/mdf/assets/icons/password.svg')",
 						"key": {
 							"app": "mdf",
 							"index": "changePassword"
@@ -47,7 +47,7 @@
 					{
 						"type": "page",
 						"caption": "Sprache ändern",
-						"icon": "apps/mdf/assets/icons/language.svg",
+						"icon": "url('apps/mdf/assets/icons/language.svg')",
 						"key": {
 							"app": "mdf",
 							"index": "changeLoc"
@@ -61,12 +61,12 @@
 			{
 				"type": "group",
 				"caption": "Hilfe",
-				"icon": "apps/mdf/assets/icons/help.svg",
+				"icon": "url('apps/mdf/assets/icons/help.svg')",
 				"navigation": [
 					{
 						"type":"page",
 						"caption":"Impressum",
-						"icon": "apps/mdf/assets/icons/legal.svg",
+						"icon": "url('apps/mdf/assets/icons/legal.svg')",
 						"key":{
 							"app": "mdf",
 							"index":"imprint"
@@ -75,7 +75,7 @@
 					{
 						"type":"page",
 						"caption":"Datenschutz",
-						"icon": "apps/mdf/assets/icons/lock.svg",
+						"icon": "url('apps/mdf/assets/icons/lock.svg')",
 						"key":{
 							"app": "mdf",
 							"index":"dp"
@@ -84,7 +84,7 @@
 					{
 						"type":"page",
 						"caption":"FAQ",
-						"icon": "apps/mdf/assets/icons/faq.svg",
+						"icon": "url('apps/mdf/assets/icons/faq.svg')",
 						"key":{
 							"app": "mdf",
 							"index":"faq"
@@ -93,7 +93,7 @@
 					{
 						"type":"page",
 						"caption":"Handbuch",
-						"icon": "apps/mdf/assets/icons/manual.svg",
+						"icon": "url('apps/mdf/assets/icons/manual.svg')",
 						"key":{
 							"app": "mdf",
 							"index":"manual"
@@ -102,7 +102,7 @@
 					{
 						"type":"page",
 						"caption":"Hilfe &amp; Kontakt",
-						"icon": "apps/mdf/assets/icons/email.svg",
+						"icon": "url('apps/mdf/assets/icons/email.svg')",
 						"key":{
 							"app": "mdf",
 							"index":"help"
@@ -116,7 +116,7 @@
 			{
 				"type": "action",
 				"caption": "Logout",
-				"icon": "apps/mdf/assets/icons/logout.svg",
+				"icon": "url('apps/mdf/assets/icons/logout.svg')",
 				"key": {
 					"app": "mdf",
 					"action": "logout"
