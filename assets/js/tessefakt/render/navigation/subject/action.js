@@ -2,53 +2,41 @@ var cTessefaktRenderNavigationSubjectAction=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
-	_dA;
-	_dI;
-	_dSpan;
+	_oA;
 	constructor({tessefakt,parent,config}){
 		this._oTessefakt=tessefakt;
 		this._oParent=parent;
 		this._oConfig=config;
-		var dLi=new Element('li').inject(this._oParent.inject);
-		this._dA=new Element('a',{
+		this._dLi=new Element('li').inject(this._oParent.inject);
+		this._oA=new cTessefaktRenderNavigationDisplayA({
+			tessefakt:this._oTessefakt,
+			parent:this,
 			events:{
 				click:this._click.bind(this)
-			},
-			tabindex:'0'
-		}).inject(dLi);
-		if(this._oConfig.icon){
-			this._dI=new Element('i').inject(this._dA);
-			this._dI.style.webkitMaskImage='url("'+this._oConfig.icon+'")';
-			this._dI.style.maskImage='url("'+this._oConfig.icon+'")';
-
-		}
-		if(this._oConfig.caption){
-			this._dSpan=new Element('span',{html:this._oConfig.caption}).inject(this._dA);
-		}
+			}
+		});
 	}
 	destructor(){
-		this._dA.dispose();
-		if(this._dI) this._dI.dispose();
-		if(this._dSpan) this._dSpan.dispose();
+		this._oA.destructor;
+		delete this._oA;
+		this._dLi.dispose();
 		delete this._dLi;
-		delete this._dA;
-		delete this._dI;
-		delete this._dSpan;
-		delete this._oTessefakt;
-		delete this._oParent;
-		delete this._oConfig;
 		delete this._sDescriptor;
+		delete this._oConfig;
+		delete this._oParent;
+		delete this._oTessefakt;
 	}
-	flag(sKey){
-		if(false) this._dA.set('data-tessefakt-state','active');
-		return false;
+	flag(key){
+		return this._oA.flag(key);
 	}
-	unflag(sKey){
-		if(false) this._dA.erase('data-tessefakt-state');
-		return false;
+	unflag(key){
+		return this._oA.unflag(key);
 	}
 	_click(e){
 		e.preventDefault();
 		this._oTessefakt.logout();
 	}
-};
+	get inject(){
+		return this._dLi;
+	}
+}

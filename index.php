@@ -74,6 +74,7 @@
 		<script src="<?=$url;?>assets/js/tessefakt/gadget/multiselectable.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/gadget/singleselectable.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/gadget/sort.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/icon/icon.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/render.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/pages/pages.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/pages/header.js"></script>
@@ -82,6 +83,10 @@
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/app.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/apps.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/department.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/_display.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/a.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/label.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/menu.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/action.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/dialog.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/group.js"></script>
