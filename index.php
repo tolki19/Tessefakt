@@ -109,13 +109,12 @@
 		<script src="<?=$url;?>assets/js/mdf/water/courier/string.js"></script>
 		<script src="<?=$url;?>assets/js/mdf/water/sequence/_sequence.js"></script>
 		<script src="<?=$url;?>assets/js/mdf/water/sequence/table.js"></script>
-		<script>window.addEventListener('load',function(e){new cTessefakt1({uri:'<?=$url;?>'});},true);</script>
+		<script>window.addEventListener('load',function(e){new cTessefakt({uri:'<?=$url;?>'});},true);</script>
 		<link rel="stylesheet" href="<?=$url;?>assets/css/desktop/standard.css">
 	</head>
 	<body>
 		<div data-tessefakt-role="dialog-pan">
 			<div data-tessefakt-role="dialog" data-tessefakt-ref="fatal" data-tessefakt-state="open">
-				<i class="mso">search</i>
 				<header>
 					<h1>Fataler Fehler</h1>
 				</header>
