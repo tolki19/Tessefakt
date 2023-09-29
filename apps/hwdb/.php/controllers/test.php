@@ -1,7 +1,7 @@
 <?php
-namespace mdf\apps\hwdb\controllers;
+namespace tessefakt\apps\hwdb\controllers;
 
-class test extends \mdf\controller{
+class test extends \tessefakt\controller{
 	public function simple(){
 		$aRawdata=[
 			[
@@ -28,9 +28,9 @@ class test extends \mdf\controller{
 				'test'=>$this->db->enumerate($aRawdata)
 			]
 		];
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='display';
-		$this->mdf->response->data=$aData;
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='display';
+		$this->tessefakt->response->data=$aData;
 	}
 	public function moderate(){
 		$aRawdata=$this->db->query('
@@ -59,12 +59,12 @@ class test extends \mdf\controller{
 				'test'=>$this->db->enumerate($aRawdata)
 			]
 		];
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='display';
-		$this->mdf->response->data=$aData;
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='display';
+		$this->tessefakt->response->data=$aData;
 	}
 	public function complex(){
-		$sTestSort=$this->db->sort($this->mdf->request->post->{'test-sort'},
+		$sTestSort=$this->db->sort($this->tessefakt->request->post->{'test-sort'},
 			[
 				'id asc'=>'t1.`id` asc',
 				'id desc'=>'t1.`id` desc',
@@ -76,7 +76,7 @@ class test extends \mdf\controller{
 				'replacement desc'=>'t2.`caption` desc'
 			]
 		);
-		$sSearch=$this->db->searchCombine($this->db->searchCross($this->mdf->request->post->{'test-search'},
+		$sSearch=$this->db->searchCombine($this->db->searchCross($this->tessefakt->request->post->{'test-search'},
 			[
 				['db'=>'t1.`caption`','caption'=>'caption','op'=>'like'],
 				['db'=>'t1.`example`','caption'=>'example','op'=>'like'],
@@ -106,21 +106,21 @@ class test extends \mdf\controller{
 				'test'=>$aCollectionsData
 			]
 		];
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='display';
-		$this->mdf->response->data=$aData;
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='display';
+		$this->tessefakt->response->data=$aData;
 	}
 	public function list(){
-		$sSearch1=$this->db->searchCombine($this->db->searchCross($this->mdf->request->post->{'test-interim-replacement'},
+		$sSearch1=$this->db->searchCombine($this->db->searchCross($this->tessefakt->request->post->{'test-interim-replacement'},
 			[
 				['db'=>'`id`','op'=>'=']
 			]
 		),['and','or']);
-		$sSearch2=$this->db->searchCombine($this->db->searchCross($this->mdf->request->post->{'test-id'},
+		$sSearch2=$this->db->searchCombine($this->db->searchCross($this->tessefakt->request->post->{'test-id'},
 			[
 				['db'=>'`id`','op'=>'!=']
 			]
-		),['and','or']).' and '.$this->db->searchCombine($this->db->searchCross($this->mdf->request->post->{'test-search'},
+		),['and','or']).' and '.$this->db->searchCombine($this->db->searchCross($this->tessefakt->request->post->{'test-search'},
 			[
 				['db'=>'`caption`','caption'=>'caption','op'=>'like'],
 				['db'=>'`example`','caption'=>'example','op'=>'like'],
@@ -147,7 +147,7 @@ class test extends \mdf\controller{
 			from `test`
 			where '.$sSearch2.'
 			order by `caption` asc,`id` asc
-			'.(!empty($this->mdf->request->post->{'limit'})?'limit '.$this->db->escape($this->mdf->request->post->{'limit'}):'').'
+			'.(!empty($this->tessefakt->request->post->{'limit'})?'limit '.$this->db->escape($this->tessefakt->request->post->{'limit'}):'').'
 		';
 		$aRawData=$this->db->query($sQuery);
 		$aSequencesData=$this->db->crush($aRawData);
@@ -160,13 +160,13 @@ class test extends \mdf\controller{
 				'test'=>$aCollectionsData
 			]
 		];
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='display';
-		$this->mdf->response->data=$aData;
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='display';
+		$this->tessefakt->response->data=$aData;
 	}
 	public function details(){
 // var_dump($this->app->rights);
-		$sSearch=$this->db->searchCombine($this->db->searchCross(\implode(' ',$this->mdf->request->post->{'test-sequence'}),
+		$sSearch=$this->db->searchCombine($this->db->searchCross(\implode(' ',$this->tessefakt->request->post->{'test-sequence'}),
 			[
 				['db'=>'t1.`id`','op'=>'in']
 			]
@@ -192,9 +192,9 @@ class test extends \mdf\controller{
 				'test'=>$aCollectionsData
 			]
 		];
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='display';
-		$this->mdf->response->data=$aData;
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='display';
+		$this->tessefakt->response->data=$aData;
 	}
 	public function create(){
 		$this->db->query('
@@ -204,13 +204,13 @@ class test extends \mdf\controller{
 				`caption`="Test-Insert",
 				`example`="Ja"
 		');
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='refresh';
-		$this->mdf->response->recommendation='select';
-		$this->mdf->response->data=['insert'=>[(string)$this->db->insert()]];
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='refresh';
+		$this->tessefakt->response->recommendation='select';
+		$this->tessefakt->response->data=['insert'=>[(string)$this->db->insert()]];
 	}
 	public function delete(){
-		$sSearch=$this->db->searchCombine($this->db->searchCross(\implode(' ',$this->mdf->request->post->id),
+		$sSearch=$this->db->searchCombine($this->db->searchCross(\implode(' ',$this->tessefakt->request->post->id),
 			[
 				['db'=>'`id`','op'=>'in']
 			]
@@ -219,18 +219,18 @@ class test extends \mdf\controller{
 			delete from `test`
 			where '.$sSearch.'
 		');
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='refresh';
-		$this->mdf->response->recommendation='deselect';
-		$this->mdf->response->data=['delete'=>[(string)$this->db->insert()]];
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='refresh';
+		$this->tessefakt->response->recommendation='deselect';
+		$this->tessefakt->response->data=['delete'=>[(string)$this->db->insert()]];
 	}
 	public function verify(){
-		if($this->mdf->response->exception) $this->mdf->reply();
+		if($this->tessefakt->response->exception) $this->tessefakt->reply();
 	}
 	public function save(){
 		$this->verify();
 		$aUpdates=[];
-		foreach($this->mdf->request->post->test as $mKey=>$aSet){
+		foreach($this->tessefakt->request->post->test as $mKey=>$aSet){
 			$sSearch=$this->db->searchCombine($this->db->searchCross($mKey,
 				[
 					['db'=>'`id`','op'=>'=']
@@ -248,14 +248,14 @@ class test extends \mdf\controller{
 			$this->db->query($sQuery);
 			$aUpdates[]=(string)$this->db->insert();
 		}
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='return';
-		$this->mdf->response->recommendation='refresh';
-		$this->mdf->response->data=['update'=>$aUpdates];
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='return';
+		$this->tessefakt->response->recommendation='refresh';
+		$this->tessefakt->response->data=['update'=>$aUpdates];
 	}
 	public function cancel(){
-		$this->mdf->response->success=true;
-		$this->mdf->response->recommendation='return';
-		$this->mdf->response->recommendation='refresh';
+		$this->tessefakt->response->success=true;
+		$this->tessefakt->response->recommendation='return';
+		$this->tessefakt->response->recommendation='refresh';
 	}
 }

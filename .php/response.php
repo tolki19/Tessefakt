@@ -1,5 +1,5 @@
 <?php
-namespace mdf;
+namespace tessefakt;
 class response{
 	private $__oMdf;
 	private $__fStart;
@@ -7,9 +7,9 @@ class response{
 	private $__aException=[];
 	private $__aRecommendation=[];
 	private $__aData=[];
-	public function __construct(\mdf\mdf $mdf){
+	public function __construct(\tessefakt\tessefakt $tessefakt){
 		$this->__fStart=\microtime(true);
-		$this->__oMdf=$mdf;
+		$this->__oMdf=$tessefakt;
 	}
 	public function reply(?int $status=200){
 		if(\headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
@@ -17,8 +17,8 @@ class response{
 		if($this->__oMdf->load){
 			$aMetrics=$this->__oMdf->stats();
 			$iFlags=\JSON_THROW_ON_ERROR;
-			if($this->mdf->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
-			\preg_match('#application\/json|\*\/\*#is',$this->mdf->request->header->Accept,$aMatches);
+			if($this->tessefakt->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
+			\preg_match('#application\/json|\*\/\*#is',$this->tessefakt->request->header->Accept,$aMatches);
 			$sMime=$aMatches[0];
 		}else{
 			$aMetrics=['db'=>['queries'=>0,'time'=>.0]];
@@ -44,7 +44,7 @@ class response{
 					],$iFlags);
 				break;
 			default:
-				trigger_error('Unable to respond in requested format ('.$this->mdf->request->header->Accept.')',\E_USER_ERROR);
+				trigger_error('Unable to respond in requested format ('.$this->tessefakt->request->header->Accept.')',\E_USER_ERROR);
 				break;
 		}
 		\restore_error_handler();
@@ -53,7 +53,7 @@ class response{
 	}
 	public function __get(string $key){
 		switch($key){
-			case 'mdf': return $this->__oMdf;
+			case 'tessefakt': return $this->__oMdf;
 			case 'exception': return !!count($this->__aException);
 		}
 	}

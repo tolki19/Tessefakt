@@ -1,2 +1,2 @@
 <?php
-namespace mdf\dbs;
+namespace tessefakt\dbs;

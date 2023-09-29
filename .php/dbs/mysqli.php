@@ -1,5 +1,5 @@
 <?php
-namespace mdf\dbs;
+namespace tessefakt\dbs;
 class mysqli{
 	private $__oConnection;
 	private $__bAutocommit;
@@ -7,7 +7,7 @@ class mysqli{
 	private $__aCredentials;
 	protected $__iQueries=0;
 	protected $__fElapsed=.0;
-	public function __construct(\mdf\mdf $mdf,array $credentials){
+	public function __construct(\tessefakt\tessefakt $tessefakt,array $credentials){
 		\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
 		$this->__bFormerAutocommit=&$this->__bAutocommit;
 		$this->__aCredentials=$credentials;

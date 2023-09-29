@@ -1,21 +1,21 @@
 {
 	"settings": {
 		"apps": {
-			"mdf": {
-				"config": "apps/mdf/.config/mdf.json",
+			"tessefakt": {
+				"config": "apps/tessefakt/.config/tessefakt.json",
 				"db": {
-					"username": "mdf",
+					"username": "tessefakt",
 					"password": "5AHENkIRUHOvrQHI",
-					"dbname": "mdf_test",
+					"dbname": "tessefakt_test",
 					"host": "localhost"
 				}
 			},
 			"hwdb": {
 				"config": "apps/hwdb/.config/hwdb.json",
 				"db": {
-					"username": "mdf",
+					"username": "tessefakt",
 					"password": "5AHENkIRUHOvrQHI",
-					"dbname": "mdf_test",
+					"dbname": "tessefakt_test",
 					"host": "localhost"
 				}
 			},

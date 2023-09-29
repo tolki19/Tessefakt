@@ -1,15 +1,15 @@
 <?php
-namespace mdf;
+namespace tessefakt;
 class app_router{
 	private $__oMdf;
 	private $__aApps=[];
-	public function __construct(\mdf\mdf $mdf){
-		$this->__oMdf=$mdf;
+	public function __construct(\tessefakt\tessefakt $tessefakt){
+		$this->__oMdf=$tessefakt;
 	}
 	public function __get(string $key){
 		if(\array_key_exists($key,$this->__aApps)) return $this->__aApps[$key];
 		include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
-		$sClass='\mdf\apps\\'.$key;
+		$sClass='\tessefakt\apps\\'.$key;
 		$this->__aApps[$key]=new $sClass($this->__oMdf,$this->__oMdf->config['apps'][$key]['db']??false);
 		return $this->__aApps[$key];
 	}

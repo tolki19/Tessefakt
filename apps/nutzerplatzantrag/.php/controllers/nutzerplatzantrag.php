@@ -1,7 +1,7 @@
 <? 
-namespace mdf\apps;
+namespace tessefakt\apps;
 
-class nutzerplatzantrag extends \mdf\app{
+class nutzerplatzantrag extends \tessefakt\app{
     public function auth(){
         
     }

@@ -1,10 +1,10 @@
 <?php
-namespace mdf\apps;
+namespace tessefakt\apps;
 
-class hwdb extends \mdf\app{
+class hwdb extends \tessefakt\app{
 	private $__oRights=[];
 	public function auth(){
-// var_dump($this->mdf->operations->uid);
+// var_dump($this->tessefakt->operations->uid);
 $this->__oRights=$this->db->query('
 	select
 		_user.uid,
@@ -24,7 +24,7 @@ $this->__oRights=$this->db->query('
 	) _group on
 		_group.id=_user.`group`
 	where
-		_user.uid like "'.$this->db->escape($this->mdf->operations->uid).'"
+		_user.uid like "'.$this->db->escape($this->tessefakt->operations->uid).'"
 ');
 	}
 	public function __get(string $key){
