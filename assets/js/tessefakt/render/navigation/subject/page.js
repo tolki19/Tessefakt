@@ -2,6 +2,7 @@ var cTessefaktRenderNavigationSubjectPage=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
+	_dLi;
 	_oA;
 	constructor({tessefakt,parent,config}){
 		this._oTessefakt=tessefakt;
@@ -37,6 +38,9 @@ var cTessefaktRenderNavigationSubjectPage=class{
 	_click(e){
 		e.preventDefault();
 		this._oTessefakt.open(this._oConfig.key);
+	}
+	get config(){
+		return this._oConfig;
 	}
 	get inject(){
 		return this._dLi;

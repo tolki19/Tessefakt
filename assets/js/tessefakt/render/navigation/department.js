@@ -3,6 +3,7 @@ var cTessefaktRenderNavigationDepartment=class{
 	_oParent;
 	_oConfig;
 	_sDescriptor;
+	_dMenu;
 	_aSubjects=[];
 	constructor({tessefakt,parent,config,descriptor}){
 		this._oTessefakt=tessefakt;

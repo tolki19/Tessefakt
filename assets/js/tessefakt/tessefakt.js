@@ -79,15 +79,7 @@ var cTessefakt=class{
 					}
 				});
 			}else{
-				this._oLogin=this.panic({
-					app:'tessefakt',
-					index:'login',
-					options:{
-						events:{
-							send:this._commitLogin.bind(this)
-						}
-					}
-				});
+				this._openLogin();
 			}
 		}
 	}
@@ -121,8 +113,20 @@ console.debug(false);
 		}
 		this.open({...this._oConfig.settings.defaults.key,options:o});
 	}
+	_openLogin(){
+		this._oLogin=this.panic({
+			app:'tessefakt',
+			index:'login',
+			options:{
+				events:{
+					send:this._commitLogin.bind(this)
+				}
+			}
+		});
+	}
 	_errorLogin(e){
-console.debug(false);
+// console.debug(false);
+		this._openLogin();
 		// this._oLogin.describe([
 			// {
 				// type:'error',

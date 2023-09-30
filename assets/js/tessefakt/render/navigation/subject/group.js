@@ -2,12 +2,9 @@ var cTessefaktRenderNavigationSubjectGroup=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
-	_oSubjectMenu;
 	_sDescriptor;
 	_dLi;
-	_oLabel;
 	_oMenu;
-	_dDiv;
 	constructor({tessefakt,parent,config,descriptor}){
 		this._oTessefakt=tessefakt;
 		this._oParent=parent;
@@ -45,12 +42,12 @@ var cTessefaktRenderNavigationSubjectGroup=class{
 		return this._oParent.indice;
 	}
 	get inject(){
-		return this._dDiv;
+		return this._dLi;
 	}
 	get config(){
 		return this._oConfig;
 	}
 	get descriptor(){
-		return this._oDescriptor;
+		return this._sDescriptor;
 	}
 };
