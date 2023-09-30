@@ -1,4 +1,4 @@
-var cTessefaktRenderNavigationDepartment=class{
+var cTessefaktRenderNavigationFactory=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
@@ -11,7 +11,7 @@ var cTessefaktRenderNavigationDepartment=class{
 		this._oConfig=config;
 		this._sDescriptor=descriptor;
 		this._dMenu=new Element('menu',{
-			'data-tessefakt-role':'department'
+			'data-tessefakt-role':'factory'
 		}).inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.navigation.length;++i){
 			switch(this._oConfig.navigation[i].type){

@@ -28,7 +28,7 @@ var cTessefaktRenderNavigationApp=class{
 		if(this._oConfig.navigation.caption){
 			this._dSpan=new Element('span',{html:this._oConfig.navigation.caption}).inject(this._dA);
 		}
-		this._oSubjectDepartment=new cTessefaktRenderNavigationDepartment({
+		this._oSubjectDepartment=new cTessefaktRenderNavigationFactory({
 			tessefakt:this._oTessefakt,
 			parent:this._oParent._oParent,
 			config:this._oConfig.navigation,
