@@ -80,8 +80,8 @@
 		<script src="<?=$url;?>assets/js/tessefakt/render/pages/header.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/pages/main.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/dialogs/dialogs.js"></script>
-		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/app.js"></script>
-		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/apps.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/app/app.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/app/menu.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/_display.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/a.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/label.js"></script>

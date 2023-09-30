@@ -1,4 +1,4 @@
-var cTessefaktRenderNavigationApps=class{
+var cTessefaktRenderNavigationAppMenu=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
@@ -12,7 +12,12 @@ var cTessefaktRenderNavigationApps=class{
 			'data-tessefakt-role':'appmenu'
 		}).inject(this._oParent.inject);
 		for(var key in this._oConfig){
-			this._oApps[key]=new cTessefaktRenderNavigationApp({tessefakt:this._oTessefakt,parent:this,config:this._oConfig[key],descriptor:key});
+			this._oApps[key]=new cTessefaktRenderNavigationAppApp({
+				tessefakt:this._oTessefakt,
+				parent:this,
+				config:this._oConfig[key],
+				descriptor:key
+			});
 		}
 	}
 	destructor(){

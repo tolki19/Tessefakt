@@ -10,7 +10,7 @@ var cTessefaktRenderPagesHeader=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dHeader=new Element('header').inject(this._oParent.inject);
-		this._oAppsMenu=new cTessefaktRenderNavigationApps({
+		this._oAppsMenu=new cTessefaktRenderNavigationAppMenu({
 			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oConfig.apps

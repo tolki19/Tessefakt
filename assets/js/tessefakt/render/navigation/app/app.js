@@ -1,4 +1,4 @@
-var cTessefaktRenderNavigationApp=class{
+var cTessefaktRenderNavigationAppApp=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
