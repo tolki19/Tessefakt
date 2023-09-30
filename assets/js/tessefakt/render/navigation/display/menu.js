@@ -13,7 +13,7 @@ var cTessefaktRenderNavigationDisplayMenu=class extends cTessefaktRenderNavigati
 	}
 	_display(){
 		this._dDiv=new Element('div').inject(this._oParent.inject);
-		this._oDepartment=new cTessefaktRenderNavigationFactory({
+		this._oDepartment=new cTessefaktRenderNavigationSubjectMenu({
 			tessefakt:this._oTessefakt,
 			parent:this,
 			config:this._oParent.config,

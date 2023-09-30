@@ -1,4 +1,4 @@
-var cTessefaktRenderNavigationFactory=class{
+var cTessefaktRenderNavigationSubjectMenu=class{
 	_oTessefakt;
 	_oParent;
 	_oConfig;
@@ -11,7 +11,7 @@ var cTessefaktRenderNavigationFactory=class{
 		this._oConfig=config;
 		this._sDescriptor=descriptor;
 		this._dMenu=new Element('menu',{
-			'data-tessefakt-role':'factory'
+			'data-tessefakt-role':'subject-menu'
 		}).inject(this._oParent.inject);
 		for(var i=0;i<this._oConfig.navigation.length;++i){
 			switch(this._oConfig.navigation[i].type){
@@ -25,7 +25,7 @@ var cTessefaktRenderNavigationFactory=class{
 					);
 					break;
 				case 'sep':
-					var dLi=new Element('li',{html:'<hr>'}).inject(this.inject);
+					new Element('li',{html:'<hr>'}).inject(this.inject);
 					break;
 				case 'action':
 					this._aSubjects.push(new cTessefaktRenderNavigationSubjectAction({

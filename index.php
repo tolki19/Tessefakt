@@ -86,7 +86,7 @@
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/a.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/label.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/display/menu.js"></script>
-		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/factory.js"></script>
+		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/menu.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/action.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/dialog.js"></script>
 		<script src="<?=$url;?>assets/js/tessefakt/render/navigation/subject/group.js"></script>
