@@ -22,12 +22,12 @@ var cTessefaktRenderNavigationAppMenu=class{
 	}
 	destructor(){
 		for(var key in this._oApps) this._oApps[key].destructor();
-		this._dMenu.dispose();
-		delete this._oTessefakt;
-		delete this._oParent;
-		delete this._oConfig;
-		delete this._dMenu;
 		delete this._oApps;
+		this._dMenu.dispose();
+		delete this._dMenu;
+		delete this._oConfig;
+		delete this._oParent;
+		delete this._oTessefakt;
 	}
 	verifyDisplay(key){
 		if(key.app.formerValue) this._oApps[key.app.formerValue].unflag(key);
