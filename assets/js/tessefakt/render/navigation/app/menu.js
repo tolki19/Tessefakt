@@ -9,7 +9,7 @@ var cTessefaktRenderNavigationAppMenu=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dMenu=new Element('menu',{
-			'data-tessefakt-role':'appmenu'
+			'data-tessefakt-role':'app-menu'
 		}).inject(this._oParent.inject);
 		for(var key in this._oConfig){
 			this._oApps[key]=new cTessefaktRenderNavigationAppApp({
