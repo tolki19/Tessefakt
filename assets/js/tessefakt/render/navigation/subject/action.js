@@ -38,8 +38,8 @@ var cTessefaktRenderNavigationSubjectAction=class{
 	}
 	unflag(key){
 		if(
-			key.app.formerValue==this._oParent.config.key.app&&
-			key.index.formerValue==this._oParent.config.key.index
+			key.app.formerValue==this._oConfig.key.app&&
+			key.index.formerValue==this._oConfig.key.index
 		){
 			return this._oA.unflag(key);
 		}

@@ -19,7 +19,7 @@ var cTessefaktEntityActionOrderVariant=class{
 				},
 				tabindex:'0'
 			}).inject(this._oParent.inject);
-		}else if(this._oConfigkey){
+		}else if(this._oConfig.key){
 			this._dElement=new Element('a',{
 				html:this._oConfig.caption,
 				'data-tessefakt-gadgets':'verifiable',
@@ -47,7 +47,6 @@ var cTessefaktEntityActionOrderVariant=class{
 	verify({verification}){
 		if(!verification){
 			if(this._oConfig.verification){
-				console.debug(this._oConfig.verification,this.water.value);
 				var bVerification=this._oTessefakt.mscript({
 					script:this._oConfig.verification,
 					water:this.water
@@ -86,12 +85,12 @@ var cTessefaktEntityActionOrderVariant=class{
 					load:this._load.bind(this)
 				}
 			});
-		}else if(this._oConfigkey){
+		}else if(this._oConfig.key){
 			var o={delivery:{},page:this._oParent._oParent._oParent};
 			for(var i=0;i<this._oConfig.delivery.length;++i){
 				o.delivery[this._oConfig.delivery[i].name]=this._oTessefakt.mscript({script:this._oConfig.delivery[i].field,water:this.water}).value;
 			}
-			this._oTessefakt.open({...this._oConfigkey,options:o});
+			this._oTessefakt.open({...this._oConfig.key,options:o});
 		}
 	}
 	_load(e){

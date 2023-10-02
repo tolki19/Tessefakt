@@ -28,10 +28,22 @@ var cTessefaktRenderNavigationSubjectDialog=class{
 		delete this._oTessefakt;
 	}
 	flag(key){
-		return this._oA.flag(key);
+		if(
+			key.app.value==this._oConfig.key.app&&
+			key.index.value==this._oConfig.key.index
+		){
+			return this._oA.flag(key);
+		}
+		return false;
 	}
 	unflag(key){
-		return this._oA.unflag(key);
+		if(
+			key.app.formerValue==this._oConfig.key.app&&
+			key.index.formerValue==this._oConfig.key.index
+		){
+			return this._oA.unflag(key);
+		}
+		return false;
 	}
 	_click(e){
 		e.preventDefault();
