@@ -37,7 +37,7 @@ var cTessefaktCourierArray=class extends cTessefaktCourier{
 			case 'controller': return this._oController;
 			case 'courier': return this._oCourier;
 		}
-		return target._aValue[key];
+		return target._aValues[key];
 	}
 	_set(target,key,value){
 		if(key.match(/^_.*$/)) throw new Error('Key "'+key+'" not allowed');
@@ -57,9 +57,9 @@ var cTessefaktCourierArray=class extends cTessefaktCourier{
 			case 'courier':
 				throw new Error('Key "'+key+'" not allowed');
 		}
-		if(!(key in target._aValue)||target._aValue[key]!==value){
-			target._aFormer=[...target._aValue];
-			target._aValue[key]=value;
+		if(!(key in target._aValues)||target._aValues[key]!==value){
+			target._aFormer=[...target._aValues];
+			target._aValues[key]=value;
 			var e=new Event('change');
 			Object.defineProperty(e,'target',{value:target,writable:false});
 			target.dispatchEvent(e);
@@ -84,7 +84,7 @@ var cTessefaktCourierArray=class extends cTessefaktCourier{
 			case 'courier':
 				throw new Error('Key "'+key+'" not allowed');
 		}
-		return key in target._aValue;
+		return key in target._aValues;
 	}
 	_del(target,key){
 		if(key.match(/^_.*$/)) throw new Error('Key "'+key+'" not allowed');
@@ -104,9 +104,9 @@ var cTessefaktCourierArray=class extends cTessefaktCourier{
 			case 'courier':
 				throw new Error('Key "'+key+'" not allowed');
 		}
-		if(key in target._aValue){
-			target._aFormer=[...target._aValue];
-			delete target._aValue[key];
+		if(key in target._aValues){
+			target._aFormer=[...target._aValues];
+			delete target._aValues[key];
 			var e=new Event('change');
 			Object.defineProperty(e,'target',{value:target,writable:false});
 			target.dispatchEvent(e);

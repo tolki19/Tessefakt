@@ -46,8 +46,15 @@ var cTessefaktEntityActionOrderVariant=class{
 	}
 	verify({verification}){
 		if(!verification){
-			var bVerification=true;
-			if(this._oConfig.verification) bVerification=this._oTessefakt.mscript({script:this._oConfig.verification,water:this.water});
+			if(this._oConfig.verification){
+				console.debug(this._oConfig.verification,this.water.value);
+				var bVerification=this._oTessefakt.mscript({
+					script:this._oConfig.verification,
+					water:this.water
+				});
+			}else{
+				var bVerification=true;
+			}
 		}else{
 			var bVerification=false;
 		}
