@@ -39,12 +39,14 @@ var cTessefaktRenderNavigationAppApp=class{
 		delete this._oTessefakt;
 	}
 	flag(key){
-		this._dA.set('data-tessefakt-state','active');
+		this._oA.flag(key);
 		this._oMenu.flag(key);
+		return true;
 	}
 	unflag(key){
-		this._dA.erase('data-tessefakt-state');
+		this._oA.unflag(key);
 		this._oMenu.unflag(key);
+		return true;
 	}
 	_click(e){
 		this._oParent.key={app:this._sDescriptor,index:undefined};
