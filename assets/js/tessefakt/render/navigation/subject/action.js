@@ -28,7 +28,13 @@ var cTessefaktRenderNavigationSubjectAction=class{
 		delete this._oTessefakt;
 	}
 	flag(key){
-		return this._oA.flag(key);
+		if(
+			key.app.value==this._oConfig.key.app&&
+			key.index.value==this._oConfig.key.index
+		){
+			return this._oA.flag(key);
+		}
+		return false;
 	}
 	unflag(key){
 		return this._oA.unflag(key);

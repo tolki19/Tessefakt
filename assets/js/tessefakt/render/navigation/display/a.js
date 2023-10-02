@@ -15,24 +15,12 @@ var cTessefaktRenderNavigationDisplayA=class extends cTessefaktRenderNavigationD
 		super.destructor();
 	}
 	flag(key){
-		if(
-			key.app.value==this._oParent.config.key.app&&
-			key.index.value==this._oParent.config.key.index
-		){
-			this._dA.set('data-tessefakt-state','active');
-			return true;
-		}
-		return false;
+		this._dA.set('data-tessefakt-state','active');
+		return true;
 	}
 	unflag(key){
-		if(
-			key.app.formerValue==this._oParent.config.key.app&&
-			key.index.formerValue==this._oParent.config.key.index
-		){
-			this._dA.erase('data-tessefakt-state');
-			return true;
-		}
-		return false;
+		this._dA.erase('data-tessefakt-state');
+		return true;
 	}
 	_display(){
 		this._dA=new Element('a',{

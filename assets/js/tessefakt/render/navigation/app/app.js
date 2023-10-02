@@ -19,14 +19,6 @@ var cTessefaktRenderNavigationAppApp=class{
 				click:this._click.bind(this)
 			}
 		});
-		if(this._oConfig.navigation.icon){
-			this._dI=new Element('i').inject(this._dA);
-			this._dI.style.webkitMaskImage='url("'+this._oConfig.navigation.icon+'")';
-			this._dI.style.maskImage='url("'+this._oConfig.navigation.icon+'")';
-		}
-		if(this._oConfig.navigation.caption){
-			this._dSpan=new Element('span',{html:this._oConfig.navigation.caption}).inject(this._dA);
-		}
 		this._oMenu=new cTessefaktRenderNavigationSubjectMenu({
 			tessefakt:this._oTessefakt,
 			parent:this._oParent._oParent,
@@ -56,6 +48,9 @@ var cTessefaktRenderNavigationAppApp=class{
 	}
 	_click(e){
 		this._oParent.key={app:this._sDescriptor,index:undefined};
+	}
+	get config(){
+		return this._oConfig;
 	}
 	get indice(){
 		return this._oParent.indice;
