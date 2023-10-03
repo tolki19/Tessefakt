@@ -12,6 +12,7 @@ var cTessefaktRenderNavigationSubjectAction=class{
 		this._oA=new cTessefaktRenderNavigationDisplayA({
 			tessefakt:this._oTessefakt,
 			parent:this,
+			config:this._oConfig,
 			events:{
 				click:this._click.bind(this)
 			}
@@ -48,9 +49,6 @@ var cTessefaktRenderNavigationSubjectAction=class{
 	_click(e){
 		e.preventDefault();
 		this._oTessefakt.logout();
-	}
-	get config(){
-		return this._oConfig;
 	}
 	get inject(){
 		return this._dLi;

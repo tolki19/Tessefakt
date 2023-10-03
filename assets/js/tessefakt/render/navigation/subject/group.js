@@ -13,11 +13,13 @@ var cTessefaktRenderNavigationSubjectGroup=class{
 		this._dLi=new Element('li').inject(this._oParent.inject);
 		this._oLabel=new cTessefaktRenderNavigationDisplayLabel({
 			tessefakt:this._oTessefakt,
-			parent:this
+			parent:this,
+			config:this._oConfig
 		});
 		this._oMenu=new cTessefaktRenderNavigationDisplayMenu({
 			tessefakt:this._oTessefakt,
-			parent:this
+			parent:this,
+			config:this._oConfig
 		});
 	}
 	destructor(){
@@ -43,9 +45,6 @@ var cTessefaktRenderNavigationSubjectGroup=class{
 	}
 	get inject(){
 		return this._dLi;
-	}
-	get config(){
-		return this._oConfig;
 	}
 	get descriptor(){
 		return this._sDescriptor;

@@ -16,7 +16,7 @@ var cTessefaktRenderNavigationDisplayMenu=class extends cTessefaktRenderNavigati
 		this._oMenu=new cTessefaktRenderNavigationSubjectMenu({
 			tessefakt:this._oTessefakt,
 			parent:this,
-			config:this._oParent.config,
+			config:this._oConfig,
 			descriptor:this._oParent.descriptor
 		});
 	}

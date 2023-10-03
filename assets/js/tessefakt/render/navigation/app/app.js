@@ -15,6 +15,7 @@ var cTessefaktRenderNavigationAppApp=class{
 		this._oA=new cTessefaktRenderNavigationDisplayA({
 			tessefakt:this._oTessefakt,
 			parent:this,
+			config:this._oConfig.navigation,
 			events:{
 				click:this._click.bind(this)
 			}
@@ -50,9 +51,6 @@ var cTessefaktRenderNavigationAppApp=class{
 	}
 	_click(e){
 		this._oParent.key={app:this._sDescriptor,index:undefined};
-	}
-	get config(){
-		return this._oConfig;
 	}
 	get indice(){
 		return this._oParent.indice;

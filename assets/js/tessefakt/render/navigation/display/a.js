@@ -23,20 +23,20 @@ var cTessefaktRenderNavigationDisplayA=class extends cTessefaktRenderNavigationD
 		return true;
 	}
 	_display(){
+console.debug(this._oConfig);
 		this._dA=new Element('a',{
 			events:this._oEvents,
 			tabindex:'0'
 		}).inject(this._oParent.inject);
-console.debug(this._oParent.config);
-		if(this._oParent.config.icon){
+		if(this._oConfig.icon){
 			this._oIcon=new cTessefaktIcon({
 				tessefakt:this._oTessefakt,
 				parent:this,
-				config:this._oParent.config.icon
+				config:this._oConfig.icon
 			});
 		}
-		if(this._oParent.config.caption){
-			this._dSpan=new Element('span',{html:this._oParent.config.caption}).inject(this._dA);
+		if(this._oConfig.caption){
+			this._dSpan=new Element('span',{html:this._oConfig.caption}).inject(this._dA);
 		}
 	}
 	get inject(){

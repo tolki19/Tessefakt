@@ -14,6 +14,7 @@ var cTessefaktRenderNavigationSubjectPage=class{
 		this._oA=new cTessefaktRenderNavigationDisplayA({
 			tessefakt:this._oTessefakt,
 			parent:this,
+			config:this._oConfig,
 			events:{
 				click:this._click.bind(this)
 			}
@@ -50,9 +51,6 @@ var cTessefaktRenderNavigationSubjectPage=class{
 	_click(e){
 		e.preventDefault();
 		this._oTessefakt.open(this._oConfig.key);
-	}
-	get config(){
-		return this._oConfig;
 	}
 	get inject(){
 		return this._dLi;

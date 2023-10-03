@@ -27,15 +27,15 @@ var cTessefaktRenderNavigationDisplayLabel=class extends cTessefaktRenderNavigat
 			for:this._oParent.descriptor,
 			tabindex:'0'
 		}).inject(this._oParent.inject);
-		if(this._oParent.config.icon){
+		if(this._oConfig.icon){
 			this._oIcon=new cTessefaktIcon({
 				tessefakt:this._oTessefakt,
 				parent:this,
-				config:this._oParent.config.icon
+				config:this._oConfig.icon
 			});
 		}
-		if(this._oParent.config.caption){
-			this._dSpan=new Element('span',{html:this._oParent.config.caption}).inject(this._dLabel);
+		if(this._oConfig.caption){
+			this._dSpan=new Element('span',{html:this._oConfig.caption}).inject(this._dLabel);
 		}
 	}
 	get inject(){
