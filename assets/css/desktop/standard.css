@@ -471,7 +471,7 @@ body>[data-tessefakt-role~="pages-pan"]>header>menu{
 	transform-origin:50% 0;
 }
 
-body>[data-tessefakt-role~="pages-pan"]>header>menu[data-tessefakt-role="appmenu"]{
+body>[data-tessefakt-role~="pages-pan"]>header>menu[data-tessefakt-role="app-menu"]{
 	grid-row:1/2;
 	margin-bottom:2rem;
 	visibility:visible;
