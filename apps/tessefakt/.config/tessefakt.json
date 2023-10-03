@@ -7,12 +7,18 @@
 	},
 	"navigation": {
 		"caption": "tessefakt",
-		"icon": "url('apps/tessefakt/assets/icons/hexagon.svg')",
+		"icon": {
+			"type":"url",
+			"href":"apps/tessefakt/assets/icons/hexagon.svg"
+		},
 		"navigation": [
 			{
 				"type": "page",
 				"caption": "Startseite",
-				"icon": "mso('home')",
+				"icon": {
+					"type":"mso",
+					"caption":"home"
+				},
 				"key": {
 					"app": "tessefakt",
 					"index": "home"
@@ -24,12 +30,18 @@
 			{
 				"type": "group",
 				"caption": "Einstellungen",
-				"icon": "url('apps/tessefakt/assets/icons/control.svg')",
+				"icon": {
+					"type":"url",
+					"href":"apps/tessefakt/assets/icons/control.svg"
+				},
 				"navigation": [
 					{
 						"type": "page",
 						"caption": "Persönliche Daten",
-						"icon": "url('apps/tessefakt/assets/icons/user.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/user.svg"
+						},
 						"key": {
 							"app": "tessefakt",
 							"index": "changeData"
@@ -38,7 +50,10 @@
 					{
 						"type": "page",
 						"caption": "Passwort ändern",
-						"icon": "url('apps/tessefakt/assets/icons/password.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/password.svg"
+						},
 						"key": {
 							"app": "tessefakt",
 							"index": "changePassword"
@@ -47,7 +62,10 @@
 					{
 						"type": "page",
 						"caption": "Sprache ändern",
-						"icon": "url('apps/tessefakt/assets/icons/language.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/language.svg"
+						},
 						"key": {
 							"app": "tessefakt",
 							"index": "changeLoc"
@@ -61,12 +79,18 @@
 			{
 				"type": "group",
 				"caption": "Hilfe",
-				"icon": "url('apps/tessefakt/assets/icons/help.svg')",
+				"icon": {
+					"type":"url",
+					"href":"apps/tessefakt/assets/icons/help.svg"
+				},
 				"navigation": [
 					{
 						"type":"page",
 						"caption":"Impressum",
-						"icon": "url('apps/tessefakt/assets/icons/legal.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/legal.svg"
+						},
 						"key":{
 							"app": "tessefakt",
 							"index":"imprint"
@@ -75,7 +99,10 @@
 					{
 						"type":"page",
 						"caption":"Datenschutz",
-						"icon": "url('apps/tessefakt/assets/icons/lock.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/lock.svg"
+						},
 						"key":{
 							"app": "tessefakt",
 							"index":"dp"
@@ -84,7 +111,10 @@
 					{
 						"type":"page",
 						"caption":"FAQ",
-						"icon": "url('apps/tessefakt/assets/icons/faq.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/faq.svg"
+						},
 						"key":{
 							"app": "tessefakt",
 							"index":"faq"
@@ -93,7 +123,10 @@
 					{
 						"type":"page",
 						"caption":"Handbuch",
-						"icon": "url('apps/tessefakt/assets/icons/manual.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/manual.svg"
+						},
 						"key":{
 							"app": "tessefakt",
 							"index":"manual"
@@ -102,7 +135,10 @@
 					{
 						"type":"page",
 						"caption":"Hilfe &amp; Kontakt",
-						"icon": "url('apps/tessefakt/assets/icons/email.svg')",
+						"icon": {
+							"type":"url",
+							"href":"apps/tessefakt/assets/icons/email.svg"
+						},
 						"key":{
 							"app": "tessefakt",
 							"index":"help"
@@ -116,7 +152,10 @@
 			{
 				"type": "action",
 				"caption": "Logout",
-				"icon": "url('apps/tessefakt/assets/icons/logout.svg')",
+				"icon": {
+					"type":"url",
+					"href":"apps/tessefakt/assets/icons/logout.svg"
+				},
 				"key": {
 					"app": "tessefakt",
 					"action": "logout"

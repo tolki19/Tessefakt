@@ -3,14 +3,14 @@ var cTessefaktRenderNavigationDisplayLabel=class extends cTessefaktRenderNavigat
 		super.__declare();
 		this._dLabel;
 		this._dInput;
-		this._dI;
+		this._oIcon;
 		this._dSpan;
 	}
 	destructor(){
+		this._oIcon.destructor();
+		delete this._oIcon;
 		this._dSpan.dispose();
 		delete this._dSpan;
-		this._dI.dispose();
-		delete this._dI;
 		this._dInput.dispose();
 		delete this._dInput;
 		this._dLabel.dispose();
@@ -28,9 +28,11 @@ var cTessefaktRenderNavigationDisplayLabel=class extends cTessefaktRenderNavigat
 			tabindex:'0'
 		}).inject(this._oParent.inject);
 		if(this._oParent.config.icon){
-			this._dI=new Element('i').inject(this._dLabel);
-			this._dI.style.webkitMaskImage='url("'+this._oParent.config.icon+'")';
-			this._dI.style.maskImage='url("'+this._oParent.config.icon+'")';
+			this._oIcon=new cTessefaktIcon({
+				tessefakt:this._oTessefakt,
+				parent:this,
+				config:this._oParent.config.icon
+			});
 		}
 		if(this._oParent.config.caption){
 			this._dSpan=new Element('span',{html:this._oParent.config.caption}).inject(this._dLabel);
