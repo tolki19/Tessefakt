@@ -23,7 +23,6 @@ var cTessefaktRenderNavigationDisplayA=class extends cTessefaktRenderNavigationD
 		return true;
 	}
 	_display(){
-console.debug(this._oConfig);
 		this._dA=new Element('a',{
 			events:this._oEvents,
 			tabindex:'0'

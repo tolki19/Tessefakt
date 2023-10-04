@@ -7,10 +7,6 @@
 	},
 	"navigation": {
 		"caption": "tessefakt",
-		"icon": {
-			"type":"url",
-			"href":"apps/tessefakt/assets/icons/hexagon.svg"
-		},
 		"navigation": [
 			{
 				"type": "page",
