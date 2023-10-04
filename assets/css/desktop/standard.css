@@ -112,7 +112,7 @@
   font-family:'Material Symbols Outlined';
   font-weight:normal;
   font-style:normal;
-  font-size:24px;
+  font-size:inherit;
   line-height:1;
   letter-spacing:normal;
   text-transform:none;
@@ -539,10 +539,16 @@ body>[data-tessefakt-role~="pages-pan"]>header>menu a>i{
 	grid-row:1/2;
 	aspect-ratio:1/1;
 	position:relative;
+	transition:transform var(--tessefakt-transition-time);
+	transform-origin:50% 50%;
+}
+
+body>[data-tessefakt-role~="pages-pan"]>header>menu input[type="checkbox"]+label>i.url,
+body>[data-tessefakt-role~="pages-pan"]>header>menu input[type="radio"]+label>i.url,
+body>[data-tessefakt-role~="pages-pan"]>header>menu a>i.url{
 	background-color:var(--tessefakt-color-header-menu-fore);
 	-webkit-mask-size:100%;
 	mask-size:100%;
-	transition:transform var(--tessefakt-transition-time);
 }
 
 body>[data-tessefakt-role~="pages-pan"]>header>menu input[type="checkbox"]+label>span,

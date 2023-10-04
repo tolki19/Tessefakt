@@ -22,7 +22,7 @@ var cTessefaktIcon=class{
     _display(){
         switch(this._oConfig.type){
             case 'url':
-    			this._dI=new Element('i').inject(this._oParent.inject);
+    			this._dI=new Element('i.url').inject(this._oParent.inject);
 	    		this._dI.style.webkitMaskImage='url("'+this._oConfig.href+'");';
 			    this._dI.style.maskImage='url("'+this._oConfig.href+'");';
                 break;
