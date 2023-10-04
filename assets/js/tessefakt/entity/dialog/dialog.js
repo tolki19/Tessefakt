@@ -30,7 +30,7 @@ var cTessefaktEntityDialog=class extends cTessefaktEntity{
 			this._oRequest=new cTessefaktServiceRequest({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.request,events:{load:this._loadRequest.bind(this),error:this._errorRequest.bind(this)}});
 			if(this._oConfig.request.post) this._oRequestChange=new cTessefaktServiceRequestChange({tessefakt:this._oTessefakt,parent:this,config:this._oConfig.request,events:{change:this._change.bind(this)}});
 		}
-		this._dFrame=new Element('div',{'data-tessefakt-role':'dialog','data-tessefakt-state':'open'}).inject(this._oParent.inject);
+		this._dFrame=new Element('div',{'data-tessefakt-role':'dialog'}).inject(this._oParent.inject);
 		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
 		this._oHeader=new cTessefaktEntityDialogHeader({
 			tessefakt:this._oTessefakt,
@@ -98,6 +98,10 @@ var cTessefaktEntityDialog=class extends cTessefaktEntity{
 			case 'close': this._oTessefakt.unpanic({dialog:this}); break;
 			case 'send': this.send(e); break;
 		}
+	}
+	set order(value){
+		this._iOrder=value;
+		this._dFrame.set('data-tessefakt-visibility','open');
 	}
 	get inject(){
 		return this._dFrame;

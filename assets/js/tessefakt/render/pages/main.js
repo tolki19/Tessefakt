@@ -29,7 +29,10 @@ var cTessefaktRenderPagesMain=class{
 			delivery:delivery,
 			page:page
 		});
-		this._aSubjects.push({sKey:{app,index},subject:oSubject});
+		this._aSubjects.push({
+			key:{app,index},
+			subject:oSubject
+		});
 		var aSubjects=[oSubject];
 		this._oTessefakt.mscript({
 			script:this._oConfig.construct.key,
@@ -38,12 +41,14 @@ var cTessefaktRenderPagesMain=class{
 		while(aSubjects[0].page) aSubjects.unshift(aSubjects[0].page);
 		for(var i=0;i<this._aSubjects.length;++i){
 			var iKey=aSubjects.findIndex((value)=>value==this._aSubjects[i].subject);
-			if(iKey!=-1) this._aSubjects[i].subject.order=aSubjects.length-1-iKey;
-			else{
+			if(iKey!=-1){
+				this._aSubjects[i].subject.order=aSubjects.length-1-iKey;
+			}else{
 				this._aSubjects[i].subject.close();
 				this._aSubjects.splice(i--,1);
 			}
 		}
+		this.validateDisplay();
 		return oSubject;
 	}
 	closePage({page,autovalidate}){
@@ -53,7 +58,9 @@ var cTessefaktRenderPagesMain=class{
 		if(autovalidate){
 			if(aSubjects.length) var bClose=true;
 			else var bClose=false
-		}else var bClose=true;
+		}else{
+			var bClose=true;
+		}
 		if(bClose){
 			page.close();
 			this._aSubjects.splice(this._aSubjects.findIndex((value)=>value.subject==page),1);
@@ -65,14 +72,30 @@ var cTessefaktRenderPagesMain=class{
 					this._aSubjects.splice(i--,1);
 				}
 			}
-			if(aSubjects.length) this._oTessefakt.mscript({script:this._oConfig.construct.key,water:this.water}).value=this._aSubjects[this._aSubjects.findIndex((value)=>value.subject==aSubjects[0])].key;
-			else this._oTessefakt.mscript({script:this._oConfig.construct.key,water:this.water}).value={app:undefined,index:undefined};
+			if(aSubjects.length){
+				this._oTessefakt.mscript({
+					script:this._oConfig.construct.key,
+					water:this.water
+				}).value=this._aSubjects[this._aSubjects.findIndex((value)=>value.subject==aSubjects[0])].key;
+			}else{
+				this._oTessefakt.mscript({
+					script:this._oConfig.construct.key,
+					water:this.water
+				}).value={
+					app:undefined,
+					index:undefined
+				};
+			}
 		}
+		this.validateDisplay();
 	}
 	refresh(){
 		for(var i=0;i<this._aSubjects.length;++i){
 			this._aSubjects[i].subject.refresh();
 		}
+	}
+	validateDisplay(){
+		this._oParent.validateDisplay(this._aSubjects.length);
 	}
 	get indice(){
 		return this._oParent.indice;

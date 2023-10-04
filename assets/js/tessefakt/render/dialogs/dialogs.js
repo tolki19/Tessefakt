@@ -28,13 +28,23 @@ var cTessefaktRenderDialogs=class{
 			events:events,
 			delivery:delivery
 		});
+		oSubject.order=1;
 		this._aSubjects.push(oSubject);
+		this.validateDisplay();
 		return oSubject;
 	}
 	closeDialog({dialog}){
 		var i=this._aSubjects.indexOf(dialog);
 		this._aSubjects[i].close();
 		this._aSubjects.splice(i,1);
+		this.validateDisplay();
+	}
+	validateDisplay(){
+		if(this._aSubjects.length){
+			this._dPan.set('data-tessefakt-subjectcount',this._aSubjects.length);
+		}else{
+			this._dPan.erase('data-tessefakt-subjectcount');
+		}
 	}
 	get inject(){
 		return this._dPan;

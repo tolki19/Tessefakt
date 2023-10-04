@@ -10,8 +10,16 @@ var cTessefaktRenderPages=class{
 		this._oParent=parent;
 		this._oConfig=config;
 		this._dPan=new Element('div',{'data-tessefakt-role':'pages-pan'}).inject(this._oParent.inject);
-		this._oHeader=new cTessefaktRenderPagesHeader({tessefakt:this._oTessefakt,parent:this,config:this._oConfig});
-		this._oMain=new cTessefaktRenderPagesMain({tessefakt:this._oTessefakt,parent:this,config:this._oConfig});
+		this._oHeader=new cTessefaktRenderPagesHeader({
+			tessefakt:this._oTessefakt,
+			parent:this,
+			config:this._oConfig
+		});
+		this._oMain=new cTessefaktRenderPagesMain({
+			tessefakt:this._oTessefakt,
+			parent:this,
+			config:this._oConfig
+		});
 	}
 	destructor(){
 		this._oHeader.destructor();
@@ -32,6 +40,13 @@ var cTessefaktRenderPages=class{
 	}
 	refresh(){
 		this._oMain.refresh();
+	}
+	validateDisplay(count){
+		if(count){
+			this._dPan.set('data-tessefakt-subjectcount',count);
+		}else{
+			this._dPan.erase('data-tessefakt-subjectcount');
+		}
 	}
 	get indice(){
 		return this._oParent.indice;

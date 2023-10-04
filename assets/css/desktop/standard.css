@@ -809,7 +809,9 @@ body>[data-tessefakt-role~="dialog-pan"]{
 	z-index:0;
 }
 
-body>[data-tessefakt-role~="dialog-pan"]:has(>[data-tessefakt-role="dialog"][data-tessefakt-state="open"]){
+/* following code is jsut a big workaround for firefox's missing :has-ability and should be retrofitted as soon as possible */
+body>[data-tessefakt-role~="dialog-pan"]:is(:has(>[data-tessefakt-role="dialog"][data-tessefakt-state="open"])),
+body>[data-tessefakt-role~="dialog-pan"][data-tessefakt-subjectcount]{
 	z-index:20;
 	backdrop-filter:blur(.3rem) saturate(.5) brightness(.9);
 	transition:var(--tessefakt-transition-time) backdrop-filter;

@@ -56,7 +56,7 @@ var cTessefaktEntityPage=class extends cTessefaktEntity{
 				});
 			}
 		}
-		this._dFrame=new Element('div',{'data-tessefakt-role':'page','data-tessefakt-visibility':'open'}).inject(this._oParent.inject);
+		this._dFrame=new Element('div',{'data-tessefakt-role':'page'}).inject(this._oParent.inject);
 		if(this._oConfig.ref) this._dFrame.set('data-tessefakt-ref',this._oConfig.ref);
 		this._oHeader=new cTessefaktEntityPageHeader({
 			tessefakt:this._oTessefakt,
@@ -136,7 +136,7 @@ console.debug(false);
 	}
 	set order(value){
 		this._iOrder=value;
-		this._dFrame.set('data-tessefakt-visibility',this._iOrder?'close':'open');
+		this._dFrame.set('data-tessefakt-visibility','open');
 	}
 	get inject(){
 		return this._dFrame;
