@@ -6,7 +6,7 @@ var cTessefaktRenderNavigationDisplayA=class extends cTessefaktRenderNavigationD
 		this._oIcon;
 	}
 	destructor(){
-		this._oIcon.destructor();
+		this._oIcon?.destructor();
 		delete this._oIcon;
 		this._dSpan.dispose();
 		delete this._dSpan;
