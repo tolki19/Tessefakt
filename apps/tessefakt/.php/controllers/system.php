@@ -47,7 +47,10 @@ class system extends \tessefakt\controller{
 			$aTransmit['apps']['tessefakt']['navigation']['navigation'][]=[
 				'type'=>'group',
 				'caption'=>'Dev',
-				'icon'=>'url("apps/tessefakt/assets/icons/dev.svg")',
+				'icon'=>[
+					'type'=>'mso',
+					'caption'=>'assistant_direction'
+				],
 				'navigation'=>[
 					[
 						'type'=>'dialog',

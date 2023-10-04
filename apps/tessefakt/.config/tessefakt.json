@@ -31,16 +31,16 @@
 				"type": "group",
 				"caption": "Einstellungen",
 				"icon": {
-					"type":"url",
-					"href":"apps/tessefakt/assets/icons/control.svg"
+					"type":"mso",
+					"caption":"settings"
 				},
 				"navigation": [
 					{
 						"type": "page",
 						"caption": "Persönliche Daten",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/user.svg"
+							"type":"mso",
+							"caption":"account_circle"
 						},
 						"key": {
 							"app": "tessefakt",
@@ -51,8 +51,8 @@
 						"type": "page",
 						"caption": "Passwort ändern",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/password.svg"
+							"type":"mso",
+							"caption":"passkey"
 						},
 						"key": {
 							"app": "tessefakt",
@@ -63,8 +63,8 @@
 						"type": "page",
 						"caption": "Sprache ändern",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/language.svg"
+							"type":"mso",
+							"caption":"language"
 						},
 						"key": {
 							"app": "tessefakt",
@@ -80,16 +80,16 @@
 				"type": "group",
 				"caption": "Hilfe",
 				"icon": {
-					"type":"url",
-					"href":"apps/tessefakt/assets/icons/help.svg"
+					"type":"mso",
+					"caption":"support"
 				},
 				"navigation": [
 					{
 						"type":"page",
 						"caption":"Impressum",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/legal.svg"
+							"type":"mso",
+							"caption":"info"
 						},
 						"key":{
 							"app": "tessefakt",
@@ -100,8 +100,8 @@
 						"type":"page",
 						"caption":"Datenschutz",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/lock.svg"
+							"type":"mso",
+							"caption":"privacy_tip"
 						},
 						"key":{
 							"app": "tessefakt",
@@ -112,8 +112,8 @@
 						"type":"page",
 						"caption":"FAQ",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/faq.svg"
+							"type":"mso",
+							"caption":"help"
 						},
 						"key":{
 							"app": "tessefakt",
@@ -124,8 +124,8 @@
 						"type":"page",
 						"caption":"Handbuch",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/manual.svg"
+							"type":"mso",
+							"caption":"menu_book"
 						},
 						"key":{
 							"app": "tessefakt",
@@ -136,8 +136,8 @@
 						"type":"page",
 						"caption":"Hilfe &amp; Kontakt",
 						"icon": {
-							"type":"url",
-							"href":"apps/tessefakt/assets/icons/email.svg"
+							"type":"mso",
+							"caption":"contact_support"
 						},
 						"key":{
 							"app": "tessefakt",
@@ -153,8 +153,8 @@
 				"type": "action",
 				"caption": "Logout",
 				"icon": {
-					"type":"url",
-					"href":"apps/tessefakt/assets/icons/logout.svg"
+					"type":"mso",
+					"caption":"logout"
 				},
 				"key": {
 					"app": "tessefakt",
