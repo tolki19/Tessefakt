@@ -54,18 +54,6 @@
 							"app": "tessefakt",
 							"index": "changePassword"
 						}
-					},
-					{
-						"type": "page",
-						"caption": "Sprache ändern",
-						"icon": {
-							"type":"mso",
-							"caption":"language"
-						},
-						"key": {
-							"app": "tessefakt",
-							"index": "changeLoc"
-						}
 					}
 				]
 			},
@@ -130,16 +118,16 @@
 					},
 					{
 						"type":"page",
-						"caption":"Hilfe &amp; Kontakt",
+						"caption":"Feedback",
 						"icon": {
 							"type":"mso",
-							"caption":"contact_support"
+							"caption":"feedback"
 						},
 						"key":{
 							"app": "tessefakt",
-							"index":"help"
+							"index":"feedback"
 						}
-					}
+ 					}
 				]
 			},
 			{
@@ -269,7 +257,48 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"MUKdo IIC2\r\nE-Mail: test@bundeswehr.org\r\nTelefon: 90 2500 67590"
+							"text":"Das Framework "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" wurde von mir entwickelt und geschrieben.\r\nIch habe das Framework "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" unter der GNU Affero General Public License v3.0 auf "
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Github"
+								}
+							],
+							"href":"https://github.com/tolki19/Tessefakt"
+						},
+						{
+							"name":"text",
+							"text":" veröffentlicht. Es handelt sich also um Freie Software."
 						}
 					]
 				},
@@ -278,7 +307,33 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Dieses Framework und alle seine Bestandteile wurden von uns geschrieben. Wir haben insbesondere kein vollständiges Framework weiterentwickelt, keine vorgefertigten Bestandteile verwendet und bei unserer Arbeit sind keine Tiere zu Schaden gekommen."
+							"text":"Die App "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Hebammenzentrale"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" einschließlich ihre Public Frontends wurde von mir entwickelt und geschrieben.\r\nIch werde die App "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Hebammenzentrale"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" unter der GNU Affero General Public License v3.0 beginnend 2024 auf Github veröffentlichen. Es handelt sich dann also um Freie Software."
 						}
 					]
 				},
@@ -287,7 +342,73 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Für Fragen, bei Problemen und bei Wünschen sind wir gerne erreichbar."
+							"text":"Zum Einsatz im Framework "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" gibt es verschiedene Apps.\r\nInsbesondere das SDK veröffentliche ich zukünftig auf Github. Es handelt sich dann also jeweils um Freie Software."
+						}
+					]
+				},
+				{
+					"name":"h2",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Gadvelop UG"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"b",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Florian Kerl"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":"\r\nE-Mail: "
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"hebammenzentrale@gadvelop.de"
+								}
+							],
+							"href":"mailto:hebammenzentrale@gadvelop.de"
+						},
+						{
+							"name":"text",
+							"text":"\r\nMobil :"
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"+49-160-7874165"
+								}
+							],
+							"href":"tel:+491607874165"
 						}
 					]
 				},
@@ -296,7 +417,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Die urheberrechtliche Situation bedarf einer detaillierten Klärung. Nach meiner Auslegung liegt das Urheberrecht bei der Bundesrepublik Deutschland. Insoweit habe ich keine Bedenken, dieses Framework zur Erfüllung anderer Aufgaben innerhalb der Bundesverwaltung zur Verfügung zu stellen."
+							"text":"Für Fragen, bei Problemen und bei Wünschen bin ich gerne erreichbar."
 						}
 					]
 				}
@@ -508,7 +629,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Dieses Dialogfeld verheißt nichts Gutes: offenbar ist das tessefakt derzeit nicht einsatzbereit.\r\nDas tut uns Leid und das sollte nicht passieren."
+							"text":"Dieses Dialogfeld verheißt nichts Gutes: offenbar ist das tessefakt derzeit nicht einsatzbereit.\r\nDas tut mir Leid und das sollte nicht passieren."
 						}
 					]
 				},
@@ -529,7 +650,7 @@
 							"contents":[
 								{
 									"name":"text",
-									"text":"wir vollziehen gerade einen technischen Umzug,"
+									"text":"ich vollziehe gerade einen technischen Umzug,"
 								}
 							]
 						},
@@ -538,7 +659,7 @@
 							"contents":[
 								{
 									"name":"text",
-									"text":"wir führen Wartungs- oder Reparaturarbeiten durch,"
+									"text":"ich führe Wartungs- oder Reparaturarbeiten durch,"
 								}
 							]
 						},
@@ -567,7 +688,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Wahrscheinlich arbeiten wir bereits an einer Lösung.\r\nFalls Sie aber vermuten, dass uns dieses Problem entgangen ist oder in dringenden Einzelfällen wenden Sie sich gerne an uns:"
+							"text":"Wahrscheinlich arbeite ich bereits an einer Lösung.\r\nFalls Sie aber vermuten, dass mir dieses Problem entgangen ist oder in dringenden Einzelfällen wenden Sie sich gerne an mich:"
 						}
 					]
 				},
@@ -576,7 +697,51 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"SG IT-Infrastr"
+							"text":"Gadvelop UG"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"b",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Florian Kerl"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":"\r\nE-Mail: "
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"hebammenzentrale@gadvelop.de"
+								}
+							],
+							"href":"mailto:hebammenzentrale@gadvelop.de"
+						},
+						{
+							"name":"text",
+							"text":"\r\nMobil :"
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"+49-160-7874165"
+								}
+							],
+							"href":"tel:+491607874165"
 						}
 					]
 				}
@@ -591,7 +756,7 @@
 							"text":"E-Mail"
 						}
 					],
-					"href":"mailto:test@bundeswehr.org"
+					"href":"mailto:hebammenzentrale@gadvelop.de"
 				},
 				{
 					"name":"a",
@@ -602,7 +767,7 @@
 							"text":"Telefon"
 						}
 					],
-					"href":"tel:90250067590"
+					"href":"tel:+491607874165"
 				},
 				{
 					"name":"button",

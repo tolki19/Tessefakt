@@ -54,7 +54,7 @@ class system extends \tessefakt\controller{
 				'navigation'=>[
 					[
 						'type'=>'dialog',
-						'caption'=>'Fataler Fehler',
+						'caption'=>'Fataler Fehler (Client)',
 						'key'=>['app'=>'tessefakt','index'=>'fatal']
 					]
 				]

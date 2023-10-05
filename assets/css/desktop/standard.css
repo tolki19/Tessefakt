@@ -9,7 +9,15 @@
 	font-family:'Inter';
 	font-style:normal;
 	font-weight:200;
-	src:url('../../fonts/inter-v13-latin-200.woff2') format('woff2');
+	src:url('../../fonts/Inter-ExtraLight.woff2') format('woff2');
+}
+
+@font-face{
+	font-display:swap;
+	font-family:'Inter';
+	font-style:italic;
+	font-weight:200;
+	src:url('../../fonts/Inter-ExtraLightItalic.woff2') format('woff2');
 }
 
 @font-face{
@@ -17,7 +25,15 @@
 	font-family:'Inter';
 	font-style:normal;
 	font-weight:400;
-	src:url('../../fonts/inter-v13-latin-regular.woff2') format('woff2');
+	src:url('../../fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face{
+	font-display:swap;
+	font-family:'Inter';
+	font-style:italic;
+	font-weight:400;
+	src:url('../../fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face{
@@ -25,7 +41,15 @@
 	font-family:'Inter';
 	font-style:normal;
 	font-weight:600;
-	src:url('../../fonts/inter-v13-latin-600.woff2') format('woff2');
+	src:url('../../fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+@font-face{
+	font-display:swap;
+	font-family:'Inter';
+	font-style:italic;
+	font-weight:600;
+	src:url('../../fonts/Inter-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face{
@@ -33,7 +57,15 @@
 	font-family:'Inter';
 	font-style:normal;
 	font-weight:800;
-	src:url('../../fonts/inter-v13-latin-800.woff2') format('woff2');
+	src:url('../../fonts/Inter-ExtraBold.woff2') format('woff2');
+}
+
+@font-face{
+	font-display:swap;
+	font-family:'Inter';
+	font-style:italic;
+	font-weight:800;
+	src:url('../../fonts/Inter-ExtraBoldItalic.woff2') format('woff2');
 }
 
 @font-face{
@@ -121,6 +153,7 @@
   word-wrap:normal;
   direction:ltr;
   -moz-font-feature-settings:'liga';
+  font-feature-settings:'liga';
   -moz-osx-font-smoothing:grayscale;
 }
 
@@ -166,8 +199,12 @@ ul>li{ margin:0 0 .3em 0; padding:0 0 0 .3rem; }
 blockquote{ font-family:'JetBrains Mono'; }
 ul>li{ list-style:square inside; }
 
+i{ font-style:italic; }
+em{ font-style:italic; }
+/*
 [data-tessefakt-role="null"]{
 }
+*/
 
 [data-tessefakt-role="null"]::before{
 	content:"Kein Wert";
@@ -176,24 +213,36 @@ ul>li{ list-style:square inside; }
 }
 
 [data-tessefakt-control]{
-	display:block;
 	position:relative;
 }
 
-[data-tessefakt-control]>[data-tessefakt-control-role="label"]{
+[data-tessefakt-control]:not([data-tessefakt-function="inline"]){
 	display:block;
-	width:auto;
-	margin:0 0 1.2em 0;
+}
+
+[data-tessefakt-control]>[data-tessefakt-control-role="label"]{
 	outline:none;
 	position:relative;
 }
 
-[data-tessefakt-control]>[data-tessefakt-control-role="label"]>[data-tessefakt-control-role="caption"]{
+[data-tessefakt-control]:not([data-tessefakt-function=
+"inline"])>[data-tessefakt-control-role="label"]{
+	display:block;
+	width:auto;
+	margin:0 0 1.2em 0;
+}
+
+[data-tessefakt-control]:not([data-tessefakt-function="inline"])>[data-tessefakt-control-role="label"]>[data-tessefakt-control-role="caption"]{
 	display:block;
 }
 
 [data-tessefakt-control]>[data-tessefakt-control-role="label"]>[data-tessefakt-control-role="display"]{
+	text-decoration:underline;
+}
+
+[data-tessefakt-control]:not([data-tessefakt-function="inline"])>[data-tessefakt-control-role="label"]>[data-tessefakt-control-role="display"]{
 	display:block;
+	text-decoration:none;
 	padding:.4rem .5rem;
 	width:100%;
 	color:var(--tessefakt-color-input-fore);
@@ -238,8 +287,10 @@ ul>li{ list-style:square inside; }
 	transform:var(--tessefakt-icon-transform);
 }
 
+/*
 [data-tessefakt-control]>[data-tessefakt-control-role="label"]>[data-tessefakt-control-role="display"]:hover{
 }
+*/
 
 [data-tessefakt-control]>[data-tessefakt-control-role="label"]>[data-tessefakt-control-role="display"]:focus,
 [data-tessefakt-control]>[data-tessefakt-control-role="label"]:focus>[data-tessefakt-control-role="display"]{
@@ -831,8 +882,10 @@ body>[data-tessefakt-role~="dialog-pan"]>[data-tessefakt-role="dialog"]{
 	max-height:90vh;
 }
 
+/*
 body>[data-tessefakt-role~="dialog-pan"]>[data-tessefakt-role="dialog"][data-tessefakt-state="open"]{
 }
+*/
 
 body>[data-tessefakt-role~="dialog-pan"]>[data-tessefakt-role="dialog"]>header{
 	display:block;

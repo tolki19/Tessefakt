@@ -12,17 +12,17 @@ var cTessefaktElementFormDisplay=class{
 		this._display();
 	}
 	destructor(){
-		for(var i=0;i<this._aSubjects.length;++i){
-			this._aSubjects[i].destructor();
-		}
-		this._aSubjects=[];
 		this._dElement.dispose();
-		this._oTessefakt.mscript({script:this._oConfig.index,water:this.water}).removeEventListener('change',this.$change);
-		delete this._oTessefakt;
-		delete this._oParent;
-		delete this._oConfig;
-		delete this._dElement;
+		this._oTessefakt.mscript({
+			script:this._oConfig.index,
+			water:this.water
+		}).removeEventListener('change',this.$change);
+		for(var i=0;i<this._aSubjects.length;++i) this._aSubjects[i].destructor();
 		delete this._aSubjects;
+		delete this._dElement;
+		delete this._oConfig;
+		delete this._oParent;
+		delete this._oTessefakt;
 	}
 	presentLoading(){
 		this._oHandles.presentLoading();
