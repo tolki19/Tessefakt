@@ -441,7 +441,20 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Dieses Framework kommt ohne Cookies und anderweitige Speicherung von Daten in Ihrem Browser zurecht. Clientseitig werden keine Daten gespeichert."
+							"text":"Vorliegend finden Sie die Datenschutzerklärung des Frameworks "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":". Insoweit gilt sie auch nur, wenn das Framework durch Gadvelop gehostet wird und nur für die zentralen Funktionen des Frameworks.\r\nFür Informationen zu einzelnen Apps lesen Sie bitte die dort zur Verfügung gestellte Datenschutzerklärung oder wenden sich an den Ihnen genannten Ansprechpartner."
 						}
 					]
 				},
@@ -450,7 +463,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Serverseitig werden Ihre Zugangsdaten grundsätzlich nicht gespeichert. Ihre Zugangsdaten werden an den Server des ZVDBw übergeben und freigegeben."
+							"text":"Clientseitig werden keine Daten gespeichert. Insbesondere werden keine Cookies in Ihrem Browser angelegt."
 						}
 					]
 				},
@@ -459,7 +472,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Zur Sicherstellung Ihres Zugriffs im Ausnahmefall speichern wir den Hash Ihrer Zugangsdaten für bis zu sieben Tage. Ein solcher Ausnahmefall kann etwa die fehlende Erreichbarkeit des Servers des ZVDBW sein. Bei der Berechnung eines Hashes handelt es sich um ein irreversibles aber deterministisches maschinelles Verfahren etwa zur Überprüfung der Richtigkeit von Zugangsdaten; Ihre Benutzername oder Ihr Passwort wird also weder gespeichert noch ist es für uns einsehbar."
+							"text":"Serverseitig werden die Daten nur im technisch notwendigen Rahmen gespeichert. Ihre Daten werden nur zur Weiterverarbeitung im Rahmen der Aufgaben und Funktionen des Frameworks verwendet und keinesfalls weitergegeben.\r\nIhre mit Ihrem Benutzerkonto verknüpften Passworte werden nur verschlüsselt gespeichert.\r\nDie Speicherung der mit Ihrem Benutzerkonto verknüpften E-Mail-Adressen ist technisch notwendig.\r\nAlle weiteren Daten werden nur gespeichert, wenn und insoweit sie oder Dritte sie angeben."
 						}
 					]
 				},
@@ -468,7 +481,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Zur Erfüllung unserer Aufgaben ist es notwendig, Funktionsträgerdaten zu speichern und zu verarbeiten. Alle diese Daten beziehen wir automatisiert vom Server des ZVDBw; diese Daten sind also auch über weitere Dienste abrufbar. Als weiterer Dienst gilt etwa das IAM."
+							"text":"Zur Diagnose technischer Probleme werden Daten zu Ihren Handlungen innerhalb dieses Frameworks gespeichert. Eine Verknüpfung mit Ihrem Benutzerkonto findet nur statt, wenn Sie es im Einzelfall oder grundsätzlich erlauben. Nur dann kann ich Ihnen zum Problem ein Feedback geben."
 						}
 					]
 				},
@@ -477,25 +490,7 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Zur Einordnung Ihrer Berechtigungen werden Ihre Zugriffsrechte gespeichert."
-						}
-					]
-				},
-				{
-					"name":"p",
-					"contents":[
-						{
-							"name":"text",
-							"text":"Zur Auffindung von Problemen speichern wir Daten zu Ihren Handlungen innerhalb dieses Frameworks für einige Zeit. Diese Daten werden im Normalfall nach spätestens vierzehn Tagen gelöscht. Die Verknüpfung mit Ihren Zugangsdaten wird nicht gespeichert, sondern kann nur durch Ihre aktive Zuarbeit hergestellt werden. Diese Daten geben wir grundsätzlich nicht weiter; andernfalls weisen wir darauf gesondert hin."
-						}
-					]
-				},
-				{
-					"name":"p",
-					"contents":[
-						{
-							"name":"text",
-							"text":"Für Fragen, bei Problemen und bei Wünschen sind wir gerne erreichbar."
+							"text":"Für Fragen, bei Problemen und bei Wünschen bin ich gerne erreichbar."
 						}
 					]
 				}
