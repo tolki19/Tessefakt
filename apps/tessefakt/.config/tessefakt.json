@@ -103,30 +103,6 @@
 							"app": "tessefakt",
 							"index":"faq"
 						}
-					},
-					{
-						"type":"page",
-						"caption":"Handbuch",
-						"icon": {
-							"type":"mso",
-							"caption":"menu_book"
-						},
-						"key":{
-							"app": "tessefakt",
-							"index":"manual"
-						}
-					},
-					{
-						"type":"page",
-						"caption":"Feedback",
-						"icon": {
-							"type":"mso",
-							"caption":"feedback"
-						},
-						"key":{
-							"app": "tessefakt",
-							"index":"feedback"
-						}
  					}
 				]
 			},
@@ -556,6 +532,83 @@
 					"contents":[
 						{
 							"name":"text",
+							"text":"Wen spreche ich für Fragen und bei Problemen an?"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Bitte sprechen Sie zuerst mit der Organisation, der diese Installation gehört."
+						}
+					]
+				},
+				{
+					"name":"h3",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Kann ich das "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" auch für andere Zwecke einsetzen?"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Ich habe das Framework "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" unter der GNU Affero General Public License v3.0 auf "
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Github"
+								}
+							],
+							"href":"https://github.com/tolki19/Tessefakt"
+						},
+						{
+							"name":"text",
+							"text":" veröffentlicht. Es handelt sich also um Freie Software. Es kann frei genutzt werden."
+						}
+					]
+				},
+				{
+					"name":"h3",
+					"contents":[
+						{
+							"name":"text",
 							"text":"Wofür steht FAQ?"
 						}
 					]
@@ -568,19 +621,35 @@
 							"text":"FAQ steht für Frequently Asked Questions.\r\nDas ist englisch und bedeutet Häufig gestellte Fragen."
 						}
 					]
-				}
-			]
-		},
-		"manual":{
-			"type": "page",
-			"ref":"manual",
-			"contents":[
+				},
 				{
-					"name":"h1",
+					"name":"h2",
 					"contents":[
 						{
 							"name":"text",
-							"text":"Handbuch"
+							"text":"Technische Fragen"
+						}
+					]
+				},
+				{
+					"name":"h3",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Wird das Framework "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" weiterentwickelt?"
 						}
 					]
 				},
@@ -589,7 +658,29 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Wir beabsichtigen, ein Handbuch zu schreiben und an dieser Stelle zu veröffentlichen."
+							"text":"Ja, die Weiterentwicklung des Tessefakt wird stetig vorangetrieben."
+						}
+					]
+				},
+				{
+					"name":"h3",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Kann ich Ideen und Wünsche zur Weiterentwicklung des Frameworks "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" äußern?"
 						}
 					]
 				},
@@ -598,7 +689,81 @@
 					"contents":[
 						{
 							"name":"text",
-							"text":"Schauen Sie mal da, hinter Ihnen ist ein dreiköpfiger Affe!"
+							"text":"Ja, die Weiterentwicklung des "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								 }
+							]
+						},
+						{
+							"name":"text",
+							"text":" wird auf "
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Github"
+								}
+							],
+							"href":"https://github.com/tolki19/Tessefakt"
+						},
+						{
+							"name":"text",
+							"text":" organisiert. Wenn Sie dort einen Bericht veröffentlichen, wird er gelesen und bei der Weiterentwicklung berücksichtigt."
+						}
+					]
+				},
+				{
+					"name":"h3",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Kann ich mich an der Weiterentwicklung des Frameworks "
+						},
+						{
+							"name":"i",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Tessefakt"
+								}
+							]
+						},
+						{
+							"name":"text",
+							"text":" beteiligen?"
+						}
+					]
+				},
+				{
+					"name":"p",
+					"contents":[
+						{
+							"name":"text",
+							"text":"Ja, sehr gerne. Die Weiterentwicklung wird auf "
+						},
+						{
+							"name":"a",
+							"role":"inline",
+							"contents":[
+								{
+									"name":"text",
+									"text":"Github"
+								}
+							],
+							"href":"https://github.com/tolki19/Tessefakt"
+						},
+						{
+							"name":"text",
+							"text":" organisiert. Dort können Sie sich unbürokratisch an der Entwicklung beteiligen. Am besten sprechen Sie den Projekt-Eigentümer dort kurz an."
 						}
 					]
 				}
