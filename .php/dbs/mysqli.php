@@ -15,7 +15,10 @@ class mysqli{
 		switch($key){
 		}
 	}
-	public function pepper(string $string,string $algo="sha256"){
+	public function hash(string $string){
+		return password_hash($this->__pepper($string),\PASSWORD_DEFAULT);
+	}
+	private function __pepper(string $string,string $algo="sha256"){
 		return hash_hmac($algo,$string,$this->__aCredentials['pepper']);
 	}
 	protected function __connection(){
