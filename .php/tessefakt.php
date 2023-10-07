@@ -15,7 +15,7 @@ class tessefakt{
 		$this->__oResponse=new \tessefakt\response($this);
 		\set_error_handler([$this,'__error']);
 		\set_exception_handler([$this,'__exception']);
-		$this->__aConfig=$this->apps->tessefakt->controllers->system->setup();
+		$this->__aConfig=$this->__setup();
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
 			$this->apps->tessefakt->controllers->system->bootstrap();
 			$this->response->reply();
@@ -33,6 +33,27 @@ class tessefakt{
 		}
 		\trigger_error('No query received',\E_USER_NOTICE);
 		$this->response->reply(400);
+	}
+	private function __decodeJson(string $path){
+		try{
+			$aJson=\json_decode(\file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
+		}catch(\JsonException $oException){
+			throw new \Exception('Bad JSON code in "'.$path.'"',\E_USER_ERROR,$oException);
+		}
+		return $aJson;
+	}
+	private function __setup(){
+		$aJsonSetup=$this->__decodeJson(dirname(__DIR__).'/.php/setup.json');
+		$aJsonConfig=$this->__decodeJson(dirname(__DIR__).'/.config.json');
+		$aConfig=\array_merge_deep($aJsonSetup,$aJsonConfig);
+		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
+			$aJson=$this->__decodeJson(dirname(__DIR__).'/'.$aSetting['config']);
+			$aConfig=\array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
+		}
+		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
+			$aConfig['apps'][$sApp]['db']=$aSetting['db'];
+		}
+		return $aConfig;
 	}
 	public function __get(string $key){
 		switch($key){

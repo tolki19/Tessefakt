@@ -2,27 +2,6 @@
 namespace tessefakt\apps\tessefakt\controllers;
 
 class system extends \tessefakt\controller{
-	private function __decodeJson(string $path){
-		try{
-			$aJson=\json_decode(\file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
-		}catch(\JsonException $oException){
-			throw new \Exception('Bad JSON code in "'.$path.'"',\E_USER_ERROR,$oException);
-		}
-		return $aJson;
-	}
-	public function setup(){
-		$aJsonSetup=$this->__decodeJson(\dirname(\dirname(\dirname(\dirname(__DIR__)))).'/.php/setup.json');
-		$aJsonConfig=$this->__decodeJson(\dirname(\dirname(\dirname(\dirname(__DIR__)))).'/.config.json');
-		$aConfig=\array_merge_deep($aJsonSetup,$aJsonConfig);
-		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			$aJson=$this->__decodeJson(\dirname(\dirname(\dirname(\dirname(__DIR__)))).'/'.$aSetting['config']);
-			$aConfig=\array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
-		}
-		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			$aConfig['apps'][$sApp]['db']=$aSetting['db'];
-		}
-		return $aConfig;
-	}
 	public function bootstrap(){
 		$aConfig=$this->tessefakt->config;
 		$aApps=[];
@@ -67,6 +46,20 @@ class system extends \tessefakt\controller{
 		$this->tessefakt->response->recommendation='login';
 	}
 	public function auth(){
+$this->db->query('insert into _users');
+$user_id=$this->db->insert();
+$this->db->query('insert into _user_emails set _user='.$user_id.',valid_from=curdate(),email="florian.kerl@gadvelop.de"');
+$user_email=$this->db->insert();
+$this->db->query('insert into _user_passwords set _user='.$user_id.',password="'.password_hash('Sxuyq783!').'"');
+$user_password=$this->db->insert();
+$this->db->query('insert into _user_uids set _user='.$user_id.',valid_from=curdate(),uid="Florian",uiddate=curdate()');
+$user_uid=$this->db->insert();
+$this->db->query('insert into _user_activities set _user='.$user_id.',timestamp=now(),activity="email_create",value='.$user_email);
+$this->db->query('insert into _user_activities set _user='.$user_id.',timestamp=now(),activity="email_activate",value='.$user_email);
+$this->db->query('insert into _user_activities set _user='.$user_id.',timestamp=now(),activity="password_create",value='.$user_password);
+$this->db->query('insert into _user_activities set _user='.$user_id.',timestamp=now(),activity="password_activate",value='.$user_password);
+$this->db->query('insert into _user_activities set _user='.$user_id.',timestamp=now(),activity="uid_create",value='.$user_uid);
+$this->db->query('insert into _user_activities set _user='.$user_id.',timestamp=now(),activity="uid_activate",value='.$user_uid);
 		if(!$this->tessefakt->request->header->Authorization) return false;
 		\preg_match('#^(basic):(\S+)#is',$this->tessefakt->request->header->Authorization,$matches);
 		switch(\strtolower($matches[1])){

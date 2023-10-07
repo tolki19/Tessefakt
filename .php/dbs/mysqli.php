@@ -6,9 +6,8 @@ class mysqli{
 	private $__bFormerAutocommit;
 	private $__aCredentials;
 	protected $__iQueries=0;
-	protected $__fElapsed=.0;
+	protected $__fTime=.0;
 	public function __construct(\tessefakt\tessefakt $tessefakt,array $credentials){
-		\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
 		$this->__bFormerAutocommit=&$this->__bAutocommit;
 		$this->__aCredentials=$credentials;
 	}
@@ -18,12 +17,14 @@ class mysqli{
 	}
 	protected function __connection(){
 		if(!$this->__oConnection){
+			$oDriver=new \mysqli_driver();
+			$oDriver->report_mode=\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT;
 			$this->__oConnection=new \mysqli($this->__aCredentials['host'],$this->__aCredentials['username'],$this->__aCredentials['password'],$this->__aCredentials['dbname']);
 			$this->__oConnection->set_charset('utf8mb4');
 		};
 		return $this->__oConnection;
 	}
-	public function query(string $query){
+	public function query(string $query):array|bool{
 		try{
 			$fStart=\microtime(true);
 			$oResult=$this->__connection()->query($query);
@@ -36,10 +37,10 @@ class mysqli{
 			throw $ex;
 		}finally{
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function insert(){
+	public function insert():int{
 		try{
 			$fStart=\microtime(true);
 			return $this->__connection()->insert_id;
@@ -47,7 +48,7 @@ class mysqli{
 			throw $ex;
 		}finally{
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
 	public function escape(string $string){
@@ -64,7 +65,7 @@ class mysqli{
 			throw $ex;
 		}finally{
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
 	public function transaction(?string $name=null){
@@ -78,7 +79,7 @@ class mysqli{
 			throw $ex;
 		}finally{
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
 	public function savepoint(string $name){
@@ -90,7 +91,7 @@ class mysqli{
 			throw $ex;
 		}finally{
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
 	public function commit(?string $name=null){
@@ -104,7 +105,7 @@ class mysqli{
 			$this->__bAutocommit=$this->__bFormerAutocommit;
 			$this->__bFormerAutocommit=&$this->__bAutocommit;
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
 	public function rollback(?string $name=null){
@@ -116,13 +117,13 @@ class mysqli{
 			throw $ex;
 		}finally{
 			++$this->__iQueries;
-			$this->__fElapsed+=\microtime(true)-$fStart;
+			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
 	public function stats(){
 		return [
 			'queries'=>$this->__iQueries,
-			'time'=>$this->__fElapsed
+			'time'=>$this->__fTime
 		];
 	}
 	public function crush(array $array,string $index='id'):array{
