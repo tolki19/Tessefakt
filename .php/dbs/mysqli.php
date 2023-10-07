@@ -15,6 +15,9 @@ class mysqli{
 		switch($key){
 		}
 	}
+	public function pepper(string $string,string $algo="sha256"){
+		return hash_hmac($algo,$string,$this->__aCredentials['pepper']);
+	}
 	protected function __connection(){
 		if(!$this->__oConnection){
 			\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
@@ -23,7 +26,7 @@ class mysqli{
 		};
 		return $this->__oConnection;
 	}
-	public function query(string $query):array|bool{
+	public function query(string $query){
 		try{
 			$fStart=\microtime(true);
 			$oResult=$this->__connection()->query($query);
@@ -39,7 +42,7 @@ class mysqli{
 			$this->__fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function insert():int{
+	public function insert(){
 		try{
 			$fStart=\microtime(true);
 			return $this->__connection()->insert_id;

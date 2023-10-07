@@ -7,7 +7,8 @@
 					"username": "tessefakt_13",
 					"password": "5AHENkIRUHOvrQHI",
 					"dbname": "tessefakt_13_230925",
-					"host": "localhost"
+					"host": "localhost",
+					"pepper": "Jn4D8y8kLA9n!39Y"
 				}
 			},
 			"hwdb": {
