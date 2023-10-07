@@ -4,18 +4,18 @@
 			"tessefakt": {
 				"config": "apps/tessefakt/.config/tessefakt.json",
 				"db": {
-					"username": "tessefakt",
+					"username": "tessefakt_13",
 					"password": "5AHENkIRUHOvrQHI",
-					"dbname": "tessefakt_test",
+					"dbname": "tessefakt_13_230925",
 					"host": "localhost"
 				}
 			},
 			"hwdb": {
 				"config": "apps/hwdb/.config/hwdb.json",
 				"db": {
-					"username": "tessefakt",
+					"username": "tessefakt_13",
 					"password": "5AHENkIRUHOvrQHI",
-					"dbname": "tessefakt_test",
+					"dbname": "tessefakt_13_230925",
 					"host": "localhost"
 				}
 			},

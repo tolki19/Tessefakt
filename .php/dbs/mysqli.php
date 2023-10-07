@@ -17,8 +17,7 @@ class mysqli{
 	}
 	protected function __connection(){
 		if(!$this->__oConnection){
-			$oDriver=new \mysqli_driver();
-			$oDriver->report_mode=\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT;
+			\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
 			$this->__oConnection=new \mysqli($this->__aCredentials['host'],$this->__aCredentials['username'],$this->__aCredentials['password'],$this->__aCredentials['dbname']);
 			$this->__oConnection->set_charset('utf8mb4');
 		};
