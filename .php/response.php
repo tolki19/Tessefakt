@@ -12,7 +12,7 @@ class response{
 		$this->__oTessefakt=$tessefakt;
 	}
 	public function reply(?int $status=200){
-		if(\headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
+		if(headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
 		if($this->__bSuccess===null||$status<200||$status>=300) $this->__bSuccess=false;
 		if($this->__oTessefakt->load){
 			$aMetrics=$this->__oTessefakt->stats();

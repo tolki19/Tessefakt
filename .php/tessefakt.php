@@ -1,21 +1,25 @@
 <?php
 namespace tessefakt;
 class tessefakt{
-	private $__aConfig;
 	private $__oApps;
 	private $__oRequest;
 	private $__oOperations;
 	private $__oResponse;
+	private $__oHash;
+	private $__aConfig;
 	public function __construct(){
-		\http_response_code(500);
-		\spl_autoload_register([$this,'__autoload']);
+		http_response_code(500);
+		spl_autoload_register([$this,'__autoload']);
 		$this->__oApps=new \tessefakt\app_router($this);
 		$this->__oRequest=new \tessefakt\request($this);
 		$this->__oOperations=new \tessefakt\operations($this);
 		$this->__oResponse=new \tessefakt\response($this);
-		\set_error_handler([$this,'__error']);
-		\set_exception_handler([$this,'__exception']);
+		set_error_handler([$this,'__error']);
+		set_exception_handler([$this,'__exception']);
 		$this->__aConfig=$this->__setup();
+var_dump(1);
+		$this->__oHash=new \tessefakt\hash($this);
+var_dump(2);
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
 			$this->apps->tessefakt->controllers->system->bootstrap();
 			$this->response->reply();
@@ -31,12 +35,12 @@ class tessefakt{
 			$this->apps->{$_GET['app']}->controllers->{$_GET['controller']}->{$_GET['method']}();
 			$this->response->reply();
 		}
-		\trigger_error('No query received',\E_USER_NOTICE);
+		trigger_error('No query received',\E_USER_NOTICE);
 		$this->response->reply(400);
 	}
 	private function __decodeJson(string $path){
 		try{
-			$aJson=\json_decode(\file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
+			$aJson=json_decode(file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
 		}catch(\JsonException $oException){
 			throw new \Exception('Bad JSON code in "'.$path.'"',\E_USER_ERROR,$oException);
 		}
@@ -45,10 +49,10 @@ class tessefakt{
 	private function __setup(){
 		$aJsonSetup=$this->__decodeJson(dirname(__DIR__).'/.php/setup.json');
 		$aJsonConfig=$this->__decodeJson(dirname(__DIR__).'/.config.json');
-		$aConfig=\array_merge_deep($aJsonSetup,$aJsonConfig);
+		$aConfig=array_merge_deep($aJsonSetup,$aJsonConfig);
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
 			$aJson=$this->__decodeJson(dirname(__DIR__).'/'.$aSetting['config']);
-			$aConfig=\array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
+			$aConfig=array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
 		}
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
 			$aConfig['apps'][$sApp]['db']=$aSetting['db'];
@@ -63,6 +67,7 @@ class tessefakt{
 			case 'operations': return $this->__oOperations;
 			case 'response': return $this->__oResponse;
 			case 'respond': return $this->__oResponse->respond;
+			case 'hash': return $this->__bHash;
 			case 'load': return $this->__bLoad;
 		}
 	}
@@ -79,15 +84,16 @@ class tessefakt{
 		}
 	}
 	public function __exception($oException){
-		return $this->__fault($oException->getCode(),$oException->getMessage(),$oException->getFile(),$oException->getLine(),$oException->getTrace(),$oException->getPrevious()?->getMessage());
+		return $this->__fault(-1,$oException->getMessage(),$oException->getFile(),$oException->getLine(),$oException->getTrace(),$oException->getPrevious()?->getMessage());
 	}
 	public function __error($errno,$errstr,$errfile,$errline){
 		if(!(error_reporting()&$errno)) return false;
 		$errstr=htmlspecialchars($errstr);
-		return $this->__fault($errno,$errstr,$errfile,$errline,\array_slice(\debug_backtrace(),1));
+		return $this->__fault($errno,$errstr,$errfile,$errline,array_slice(debug_backtrace(),1));
 	}
 	protected function __fault($code,$message,$file,$line,$trace,$previous_message=null){
 		switch($code){
+			case -1: $sTitle='Exception'; break;
 			case \E_ERROR: case \E_CORE_ERROR: case \E_COMPILE_ERROR: case \E_USER_ERROR: $sTitle='Fatal Error'; break;
 			case \E_PARSE: $sTitle='Parse Error'; break;
 			case \E_WARNING: case \E_CORE_WARNING: case \E_COMPILE_WARNING: case \E_USER_WARNING: $sTitle='Warning'; break;
@@ -104,7 +110,7 @@ class tessefakt{
 			'trace'=>$trace,
 			'php'=>phpversion()
 		];
-		if($code&\error_reporting()) $this->response->reply(500);
+		if($code&error_reporting()) $this->response->reply(500);
 		return true;
 	}
 	public function stats(){
