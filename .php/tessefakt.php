@@ -5,7 +5,6 @@ class tessefakt{
 	private $__oRequest;
 	private $__oOperations;
 	private $__oResponse;
-	private $__oHash;
 	private $__aConfig;
 	public function __construct(){
 		http_response_code(500);
@@ -17,9 +16,6 @@ class tessefakt{
 		set_error_handler([$this,'__error']);
 		set_exception_handler([$this,'__exception']);
 		$this->__aConfig=$this->__setup();
-var_dump(1);
-		$this->__oHash=new \tessefakt\hash($this);
-var_dump(2);
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
 			$this->apps->tessefakt->controllers->system->bootstrap();
 			$this->response->reply();

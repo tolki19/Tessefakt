@@ -2,10 +2,10 @@
 namespace tessefakt;
 class hash{
 	protected $_oTessefakt;
-	private $__aConfig;
-	public function __construct(\tessefakt\tessefakt $tessefakt,array $config){
+	private $__aCredentials;
+	public function __construct(\tessefakt\tessefakt $tessefakt,array $credentials){
 		$this->_oTessefakt=$tessefakt;
-		$this->__aConfig=$config;
+		$this->__aCredentials=$credentials;
 	}
 	public function create(string $string):string{
 		return password_hash($this->__pepper($string),\PASSWORD_DEFAULT);
