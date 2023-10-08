@@ -9,19 +9,13 @@ class mysqli{
 	protected $_iQueries=0;
 	protected $_fTime=.0;
 	public function __construct(\tessefakt\tessefakt $tessefakt,array $credentials){
-		$this->__oTessefakt=$tessefakt;
+		$this->_oTessefakt=$tessefakt;
 		$this->__bFormerAutocommit=&$this->__bAutocommit;
 		$this->__aCredentials=$credentials;
 	}
 	public function __get(string $key){
 		switch($key){
 		}
-	}
-	public function hash(string $string){
-		return password_hash($this->__pepper($string),\PASSWORD_DEFAULT);
-	}
-	private function __pepper(string $string,string $algo="sha256"){
-		return hash_hmac($algo,$string,$this->__aCredentials['pepper']);
 	}
 	protected function __connection(){
 		if(!$this->__oConnection){

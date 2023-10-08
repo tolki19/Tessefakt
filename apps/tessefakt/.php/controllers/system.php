@@ -1,6 +1,5 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
-
 class system extends \tessefakt\controller{
 	public function bootstrap(){
 		$aConfig=$this->tessefakt->config;
@@ -50,7 +49,7 @@ $this->db->query('insert into _users set id=default');
 $user_id=$this->db->insert();
 $this->db->query('insert into _user_emails set _user='.$user_id.',valid_from=curdate(),email="florian.kerl@gadvelop.de"');
 $user_email=$this->db->insert();
-$this->db->query('insert into _user_passwords set _user='.$user_id.',valid_from=curdate(),hash="'.$this->db->hash('Sxuyq783!').'",`date`=curdate()');
+$this->db->query('insert into _user_passwords set _user='.$user_id.',valid_from=curdate(),hash="'.$this->hash->create('Sxuyq783!').'",`date`=curdate()');
 $user_password=$this->db->insert();
 $this->db->query('insert into _user_uids set _user='.$user_id.',valid_from=curdate(),uid="Florian",date=curdate()');
 $user_uid=$this->db->insert();
