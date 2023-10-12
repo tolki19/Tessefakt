@@ -3,11 +3,13 @@
 		"apps": {
 			"tessefakt": {
 				"config": "apps/tessefakt/.config/tessefakt.json",
-				"db": {
-					"username": "tessefakt_13",
-					"password": "5AHENkIRUHOvrQHI",
-					"dbname": "tessefakt_13_230925",
-					"host": "localhost"
+				"dbs": {
+					"current": {
+						"username": "tessefakt_13",
+						"password": "5AHENkIRUHOvrQHI",
+						"dbname": "tessefakt_13_230925",
+						"host": "localhost"
+					}
 				},
 				"hash": {
 					"pepper": "Jn4D8y8kLA9n!39Y"
@@ -15,20 +17,24 @@
 			},
 			"hwdb": {
 				"config": "apps/hwdb/.config/hwdb.json",
-				"db": {
-					"username": "tessefakt_13",
-					"password": "5AHENkIRUHOvrQHI",
-					"dbname": "tessefakt_13_230925",
-					"host": "localhost"
+				"dbs": {
+					"current": {
+						"username": "tessefakt_13",
+						"password": "5AHENkIRUHOvrQHI",
+						"dbname": "tessefakt_13_230925",
+						"host": "localhost"
+					}
 				}
 			},
             "nutzerplatzantrag":{
                 "config": "apps/nutzerplatzantrag/.config/nutzerplatz.json",
-                "db": {
-					"username": "root",
-					"password": "c19x?47z",
-					"dbname": "nutzerplatzantrag",
-					"host": "localhost"
+                "dbs": {
+					"current": {
+						"username": "root",
+						"password": "c19x?47z",
+						"dbname": "nutzerplatzantrag",
+						"host": "localhost"
+					}
 				}
             }
 		},
