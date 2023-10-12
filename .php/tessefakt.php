@@ -51,7 +51,7 @@ class tessefakt{
 			$aConfig=array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
 		}
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			if(isset($aSetting['db'])) $aConfig['apps'][$sApp]['db']=$aSetting['db'];
+			if(isset($aSetting['dbs'])) $aConfig['apps'][$sApp]['dbs']=$aSetting['dbs'];
 			if(isset($aSetting['hash'])) $aConfig['apps'][$sApp]['hash']=$aSetting['hash'];
 		}
 		return $aConfig;

@@ -7,7 +7,7 @@ class app_router{
 		$this->__oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){
-		if(\array_key_exists($key,$this->__aApps)) return $this->__aApps[$key];
+		if(array_key_exists($key,$this->__aApps)) return $this->__aApps[$key];
 		include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
 		$sClass='\tessefakt\apps\\'.$key;
 		$this->__aApps[$key]=new $sClass($this->__oTessefakt,$this->__oTessefakt->config['apps'][$key]['db']??null,$this->__oTessefakt->config['apps'][$key]['hash']??null);
