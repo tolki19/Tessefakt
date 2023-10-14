@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\dbs;
-class mysqli{
+class mysqli extends \tessefakt\dbs\_db{
 	protected $_oTessefakt;
 	private $__oConnection;
 	private $__bAutocommit;

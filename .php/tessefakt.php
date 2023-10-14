@@ -18,21 +18,20 @@ class tessefakt{
 		$this->__aConfig=$this->__setup();
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
 			$this->apps->tessefakt->controllers->system->bootstrap();
-			$this->response->reply();
+			$this->reply();
 		}elseif(!$this->apps->tessefakt->controllers->system->auth()){
-			$this->response->reply(401);
+			$this->reply(401);
 		}elseif(isset($_GET['action'])&&$_GET['action']==='login'){
 			$this->apps->tessefakt->controllers->system->login();
-			$this->response->reply();
+			$this->reply();
 		}elseif(isset($_GET['action'])&&$_GET['action']==='logout'){
 			$this->apps->tessefakt->controllers->system->logout();
-			$this->response->reply();
+			$this->reply();
 		}elseif(isset($_GET['app'])&&isset($_GET['controller'])&&isset($_GET['method'])){
 			$this->apps->{$_GET['app']}->controllers->{$_GET['controller']}->{$_GET['method']}();
-			$this->response->reply();
+			reply();
 		}
-		trigger_error('No query received',\E_USER_NOTICE);
-		$this->response->reply(400);
+		throw new \Exception('No query received');
 	}
 	private function __decodeJson(string $path){
 		try{
@@ -47,7 +46,7 @@ class tessefakt{
 		$aJsonConfig=$this->__decodeJson(dirname(__DIR__).'/.config.json');
 		$aConfig=array_merge_deep($aJsonSetup,$aJsonConfig);
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			$aJson=$this->__decodeJson(dirname(__DIR__).'/'.$aSetting['config']);
+			$aJson=$this->__decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
 			$aConfig=array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
 		}
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
@@ -63,21 +62,18 @@ class tessefakt{
 			case 'request': return $this->__oRequest;
 			case 'operations': return $this->__oOperations;
 			case 'response': return $this->__oResponse;
-			case 'respond': return $this->__oResponse->respond;
 			case 'hash': return $this->__bHash;
-			case 'load': return $this->__bLoad;
 		}
 	}
 	public function __set(string $key,$value){}
+	public function __call(string $key,array $args){
+		switch($key){
+			case 'reply': return call_user_func([$this->__oResponse,$key],...$args);
+		}
+	}
 	public function __autoload($class){
-		if(\preg_match('#^tessefakt\\\\(\w+)$#i',$class,$matches)){
-			include_once(__DIR__.'/'.$matches[1].'.php');
-		}elseif(preg_match('#^tessefakt\\\\requests\\\\(\w+)$#i',$class,$matches)){
-			include_once(__DIR__.'/requests/_requests.php');
-			include_once(__DIR__.'/requests/'.$matches[1].'.php');
-		}elseif(preg_match('#^tessefakt\\\\dbs\\\\(\w+)$#i',$class,$matches)){
-			include_once(__DIR__.'/dbs/_dbs.php');
-			include_once(__DIR__.'/dbs/'.$matches[1].'.php');
+		if(preg_match('#^tessefakt(?:\\\\\w+)+$#i',$class,$aMatches)){
+			include_once(__DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
 		}
 	}
 	public function __exception($oException){
@@ -107,7 +103,7 @@ class tessefakt{
 			'trace'=>$trace,
 			'php'=>phpversion()
 		];
-		if($code&error_reporting()) $this->response->reply(500);
+		if($code&error_reporting()) $this->reply(500);
 		return true;
 	}
 	public function stats(){

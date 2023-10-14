@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\requests;
-class requests{
+class _request{
 	protected $__oTessefakt;
 	protected $__aValue;
 	protected $__oValue=[];

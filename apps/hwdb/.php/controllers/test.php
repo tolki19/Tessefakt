@@ -1,6 +1,5 @@
 <?php
 namespace tessefakt\apps\hwdb\controllers;
-
 class test extends \tessefakt\controller{
 	public function simple(){
 		$aRawdata=[
