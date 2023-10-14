@@ -2,10 +2,12 @@
 namespace tessefakt;
 class hash{
 	protected $_oTessefakt;
-	private $__aCredentials;
-	public function __construct(\tessefakt\tessefakt $tessefakt,array $credentials){
+	protected $_oApp;
+	private $__aSetup;
+	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
 		$this->_oTessefakt=$tessefakt;
-		$this->__aCredentials=$credentials;
+		$this->_oApp=$app;
+		$this->__aSetup=$setup;
 	}
 	public function create(string $string):string{
 		return password_hash($this->__pepper($string),\PASSWORD_DEFAULT);
@@ -14,6 +16,6 @@ class hash{
 		return password_verify($this->__pepper($string),$hash);
 	}
 	private function __pepper(string $string,string $algo="sha256"):string{
-		return hash_hmac($algo,$string,$this->__aCredentials['pepper']);
+		return hash_hmac($algo,$string,$this->__aSetup['pepper']);
 	}
 }

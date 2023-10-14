@@ -2,25 +2,23 @@
 namespace tessefakt\dbs;
 class mysqli extends \tessefakt\dbs\_db{
 	protected $_oTessefakt;
+	protected $_oDbRouter;
+	private $__aSetup;
 	private $__oConnection;
 	private $__bAutocommit;
 	private $__bFormerAutocommit;
-	private $__aCredentials;
 	protected $_iQueries=0;
 	protected $_fTime=.0;
-	public function __construct(\tessefakt\tessefakt $tessefakt,array $credentials){
+	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\db_router $db_router,array $setup){
 		$this->_oTessefakt=$tessefakt;
+		$this->_oDbRouter=$db_router;
+		$this->__aSetup=$setup;
 		$this->__bFormerAutocommit=&$this->__bAutocommit;
-		$this->__aCredentials=$credentials;
-	}
-	public function __get(string $key){
-		switch($key){
-		}
 	}
 	protected function __connection(){
 		if(!$this->__oConnection){
 			\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
-			$this->__oConnection=new \mysqli($this->__aCredentials['host'],$this->__aCredentials['username'],$this->__aCredentials['password'],$this->__aCredentials['dbname']);
+			$this->__oConnection=new \mysqli($this->__aSetup['host'],$this->__aSetup['username'],$this->__aSetup['password'],$this->__aSetup['dbname']);
 			$this->__oConnection->set_charset('utf8mb4');
 		};
 		return $this->__oConnection;

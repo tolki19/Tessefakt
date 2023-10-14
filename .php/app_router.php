@@ -10,7 +10,10 @@ class app_router{
 		if(array_key_exists($key,$this->__aApps)) return $this->__aApps[$key];
 		include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
 		$sClass='\tessefakt\apps\\'.$key;
-		$this->__aApps[$key]=new $sClass($this->__oTessefakt,$this->__oTessefakt->config['apps'][$key]['dbs']??null,$this->__oTessefakt->config['apps'][$key]['hash']??null);
+		$aSetup=[];
+		if(isset($this->__oTessefakt->config['apps'][$key]['dbs'])) $aSetup['dbs']=$this->__oTessefakt->config['apps'][$key]['dbs'];
+		if(isset($this->__oTessefakt->config['apps'][$key]['hash'])) $aSetup['hash']=$this->__oTessefakt->config['apps'][$key]['hash'];
+		$this->__aApps[$key]=new $sClass($this->__oTessefakt,$aSetup);
 		return $this->__aApps[$key];
 	}
 	public function __set(string $key,$value){}

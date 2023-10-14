@@ -1,18 +1,18 @@
 <?php
 namespace tessefakt;
 class controller{
-	private $__oTessefakt;
-	private $__oApp;
+	protected $_oTessefakt;
+	protected $_oApp;
 	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app){
-		$this->__oTessefakt=$tessefakt;
-		$this->__oApp=$app;
+		$this->_oTessefakt=$tessefakt;
+		$this->_oApp=$app;
 	}
 	public function __get(string $key){
 		switch($key){
-			case 'tessefakt': return $this->__oTessefakt;
-			case 'app': return $this->__oApp;
-			case 'db': return $this->__oApp->db;
-			case 'hash': return $this->__oApp->hash;
+			case 'tessefakt': return $this->_oTessefakt;
+			case 'app': return $this->_oApp;
+			case 'dbs': return $this->_oApp->dbs;
+			case 'hash': return $this->_oApp->hash;
 		}
 	}
 	public function __set(string $key,$value){}
