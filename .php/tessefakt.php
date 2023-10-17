@@ -1,21 +1,21 @@
 <?php
 namespace tessefakt;
 class tessefakt{
-	private $__oApps;
-	private $__oRequest;
-	private $__oOperations;
-	private $__oResponse;
-	private $__aConfig;
-	public function __construct(){
+	protected $_oApps;
+	protected $_oRequest;
+	protected $_oOperations;
+	protected $_oHandler;
+	protected $_aSetup;
+	public function _construct(){
 		http_response_code(500);
 		spl_autoload_register([$this,'__autoload']);
-		$this->__oApps=new \tessefakt\app_router($this);
-		$this->__oRequest=new \tessefakt\request($this);
-		$this->__oOperations=new \tessefakt\operations($this);
-		$this->__oResponse=new \tessefakt\response($this);
+		$this->_oApps=new \tessefakt\app_router($this);
+		$this->_oRequest=new \tessefakt\request($this);
+		$this->_oOperations=new \tessefakt\operations($this);
+		$this->_aSetup=$this->_setup();
+		$this->_oHandler=new ('\\tessefakt\\handler\\'.$this->__mode())($this);
 		set_error_handler([$this,'__error']);
 		set_exception_handler([$this,'__exception']);
-		$this->__aConfig=$this->__setup();
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
 			$this->apps->tessefakt->controllers->system->bootstrap();
 			$this->reply();
@@ -33,7 +33,7 @@ class tessefakt{
 		}
 		throw new \Exception('No query received');
 	}
-	private function __decodeJson(string $path){
+	protected function _decodeJson(string $path){
 		try{
 			$aJson=json_decode(file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
 		}catch(\JsonException $oException){
@@ -41,12 +41,12 @@ class tessefakt{
 		}
 		return $aJson;
 	}
-	private function __setup(){
-		$aJsonSetup=$this->__decodeJson(dirname(__DIR__).'/.php/setup.json');
-		$aJsonConfig=$this->__decodeJson(dirname(__DIR__).'/.config.json');
+	protected function _setup(){
+		$aJsonSetup=$this->_decodeJson(dirname(_DIR__).'/.php/setup.json');
+		$aJsonConfig=$this->_decodeJson(dirname(_DIR__).'/.config.json');
 		$aConfig=array_merge_deep($aJsonSetup,$aJsonConfig);
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			$aJson=$this->__decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
+			$aJson=$this->_decodeJson(dirname(_DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
 			$aConfig=array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
 		}
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
@@ -57,32 +57,39 @@ class tessefakt{
 	}
 	public function __get(string $key){
 		switch($key){
-			case 'config': return $this->__aConfig;
-			case 'apps': return $this->__oApps;
-			case 'request': return $this->__oRequest;
-			case 'operations': return $this->__oOperations;
-			case 'response': return $this->__oResponse;
-			case 'hash': return $this->__bHash;
-		}
-	}
-	public function __set(string $key,$value){}
-	public function __call(string $key,array $args){
-		switch($key){
-			case 'reply': return call_user_func([$this->__oResponse,$key],...$args);
+			case 'setup': return $this->_aSetup;
+			case 'apps': return $this->_oApps;
+			case 'request': return $this->_oRequest;
+			case 'operations': return $this->_oOperations;
+			case 'hash': return $this->_bHash;
+			case 'handler': return $this->_oHandler;
 		}
 	}
 	public function __autoload($class){
 		if(preg_match('#^tessefakt(?:\\\\\w+)+$#i',$class,$aMatches)){
-			include_once(__DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
+			include_once(_DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
 		}
 	}
 	public function __exception($oException){
-		return $this->__fault(-1,$oException->getMessage(),$oException->getFile(),$oException->getLine(),$oException->getTrace(),$oException->getPrevious()?->getMessage());
+		return $this->__fault(
+			-1,
+			$oException->getMessage(),
+			$oException->getFile(),
+			$oException->getLine(),
+			$oException->getTrace(),
+			$oException->getPrevious()?->getMessage()
+		);
 	}
 	public function __error($errno,$errstr,$errfile,$errline){
 		if(!(error_reporting()&$errno)) return false;
 		$errstr=htmlspecialchars($errstr);
-		return $this->__fault($errno,$errstr,$errfile,$errline,array_slice(debug_backtrace(),1));
+		return $this->_fault(
+			$errno,
+			$errstr,
+			$errfile,
+			$errline,
+			array_slice(debug_backtrace(),1)
+		);
 	}
 	protected function __fault($code,$message,$file,$line,$trace,$previous_message=null){
 		switch($code){
@@ -107,6 +114,6 @@ class tessefakt{
 		return true;
 	}
 	public function stats(){
-		return $this->__oApps->stats();
+		return $this->_oApps->stats();
 	}
 }
