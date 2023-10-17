@@ -13,7 +13,7 @@ class tessefakt{
 		$this->_oRequest=new \tessefakt\request($this);
 		$this->_oOperations=new \tessefakt\operations($this);
 		$this->_aSetup=$this->_setup();
-		$this->_oHandler=new ('\\tessefakt\\handler\\'.$this->__mode())($this);
+		$this->_oHandler=new ('\\tessefakt\\handler\\'.$this->_mode())($this);
 		set_error_handler([$this,'__error']);
 		set_exception_handler([$this,'__exception']);
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
@@ -33,7 +33,9 @@ class tessefakt{
 		}
 		throw new \Exception('No query received');
 	}
-	protected function _decodeJson(string $path){
+	protected function _mode():string{
+	}
+	protected function _decodeJson(string $path):string{
 		try{
 			$aJson=json_decode(file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
 		}catch(\JsonException $oException){
@@ -41,7 +43,7 @@ class tessefakt{
 		}
 		return $aJson;
 	}
-	protected function _setup(){
+	protected function _setup():array{
 		$aJsonSetup=$this->_decodeJson(dirname(_DIR__).'/.php/setup.json');
 		$aJsonConfig=$this->_decodeJson(dirname(_DIR__).'/.config.json');
 		$aConfig=array_merge_deep($aJsonSetup,$aJsonConfig);
@@ -55,7 +57,7 @@ class tessefakt{
 		}
 		return $aConfig;
 	}
-	public function __get(string $key){
+	public function __get(string $key):mixed{
 		switch($key){
 			case 'setup': return $this->_aSetup;
 			case 'apps': return $this->_oApps;
@@ -65,12 +67,12 @@ class tessefakt{
 			case 'handler': return $this->_oHandler;
 		}
 	}
-	public function __autoload($class){
+	public function __autoload(string $class):void{
 		if(preg_match('#^tessefakt(?:\\\\\w+)+$#i',$class,$aMatches)){
 			include_once(_DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
 		}
 	}
-	public function __exception($oException){
+	public function __exception(\Exception $oException):bool{
 		return $this->__fault(
 			-1,
 			$oException->getMessage(),
@@ -80,7 +82,7 @@ class tessefakt{
 			$oException->getPrevious()?->getMessage()
 		);
 	}
-	public function __error($errno,$errstr,$errfile,$errline){
+	public function __error($errno,$errstr,$errfile,$errline):bool{
 		if(!(error_reporting()&$errno)) return false;
 		$errstr=htmlspecialchars($errstr);
 		return $this->_fault(
@@ -91,7 +93,7 @@ class tessefakt{
 			array_slice(debug_backtrace(),1)
 		);
 	}
-	protected function __fault($code,$message,$file,$line,$trace,$previous_message=null){
+	protected function __fault($code,$message,$file,$line,$trace,$previous_message=null):bool{
 		switch($code){
 			case -1: $sTitle='Exception'; break;
 			case \E_ERROR: case \E_CORE_ERROR: case \E_COMPILE_ERROR: case \E_USER_ERROR: $sTitle='Fatal Error'; break;
