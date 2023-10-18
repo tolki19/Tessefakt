@@ -50,6 +50,7 @@
 				}
 			]
 		},
+		"mode": "plain",
 		"dev": {
 			"state": true
 		},

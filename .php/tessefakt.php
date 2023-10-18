@@ -6,7 +6,7 @@ class tessefakt{
 	protected $_oOperations;
 	protected $_oHandler;
 	protected $_aSetup;
-	public function _construct(){
+	public function __construct(){
 		http_response_code(500);
 		spl_autoload_register([$this,'__autoload']);
 		$this->_oApps=new \tessefakt\app_router($this);
@@ -34,8 +34,17 @@ class tessefakt{
 		throw new \Exception('No query received');
 	}
 	protected function _mode():string{
+		if(isset($this->setup['settings']['mode'])){
+			if(array_search($this->setup['settings']['mode'],['json','html','plain'])!==false) return $this->setup['settings']['mode'];
+		}elseif(preg_match('#application/json|text/html#is',$this->request->server->HTTP_ACCEPT,$aMatches)){
+			switch($aMatches[0]){
+				case 'application/json': return 'json';
+				case 'text/html': return 'html';
+			}
+		}
+		throw new \Exception('Mode not recognized');
 	}
-	protected function _decodeJson(string $path):string{
+	protected function _decodeJson(string $path):array{
 		try{
 			$aJson=json_decode(file_get_contents($path),true,512,\JSON_THROW_ON_ERROR);
 		}catch(\JsonException $oException){
@@ -44,11 +53,11 @@ class tessefakt{
 		return $aJson;
 	}
 	protected function _setup():array{
-		$aJsonSetup=$this->_decodeJson(dirname(_DIR__).'/.php/setup.json');
-		$aJsonConfig=$this->_decodeJson(dirname(_DIR__).'/.config.json');
+		$aJsonSetup=$this->_decodeJson(dirname(__DIR__).'/.php/setup.json');
+		$aJsonConfig=$this->_decodeJson(dirname(__DIR__).'/.config.json');
 		$aConfig=array_merge_deep($aJsonSetup,$aJsonConfig);
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			$aJson=$this->_decodeJson(dirname(_DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
+			$aJson=$this->_decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
 			$aConfig=array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
 		}
 		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
@@ -69,7 +78,7 @@ class tessefakt{
 	}
 	public function __autoload(string $class):void{
 		if(preg_match('#^tessefakt(?:\\\\\w+)+$#i',$class,$aMatches)){
-			include_once(_DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
+			include_once(__DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
 		}
 	}
 	public function __exception(\Exception $oException):bool{
