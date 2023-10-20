@@ -7,57 +7,23 @@ class _handler{
 	protected $_aException=[];
 	protected $_aRecommendation=[];
 	protected $_aData=[];
-	public function _construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt\tessefakt $tessefakt){
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
 	}
+	public function handle():void{}
 	public function reply(?int $status=200){
-		if(headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
-		if($this->_bSuccess===null||$status<200||$status>=300) $this->_bSuccess=false;
-		if($this->_oTessefakt->load){
-			$aMetrics=$this->_oTessefakt->stats();
-			$iFlags=\JSON_THROW_ON_ERROR;
-			if($this->tessefakt->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
-			\preg_match('#application\/json|\*\/\*#is',$this->tessefakt->request->header->Accept,$aMatches);
-			$sMime=$aMatches[0];
-		}else{
-			$aMetrics=['db'=>['queries'=>0,'time'=>.0]];
-			$iFlags=\JSON_THROW_ON_ERROR|\JSON_PRETTY_PRINT;
-			$sMime='application/json';
-		}
-		$aMetrics=[
-			'db-queries'=>$aMetrics['db']['queries'],
-			'db-time'=>$aMetrics['db']['time'],
-			'php-time'=>microtime(true)-$this->_fStart
-		];
-		switch($sMime){
-			case 'application/json':
-			case '*/*':
-				http_response_code($status);
-				header('Content-Type: application/json');
-				echo json_encode([
-						'success'=>!!$this->_bSuccess,
-						'exception'=>$this->_aException,
-						'recommendation'=>$this->_aRecommendation,
-						'data'=>$this->_aData,
-						'metrics'=>$aMetrics
-					],$iFlags);
-				break;
-			default:
-				trigger_error('Unable to respond in requested format ('.$this->tessefakt->request->header->Accept.')',\E_USER_ERROR);
-				break;
-		}
 		restore_error_handler();
 		restore_exception_handler();
-		exit();
+		if(headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
+		if($this->_bSuccess===null||$status<200||$status>=300) $this->_bSuccess=false;
 	}
-	public function _get(string $key){
+	public function __get(string $key){
 		switch($key){
-			case 'tessefakt': return $this->_oTessefakt;
 			case 'exception': return !!count($this->_aException);
 		}
 	}
-	public function _set(string $key,$value){
+	public function __set(string $key,$value){
 		switch($key){
 			case 'success': 
 				if(!is_bool($value)) trigger_error('Boolean needed',\E_USER_ERROR);
@@ -73,8 +39,55 @@ class _handler{
 				return true;
 			case 'data': 
 				if(!is_array($value)) trigger_error('Array needed',\E_USER_ERROR);
-				$this->_aData=$value;
+				foreach($value as $mKey=>$mValue){
+					$this->_aData[$mKey]=$mValue;
+					// if(!isset($this->_aData[$mKey])) $this->_aData[$mKey]=[$mValue];
+					// elseif $this->_aData[$mKey]=$mValue;
+				}
 				return true;
 		}
+	}
+	public function __exception(\Throwable $oException):bool{
+		return $this->__fault(
+			-1,
+			$oException->getMessage(),
+			$oException->getFile(),
+			$oException->getLine(),
+			$oException->getTrace(),
+			$oException->getPrevious()?->getMessage()
+		);
+	}
+	public function __error($errno,$errstr,$errfile,$errline):bool{
+		if(!(error_reporting()&$errno)) return false;
+		$errstr=htmlspecialchars($errstr);
+		return $this->_fault(
+			$errno,
+			$errstr,
+			$errfile,
+			$errline,
+			array_slice(debug_backtrace(),1)
+		);
+	}
+	protected function _fault($code,$message,$file,$line,$trace,$previous_message=null):bool{
+		switch($code){
+			case -1: $sTitle='Exception'; break;
+			case \E_ERROR: case \E_CORE_ERROR: case \E_COMPILE_ERROR: case \E_USER_ERROR: $sTitle='Fatal Error'; break;
+			case \E_PARSE: $sTitle='Parse Error'; break;
+			case \E_WARNING: case \E_CORE_WARNING: case \E_COMPILE_WARNING: case \E_USER_WARNING: $sTitle='Warning'; break;
+			case \E_NOTICE: case \E_USER_NOTICE: $sTitle='Notice'; break;
+			case \E_STRICT: $sTitle='Strict';
+			case \E_RECOVERABLE_ERROR: $sTitle='Recoverable';
+			case \E_DEPRECATED: CASE \E_USER_DEPRECATED: $sTitle='Deprecated';
+			case \E_ALL: $sTitle='General';
+			default: $sTitle='Unknown error ('.$code.')'; break;
+		}
+		$this->exception=[
+			'title'=>$sTitle,
+			'message'=>$message.' in '.$file.' on line '.$line.($previous_message?' (Previous: '.$previous_message.')':''),
+			'trace'=>$trace,
+			'php'=>phpversion()
+		];
+		if($code&error_reporting()) $this->reply(500);
+		return true;
 	}
 }
