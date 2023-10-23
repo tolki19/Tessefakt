@@ -116,7 +116,7 @@ create table `_app-db-touches` (
   index(`timestamp`),
   index(`table`),
   index(`set`),
-  index(`field`),
+  index(`field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 drop table if exists `_app-tpl-touches`;
@@ -228,7 +228,7 @@ CREATE TABLE `_group-_app-db-rights` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `_user-_app-db-rights`;
-CREATE TABLE `_user_db-rights` (
+CREATE TABLE `_user-_app-db-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
@@ -301,7 +301,7 @@ CREATE TABLE `_app-settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `_group-_app-settings`;
-CREATE TABLE `_group_settings` (
+CREATE TABLE `_group-_app-settings` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_group` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
@@ -313,8 +313,8 @@ CREATE TABLE `_group_settings` (
   index(`setting`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_user_app_settings`;
-CREATE TABLE `_user_app_settings` (
+DROP TABLE IF EXISTS `_user-_app-settings`;
+CREATE TABLE `_user-_app-settings` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
