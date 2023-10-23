@@ -15,24 +15,6 @@ class tessefakt{
 		$this->_aSetup=$this->_setup();
 		$this->_oHandler=new ('\\tessefakt\\handlers\\'.$this->_mode())($this);
 		$this->_oHandler->handle();
-		set_error_handler([$this,'__error']);
-		set_exception_handler([$this,'__exception']);
-		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
-			$this->apps->tessefakt->controllers->system->bootstrap();
-			$this->reply();
-		}elseif(!$this->apps->tessefakt->controllers->system->auth()){
-			$this->reply(401);
-		}elseif(isset($_GET['action'])&&$_GET['action']==='login'){
-			$this->apps->tessefakt->controllers->system->login();
-			$this->reply();
-		}elseif(isset($_GET['action'])&&$_GET['action']==='logout'){
-			$this->apps->tessefakt->controllers->system->logout();
-			$this->reply();
-		}elseif(isset($_GET['app'])&&isset($_GET['controller'])&&isset($_GET['method'])){
-			$this->apps->{$_GET['app']}->controllers->{$_GET['controller']}->{$_GET['method']}();
-			reply();
-		}
-		throw new \Exception('No query received');
 	}
 	protected function _mode():string{
 		if(isset($this->setup['settings']['mode'])){

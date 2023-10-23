@@ -1,9 +1,27 @@
 <?php
 namespace tessefakt\handlers;
 class json extends _handler{
-	public function handle():void{}
-	public function reply(?int $status=200){
-		parent::self($status);
+	public function handle():void{
+		parent::handle();
+		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
+			$this->apps->tessefakt->controllers->system->bootstrap();
+			$this->reply();
+		}elseif(!$this->apps->tessefakt->controllers->system->auth()){
+			$this->reply(401);
+		}elseif(isset($_GET['action'])&&$_GET['action']==='login'){
+			$this->apps->tessefakt->controllers->system->login();
+			$this->reply();
+		}elseif(isset($_GET['action'])&&$_GET['action']==='logout'){
+			$this->apps->tessefakt->controllers->system->logout();
+			$this->reply();
+		}elseif(isset($_GET['app'])&&isset($_GET['controller'])&&isset($_GET['method'])){
+			$this->apps->{$_GET['app']}->controllers->{$_GET['controller']}->{$_GET['method']}();
+			$this->reply();
+		}
+		throw new \Exception('No query received');
+	}
+	public function reply(?int $status=200):void{
+		parent::reply($status);
 		$iFlags=\JSON_THROW_ON_ERROR;
 		if($this->tessefakt->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
 		$aMetrics=$this->_oTessefakt->stats();

@@ -11,32 +11,32 @@ class _handler{
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
 	}
-	public function handle():void{}
-	public function reply(?int $status=200){
+	public function handle():void{
+		set_error_handler([$this,'__error']);
+		set_exception_handler([$this,'__exception']);
+	}
+	public function reply(?int $status=200):void{
 		restore_error_handler();
 		restore_exception_handler();
 		if(headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
 		if($this->_bSuccess===null||$status<200||$status>=300) $this->_bSuccess=false;
 	}
-	public function __get(string $key){
+	public function __get(string $key):mixed{
 		switch($key){
 			case 'exception': return !!count($this->_aException);
 		}
 	}
-	public function __set(string $key,$value){
+	public function __set(string $key,$value):void{
 		switch($key){
 			case 'success': 
 				if(!is_bool($value)) trigger_error('Boolean needed',\E_USER_ERROR);
 				$this->_bSuccess=$value;
-				return true;
 			case 'exception': 
 				if(!is_array($value)) trigger_error('Array needed',\E_USER_ERROR);
 				$this->_aException[]=$value;
-				return true;
 			case 'recommendation': 
 				if(!is_string($value)) trigger_error('String needed',\E_USER_ERROR);
 				$this->_aRecommendation[]=$value;
-				return true;
 			case 'data': 
 				if(!is_array($value)) trigger_error('Array needed',\E_USER_ERROR);
 				foreach($value as $mKey=>$mValue){
@@ -44,11 +44,10 @@ class _handler{
 					// if(!isset($this->_aData[$mKey])) $this->_aData[$mKey]=[$mValue];
 					// elseif $this->_aData[$mKey]=$mValue;
 				}
-				return true;
 		}
 	}
 	public function __exception(\Throwable $oException):bool{
-		return $this->__fault(
+		return $this->_fault(
 			-1,
 			$oException->getMessage(),
 			$oException->getFile(),
