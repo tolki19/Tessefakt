@@ -1,0 +1,43 @@
+{
+	"construct": {
+		"bucket": "system",
+		"couriers": [
+			{
+				"type": "object",
+				"name": "key",
+				"couriers": [
+					{
+						"type": "string",
+						"name": "app",
+						"flags": [ "ignoreState" ]
+					},
+					{
+						"type": "string",
+						"name": "index",
+						"flags": [ "ignoreState" ]
+					}
+				]
+			}
+		],
+		"key": {
+			"type": "rod",
+			"trace": [
+				"system",
+				"couriers",
+				"key"
+			]
+		}
+	},
+	"settings":{
+		"defaults":{
+			"index":false
+		},
+		"rest": { 
+			"major": "1",
+			"minor": "0"
+		},
+		"dev":{
+			"state":false
+		}
+	}
+}
