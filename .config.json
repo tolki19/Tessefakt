@@ -52,11 +52,14 @@
 		},
 		"mode": "plain",
 		"dev": {
-			"state": true
+			"level": [
+				"frontend",
+				"backend"
+			]
 		},
 		"credentials": {
-			"uid": "FlorianTolk",
-			"password": "Sxuyq783!"
+			"uid": "FlorianKerl",
+			"password": "abcABC123!!!"
 		}
 	}
 }

@@ -18,7 +18,7 @@ class system extends \tessefakt\controller{
 			],
 			'apps'=>$aApps
 		];
-		if($aConfig['settings']['dev']['state']){
+		if(array_search('frontend',$aConfig['settings']['dev']['level']??[])!==false){
 			$aTransmit['apps']['tessefakt']['navigation']['navigation'][]=[
 				'type'=>'sep'
 			];
