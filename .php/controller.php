@@ -13,6 +13,7 @@ class controller{
 			case 'app': return $this->_oApp;
 			case 'dbs': return $this->_oApp->dbs;
 			case 'hash': return $this->_oApp->hash;
+			case 'key': return $this->_oApp->key;
 		}
 	}
 	public function __set(string $key,$value){}

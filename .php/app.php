@@ -6,6 +6,7 @@ class app{
 	private $__oControllers;
 	private $__oDbs;
 	private $__oHash;
+	private $__oKey;
 	private $__oReflection;
 	public function __construct(\tessefakt\tessefakt $tessefakt,array $setup){
 		$this->_oTessefakt=$tessefakt;
@@ -25,6 +26,9 @@ class app{
 				if(!$this->__aSetup['hash']) return null;
 				if(!$this->__oHash) $this->__oHash=new \tessefakt\hash($this->_oTessefakt,$this,$this->__aSetup['hash']);
 				return $this->__oHash;
+			case 'key':
+				if(!$this->__oKey) $this->__oKey=new \tessefakt\key($this->_oTessefakt,$this,[]);
+				return $this->__oKey;
 			case 'name': return $this->__oReflection->getShortName();
 			case 'dir': return \dirname($this->__oReflection->getFileName());
 		}
