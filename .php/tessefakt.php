@@ -36,18 +36,18 @@ class tessefakt{
 		return $aJson;
 	}
 	protected function _setup():array{
-		$aJsonSetup=$this->_decodeJson(dirname(__DIR__).'/.php/setup.json');
-		$aJsonConfig=$this->_decodeJson(dirname(__DIR__).'/.config.json');
-		$aConfig=array_merge_deep($aJsonSetup,$aJsonConfig);
-		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			$aJson=$this->_decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
-			$aConfig=array_merge_deep(['apps'=>[$sApp=>$aJson]],$aConfig);
+		$aJsonConfigPrototype=$this->_decodeJson(dirname(__DIR__).'/.php/config.prototype.json');
+		$aJsonSetup=$this->_decodeJson(dirname(__DIR__).'/.setup.json');
+		$aSetup=array_merge_deep($aJsonConfigPrototype,$aJsonSetup);
+		foreach($aSetup['settings']['apps'] as $sApp=>$aSetting){
+			$aJsonConfigApp=$this->_decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
+			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
 		}
-		foreach($aConfig['settings']['apps'] as $sApp=>$aSetting){
-			if(isset($aSetting['dbs'])) $aConfig['apps'][$sApp]['dbs']=$aSetting['dbs'];
-			if(isset($aSetting['hash'])) $aConfig['apps'][$sApp]['hash']=$aSetting['hash'];
+		foreach($aSetup['settings']['apps'] as $sApp=>$aSetting){
+			if(isset($aSetting['dbs'])) $aSetup['apps'][$sApp]['dbs']=$aSetting['dbs'];
+			if(isset($aSetting['hash'])) $aSetup['apps'][$sApp]['hash']=$aSetting['hash'];
 		}
-		return $aConfig;
+		return $aSetup;
 	}
 	public function __get(string $key):mixed{
 		switch($key){
