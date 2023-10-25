@@ -6,6 +6,7 @@ class tessefakt{
 	protected $_oOperations;
 	protected $_oHandler;
 	protected $_aSetup;
+	protected $_sMode;
 	public function __construct(){
 		http_response_code(500);
 		spl_autoload_register([$this,'__autoload']);
@@ -13,7 +14,8 @@ class tessefakt{
 		$this->_oRequest=new \tessefakt\request($this);
 		$this->_oOperations=new \tessefakt\operations($this);
 		$this->_aSetup=$this->_setup();
-		$this->_oHandler=new ('\\tessefakt\\handlers\\'.$this->_mode())($this);
+		$this->_sMode=$this->_mode();
+		$this->_oHandler=new ('\\tessefakt\\handlers\\'.$this->_sMode)($this);
 		$this->_oHandler->handle();
 	}
 	protected function _mode():string{
@@ -52,6 +54,7 @@ class tessefakt{
 	public function __get(string $key):mixed{
 		switch($key){
 			case 'setup': return $this->_aSetup;
+			case 'mode': return $this->_sMode;
 			case 'apps': return $this->_oApps;
 			case 'request': return $this->_oRequest;
 			case 'operations': return $this->_oOperations;
