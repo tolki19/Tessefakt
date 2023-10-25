@@ -343,7 +343,7 @@ DROP TABLE IF EXISTS `_user-uid-state`;
 CREATE TABLE `_user-uid-state` (
   `id` int(10) unsigned not null auto_increment,
   `_user-uid` int(10) unsigned not null,
-  `state` enum('pending','copied','cancelled'),
+  `state` enum('waiting','pending','copied','cancelled'),
   `timestamp` datetime not null,
   `remark` text null,
   `key` varchar(64),
@@ -355,7 +355,7 @@ DROP TABLE IF EXISTS `_user-hash-state`;
 CREATE TABLE `_user-hash-state` (
   `id` int(10) unsigned not null auto_increment,
   `_user-hash` int(10) unsigned not null,
-  `state` enum('pending','copied','cancelled'),
+  `state` enum('waiting','pending','copied','cancelled'),
   `timestamp` datetime not null,
   `remark` text null,
   `key` varchar(64),
