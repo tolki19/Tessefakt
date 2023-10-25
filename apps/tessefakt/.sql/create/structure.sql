@@ -325,3 +325,40 @@ CREATE TABLE `_user-_app-settings` (
   key(`_app`),
   index(`setting`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+DROP TABLE IF EXISTS `_user-email-state`;
+CREATE TABLE `_user-email-state` (
+  `id` int(10) unsigned not null auto_increment,
+  `_user-email` int(10) unsigned not null,
+  `state` enum('pending','copied','cancelled'),
+  `timestamp` datetime not null,
+  `remark` text null,
+  `key` varchar(64),
+  primary key(`id`),
+  key(`_user-email`)
+);
+
+DROP TABLE IF EXISTS `_user-uid-state`;
+CREATE TABLE `_user-uid-state` (
+  `id` int(10) unsigned not null auto_increment,
+  `_user-uid` int(10) unsigned not null,
+  `state` enum('pending','copied','cancelled'),
+  `timestamp` datetime not null,
+  `remark` text null,
+  `key` varchar(64),
+  primary key(`id`),
+  key(`_user-uid`)
+);
+
+DROP TABLE IF EXISTS `_user-hash-state`;
+CREATE TABLE `_user-hash-state` (
+  `id` int(10) unsigned not null auto_increment,
+  `_user-hash` int(10) unsigned not null,
+  `state` enum('pending','copied','cancelled'),
+  `timestamp` datetime not null,
+  `remark` text null,
+  `key` varchar(64),
+  primary key(`id`),
+  key(`_user-hash`)
+);
