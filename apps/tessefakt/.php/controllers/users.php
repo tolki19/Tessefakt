@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
-class system extends \tessefakt\controller{
+class users extends \tessefakt\controller{
 	public function create(array $data):void{
 		$user=$this->_create_user();
 		$email=$this->_create_email($user,$data['email']);
@@ -9,7 +9,7 @@ class system extends \tessefakt\controller{
 	}
 	protected function _create_user():int{
 		$this->dbs->current->query('
-			insert into _users 
+			insert into `_users`
 			set 
 				id=default
 		');
@@ -17,48 +17,48 @@ class system extends \tessefakt\controller{
 	}
 	protected function _create_email(int $user,string $email):int{
 		$this->dbs->current->query('
-			insert into _user_emails 
+			insert into `_user-emails` 
 			set 
 				_user='.$user.',
-				email="'.$this->escape($email).'",
+				email="'.$this->dbs->current->escape($email).'",
 				`order`=0,
 				valid_from=curdate()
 		');
 		$id=$this->dbs->current->insert();
 		$this->dbs->current->query('
-			insert into _user-email-state
+			insert into `_user-email-state`
 			set
-				_user-email='.$id.',
-				state="pending",
+				`_user-email`='.$id.',
+				state="waiting",
 				timestamp=now(),
 				remark=null,
-				key='.$this->key->create().'
+				`key`="'.$this->key->create().'"
 		');
 		return $id;
 	}
 	protected function _create_uid(int $user,string $uid):int{
 		$this->dbs->current->query('
-			insert into _user_uids 
+			insert into `_user-uids`
 			set 
 				_user='.$user.',
-				uid="'.$this->escape($uid).'",
+				uid="'.$this->dbs->current->escape($uid).'",
 				valid_from=curdate()
 		');
 		$id=$this->dbs->current->insert();
 		$this->dbs->current->query('
-			insert into _user-uid-state
+			insert into `_user-uid-state`
 			set
-				_user-uid='.$id.',
+				`_user-uid`='.$id.',
 				state="waiting",
 				timestamp=now(),
 				remark=null,
-				key=null
+				`key`=null
 		');
 		return $id;
 	}
 	protected function _create_hash(int $user,string $password):int{
 		$this->dbs->current->query('
-			insert into _user_hashes 
+			insert into `_user-hashes` 
 			set 
 				_user='.$user.',
 				type="bcrypt",
@@ -67,13 +67,13 @@ class system extends \tessefakt\controller{
 			');
 		$id=$this->dbs->current->insert();
 		$this->dbs->current->query('
-			insert into _user-hash-state
+			insert into `_user-hash-state`
 			set
-				_user-hash='.$id.',
+				`_user-hash`='.$id.',
 				state="waiting",
 				timestamp=now(),
 				remark=null,
-				key=null
+				`key`=null
 		');
 		return $id;
 	}

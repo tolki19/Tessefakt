@@ -38,8 +38,8 @@ CREATE TABLE `_user-_group` (
   `_user` int(10) UNSIGNED DEFAULT NULL,
   `_group` int(10) UNSIGNED DEFAULT NULL,
   `uid` varchar(255) NOT NULL,
-  `validfrom` date not null,
-  `validtill` date default null,
+  `valid_from` date not null,
+  `valid_till` date default null,
   primary key(`id`),
   key(`_user`),
   key(`_group`)
@@ -66,8 +66,8 @@ CREATE TABLE `_user-uids` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED DEFAULT NULL,
   `uid` varchar(255) NOT NULL,
-  `validfrom` date not null,
-  `validtill` date default null,
+  `valid_from` date not null,
+  `valid_till` date default null,
   primary key(`id`),
   key(`_user`),
   index(`uid`)
@@ -79,8 +79,8 @@ CREATE TABLE `_user-emails` (
   `_user` int(10) UNSIGNED DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `order` int(10) not null default 0,
-  `validfrom` date not null,
-  `validtill` date default null,
+  `valid_from` date not null,
+  `valid_till` date default null,
   primary key(`id`),
   key(`_user`),
   index(`email`)
@@ -92,8 +92,8 @@ CREATE TABLE `_user-hashes` (
   `_user` int(10) UNSIGNED not NULL,
   `type` varchar(255) NOT NULL,
   `hash` varchar(255) not NULL,
-  `validfrom` date not null,
-  `validtill` date default null,
+  `valid_from` date not null,
+  `valid_till` date default null,
   primary key(`id`),
   key(`_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

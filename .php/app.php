@@ -17,7 +17,6 @@ class app{
 	public function __get(string $key){
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
-			case 'controllers': return $this->__oControllers;
 			case 'dbs':
 				if(!$this->__aSetup['dbs']) return null;
 				if(!$this->__oDbs) $this->__oDbs=new \tessefakt\db_router($this->_oTessefakt,$this,$this->__aSetup['dbs']);
@@ -31,6 +30,7 @@ class app{
 				return $this->__oKey;
 			case 'name': return $this->__oReflection->getShortName();
 			case 'dir': return \dirname($this->__oReflection->getFileName());
+			default: return $this->__oControllers->$key;
 		}
 	}
 	public function __set(string $key,$value){}

@@ -61,6 +61,7 @@ class tessefakt{
 			case 'hash': return $this->_bHash;
 			case 'handler': return $this->_oHandler;
 		}
+		throw new \Exception('Access violation');
 	}
 	public function __autoload(string $class):void{
 		if(preg_match('#^tessefakt(?:\\\\\w+)+$#i',$class,$aMatches)){

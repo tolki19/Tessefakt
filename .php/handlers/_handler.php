@@ -18,12 +18,13 @@ class _handler{
 	public function reply(?int $status=200):void{
 		restore_error_handler();
 		restore_exception_handler();
-		if(headers_sent()&&$status<500) trigger_error('Output from other source',E_USER_ERROR);
+		if(headers_sent()&&$status<500) throw new \Exception('Output from other source');
 		if($this->_bSuccess===null||$status<200||$status>=300) $this->_bSuccess=false;
 	}
 	public function __get(string $key):mixed{
 		switch($key){
 			case 'exception': return !!count($this->_aException);
+			default: return $this->_oTessefakt->$key;
 		}
 	}
 	public function __set(string $key,$value):void{
