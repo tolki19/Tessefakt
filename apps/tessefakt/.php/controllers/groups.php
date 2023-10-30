@@ -2,12 +2,12 @@
 namespace tessefakt\apps\tessefakt\controllers;
 class groups extends \tessefakt\controller{
 	public function create(array $data):int{
-		$group=$this->_create_group($data['name']);
-		$appSettings=$this->_create_appSettings($group,$data['appSettings']??[]);
-		$appControllerMethodRights=$this->_create_appControllerMethodRights($group,$data['appControllerMethodRights']??[]);
-		$appDbRights=$this->_create_appDbRights($group,$data['appDbRights']??[]);
-		$appTplRights=$this->_create_appTplRights($group,$data['appTplRights']??[]);
-		return $group;
+		$iGroup=$this->_create_group($data['name']);
+		$iAppSettings=$this->_create_appSettings($iGroup,$data['appSettings']??[]);
+		$iAppControllerMethodRights=$this->_create_appControllerMethodRights($iGroup,$data['appControllerMethodRights']??[]);
+		$iAppDbRights=$this->_create_appDbRights($iGroup,$data['appDbRights']??[]);
+		$iAppTplRights=$this->_create_appTplRights($iGroup,$data['appTplRights']??[]);
+		return $iGroup;
 	}
 	protected function _create_group(string $name):int{
 		$this->dbs->current->query('
@@ -28,8 +28,8 @@ class groups extends \tessefakt\controller{
 			set
 				`_group`='.$group.'
 		');
-		$id=$this->dbs->current->insert();
-		return $id;
+		$iId=$this->dbs->current->insert();
+		return $iId;
 	}
 	protected function _create_appControllerMethodRights(int $group,array $rights):array{
 		$aReturn=[];
@@ -42,8 +42,8 @@ class groups extends \tessefakt\controller{
 			set
 				`_group`='.$group.'
 		');
-		$id=$this->dbs->current->insert();
-		return $id;
+		$iId=$this->dbs->current->insert();
+		return $iId;
 	}
 	protected function _create_appDbRights(int $group,array $rights):array{
 		$aReturn=[];
@@ -56,8 +56,8 @@ class groups extends \tessefakt\controller{
 			set
 				`_group`='.$group.'
 		');
-		$id=$this->dbs->current->insert();
-		return $id;
+		$iId=$this->dbs->current->insert();
+		return $iId;
 	}
 	protected function _create_appTplRights(int $group,array $rights):array{
 		$aReturn=[];
@@ -70,7 +70,7 @@ class groups extends \tessefakt\controller{
 			set
 				`_group`='.$group.'
 		');
-		$id=$this->dbs->current->insert();
-		return $id;
+		$iId=$this->dbs->current->insert();
+		return $iId;
 	}
 }
