@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\requests;
-class post extends \tessefakt\requests\_request{
+class post extends _request{
 	public function __construct(\tessefakt\tessefakt $tessefakt){
 		parent::__construct($tessefakt);
 		$this->__aValue=$_POST;
