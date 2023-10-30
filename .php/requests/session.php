@@ -16,4 +16,10 @@ class session extends _request{
 		}
 		session_destroy();
 	}
+	public function abort(){
+		session_abort();
+	}
+	public function commit(){
+		session_write_close();
+	}
 }
