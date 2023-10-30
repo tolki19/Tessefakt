@@ -1,9 +1,12 @@
 {
+	"app": {
+		"name": "tessefakt"
+	},
 	"version": {
 		"major": "13",
 		"minor": "0",
 		"build": "x",
-		"name": "Komisch"
+		"caption": "Komisch"
 	},
 	"navigation": {
 		"caption": "tessefakt",

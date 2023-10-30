@@ -1,12 +1,12 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
 class groups extends \tessefakt\controller{
-	public function create(array $data):int{
+	public function create(array $apps,array $data):int{
 		$iGroup=$this->_create_group($data['name']);
-		$iAppSettings=$this->_create_appSettings($iGroup,$data['appSettings']??[]);
-		$iAppControllerMethodRights=$this->_create_appControllerMethodRights($iGroup,$data['appControllerMethodRights']??[]);
-		$iAppDbRights=$this->_create_appDbRights($iGroup,$data['appDbRights']??[]);
-		$iAppTplRights=$this->_create_appTplRights($iGroup,$data['appTplRights']??[]);
+		$iAppSettings=$this->_create_appGroupSettings($apps,$iGroup,$data['appSettings']??[]);
+		$iAppControllerMethodRights=$this->_create_appGroupControllerMethodRights($apps,$iGroup,$data['appControllerMethodRights']??[]);
+		$iAppDbRights=$this->_create_appGroupDbRights($apps,$iGroup,$data['appDbRights']??[]);
+		$iAppTplRights=$this->_create_appGroupTplRights($apps,$iGroup,$data['appTplRights']??[]);
 		return $iGroup;
 	}
 	protected function _create_group(string $name):int{
@@ -17,56 +17,56 @@ class groups extends \tessefakt\controller{
 		');
 		return $this->dbs->current->insert();
 	}
-	protected function _create_appSettings(int $group,array $settings):array{
+	protected function _create_appGroupSettings(array $apps,int $group,array $settings):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aSetting) $aReturn[$mKey]=$this->_create_appSetting($group,$aSetting);
+		foreach($settings as $mKey=>$aSetting) $aReturn[$mKey]=$this->_create_appGroupSetting($group,$aSetting);
 		return $aReturn;
 	}
-	protected function _create_appSetting(int $group,array $setting):int{
+	protected function _create_appGroupSetting(int $app,int $group,array $setting):int{
 		$this->dbs->current->query('
-			insert `into _group_app-settings`
+			insert into `_group-_app-settings`
 			set
 				`_group`='.$group.'
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appControllerMethodRights(int $group,array $rights):array{
+	protected function _create_appGroupControllerMethodRights(array $apps,int $group,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appControllerMethodRight($group,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupControllerMethodRight($group,$aRight);
 		return $aReturn;
 	}
-	protected function _create_appControllerMethodRight(int $group,array $right):int{
+	protected function _create_appGroupControllerMethodRight(int $app,int $group,array $right):int{
 		$this->dbs->current->query('
-			insert `into _group_app-controller-method-rights`
+			insert into `_group-_app-controller-method-rights`
 			set
 				`_group`='.$group.'
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appDbRights(int $group,array $rights):array{
+	protected function _create_appGroupDbRights(array $apps,int $group,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appDbRight($group,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupDbRight($group,$aRight);
 		return $aReturn;
 	}
-	protected function _create_appDbRight(int $group,array $right):int{
+	protected function _create_appGroupDbRight(int $app,int $group,array $right):int{
 		$this->dbs->current->query('
-			insert `into _group_app-db-rights`
+			insert into `_group-_app-db-rights`
 			set
 				`_group`='.$group.'
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appTplRights(int $group,array $rights):array{
+	protected function _create_appGroupTplRights(array $apps,int $group,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appTplRight($group,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupTplRight($group,$aRight);
 		return $aReturn;
 	}
-	protected function _create_appTplRight(int $group,array $right):int{
+	protected function _create_appGroupTplRight(int $app,int $group,array $right):int{
 		$this->dbs->current->query('
-			insert `into _group_app-tpl-rights`
+			insert into `_group-_app-tpl-rights`
 			set
 				`_group`='.$group.'
 		');

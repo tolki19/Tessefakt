@@ -46,17 +46,18 @@ CREATE TABLE `_user-_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `_app-errors`;
-CREATE TABLE `_app-errors` (
+DROP TABLE IF EXISTS `_errors`;
+CREATE TABLE `_errors` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_app` int(10) UNSIGNED DEFAULT NULL,
   `__user` int(10) UNSIGNED DEFAULT NULL,
   `timestamp` datetime not null,
   `error` text not null,
+  `remark` text null,
   primary key(`id`),
-  key(`_app`),
   key(`__user`),
-  index(`timestamp`)
+  index(`timestamp`),
+  index(`error`),
+  index(`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -289,41 +290,44 @@ CREATE TABLE `_user-_app-controller-method-rights` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `_app-settings`;
-CREATE TABLE `_app-settings` (
+DROP TABLE IF EXISTS `_settings`;
+CREATE TABLE `_settings` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_app` int(10) unsigned NOT NULL,
-  `setting` varchar(64) NOT NULL,
+  `key` varchar(64) NOT NULL,
+  `caption` varchar(64) NOT NULL,
+  `keywords` text NULL,
   `value` varchar(16) NOT NULL,
+  `remark` text NULL,
   primary key(`id`),
-  key(`_app`),
-  index(`setting`)
+  index(`caption`),
+  index(`keywords`),
+  index(`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_group-_app-settings`;
-CREATE TABLE `_group-_app-settings` (
+DROP TABLE IF EXISTS `_group-_settings`;
+CREATE TABLE `_group-_settings` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_group` int(10) UNSIGNED NOT NULL,
-  `_app` int(10) unsigned NOT NULL,
-  `setting` varchar(64) NOT NULL,
+  `_setting` int(10) unsigned NOT NULL,
   `value` varchar(16) NOT NULL,
+  `remark` text NULL,
   primary key(`id`),
   key(`_group`),
-  key(`_app`),
-  index(`setting`)
+  key(`_setting`),
+  index(`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_user-_app-settings`;
-CREATE TABLE `_user-_app-settings` (
+DROP TABLE IF EXISTS `_user-_settings`;
+CREATE TABLE `_user-_settings` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
-  `_app` int(10) unsigned NOT NULL,
-  `setting` varchar(64) NOT NULL,
+  `_setting` int(10) unsigned NOT NULL,
   `value` varchar(16) NOT NULL,
+  `remark` text NULL,
   primary key(`id`),
   key(`_user`),
-  key(`_app`),
-  index(`setting`)
+  key(`_setting`),
+  index(`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
