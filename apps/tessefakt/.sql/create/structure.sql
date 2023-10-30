@@ -21,7 +21,7 @@ create table `_apps` (
 DROP TABLE IF EXISTS `_groups`;
 CREATE TABLE `_groups` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `caption` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   primary key(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

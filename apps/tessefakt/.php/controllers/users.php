@@ -1,11 +1,12 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
 class users extends \tessefakt\controller{
-	public function create(array $data):void{
+	public function create(array $data):int{
 		$user=$this->_create_user();
 		$email=$this->_create_email($user,$data['email']);
 		$uid=$this->_create_uid($user,$data['uid']);
 		$hash=$this->_create_hash($user,$data['password']);
+		return $user;
 	}
 	protected function _create_user():int{
 		$this->dbs->current->query('
