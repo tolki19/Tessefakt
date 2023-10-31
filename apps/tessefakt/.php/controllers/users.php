@@ -19,6 +19,15 @@ class users extends \tessefakt\controller{
 				`id`=default
 		');
 		$iId=$this->dbs->current->insert();
+		foreach($groups as $iGroup){
+			$this->dbs->current->query('
+				insert into `_user-_group`
+				set 
+					`_user`='.$iId.',
+					`_group`='.$iGroup.'
+					`valid_from`=curdate()
+			');
+		}
 		return $iId;
 	}
 	protected function _create_email(int $user,string $email):int{

@@ -37,7 +37,6 @@ CREATE TABLE `_user-_group` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED DEFAULT NULL,
   `_group` int(10) UNSIGNED DEFAULT NULL,
-  `uid` varchar(255) NOT NULL,
   `valid_from` date not null,
   `valid_till` date default null,
   primary key(`id`),
