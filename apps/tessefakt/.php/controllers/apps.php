@@ -10,7 +10,6 @@ class apps extends \tessefakt\controller{
 			$data['build'],
 			$data['caption']
 		);
-		$iAppSettings=$this->_create_appSettings($iApp,$data['appSettings']??[]);
 		$iAppControllerMethodRights=$this->_create_appControllerMethodRights($iApp,$data['appControllerMethodRights']??[]);
 		$iAppDbRights=$this->_create_appDbRights($iApp,$data['appDbRights']??[]);
 		$iAppTplRights=$this->_create_appTplRights($iApp,$data['appTplRights']??[]);
@@ -30,58 +29,70 @@ class apps extends \tessefakt\controller{
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appSettings(int $app,array $settings):array{
-		$aReturn=[];
-		foreach($settings as $mKey=>$aSetting) $aReturn[$mKey]=$this->_create_appSetting($app,$aSetting);
-		return $aReturn;
-	}
-	protected function _create_appSetting(int $app,array $setting):int{
-		$this->dbs->current->query('
-			insert into `_app-settings`
-			set
-				`_app`='.$app.'
-		');
-		$iId=$this->dbs->current->insert();
-		return $iId;
-	}
 	protected function _create_appControllerMethodRights(int $app,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appControllerMethodRight($app,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appControllerMethodRight(
+				$app,
+				$aRight['controller'],
+				$aRight['method'],
+				$aRight['right']
+			);
 		return $aReturn;
 	}
-	protected function _create_appControllerMethodRight(int $app,array $right):int{
+	protected function _create_appControllerMethodRight(int $app,string $controller,?string $method,string|int $right):int{
 		$this->dbs->current->query('
 			insert into `_app-controller-method-rights`
 			set
-				`_app`='.$app.'
+				`_app`='.$app.',
+				`controller`="'.$controller.'",
+				`method`='.(is_null($method)?'null':'"'.$method.'"').',
+				`right`="'.$right.'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
 	protected function _create_appDbRights(int $app,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appDbRight($app,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appDbRight(
+				$app,
+				$aRight['table'],
+				$aRight['set'],
+				$aRight['field'],
+				$aRight['right']
+			);
 		return $aReturn;
 	}
-	protected function _create_appDbRight(int $app,array $right):int{
+	protected function _create_appDbRight(int $app,string $table,?string $set,?string $field,string|int $right):int{
 		$this->dbs->current->query('
 			insert into `_app-db-rights`
 			set
-				`_app`='.$app.'
+				`_app`='.$app.',
+				`table`="'.$table.'",
+				`set`='.(is_null($set)?'null':'"'.$set.'"').',
+				`field`='.(is_null($field)?'null':'"'.$field.'"').',
+				`right`="'.$right.'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
 	protected function _create_appTplRights(int $app,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appTplRight($app,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appTplRight(
+				$app,
+				$aRight['table'],
+				$aRight['div'],
+				$aRight['right']
+			);
 		return $aReturn;
 	}
-	protected function _create_appTplRight(int $app,array $right):int{
+	protected function _create_appTplRight(int $app,string $tpl,?string $div,string|int $right):int{
 		$this->dbs->current->query('
 			insert into `_app-tpl-rights`
 			set
-				`_app`='.$app.'
+				`_app`='.$app.',
+				`tpl`="'.$tpl.'",
+				`div`='.(is_null($div)?'null':'"'.$div.'"').',
+				`right`="'.$right.'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;

@@ -2,6 +2,10 @@
 namespace tessefakt\apps\tessefakt\controllers;
 class install extends \tessefakt\controller{
 	public function setup(){
+		$aSettings=[];
+		// foreach(whatever){
+		// 	$aSettings=$this->app->settings->create();
+		// }
 		$aApps=[];
 		foreach($this->tessefakt->setup['apps'] as $sKey=>$aApp){
 			$aApps[$sKey]=$this->app->apps->create([
