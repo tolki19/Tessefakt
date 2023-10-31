@@ -31,7 +31,7 @@ class apps extends \tessefakt\controller{
 	}
 	protected function _create_appControllerMethodRights(int $app,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appControllerMethodRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appControllerMethodRight(
 				$app,
 				$aRight['controller'],
 				$aRight['method'],
@@ -53,7 +53,7 @@ class apps extends \tessefakt\controller{
 	}
 	protected function _create_appDbRights(int $app,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appDbRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appDbRight(
 				$app,
 				$aRight['table'],
 				$aRight['set'],
@@ -77,7 +77,7 @@ class apps extends \tessefakt\controller{
 	}
 	protected function _create_appTplRights(int $app,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appTplRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appTplRight(
 				$app,
 				$aRight['table'],
 				$aRight['div'],

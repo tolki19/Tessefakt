@@ -12,7 +12,7 @@ class install extends \tessefakt\controller{
 				'key'=>$sKey,
 				'name'=>$aApp['app']['name'],
 				'major'=>$aApp['version']['major'],
-				'minor'=>$app['version']['minor'],
+				'minor'=>$aApp['version']['minor'],
 				'build'=>$aApp['version']['build'],
 				'caption'=>$aApp['version']['caption']
 			]);

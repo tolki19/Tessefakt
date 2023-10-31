@@ -46,7 +46,7 @@ class groups extends \tessefakt\controller{
 	}
 	protected function _create_appGroupControllerMethodRights(int $app,int $group,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupControllerMethodRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupControllerMethodRight(
 				$app,
 				$group,
 				$aRight['controller'],
@@ -75,7 +75,7 @@ class groups extends \tessefakt\controller{
 	}
 	protected function _create_appGroupDbRights(int $app,int $group,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupDbRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupDbRight(
 				$app,
 				$group,
 				$aRight['table'],
@@ -106,7 +106,7 @@ class groups extends \tessefakt\controller{
 	}
 	protected function _create_appGroupTplRights(int $app,int $group,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupTplRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appGroupTplRight(
 				$app,
 				$group,
 				$aRight['tpl'],

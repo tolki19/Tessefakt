@@ -7,9 +7,9 @@ class users extends \tessefakt\controller{
 		$iUid=$this->_create_uid($iUser,$data['uid']);
 		$iHash=$this->_create_hash($iUser,$data['password']);
 		$iAppSettings=$this->_create_userSettings($iUser,$data['appSettings']??[]);
-		$iAppControllerMethodRights=$this->_create_appsUserControllerMethodRights($iUser,$data['appControllerMethodRights']??[]);
-		$iAppDbRights=$this->_create_appsUserDbRights($iUser,$data['appDbRights']??[]);
-		$iAppTplRights=$this->_create_appsUserTplRights($iUser,$data['appTplRights']??[]);
+		$iAppControllerMethodRights=$this->_create_appsUserControllerMethodRights($apps,$iUser,$data['appControllerMethodRights']??[]);
+		$iAppDbRights=$this->_create_appsUserDbRights($apps,$iUser,$data['appDbRights']??[]);
+		$iAppTplRights=$this->_create_appsUserTplRights($apps,$iUser,$data['appTplRights']??[]);
 		return $iUser;
 	}
 	protected function _create_user(array $groups):int{
@@ -107,12 +107,12 @@ class users extends \tessefakt\controller{
 	}
 	protected function _create_appsUserControllerMethodRights(array $apps,int $user,array $rights):array{
 		$aRights=[];
-		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserControllerMethodRights($iApp,$group,$rights);
+		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserControllerMethodRights($iApp,$user,$rights);
 		return $aRights;
 	}
 	protected function _create_appUserControllerMethodRights(int $app,int $user,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserControllerMethodRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserControllerMethodRight(
 				$user,
 				$aRight['controller'],
 				$aRight['method'],
@@ -140,7 +140,7 @@ class users extends \tessefakt\controller{
 	}
 	protected function _create_appUserDbRights(int $app,int $user,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserDbRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserDbRight(
 				$app,
 				$user,
 				$aRight['table'],
@@ -166,12 +166,12 @@ class users extends \tessefakt\controller{
 	}
 	protected function _create_appsUserTplRights(array $apps,int $user,array $rights):array{
 		$aRights=[];
-		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserTplRights($iApp,$rights,$rights);
+		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserTplRights($iApp,$user,$rights);
 		return $aRights;
 	}
 	protected function _create_appUserTplRights(int $app,int $user,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserTplRight(
+		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserTplRight(
 				$app,
 				$group,
 				$aRight['tpl'],
