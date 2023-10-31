@@ -19,7 +19,7 @@ class settings extends \tessefakt\controller{
 				`caption`="'.$this->dbs->current->escape($caption).'",
 				`keywords`="'.$this->dbs->current->escape($keywords).'",
 				`value`="'.$this->dbs->current->escape($value).'",
-				`remark`="'.$this->dbs->current->escape($remark).'"
+				`remark`='.(is_null($remark)?'null':'"'.$this->dbs->current->escape($remark).'"').'
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
