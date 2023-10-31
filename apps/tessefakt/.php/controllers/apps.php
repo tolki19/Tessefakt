@@ -62,7 +62,7 @@ class apps extends \tessefakt\controller{
 			);
 		return $aReturn;
 	}
-	protected function _create_appDbRight(int $app,string $table,?string $set,?string $field,string|int $right):int{
+	protected function _create_appDbRight(int $app,string $table,string|int|null $set,?string $field,string|int $right):int{
 		$this->dbs->current->query('
 			insert into `_app-db-rights`
 			set

@@ -6,10 +6,10 @@ class users extends \tessefakt\controller{
 		$iEmail=$this->_create_email($iUser,$data['email']);
 		$iUid=$this->_create_uid($iUser,$data['uid']);
 		$iHash=$this->_create_hash($iUser,$data['password']);
-		$iAppSettings=$this->_create_appUserSettings($iUser,$data['appSettings']??[]);
-		$iAppControllerMethodRights=$this->_create_appUserControllerMethodRights($iUser,$data['appControllerMethodRights']??[]);
-		$iAppDbRights=$this->_create_appUserDbRights($iUser,$data['appDbRights']??[]);
-		$iAppTplRights=$this->_create_appUserTplRights($iUser,$data['appTplRights']??[]);
+		$iAppSettings=$this->_create_userSettings($iUser,$data['appSettings']??[]);
+		$iAppControllerMethodRights=$this->_create_appsUserControllerMethodRights($iUser,$data['appControllerMethodRights']??[]);
+		$iAppDbRights=$this->_create_appsUserDbRights($iUser,$data['appDbRights']??[]);
+		$iAppTplRights=$this->_create_appsUserTplRights($iUser,$data['appTplRights']??[]);
 		return $iUser;
 	}
 	protected function _create_user(array $groups):int{
@@ -19,11 +19,6 @@ class users extends \tessefakt\controller{
 				`id`=default
 		');
 		$iId=$this->dbs->current->insert();
-		$this->dbs->current->query('
-			insert into `_users`
-			set 
-				`id`=default
-		');
 		return $iId;
 	}
 	protected function _create_email(int $user,string $email):int{
@@ -88,58 +83,112 @@ class users extends \tessefakt\controller{
 		');
 		return $iId;
 	}
-	protected function _create_appUserSettings(int $user,array $settings):array{
+	protected function _create_userSettings(int $user,array $settings):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aSetting) $aReturn[$mKey]=$this->_create_appUserSetting($user,$aSetting);
+		foreach($settings as $mKey=>$aSetting) $aReturn[$mKey]=$this->_create_userSetting(
+				$user,
+				$aSetting['setting'],
+				$aSetting['value'],
+				$aSetting['remark']
+			);
 		return $aReturn;
 	}
-	protected function _create_appUserSetting(int $user,array $setting):int{
+	protected function _create_userSetting(int $user,string|int $setting,string|int $value,?string $remark):int{
 		$this->dbs->current->query('
-			insert into `_user_app-settings`
+			insert into `_user-settings`
 			set
-				`_user`='.$user.'
+				`_user`='.$user.'`,
+				`_setting`="'.$this->dbs->current->escape($setting).'",
+				`value`="'.$this->dbs->current->escape($value).'",
+				`remark`='.(is_null($remark)?'null':'"'.$this->dbs->current->escape($remark).'"').'
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appUserControllerMethodRights(int $user,array $rights):array{
+	protected function _create_appsUserControllerMethodRights(array $apps,int $user,array $rights):array{
+		$aRights=[];
+		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserControllerMethodRights($iApp,$group,$rights);
+		return $aRights;
+	}
+	protected function _create_appUserControllerMethodRights(int $app,int $user,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserControllerMethodRight($user,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserControllerMethodRight(
+				$user,
+				$aRight['controller'],
+				$aRight['method'],
+				$aRight['right']
+			);
 		return $aReturn;
 	}
-	protected function _create_appUserControllerMethodRight(int $user,array $right):int{
+	protected function _create_appUserControllerMethodRight(int $app,int $user,string $controller,?string $method,string|int $right):int{
 		$this->dbs->current->query('
-			insert into `_user_app-controller-method-rights`
+			insert into `_app-_user-controller-method-rights`
 			set
-				`_user`='.$user.'
+				`_app`='.$app.',
+				`_user`='.$user.',
+				`controller`="'.$this->dbs->current->escape($controller).'",
+				`method`='.(is_null($method)?'null':'"'.$this->dbs->current->escape($method).'"').',
+ 				`right`="'.$this->dbs->current->escape($right).'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appUserDbRights(int $user,array $rights):array{
+	protected function _create_appsUserDbRights(array $apps,int $user,array $rights):array{
+		$aRights=[];
+		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserDbRights($iApp,$user,$rights);
+		return $aRights;
+	}
+	protected function _create_appUserDbRights(int $app,int $user,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserDbRight($user,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserDbRight(
+				$app,
+				$user,
+				$aRight['table'],
+				$aRight['set'],
+				$aRight['field'],
+				$aRight['right']
+			);
 		return $aReturn;
 	}
-	protected function _create_appUserDbRight(int $user,array $right):int{
+	protected function _create_appUserDbRight(int $app,int $user,string $table,string|int|null $set,?string $field,string|int $right):int{
 		$this->dbs->current->query('
-			insert into `_user_app-db-rights`
+			insert into `_app-_user-db-rights`
 			set
-				`_user`='.$user.'
+				`_app`='.$app.',
+				`_user`='.$user.',
+				`table`="'.$this->dbs->current->escape($table).'",
+				`set`='.(is_null($set)?'null':'"'.$this->dbs->current->escape($set).'"').',
+				`field`='.(is_null($field)?'null':'"'.$this->dbs->current->escape($field).'"').',
+				`right`="'.$this->dbs->current->escape($right).'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
 	}
-	protected function _create_appUserTplRights(int $user,array $rights):array{
+	protected function _create_appsUserTplRights(array $apps,int $user,array $rights):array{
+		$aRights=[];
+		foreach($apps as $sKey=>$iApp) $aRights[$sKey]=$this->_create_appUserTplRights($iApp,$rights,$rights);
+		return $aRights;
+	}
+	protected function _create_appUserTplRights(int $app,int $user,array $rights):array{
 		$aReturn=[];
-		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserTplRight($user,$aRight);
+		foreach($settings as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appUserTplRight(
+				$app,
+				$group,
+				$aRight['tpl'],
+				$aRight['div'],
+				$aRight['right']
+			);
 		return $aReturn;
 	}
-	protected function _create_appUserTplRight(int $user,array $right):int{
+	protected function _create_appUserTplRight(int $app,int $user,string $tpl,?string $div,string|int $right):int{
 		$this->dbs->current->query('
-			insert into `_user_app-tpl-rights`
+			insert into `_app-_user-tpl-rights`
 			set
-				`_user`='.$user.'
+				`_app`='.$app.',
+				`_user`='.$user.',
+				`tpl`="'.$this->dbs->current->escape($tpl).'",
+				`div`='.(is_null(div)?'null':'"'.$this->dbs->current->escape($div).'"').',
+				`right`="'.$this->dbs->current->escape($right).'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;

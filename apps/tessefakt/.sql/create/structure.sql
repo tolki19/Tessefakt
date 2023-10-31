@@ -167,8 +167,8 @@ CREATE TABLE `_app-tpl-rights` (
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_group-_app-tpl-rights`;
-CREATE TABLE `_group-_app-tpl-rights` (
+DROP TABLE IF EXISTS `_app-_group-tpl-rights`;
+CREATE TABLE `_app-_group-tpl-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_group` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
@@ -181,8 +181,8 @@ CREATE TABLE `_group-_app-tpl-rights` (
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_user-_app-tpl-rights`;
-CREATE TABLE `_user-_app-tpl-rights` (
+DROP TABLE IF EXISTS `_app-_user-tpl-rights`;
+CREATE TABLE `_app-_user-tpl-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
@@ -211,8 +211,8 @@ CREATE TABLE `_app-db-rights` (
   index(`field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_group-_app-db-rights`;
-CREATE TABLE `_group-_app-db-rights` (
+DROP TABLE IF EXISTS `_app-_group-db-rights`;
+CREATE TABLE `_app-_group-db-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_group` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
@@ -228,8 +228,8 @@ CREATE TABLE `_group-_app-db-rights` (
   index(`field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_user-_app-db-rights`;
-CREATE TABLE `_user-_app-db-rights` (
+DROP TABLE IF EXISTS `_app-_user-db-rights`;
+CREATE TABLE `_app-_user-db-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
@@ -259,8 +259,8 @@ CREATE TABLE `_app-controller-method-rights` (
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_group-_app-controller-method-rights`;
-CREATE TABLE `_group-_app-controller-method-rights` (
+DROP TABLE IF EXISTS `_app-_group-controller-method-rights`;
+CREATE TABLE `_app-_group-controller-method-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `_group` int(10) UNSIGNED NOT NULL,
@@ -274,8 +274,8 @@ CREATE TABLE `_group-_app-controller-method-rights` (
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_user-_app-controller-method-rights`;
-CREATE TABLE `_user-_app-controller-method-rights` (
+DROP TABLE IF EXISTS `_app-_user-controller-method-rights`;
+CREATE TABLE `_app-_user-controller-method-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `_user` int(10) UNSIGNED NOT NULL,
