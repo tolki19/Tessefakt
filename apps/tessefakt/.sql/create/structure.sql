@@ -262,14 +262,14 @@ CREATE TABLE `_app-controller-method-rights` (
 DROP TABLE IF EXISTS `_group-_app-controller-method-rights`;
 CREATE TABLE `_group-_app-controller-method-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_group` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
+  `_group` int(10) UNSIGNED NOT NULL,
   `controller` varchar(64) not null,
   `method` varchar(64) null,
   `right` tinyint(4) NOT NULL,
   primary key(`id`),
-  key(`_group`),
   key(`_app`),
+  key(`_group`),
   index(`controller`),
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -277,14 +277,14 @@ CREATE TABLE `_group-_app-controller-method-rights` (
 DROP TABLE IF EXISTS `_user-_app-controller-method-rights`;
 CREATE TABLE `_user-_app-controller-method-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
+  `_user` int(10) UNSIGNED NOT NULL,
   `controller` varchar(64) not null,
   `method` varchar(64) not null,
   `right` tinyint(4) NOT NULL,
   primary key(`id`),
-  key(`_user`),
   key(`_app`),
+  key(`_user`),
   index(`controller`),
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
