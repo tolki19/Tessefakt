@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS `_errors`;
 DROP TABLE IF EXISTS `_user-uids`;
 DROP TABLE IF EXISTS `_user-emails`;
 DROP TABLE IF EXISTS `_user-hashes`;
+DROP TABLE IF EXISTS `_app-tables`;
 drop table if exists `_app-db-touches`;
 drop table if exists `_app-tpl-touches`;
 drop table if exists `_app-controller-method-touches`;

@@ -99,6 +99,16 @@ CREATE TABLE `_user-hashes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+drop table if exists `_app-tables`;
+create table `_app-tables` (
+  `id` int(10) unsigned not null auto_increment,
+  `table` varchar(128) not null,
+  `state` enum("active","inactive") not null,
+  `version` int(10) unsigned not null,
+  primary key(`id`),
+  index(`table`)
+);
+
 drop table if exists `_app-db-touches`;
 create table `_app-db-touches` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
