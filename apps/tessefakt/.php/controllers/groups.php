@@ -29,7 +29,7 @@ class groups extends \tessefakt\controller{
 	}
 	protected function _create_groupSetting(int $group,string|int $setting,string|int $value,?string $remark):int{
 		$this->dbs->current->query('
-			insert into `_group-settings`
+			insert into `_group-_setting`
 			set
 				`_group`='.$group.',
 				`_setting`="'.$this->dbs->current->escape($setting).'",

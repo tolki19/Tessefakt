@@ -303,8 +303,8 @@ CREATE TABLE `_settings` (
   index(`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_group-_settings`;
-CREATE TABLE `_group-_settings` (
+DROP TABLE IF EXISTS `_group-_setting`;
+CREATE TABLE `_group-_setting` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_group` int(10) UNSIGNED NOT NULL,
   `_setting` int(10) unsigned NOT NULL,
@@ -316,8 +316,8 @@ CREATE TABLE `_group-_settings` (
   index(`remark`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_user-_settings`;
-CREATE TABLE `_user-_settings` (
+DROP TABLE IF EXISTS `_user-_setting`;
+CREATE TABLE `_user-_setting` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_setting` int(10) unsigned NOT NULL,

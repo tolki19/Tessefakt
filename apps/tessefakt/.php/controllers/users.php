@@ -24,7 +24,7 @@ class users extends \tessefakt\controller{
 				insert into `_user-_group`
 				set 
 					`_user`='.$iId.',
-					`_group`='.$iGroup.'
+					`_group`='.$iGroup.',
 					`valid_from`=curdate()
 			');
 		}
@@ -104,7 +104,7 @@ class users extends \tessefakt\controller{
 	}
 	protected function _create_userSetting(int $user,string|int $setting,string|int $value,?string $remark):int{
 		$this->dbs->current->query('
-			insert into `_user-settings`
+			insert into `_user-_setting`
 			set
 				`_user`='.$user.'`,
 				`_setting`="'.$this->dbs->current->escape($setting).'",
