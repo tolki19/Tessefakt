@@ -1,8 +1,8 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
+namespace tessefakt\apps\tessefakt\setup;
 class apps extends \tessefakt\controller{
-	public function create(array $data):int{
-		$iApp=$this->_create_app(
+	public function create_app(array $data):int{
+		return $this->_create_app(
 			$data['key'],
 			$data['name'],
 			$data['major'],
@@ -10,10 +10,6 @@ class apps extends \tessefakt\controller{
 			$data['build'],
 			$data['caption']
 		);
-		$iAppControllerMethodRights=$this->_create_appControllerMethodRights($iApp,$data['appControllerMethodRights']??[]);
-		$iAppDbRights=$this->_create_appDbRights($iApp,$data['appDbRights']??[]);
-		$iAppTplRights=$this->_create_appTplRights($iApp,$data['appTplRights']??[]);
-		return $iApp;
 	}
 	protected function _create_app(string $key,string $name,string $major,string $minor,string $build,string $caption):int{
 		$this->dbs->current->query('
@@ -28,6 +24,9 @@ class apps extends \tessefakt\controller{
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
+	}
+	public function create_tables(int $app,array $data):array{
+		return $this->_create_appTables($iApp,data['tables']);
 	}
 	protected function _create_appTables(int $app,array $tables):array{
 		$aReturn=[];
@@ -50,6 +49,15 @@ class apps extends \tessefakt\controller{
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
+	}
+	public function create_cm_rights(int $app,array $data):array{
+		return $this->_create_appCMRights($app,$data);
+	}
+	public function create_db_rights(int $app,array $data):array{
+		return $this->_create_appDbRights($app,$data);
+	}
+	public function create_tpl_rights(int $app,array $data):array{
+		return $this->_create_appTplRights($app,$data);
 	}
 	protected function _create_appControllerMethodRights(int $app,array $rights):array{
 		$aReturn=[];

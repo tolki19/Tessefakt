@@ -1,7 +1,7 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
-class install extends \tessefakt\controller{
-	public function setup(){
+namespace tessefakt\apps\tessefakt\setup;
+class setup extends \tessefakt\controller{
+	public function create(){
 		if(!key_exists('tessefakt',$this->tessefakt->setup['apps'])) throw new \Exception('App not configured');
 		$aSettings=[];
 		// foreach(whatever){
