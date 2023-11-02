@@ -44,9 +44,9 @@ class apps extends \tessefakt\controller{
 			insert into `_app-tables`
 			set
 				`_app`='.$app.',
-				`table`="'.$table.'",
-`state`=
-`version`=
+				`table`="'.$this->dbs->current->escape($table).'",
+				`state`="'.$this->dbs->current->escape($state).'",
+				`version`="'.$this->dbs->current->escape($version).'"
 		');
 		$iId=$this->dbs->current->insert();
 		return $iId;
