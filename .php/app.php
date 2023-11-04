@@ -3,39 +3,41 @@ namespace tessefakt;
 class app{
 	protected $_oTessefakt;
 	private $__aSetup;
-	private $__oControllers;
-	private $__oDbs;
-	private $__oHash;
-	private $__oKey;
-	private $__oReflection;
+	protected $_oControllers;
+	protected $_oDbs;
+	protected $_oHash;
+	protected $_oKey;
+	protected $_oReflection;
 	public function __construct(\tessefakt\tessefakt $tessefakt,array $setup){
 		$this->_oTessefakt=$tessefakt;
 		$this->__aSetup=$setup;
-		$this->__oControllers=new \tessefakt\controller_router($this->_oTessefakt,$this);
-		$this->__oReflection=new \ReflectionClass($this);
+		$this->_oControllers=new \tessefakt\controller_router($this->_oTessefakt,$this);
+		$this->_oReflection=new \ReflectionClass($this);
 	}
 	public function __get(string $key){
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
-			case 'dbs':
-				if(!$this->__aSetup['dbs']) return null;
-				if(!$this->__oDbs) $this->__oDbs=new \tessefakt\db_router($this->_oTessefakt,$this,$this->__aSetup['dbs']);
-				return $this->__oDbs;
+			case 'db':
+				if(!$this->__aSetup['db']) return null;
+				if(!$this->_oDbs) $this->_oDbv=new \tessefakt\db_router($this->_oTessefakt,$this,$this->__aSetup['db']);
+				return $this->_oDbs;
 			case 'hash':
 				if(!$this->__aSetup['hash']) return null;
-				if(!$this->__oHash) $this->__oHash=new \tessefakt\hash($this->_oTessefakt,$this,$this->__aSetup['hash']);
-				return $this->__oHash;
+				if(!$this->_oHash) $this->_oHash=new \tessefakt\hash($this->_oTessefakt,$this,$this->__aSetup['hash']);
+				return $this->_oHash;
 			case 'key':
-				if(!$this->__oKey) $this->__oKey=new \tessefakt\key($this->_oTessefakt,$this,[]);
-				return $this->__oKey;
-			case 'name': return $this->__oReflection->getShortName();
-			case 'dir': return \dirname($this->__oReflection->getFileName());
-			default: return $this->__oControllers->$key;
+				if(!$this->_oKey) $this->_oKey=new \tessefakt\key($this->_oTessefakt,$this,[]);
+				return $this->_oKey;
+			case 'name': return $this->_oReflection->getShortName();
+			case 'dir': return dirname($this->_oReflection->getFileName());
+			case 'setup': return $this->__aSetup;
+			case 'controllers': return $this->_oControllers->$key;
+			default: return $this->_oControllers->$key;
 		}
 	}
 	public function __set(string $key,$value){}
 	public function stats(){
-		if($this->__oDbs) return ['db'=>$this->__oDbs->stats()];
+		if($this->_oDbs) return ['db'=>$this->_oDbs->stats()];
 		return ['db'=>['queries'=>0,'time'=>.0]];
 	}
 }

@@ -9,7 +9,7 @@ $this->reply();
 		parent::reply($status);
 		http_response_code($status);
 		header('Content-Type: text/html');
-$this->apps->tessefakt->install->setup();
+$this->apps->tessefakt->install->create_structure();
 ?>ok,plain<?php
 	}
 }

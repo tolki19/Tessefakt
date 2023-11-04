@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\setup;
+namespace tessefakt\apps\tessefakt\controllers;
 class groups extends \tessefakt\controller{
 	public function create(array $apps,array $data):int{
 		$iGroup=$this->_create_group($data['name']);

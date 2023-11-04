@@ -118,41 +118,5 @@
 		<link rel="stylesheet" href="<?=$url;?>assets/css/desktop/standard.css">
 	</head>
 	<body>
-		<div data-tessefakt-role="dialog-pan">
-			<div data-tessefakt-role="dialog" data-tessefakt-ref="fatal" data-tessefakt-state="open">
-				<header>
-					<h1>Fataler Fehler</h1>
-				</header>
-				<main>
-					<p>Dieses Dialogfeld verheißt nichts Gutes: offenbar ist das tessefakt derzeit nicht einsatzbereit.<br>Das tut uns Leid und das sollte nicht passieren.</p>
-					<p>Dafür gibt es mehrere mögliche Erklärungen:</p>
-					<ul>
-						<li>wir vollziehen gerade einen technischen Umzug,</li>
-						<li>wir führen Wartungs- oder Reparaturarbeiten durch,</li>
-						<li>es gibt eine Inkompatibilität zwischen dem tessefakt und Ihrem lokalen System oder</li>
-						<li>Sie begegnen gerade einem unabgefangenen Fehler.</li>
-					</ul>
-					<p>Wahrscheinlich arbeiten wir bereits an einer Lösung.<br>Falls Sie aber vermuten, dass uns dieses Problem entgangen ist oder in dringenden Einzelfällen wenden Sie sich gerne an uns:</p>
-					<h2>SG IT-Infrastr</h2>
-				</main>
-				<footer>
-					<span data-tessefakt-control="a">
-						<span data-tessefakt-control-role="label">
-							<a href="mailto:test@bundeswehr.org" data-tessefakt-control-role="display">E-Mail</a>
-						</span>
-					</span>
-					<span data-tessefakt-control="a">
-						<span data-tessefakt-control-role="label">
-							<a href="tel:90250067590" data-tessefakt-control-role="display">Telefon</a>
-						</span>
-					</span>
-					<span data-tessefakt-control="button" data-tessefakt-state="default">
-						<span data-tessefakt-control-role="label">
-							<button data-tessefakt-control-role="display">Schockschwerenot</button>
-						</span>
-					</span>
-				</footer>
-			</div>
-		</div>
 	</body>
 </html>

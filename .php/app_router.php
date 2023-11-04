@@ -1,25 +1,23 @@
 <?php
 namespace tessefakt;
 class app_router{
-	private $__oTessefakt;
-	private $__aApps=[];
+	protected $_oTessefakt;
+	protected $_aApps=[];
 	public function __construct(\tessefakt\tessefakt $tessefakt){
-		$this->__oTessefakt=$tessefakt;
+		$this->_oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){
-		if(array_key_exists($key,$this->__aApps)) return $this->__aApps[$key];
-		include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
-		$sClass='\tessefakt\apps\\'.$key;
-		$aSetup=[];
-		if(isset($this->__oTessefakt->setup['apps'][$key]['dbs'])) $aSetup['dbs']=$this->__oTessefakt->setup['apps'][$key]['dbs'];
-		if(isset($this->__oTessefakt->setup['apps'][$key]['hash'])) $aSetup['hash']=$this->__oTessefakt->setup['apps'][$key]['hash'];
-		$this->__aApps[$key]=new $sClass($this->__oTessefakt,$aSetup);
-		return $this->__aApps[$key];
+		if(!array_key_exists($key,$this->_aApps)){
+			include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
+			$sClass='\tessefakt\apps\\'.$key;
+			$this->_aApps[$key]=new $sClass($this->_oTessefakt,$this->_oTessefakt->setup['apps'][$key]);
+		}
+		return $this->_aApps[$key];
 	}
 	public function __set(string $key,$value){}
 	public function stats(){
 		$aStats=[];
-		foreach($this->__aApps as $oApp){
+		foreach($this->_aApps as $oApp){
 			$aAppStats=$oApp->stats();
 			foreach($aAppStats as $sArea=>$aMetrics){
 				if(!array_key_exists($sArea,$aStats)) $aStats[$sArea]=[];

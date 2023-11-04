@@ -3,7 +3,7 @@
 		"apps": {
 			"tessefakt": {
 				"config": "apps/tessefakt/.config/tessefakt.json",
-				"dbs": {
+				"db": {
 					"current": {
 						"username": "tessefakt_13",
 						"password": "5AHENkIRUHOvrQHI",
@@ -17,7 +17,7 @@
 			},
 			"hwdb": {
 				"config": "apps/hwdb/.config/hwdb.json",
-				"dbs": {
+				"db": {
 					"current": {
 						"username": "tessefakt_13",
 						"password": "5AHENkIRUHOvrQHI",
@@ -28,7 +28,7 @@
 			},
             "nutzerplatzantrag":{
                 "config": "apps/nutzerplatzantrag/.config/nutzerplatz.json",
-                "dbs": {
+                "db": {
 					"current": {
 						"username": "root",
 						"password": "c19x?47z",
