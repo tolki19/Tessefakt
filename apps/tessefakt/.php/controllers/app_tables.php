@@ -15,15 +15,15 @@ class app_tables extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appTable(int $app,array $table,string $state,int $version):array{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-tables`
 			set
 				`_app`='.$app.',
-				`table`="'.$this->dbs->current->escape($table).'",
-				`state`="'.$this->dbs->current->escape($state).'",
-				`version`="'.$this->dbs->current->escape($version).'"
+				`table`="'.$this->db->current->escape($table).'",
+				`state`="'.$this->db->current->escape($state).'",
+				`version`="'.$this->db->current->escape($version).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }

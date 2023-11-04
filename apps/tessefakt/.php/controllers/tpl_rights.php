@@ -15,7 +15,7 @@ class tpl_rights extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appTplRight(int $app,string $tpl,?string $div,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-tpl-rights`
 			set
 				`_app`='.$app.',
@@ -23,7 +23,7 @@ class tpl_rights extends \tessefakt\controller{
 				`div`='.(is_null($div)?'null':'"'.$div.'"').',
 				`right`="'.$right.'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }

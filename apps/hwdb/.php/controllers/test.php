@@ -21,10 +21,10 @@ class test extends \tessefakt\controller{
 		];
 		$aData=[
 			'sequences'=>[
-				'test'=>$this->dbs->current->crush($aRawdata)
+				'test'=>$this->db->current->crush($aRawdata)
 			],
 			'collections'=>[
-				'test'=>$this->dbs->current->enumerate($aRawdata)
+				'test'=>$this->db->current->enumerate($aRawdata)
 			]
 		];
 		$this->tessefakt->response->success=true;
@@ -32,7 +32,7 @@ class test extends \tessefakt\controller{
 		$this->tessefakt->response->data=$aData;
 	}
 	public function moderate(){
-		$aRawdata=$this->dbs->current->query('
+		$aRawdata=$this->db->current->query('
 			select
 				1 `id`,
 				"Eins" `caption`,
@@ -52,10 +52,10 @@ class test extends \tessefakt\controller{
 		');
 		$aData=[
 			'sequences'=>[
-				'test'=>$this->dbs->current->crush($aRawdata)
+				'test'=>$this->db->current->crush($aRawdata)
 			],
 			'collections'=>[
-				'test'=>$this->dbs->current->enumerate($aRawdata)
+				'test'=>$this->db->current->enumerate($aRawdata)
 			]
 		];
 		$this->tessefakt->response->success=true;
@@ -63,7 +63,7 @@ class test extends \tessefakt\controller{
 		$this->tessefakt->response->data=$aData;
 	}
 	public function complex(){
-		$sTestSort=$this->dbs->current->sort($this->tessefakt->request->post->{'test-sort'},
+		$sTestSort=$this->db->current->sort($this->tessefakt->request->post->{'test-sort'},
 			[
 				'id asc'=>'t1.`id` asc',
 				'id desc'=>'t1.`id` desc',
@@ -75,7 +75,7 @@ class test extends \tessefakt\controller{
 				'replacement desc'=>'t2.`caption` desc'
 			]
 		);
-		$sSearch=$this->dbs->current->searchCombine($this->dbs->current->searchCross($this->tessefakt->request->post->{'test-search'},
+		$sSearch=$this->db->current->searchCombine($this->db->current->searchCross($this->tessefakt->request->post->{'test-search'},
 			[
 				['db'=>'t1.`caption`','caption'=>'caption','op'=>'like'],
 				['db'=>'t1.`example`','caption'=>'example','op'=>'like'],
@@ -94,9 +94,9 @@ class test extends \tessefakt\controller{
 			where '.$sSearch.'
 			order by '.$sTestSort.'
 		';
-		$aRawData=$this->dbs->current->query($sQuery);
-		$aSequencesData=$this->dbs->current->crush($aRawData);
-		$aCollectionsData=$this->dbs->current->enumerate($aRawData);
+		$aRawData=$this->db->current->query($sQuery);
+		$aSequencesData=$this->db->current->crush($aRawData);
+		$aCollectionsData=$this->db->current->enumerate($aRawData);
 		$aData=[
 			'sequences'=>[
 				'test'=>$aSequencesData
@@ -110,16 +110,16 @@ class test extends \tessefakt\controller{
 		$this->tessefakt->response->data=$aData;
 	}
 	public function list(){
-		$sSearch1=$this->dbs->current->searchCombine($this->dbs->current->searchCross($this->tessefakt->request->post->{'test-interim-replacement'},
+		$sSearch1=$this->db->current->searchCombine($this->db->current->searchCross($this->tessefakt->request->post->{'test-interim-replacement'},
 			[
 				['db'=>'`id`','op'=>'=']
 			]
 		),['and','or']);
-		$sSearch2=$this->dbs->current->searchCombine($this->dbs->current->searchCross($this->tessefakt->request->post->{'test-id'},
+		$sSearch2=$this->db->current->searchCombine($this->db->current->searchCross($this->tessefakt->request->post->{'test-id'},
 			[
 				['db'=>'`id`','op'=>'!=']
 			]
-		),['and','or']).' and '.$this->dbs->current->searchCombine($this->dbs->current->searchCross($this->tessefakt->request->post->{'test-search'},
+		),['and','or']).' and '.$this->db->current->searchCombine($this->db->current->searchCross($this->tessefakt->request->post->{'test-search'},
 			[
 				['db'=>'`caption`','caption'=>'caption','op'=>'like'],
 				['db'=>'`example`','caption'=>'example','op'=>'like'],
@@ -146,11 +146,11 @@ class test extends \tessefakt\controller{
 			from `test`
 			where '.$sSearch2.'
 			order by `caption` asc,`id` asc
-			'.(!empty($this->tessefakt->request->post->{'limit'})?'limit '.$this->dbs->current->escape($this->tessefakt->request->post->{'limit'}):'').'
+			'.(!empty($this->tessefakt->request->post->{'limit'})?'limit '.$this->db->current->escape($this->tessefakt->request->post->{'limit'}):'').'
 		';
-		$aRawData=$this->dbs->current->query($sQuery);
-		$aSequencesData=$this->dbs->current->crush($aRawData);
-		$aCollectionsData=$this->dbs->current->enumerate($aRawData);
+		$aRawData=$this->db->current->query($sQuery);
+		$aSequencesData=$this->db->current->crush($aRawData);
+		$aCollectionsData=$this->db->current->enumerate($aRawData);
 		$aData=[
 			'sequences'=>[
 				'test'=>$aSequencesData
@@ -165,7 +165,7 @@ class test extends \tessefakt\controller{
 	}
 	public function details(){
 // var_dump($this->app->rights);
-		$sSearch=$this->dbs->current->searchCombine($this->dbs->current->searchCross(\implode(' ',$this->tessefakt->request->post->{'test-sequence'}),
+		$sSearch=$this->db->current->searchCombine($this->db->current->searchCross(\implode(' ',$this->tessefakt->request->post->{'test-sequence'}),
 			[
 				['db'=>'t1.`id`','op'=>'in']
 			]
@@ -180,9 +180,9 @@ class test extends \tessefakt\controller{
 			where '.$sSearch.'
 			order by `id`
 		';
-		$aRawData=$this->dbs->current->query($sQuery);
-		$aSequencesData=$this->dbs->current->crush($aRawData);
-		$aCollectionsData=$this->dbs->current->enumerate($aRawData);
+		$aRawData=$this->db->current->query($sQuery);
+		$aSequencesData=$this->db->current->crush($aRawData);
+		$aCollectionsData=$this->db->current->enumerate($aRawData);
 		$aData=[
 			'sequences'=>[
 				'test'=>$aSequencesData
@@ -196,7 +196,7 @@ class test extends \tessefakt\controller{
 		$this->tessefakt->response->data=$aData;
 	}
 	public function create(){
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert `test`
 			set
 				`id`=default,
@@ -206,22 +206,22 @@ class test extends \tessefakt\controller{
 		$this->tessefakt->response->success=true;
 		$this->tessefakt->response->recommendation='refresh';
 		$this->tessefakt->response->recommendation='select';
-		$this->tessefakt->response->data=['insert'=>[(string)$this->dbs->current->insert()]];
+		$this->tessefakt->response->data=['insert'=>[(string)$this->db->current->insert()]];
 	}
 	public function delete(){
-		$sSearch=$this->dbs->current->searchCombine($this->dbs->current->searchCross(\implode(' ',$this->tessefakt->request->post->id),
+		$sSearch=$this->db->current->searchCombine($this->db->current->searchCross(\implode(' ',$this->tessefakt->request->post->id),
 			[
 				['db'=>'`id`','op'=>'in']
 			]
 		),['or','or']);
-		$this->dbs->current->query('
+		$this->db->current->query('
 			delete from `test`
 			where '.$sSearch.'
 		');
 		$this->tessefakt->response->success=true;
 		$this->tessefakt->response->recommendation='refresh';
 		$this->tessefakt->response->recommendation='deselect';
-		$this->tessefakt->response->data=['delete'=>[(string)$this->dbs->current->insert()]];
+		$this->tessefakt->response->data=['delete'=>[(string)$this->db->current->insert()]];
 	}
 	public function verify(){
 		if($this->tessefakt->response->exception) $this->tessefakt->reply();
@@ -230,7 +230,7 @@ class test extends \tessefakt\controller{
 		$this->verify();
 		$aUpdates=[];
 		foreach($this->tessefakt->request->post->test as $mKey=>$aSet){
-			$sSearch=$this->dbs->current->searchCombine($this->dbs->current->searchCross($mKey,
+			$sSearch=$this->db->current->searchCombine($this->db->current->searchCross($mKey,
 				[
 					['db'=>'`id`','op'=>'=']
 				]
@@ -238,14 +238,14 @@ class test extends \tessefakt\controller{
 			$sQuery='
 				update `test`
 				set
-					`example`='.$this->dbs->current->assign($aSet['example']).',
-					`caption`='.$this->dbs->current->assign($aSet['caption']).',
-					`replacement`='.$this->dbs->current->assign(value:$aSet['replacement'],nullable:true).'
+					`example`='.$this->db->current->assign($aSet['example']).',
+					`caption`='.$this->db->current->assign($aSet['caption']).',
+					`replacement`='.$this->db->current->assign(value:$aSet['replacement'],nullable:true).'
 				where
 					'.$sSearch.'
 			';
-			$this->dbs->current->query($sQuery);
-			$aUpdates[]=(string)$this->dbs->current->insert();
+			$this->db->current->query($sQuery);
+			$aUpdates[]=(string)$this->db->current->insert();
 		}
 		$this->tessefakt->response->success=true;
 		$this->tessefakt->response->recommendation='return';

@@ -15,7 +15,7 @@ class cm_rights extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appCMRight(int $app,string $controller,?string $method,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-cm-rights`
 			set
 				`_app`='.$app.',
@@ -23,7 +23,7 @@ class cm_rights extends \tessefakt\controller{
 				`method`='.(is_null($method)?'null':'"'.$method.'"').',
 				`right`="'.$right.'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }

@@ -13,14 +13,14 @@ class users extends \tessefakt\controller{
 		return $iUser;
 	}
 	protected function _create_user(array $groups):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_users`
 			set 
 				`id`=default
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		foreach($groups as $iGroup){
-			$this->dbs->current->query('
+			$this->db->current->query('
 				insert into `_user-_group`
 				set 
 					`_user`='.$iId.',
@@ -31,16 +31,16 @@ class users extends \tessefakt\controller{
 		return $iId;
 	}
 	protected function _create_email(int $user,string $email):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_user-emails` 
 			set 
 				`_user`='.$user.',
-				`email`="'.$this->dbs->current->escape($email).'",
+				`email`="'.$this->db->current->escape($email).'",
 				`order`=0,
 				`valid_from`=curdate()
 		');
-		$iId=$this->dbs->current->insert();
-		$this->dbs->current->query('
+		$iId=$this->db->current->insert();
+		$this->db->current->query('
 			insert into `_user-email-state`
 			set
 				`_user-email`='.$iId.',
@@ -52,15 +52,15 @@ class users extends \tessefakt\controller{
 		return $iId;
 	}
 	protected function _create_uid(int $user,string $uid):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_user-uids`
 			set 
 				`_user`='.$user.',
-				`uid`="'.$this->dbs->current->escape($uid).'",
+				`uid`="'.$this->db->current->escape($uid).'",
 				`valid_from`=curdate()
 		');
-		$iId=$this->dbs->current->insert();
-		$this->dbs->current->query('
+		$iId=$this->db->current->insert();
+		$this->db->current->query('
 			insert into `_user-uid-state`
 			set
 				`_user-uid`='.$iId.',
@@ -72,7 +72,7 @@ class users extends \tessefakt\controller{
 		return $iId;
 	}
 	protected function _create_hash(int $user,string $password):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_user-hashes` 
 			set 
 				`_user`='.$user.',
@@ -80,8 +80,8 @@ class users extends \tessefakt\controller{
 				`hash`="'.$this->hash->create($password).'",
 				`valid_from`=curdate()
 			');
-		$iId=$this->dbs->current->insert();
-		$this->dbs->current->query('
+		$iId=$this->db->current->insert();
+		$this->db->current->query('
 			insert into `_user-hash-state`
 			set
 				`_user-hash`='.$iId.',
@@ -103,15 +103,15 @@ class users extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_userSetting(int $user,string|int $setting,string|int $value,?string $remark):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_user-_setting`
 			set
 				`_user`='.$user.'`,
-				`_setting`="'.$this->dbs->current->escape($setting).'",
-				`value`="'.$this->dbs->current->escape($value).'",
-				`remark`='.(is_null($remark)?'null':'"'.$this->dbs->current->escape($remark).'"').'
+				`_setting`="'.$this->db->current->escape($setting).'",
+				`value`="'.$this->db->current->escape($value).'",
+				`remark`='.(is_null($remark)?'null':'"'.$this->db->current->escape($remark).'"').'
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 	protected function _create_appsUserControllerMethodRights(array $apps,int $user,array $rights):array{
@@ -130,16 +130,16 @@ class users extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appUserControllerMethodRight(int $app,int $user,string $controller,?string $method,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-_user-controller-method-rights`
 			set
 				`_app`='.$app.',
 				`_user`='.$user.',
-				`controller`="'.$this->dbs->current->escape($controller).'",
-				`method`='.(is_null($method)?'null':'"'.$this->dbs->current->escape($method).'"').',
- 				`right`="'.$this->dbs->current->escape($right).'"
+				`controller`="'.$this->db->current->escape($controller).'",
+				`method`='.(is_null($method)?'null':'"'.$this->db->current->escape($method).'"').',
+ 				`right`="'.$this->db->current->escape($right).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 	protected function _create_appsUserDbRights(array $apps,int $user,array $rights):array{
@@ -160,17 +160,17 @@ class users extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appUserDbRight(int $app,int $user,string $table,string|int|null $set,?string $field,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-_user-db-rights`
 			set
 				`_app`='.$app.',
 				`_user`='.$user.',
-				`table`="'.$this->dbs->current->escape($table).'",
-				`set`='.(is_null($set)?'null':'"'.$this->dbs->current->escape($set).'"').',
-				`field`='.(is_null($field)?'null':'"'.$this->dbs->current->escape($field).'"').',
-				`right`="'.$this->dbs->current->escape($right).'"
+				`table`="'.$this->db->current->escape($table).'",
+				`set`='.(is_null($set)?'null':'"'.$this->db->current->escape($set).'"').',
+				`field`='.(is_null($field)?'null':'"'.$this->db->current->escape($field).'"').',
+				`right`="'.$this->db->current->escape($right).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 	protected function _create_appsUserTplRights(array $apps,int $user,array $rights):array{
@@ -190,16 +190,16 @@ class users extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appUserTplRight(int $app,int $user,string $tpl,?string $div,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-_user-tpl-rights`
 			set
 				`_app`='.$app.',
 				`_user`='.$user.',
-				`tpl`="'.$this->dbs->current->escape($tpl).'",
-				`div`='.(is_null(div)?'null':'"'.$this->dbs->current->escape($div).'"').',
-				`right`="'.$this->dbs->current->escape($right).'"
+				`tpl`="'.$this->db->current->escape($tpl).'",
+				`div`='.(is_null(div)?'null':'"'.$this->db->current->escape($div).'"').',
+				`right`="'.$this->db->current->escape($right).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }

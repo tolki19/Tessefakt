@@ -10,12 +10,12 @@ class groups extends \tessefakt\controller{
 		return $iGroup;
 	}
 	protected function _create_group(string $name):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_groups`
 			set 
-				`name`="'.$this->dbs->current->escape($name).'"
+				`name`="'.$this->db->current->escape($name).'"
 		');
-		return $this->dbs->current->insert();
+		return $this->db->current->insert();
 	}
 	protected function _create_groupSettings(int $group,array $settings):array{
 		$aReturn=[];
@@ -28,15 +28,15 @@ class groups extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_groupSetting(int $group,string|int $setting,string|int $value,?string $remark):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_group-_setting`
 			set
 				`_group`='.$group.',
-				`_setting`="'.$this->dbs->current->escape($setting).'",
-				`value`="'.$this->dbs->current->escape($value).'",
-				`remark`='.(is_null($remark)?'null':'"'.$this->dbs->current->escape($remark).'"').'
+				`_setting`="'.$this->db->current->escape($setting).'",
+				`value`="'.$this->db->current->escape($value).'",
+				`remark`='.(is_null($remark)?'null':'"'.$this->db->current->escape($remark).'"').'
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 	protected function _create_appsGroupControllerMethodRights(array $apps,int $group,array $rights):array{
@@ -56,16 +56,16 @@ class groups extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appGroupControllerMethodRight(int $app,int $group,string $controller,?string $method,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-_group-controller-method-rights`
 			set
 				`_app`='.$app.',
 				`_group`='.$group.',
-				`controller`="'.$this->dbs->current->escape($controller).'",
-				`method`='.(is_null($method)?'null':'"'.$this->dbs->current->escape($method).'"').',
- 				`right`="'.$this->dbs->current->escape($right).'"
+				`controller`="'.$this->db->current->escape($controller).'",
+				`method`='.(is_null($method)?'null':'"'.$this->db->current->escape($method).'"').',
+ 				`right`="'.$this->db->current->escape($right).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 	protected function _create_appsGroupDbRights(array $apps,int $group,array $rights):array{
@@ -86,17 +86,17 @@ class groups extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appGroupDbRight(int $app,int $group,string $table,string|int|null $set,?string $field,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-_group-db-rights`
 			set
 				`_app`='.$app.',
 				`_group`='.$group.',
-				`table`="'.$this->dbs->current->escape($table).'",
-				`set`='.(is_null($set)?'null':'"'.$this->dbs->current->escape($set).'"').',
-				`field`='.(is_null($field)?'null':'"'.$this->dbs->current->escape($field).'"').',
-				`right`="'.$this->dbs->current->escape($right).'"
+				`table`="'.$this->db->current->escape($table).'",
+				`set`='.(is_null($set)?'null':'"'.$this->db->current->escape($set).'"').',
+				`field`='.(is_null($field)?'null':'"'.$this->db->current->escape($field).'"').',
+				`right`="'.$this->db->current->escape($right).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 	protected function _create_appsGroupTplRights(array $apps,int $group,array $rights):array{
@@ -116,16 +116,16 @@ class groups extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appGroupTplRight(int $app,int $group,string $tpl,?string $div,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-_group-tpl-rights`
 			set
 				`_app`='.$app.',
 				`_group`='.$group.',
-				`tpl`="'.$this->dbs->current->escape($tpl).'",
-				`div`='.(is_null(div)?'null':'"'.$this->dbs->current->escape($div).'"').',
-				`right`="'.$this->dbs->current->escape($right).'"
+				`tpl`="'.$this->db->current->escape($tpl).'",
+				`div`='.(is_null(div)?'null':'"'.$this->db->current->escape($div).'"').',
+				`right`="'.$this->db->current->escape($right).'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }

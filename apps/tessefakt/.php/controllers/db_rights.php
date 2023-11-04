@@ -16,7 +16,7 @@ class db_rights extends \tessefakt\controller{
 		return $aReturn;
 	}
 	protected function _create_appDbRight(int $app,string $table,string|int|null $set,?string $field,string|int $right):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_app-db-rights`
 			set
 				`_app`='.$app.',
@@ -25,7 +25,7 @@ class db_rights extends \tessefakt\controller{
 				`field`='.(is_null($field)?'null':'"'.$field.'"').',
 				`right`="'.$right.'"
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }

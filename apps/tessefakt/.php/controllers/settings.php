@@ -12,16 +12,16 @@ class settings extends \tessefakt\controller{
 		return $iSetting;
 	}
 	protected function _create_setting(string $key,string $caption,string $keywords,string $value,?string $remark):int{
-		$this->dbs->current->query('
+		$this->db->current->query('
 			insert into `_apps`
 			set 
-				`key`="'.$this->dbs->current->escape($key).'",
-				`caption`="'.$this->dbs->current->escape($caption).'",
-				`keywords`="'.$this->dbs->current->escape($keywords).'",
-				`value`="'.$this->dbs->current->escape($value).'",
-				`remark`='.(is_null($remark)?'null':'"'.$this->dbs->current->escape($remark).'"').'
+				`key`="'.$this->db->current->escape($key).'",
+				`caption`="'.$this->db->current->escape($caption).'",
+				`keywords`="'.$this->db->current->escape($keywords).'",
+				`value`="'.$this->db->current->escape($value).'",
+				`remark`='.(is_null($remark)?'null':'"'.$this->db->current->escape($remark).'"').'
 		');
-		$iId=$this->dbs->current->insert();
+		$iId=$this->db->current->insert();
 		return $iId;
 	}
 }
