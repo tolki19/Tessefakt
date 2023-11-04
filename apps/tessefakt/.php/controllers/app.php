@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
-class apps extends \tessefakt\controller{
+class app extends \tessefakt\controller{
 	public function create_app(array $data):int{
 		return $this->_create_app(
 			$data['key'],
