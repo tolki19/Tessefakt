@@ -2,7 +2,7 @@
 namespace tessefakt\apps\tessefakt\controllers;
 class app_tables extends \tessefakt\controller{
 	public function create_tables(int $app,array $data):array{
-		return $this->_create_appTables($iApp,data['tables']);
+		return $this->_create_appTables($app,$data);
 	}
 	protected function _create_appTables(int $app,array $tables):array{
 		$aReturn=[];
@@ -14,7 +14,7 @@ class app_tables extends \tessefakt\controller{
 			);
 		return $aReturn;
 	}
-	protected function _create_appTable(int $app,array $table,string $state,int $version):array{
+	protected function _create_appTable(int $app,string $table,string $state,int $version):int{
 		$this->db->current->query('
 			insert into `_app-tables`
 			set

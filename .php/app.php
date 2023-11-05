@@ -19,7 +19,7 @@ class app{
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'db':
 				if(!$this->__aSetup['db']) return null;
-				if(!$this->_oDbs) $this->_oDbv=new \tessefakt\db_router($this->_oTessefakt,$this,$this->__aSetup['db']);
+				if(!$this->_oDbs) $this->_oDbs=new \tessefakt\db_router($this->_oTessefakt,$this,$this->__aSetup['db']);
 				return $this->_oDbs;
 			case 'hash':
 				if(!$this->__aSetup['hash']) return null;

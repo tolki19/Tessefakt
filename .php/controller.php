@@ -11,7 +11,7 @@ class controller{
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'app': return $this->_oApp;
-			case 'dbs': return $this->_oApp->dbs;
+			case 'db': return $this->_oApp->db;
 			case 'hash': return $this->_oApp->hash;
 			case 'key': return $this->_oApp->key;
 		}
