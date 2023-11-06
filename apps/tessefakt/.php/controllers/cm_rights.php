@@ -1,29 +1,9 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
 class cm_rights extends \tessefakt\controller{
-	public function create_cm_rights(int $app,array $data):array{
-		return $this->_create_appCMRights($app,$data);
-	}
-	protected function _create_appCMRights(int $app,array $rights):array{
+	public function create(int $app,array $data):array{
 		$aReturn=[];
-		foreach($rights as $mKey=>$aRight) $aReturn[$mKey]=$this->_create_appCMRight(
-				$app,
-				$aRight['controller'],
-				$aRight['method'],
-				$aRight['right']
-			);
+		foreach($data as $aRight) $aReturn[]=$this->app->cm_right->create($app,$aRight);
 		return $aReturn;
-	}
-	protected function _create_appCMRight(int $app,string $controller,?string $method,string|int $right):int{
-		$this->db->current->query('
-			insert into `_app-cm-rights`
-			set
-				`_app`='.$app.',
-				`controller`="'.$controller.'",
-				`method`='.(is_null($method)?'null':'"'.$method.'"').',
-				`right`="'.$right.'"
-		');
-		$iId=$this->db->current->insert();
-		return $iId;
 	}
 }

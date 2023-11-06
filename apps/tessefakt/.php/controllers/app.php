@@ -1,8 +1,8 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
 class app extends \tessefakt\controller{
-	public function create_app(array $data):int{
-		return $this->_create_app(
+	public function create(array $data):int{
+		return $this->_create(
 			$data['key'],
 			$data['name'],
 			$data['major'],
@@ -11,7 +11,7 @@ class app extends \tessefakt\controller{
 			$data['caption']
 		);
 	}
-	protected function _create_app(string $key,string $name,string $major,string $minor,string $build,string $caption):int{
+	protected function _create(string $key,string $name,string $major,string $minor,string $build,string $caption):int{
 		$this->db->current->query('
 			insert into `_apps`
 			set 
