@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
-class cm_right extends \tessefakt\controller{
+class app_cm_right extends \tessefakt\controller{
 	public function create(int $app,array $data):int{
 		return $this->_create(
 			$app,
@@ -14,9 +14,9 @@ class cm_right extends \tessefakt\controller{
 			insert into `_app-cm-rights`
 			set
 				`_app`='.$app.',
-				`controller`="'.$controller.'",
-				`method`='.(is_null($method)?'null':'"'.$method.'"').',
-				`right`="'.$right.'"
+				`controller`="'.$this->db->current->escape($controller).'",
+				`method`='.(is_null($method)?'null':'"'.$this->db->current->escape($method).'"').',
+				`right`="'.$this->db->current->escape($right).'"
 		');
 		$iId=$this->db->current->insert();
 		return $iId;

@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
-class db_rights extends \tessefakt\controller{
+class app_db_right extends \tessefakt\controller{
 	public function create(int $app,array $data):int{
 		return $this->_create(
 			$app,
@@ -15,10 +15,10 @@ class db_rights extends \tessefakt\controller{
 			insert into `_app-db-rights`
 			set
 				`_app`='.$app.',
-				`table`="'.$table.'",
-				`set`='.(is_null($set)?'null':'"'.$set.'"').',
-				`field`='.(is_null($field)?'null':'"'.$field.'"').',
-				`right`="'.$right.'"
+				`table`="'.$this->db->current->escape($table).'",
+				`set`='.(is_null($set)?'null':'"'.$this->db->current->escape($set).'"').',
+				`field`='.(is_null($field)?'null':'"'.$this->db->current->escape($field).'"').',
+				`right`="'.$this->db->current->escape($right).'"
 		');
 		$iId=$this->db->current->insert();
 		return $iId;

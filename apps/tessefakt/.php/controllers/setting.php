@@ -13,7 +13,7 @@ class setting extends \tessefakt\controller{
 	}
 	protected function _create(string $key,string $caption,string $keywords,string $value,?string $remark):int{
 		$this->db->current->query('
-			insert into `_apps`
+			insert into `_settings`
 			set 
 				`key`="'.$this->db->current->escape($key).'",
 				`caption`="'.$this->db->current->escape($caption).'",

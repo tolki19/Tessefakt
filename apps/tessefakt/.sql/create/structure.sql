@@ -145,8 +145,8 @@ create table `_app-tpl-touches` (
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-drop table if exists `_app-controller-method-touches`;
-create table `_app-controller-method-touches` (
+drop table if exists `_app-cm-touches`;
+create table `_app-cm-touches` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `__user` int(10) UNSIGNED NULL,
@@ -255,8 +255,8 @@ CREATE TABLE `_app-_user-db-rights` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `_app-controller-method-rights`;
-CREATE TABLE `_app-controller-method-rights` (
+DROP TABLE IF EXISTS `_app-cm-rights`;
+CREATE TABLE `_app-cm-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `controller` varchar(64) not null,
@@ -268,8 +268,8 @@ CREATE TABLE `_app-controller-method-rights` (
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_app-_group-controller-method-rights`;
-CREATE TABLE `_app-_group-controller-method-rights` (
+DROP TABLE IF EXISTS `_app-_group-cm-rights`;
+CREATE TABLE `_app-_group-cm-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `_group` int(10) UNSIGNED NOT NULL,
@@ -283,8 +283,8 @@ CREATE TABLE `_app-_group-controller-method-rights` (
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_app-_user-controller-method-rights`;
-CREATE TABLE `_app-_user-controller-method-rights` (
+DROP TABLE IF EXISTS `_app-_user-cm-rights`;
+CREATE TABLE `_app-_user-cm-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `_user` int(10) UNSIGNED NOT NULL,
