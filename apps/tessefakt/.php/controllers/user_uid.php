@@ -5,15 +5,15 @@ class user_uid extends \tessefakt\controller{
 		return $this->_create($user,$data['uid']);
 	}
 	protected function _create_uid(int $user,string $uid):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_user-uids`
 			set 
 				`_user`='.$user.',
-				`uid`="'.$this->db->current->escape($uid).'",
+				`uid`="'.$this->connectors->db->escape($uid).'",
 				`valid_from`=curdate()
 		');
-		$iId=$this->db->current->insert();
-		$this->db->current->query('
+		$iId=$this->connectors->db->insert();
+		$this->connectors->db->query('
 			insert into `_user-uid-state`
 			set
 				`_user-uid`='.$iId.',

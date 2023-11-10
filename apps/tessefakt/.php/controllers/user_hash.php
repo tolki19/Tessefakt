@@ -5,7 +5,7 @@ class user_hash extends \tessefakt\controller{
 		return $this->_create($user,$data['password']);
 	}
 	protected function _create(int $user,string $password):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_user-hashes` 
 			set 
 				`_user`='.$user.',
@@ -13,8 +13,8 @@ class user_hash extends \tessefakt\controller{
 				`hash`="'.$this->hash->create($password).'",
 				`valid_from`=curdate()
 			');
-		$iId=$this->db->current->insert();
-		$this->db->current->query('
+		$iId=$this->connectors->db->insert();
+		$this->connectors->db->query('
 			insert into `_user-hash-state`
 			set
 				`_user-hash`='.$iId.',

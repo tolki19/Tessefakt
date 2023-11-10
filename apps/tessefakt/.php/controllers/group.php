@@ -7,11 +7,11 @@ class group extends \tessefakt\controller{
 		);
 	}
 	protected function _create(string $name):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_groups`
 			set 
-				`name`="'.$this->db->current->escape($name).'"
+				`name`="'.$this->connectors->db->escape($name).'"
 		');
-		return $this->db->current->insert();
+		return $this->connectors->db->insert();
 	}
 }

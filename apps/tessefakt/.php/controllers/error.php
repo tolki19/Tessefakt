@@ -10,15 +10,15 @@ class error extends \tessefakt\controller{
 		);
 	}
 	protected function _create(int|string|null $user,?int $timestamp,string $error,?string $remark):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_errors`
 			set 
-				`__user`='.(is_null($user)?'null':'"'.$this->db->current->escape($user).'"').',
-				`timestamp`='.(is_null($timestamp)?'now()':'"'.$this->db->current->escape($timestamp).'"').',
-				`error`="'.$this->db->current->escape($error).'",
-				`remark`='.(is_null($remark)?'null':'"'.$this->db->current->escape($remark).'"').'
+				`__user`='.(is_null($user)?'null':'"'.$this->connectors->db->escape($user).'"').',
+				`timestamp`='.(is_null($timestamp)?'now()':'"'.$this->connectors->db->escape($timestamp).'"').',
+				`error`="'.$this->connectors->db->escape($error).'",
+				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
 		');
-		$iId=$this->db->current->insert();
+		$iId=$this->connectors->db->insert();
 		return $iId;
 	}
 }

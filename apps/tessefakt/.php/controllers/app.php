@@ -12,17 +12,17 @@ class app extends \tessefakt\controller{
 		);
 	}
 	protected function _create(string $key,string $name,string $major,string $minor,string $build,string $caption):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_apps`
 			set 
-				`key`="'.$this->db->current->escape($key).'",
-				`name`="'.$this->db->current->escape($name).'",
-				`major`="'.$this->db->current->escape($major).'",
-				`minor`="'.$this->db->current->escape($minor).'",
-				`build`="'.$this->db->current->escape($build).'",
-				`caption`="'.$this->db->current->escape($caption).'"
+				`key`="'.$this->connectors->db->escape($key).'",
+				`name`="'.$this->connectors->db->escape($name).'",
+				`major`="'.$this->connectors->db->escape($major).'",
+				`minor`="'.$this->connectors->db->escape($minor).'",
+				`build`="'.$this->connectors->db->escape($build).'",
+				`caption`="'.$this->connectors->db->escape($caption).'"
 		');
-		$iId=$this->db->current->insert();
+		$iId=$this->connectors->db->insert();
 		return $iId;
 	}
 }

@@ -10,13 +10,13 @@ class user_group extends \tessefakt\controller{
 		);
 	}
 	protected function _create(int $user,int $group,?string $valid_from,?string $valid_till):int{
-		return $this->db->current->query('
+		return $this->connectors->db->query('
 			insert into `_user-_group`
 			set 
 				`_user`='.$user.',
 				`_group`='.$group.',
-				`valid_from`='.(isnull($valid_from)?'curdate()':'"'.$this->db->current->escape($valid_from).'"').',
-				`valid_till`='.(isnull($valid_till)?'null':'"'.$this->db->current>escape($valid_till).'"').'
+				`valid_from`='.(isnull($valid_from)?'curdate()':'"'.$this->connectors->db->escape($valid_from).'"').',
+				`valid_till`='.(isnull($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').'
 		');
 	}
 }

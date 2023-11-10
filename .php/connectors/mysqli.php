@@ -1,24 +1,24 @@
 <?php
-namespace tessefakt\dbs;
-class mysqli extends \tessefakt\dbs\_db{
+namespace tessefakt\connectors;
+class mysqli extends _connector{
 	protected $_oTessefakt;
-	protected $_oDbRouter;
-	private $__aSetup;
+	protected $_oApp;
+	protected $_aSetup;
 	private $__oConnection;
 	private $__bAutocommit;
 	private $__bFormerAutocommit;
 	protected $_iQueries=0;
 	protected $_fTime=.0;
-	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\db_router $db_router,array $setup){
+	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
 		$this->_oTessefakt=$tessefakt;
-		$this->_oDbRouter=$db_router;
-		$this->__aSetup=$setup;
+		$this->_oApp=$app;
+		$this->_aSetup=$setup;
 		$this->__bFormerAutocommit=&$this->__bAutocommit;
 	}
 	protected function __connection(){
 		if(!$this->__oConnection){
 			\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
-			$this->__oConnection=new \mysqli($this->__aSetup['host'],$this->__aSetup['username'],$this->__aSetup['password'],$this->__aSetup['dbname']);
+			$this->__oConnection=new \mysqli($this->_aSetup['host'],$this->_aSetup['username'],$this->_aSetup['password'],$this->_aSetup['dbname']);
 			$this->__oConnection->set_charset('utf8mb4');
 		};
 		return $this->__oConnection;

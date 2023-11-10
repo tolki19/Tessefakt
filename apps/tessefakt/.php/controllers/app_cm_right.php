@@ -10,15 +10,15 @@ class app_cm_right extends \tessefakt\controller{
 		);
 	}
 	protected function _create(int $app,string $controller,?string $method,string|int $right):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_app-cm-rights`
 			set
 				`_app`='.$app.',
-				`controller`="'.$this->db->current->escape($controller).'",
-				`method`='.(is_null($method)?'null':'"'.$this->db->current->escape($method).'"').',
-				`right`="'.$this->db->current->escape($right).'"
+				`controller`="'.$this->connectors->db->escape($controller).'",
+				`method`='.(is_null($method)?'null':'"'.$this->connectors->db->escape($method).'"').',
+				`right`="'.$this->connectors->db->escape($right).'"
 		');
-		$iId=$this->db->current->insert();
+		$iId=$this->connectors->db->insert();
 		return $iId;
 	}
 }

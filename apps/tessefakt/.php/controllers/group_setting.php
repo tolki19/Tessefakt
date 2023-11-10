@@ -11,15 +11,15 @@ class group_setting extends \tessefakt\controller{
 		return $iSetting;
 	}
 	protected function _create(int $group,int $setting,string $key,string $value,?string $remark):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_group-_settings`
 			set 
 				`_group`='.$group.',
 				`_setting`='.$setting.',
-				`value`="'.$this->db->current->escape($value).'",
-				`remark`='.(is_null($remark)?'null':'"'.$this->db->current->escape($remark).'"').'
+				`value`="'.$this->connectors->db->escape($value).'",
+				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
 		');
-		$iId=$this->db->current->insert();
+		$iId=$this->connectors->db->insert();
 		return $iId;
 	}
 }

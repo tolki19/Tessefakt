@@ -5,16 +5,16 @@ class use_email extends \tessefakt\controller{
 		return $this->_create($data['email']);
 	}
 	protected function _create(int $user,string $email):int{
-		$this->db->current->query('
+		$this->connectors->db->query('
 			insert into `_user-emails` 
 			set 
 				`_user`='.$user.',
-				`email`="'.$this->db->current->escape($email).'",
+				`email`="'.$this->connectors->db->escape($email).'",
 				`order`=0,
 				`valid_from`=curdate()
 		');
-		$iId=$this->db->current->insert();
-		$this->db->current->query('
+		$iId=$this->connectors->db->insert();
+		$this->connectors->db->query('
 			insert into `_user-email-state`
 			set
 				`_user-email`='.$iId.',
