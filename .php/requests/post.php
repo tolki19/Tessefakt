@@ -1,7 +1,7 @@
 <?php
 namespace tessefakt\requests;
 class post extends _request{
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		parent::__construct($tessefakt);
 		$this->__aValue=$_POST;
 		array_walk_recursive($this->__aValue,function(&$value,$key){

@@ -7,7 +7,7 @@ class response{
 	private $__aException=[];
 	private $__aRecommendation=[];
 	private $__aData=[];
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		$this->__fStart=microtime(true);
 		$this->__oTessefakt=$tessefakt;
 	}

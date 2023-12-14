@@ -4,7 +4,7 @@ class key{
 	protected $_oTessefakt;
 	protected $_oApp;
 	private $__aSetup;
-	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApp=$app;
 		$this->__aSetup=$setup;

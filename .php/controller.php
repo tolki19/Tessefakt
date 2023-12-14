@@ -3,7 +3,7 @@ namespace tessefakt;
 class controller{
 	protected $_oTessefakt;
 	protected $_oApp;
-	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApp=$app;
 	}

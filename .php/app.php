@@ -8,7 +8,7 @@ class app{
 	protected $_oHash;
 	protected $_oKey;
 	protected $_oReflection;
-	public function __construct(\tessefakt\tessefakt $tessefakt,array $setup){
+	public function __construct(\tessefakt $tessefakt,array $setup){
 		$this->_oTessefakt=$tessefakt;
 		$this->_aSetup=$setup;
 		$this->_oControllers=new \tessefakt\controller_router($this->_oTessefakt,$this);

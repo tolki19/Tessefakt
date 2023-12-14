@@ -1,7 +1,7 @@
 <?php
 namespace tessefakt\requests;
 class session extends _request{
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		parent::__construct($tessefakt);
 		switch(session_status()){
 			case \PHP_SESSION_DISABLED: throw new \Exception('Session requested but disabled');

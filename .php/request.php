@@ -6,7 +6,7 @@ class request{
 	private $__oPost;
 	private $__oServer;
 	private $__oHeader;
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		$this->__oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){

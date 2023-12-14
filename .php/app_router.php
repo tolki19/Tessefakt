@@ -3,14 +3,12 @@ namespace tessefakt;
 class app_router{
 	protected $_oTessefakt;
 	protected $_aApps=[];
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		$this->_oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){
 		if(!array_key_exists($key,$this->_aApps)){
-			include(__DIR__.'/../apps/'.$key.'/.php/'.$key.'.php');
-			$sClass='\tessefakt\apps\\'.$key;
-			$this->_aApps[$key]=new $sClass($this->_oTessefakt,$this->_oTessefakt->setup['apps'][$key]);
+			$this->_aApps[$key]=new ('\\tessefakt\\apps\\'.$key)($this->_oTessefakt,$this->_oTessefakt->setup['apps'][$key]);
 		}
 		return $this->_aApps[$key];
 	}

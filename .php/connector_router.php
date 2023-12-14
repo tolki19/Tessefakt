@@ -5,7 +5,7 @@ class connector_router{
 	protected $_oApp;
 	protected $_aSetup;
 	protected $_oConnectors=[];
-	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApp=$app;
 		$this->_aSetup=$setup;

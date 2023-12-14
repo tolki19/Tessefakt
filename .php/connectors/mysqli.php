@@ -9,7 +9,7 @@ class mysqli extends _connector{
 	private $__bFormerAutocommit;
 	protected $_iQueries=0;
 	protected $_fTime=.0;
-	public function __construct(\tessefakt\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,array $setup){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApp=$app;
 		$this->_aSetup=$setup;

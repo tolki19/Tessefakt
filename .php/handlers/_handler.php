@@ -7,7 +7,7 @@ class _handler{
 	protected $_aException=[];
 	protected $_aRecommendation=[];
 	protected $_aData=[];
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
 	}

@@ -3,7 +3,7 @@ namespace tessefakt;
 class operations{
 	private $__oTessefakt;
 	private $__oSpace;
-	public function __construct(\tessefakt\tessefakt $tessefakt){
+	public function __construct(\tessefakt $tessefakt){
 		$this->__oTessefakt=$tessefakt;
 	}
 	public function __get(string $key){

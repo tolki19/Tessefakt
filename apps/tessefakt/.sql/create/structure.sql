@@ -1,9 +1,3 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
 drop table if exists `_apps`;
 create table `_apps` (
   `id` int(10) unsigned not null auto_increment,
@@ -13,7 +7,7 @@ create table `_apps` (
   `minor` varchar(8) not null,
   `build` varchar(8) not null,
   `caption` varchar(8) not null,
-  primary key(`id`),
+  primary index(`id`),
   index(`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -22,13 +16,13 @@ DROP TABLE IF EXISTS `_groups`;
 CREATE TABLE `_groups` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `name` varchar(255) NOT NULL,
-  primary key(`id`)
+  primary index(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `_users`;
 CREATE TABLE `_users` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  primary key(`id`)
+  primary index(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -39,9 +33,9 @@ CREATE TABLE `_user-_group` (
   `_group` int(10) UNSIGNED DEFAULT NULL,
   `valid_from` date not null,
   `valid_till` date default null,
-  primary key(`id`),
-  key(`_user`),
-  key(`_group`)
+  primary index(`id`),
+  index(`_user`),
+  index(`_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -52,8 +46,8 @@ CREATE TABLE `_errors` (
   `timestamp` datetime not null,
   `error` text not null,
   `remark` text null,
-  primary key(`id`),
-  key(`__user`),
+  primary index(`id`),
+  index(`__user`),
   index(`timestamp`),
   index(`error`),
   index(`remark`)
@@ -68,8 +62,8 @@ CREATE TABLE `_user-uids` (
   `uid` varchar(255) NOT NULL,
   `valid_from` date not null,
   `valid_till` date default null,
-  primary key(`id`),
-  key(`_user`),
+  primary index(`id`),
+  index(`_user`),
   index(`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -81,8 +75,8 @@ CREATE TABLE `_user-emails` (
   `order` int(10) not null default 0,
   `valid_from` date not null,
   `valid_till` date default null,
-  primary key(`id`),
-  key(`_user`),
+  primary index(`id`),
+  index(`_user`),
   index(`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -94,18 +88,19 @@ CREATE TABLE `_user-hashes` (
   `hash` varchar(255) not NULL,
   `valid_from` date not null,
   `valid_till` date default null,
-  primary key(`id`),
-  key(`_user`)
+  primary index(`id`),
+  index(`_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 drop table if exists `_app-tables`;
 create table `_app-tables` (
   `id` int(10) unsigned not null auto_increment,
+  `_app` int(10) unsigned NOT NULL,
   `table` varchar(128) not null,
   `state` enum("active","inactive") not null,
   `version` int(10) unsigned not null,
-  primary key(`id`),
+  primary index(`id`),
   index(`table`)
 );
 
@@ -120,9 +115,9 @@ create table `_app-db-touches` (
   `set` int(10) unsigned default null,
   `field` varchar(64) default null,
   `remark` text null,
-  primary key(`id`),
-  key(`_app`),
-  key(`__user`),
+  primary index(`id`),
+  index(`_app`),
+  index(`__user`),
   index(`timestamp`),
   index(`table`),
   index(`set`),
@@ -138,9 +133,9 @@ create table `_app-tpl-touches` (
   `touch` enum("create","read","update","delete"),
   `tpl` varchar(64) not null,
   `remark` text null,
-  primary key(`id`),
-  key(`_app`),
-  key(`__user`),
+  primary index(`id`),
+  index(`_app`),
+  index(`__user`),
   index(`timestamp`),
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -155,188 +150,127 @@ create table `_app-cm-touches` (
   `controller` varchar(64) not null,
   `method` varchar(64) null,
   `remark` text null,
-  primary key(`id`),
-  key(`_app`),
-  key(`__user`),
+  primary index(`id`),
+  index(`_app`),
+  index(`__user`),
   index(`timestamp`),
   index(`controller`),
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `_app-tpl-rights`;
+DROP TABLE IF EXISTS `_app-tpl_rights`;
 CREATE TABLE `_app-tpl-rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `tpl` varchar(255) NOT NULL,
   `div` varchar(255) DEFAULT NULL,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_app`),
+  primary index(`id`),
+  index(`_app`),
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_app-_group-tpl-rights`;
-CREATE TABLE `_app-_group-tpl-rights` (
+DROP TABLE IF EXISTS `_app-tpl_right`;
+CREATE TABLE `_app-tpl_right` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
+  `_app-tpl_right` int(10) unsigned NOT NULL,
   `_group` int(10) UNSIGNED NOT NULL,
-  `_app` int(10) unsigned NOT NULL,
-  `tpl` varchar(255) NOT NULL,
-  `div` varchar(255) DEFAULT NULL,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_group`),
-  key(`_app`),
-  index(`tpl`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-DROP TABLE IF EXISTS `_app-_user-tpl-rights`;
-CREATE TABLE `_app-_user-tpl-rights` (
-  `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
-  `tpl` varchar(255) NOT NULL,
-  `div` varchar(255) DEFAULT NULL,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_user`),
-  key(`_app`),
+  `right_display` tinyint(1) NOT NULL,
+  `right_iput` tinyint(1) NOT NULL,
+  primary index(`id`),
+  index(`_app-tpl_right`),
+  index(`_group`),
+  index(`_user`),
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `_app-db-rights`;
-CREATE TABLE `_app-db-rights` (
+DROP TABLE IF EXISTS `_app-db_rights`;
+CREATE TABLE `_app-db_rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `table` varchar(64) NOT NULL,
   `set` int(11) DEFAULT NULL,
   `field` varchar(64) DEFAULT NULL,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_app`),
+  primary index(`id`),
+  index(`_app`),
   index(`table`),
   index(`set`),
   index(`field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_app-_group-db-rights`;
-CREATE TABLE `_app-_group-db-rights` (
+DROP TABLE IF EXISTS `_app-db_right`;
+CREATE TABLE `_app-db_right` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
+  `_app-db_right` unsigned not null,
   `_group` int(10) UNSIGNED NOT NULL,
-  `_app` int(10) unsigned NOT NULL,
-  `table` varchar(64) NOT NULL,
-  `set` int(11) DEFAULT NULL,
-  `field` varchar(64) DEFAULT NULL,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_group`),
-  key(`_app`),
-  index(`table`),
-  index(`set`),
-  index(`field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-DROP TABLE IF EXISTS `_app-_user-db-rights`;
-CREATE TABLE `_app-_user-db-rights` (
-  `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_user` int(10) UNSIGNED NOT NULL,
   `_app` int(10) unsigned NOT NULL,
-  `table` varchar(64) NOT NULL,
-  `set` int(11) DEFAULT NULL,
-  `field` varchar(64) DEFAULT NULL,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_user`),
-  key(`_app`),
-  index(`table`),
-  index(`set`),
-  index(`field`)
+  `right_create` tinyint(1) NOT NULL,
+  `right_read` tinyint(1) NOT NULL,
+  `right_update` tinyint(1) NOT NULL,
+  `right_delete` tinyint(1) NOT NULL,
+  primary index(`id`),
+  index(`_app-db_right`),
+  index(`_group`),
+  index(`_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `_app-cm-rights`;
-CREATE TABLE `_app-cm-rights` (
+DROP TABLE IF EXISTS `_app-cm_rights`;
+CREATE TABLE `_app-cm_rights` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `controller` varchar(64) not null,
   `method` varchar(64) null,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_app`),
+  primary index(`id`),
+  index(`_app`),
   index(`controller`),
   index(`method`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_app-_group-cm-rights`;
-CREATE TABLE `_app-_group-cm-rights` (
+DROP TABLE IF EXISTS `_app-cm_right`;
+CREATE TABLE `_app-cm_right` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_app` int(10) unsigned NOT NULL,
+  `_app-cm_right` int(10) unsigned NOT NULL,
   `_group` int(10) UNSIGNED NOT NULL,
-  `controller` varchar(64) not null,
-  `method` varchar(64) null,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_app`),
-  key(`_group`),
-  index(`controller`),
-  index(`method`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-DROP TABLE IF EXISTS `_app-_user-cm-rights`;
-CREATE TABLE `_app-_user-cm-rights` (
-  `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_app` int(10) unsigned NOT NULL,
   `_user` int(10) UNSIGNED NOT NULL,
-  `controller` varchar(64) not null,
-  `method` varchar(64) not null,
-  `right` tinyint(4) NOT NULL,
-  primary key(`id`),
-  key(`_app`),
-  key(`_user`),
-  index(`controller`),
-  index(`method`)
+  `right_execute` tinyint(1) NULL,
+  primary index(`id`),
+  index(`_app-cm_right`),
+  index(`_group`),
+  index(`_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 DROP TABLE IF EXISTS `_settings`;
 CREATE TABLE `_settings` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
+  `_app` int(10) unsigned NULL,
   `key` varchar(64) NOT NULL,
   `caption` varchar(64) NOT NULL,
   `keywords` text NULL,
-  `value` varchar(16) NOT NULL,
   `remark` text NULL,
-  primary key(`id`),
+  primary index(`id`),
+  index(`_app`),
   index(`caption`),
-  index(`keywords`),
-  index(`remark`)
+  index(`keywords`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `_group-_setting`;
-CREATE TABLE `_group-_setting` (
+DROP TABLE IF EXISTS `_setting`;
+CREATE TABLE `_setting` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_group` int(10) UNSIGNED NOT NULL,
+  `_group` int(10) UNSIGNED NULL,
+  `_user` int(10) UNSIGNED NULL,
   `_setting` int(10) unsigned NOT NULL,
   `value` varchar(16) NOT NULL,
   `remark` text NULL,
-  primary key(`id`),
-  key(`_group`),
-  key(`_setting`),
-  index(`remark`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-DROP TABLE IF EXISTS `_user-_setting`;
-CREATE TABLE `_user-_setting` (
-  `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_user` int(10) UNSIGNED NOT NULL,
-  `_setting` int(10) unsigned NOT NULL,
-  `value` varchar(16) NOT NULL,
-  `remark` text NULL,
-  primary key(`id`),
-  key(`_user`),
-  key(`_setting`),
-  index(`remark`)
+  primary index(`id`),
+  index(`_group`),
+  index(`_user`),
+  index(`_setting`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -348,8 +282,8 @@ CREATE TABLE `_user-email-state` (
   `timestamp` datetime not null,
   `remark` text null,
   `key` varchar(64),
-  primary key(`id`),
-  key(`_user-email`)
+  primary index(`id`),
+  index(`_user-email`)
 );
 
 DROP TABLE IF EXISTS `_user-uid-state`;
@@ -360,8 +294,8 @@ CREATE TABLE `_user-uid-state` (
   `timestamp` datetime not null,
   `remark` text null,
   `key` varchar(64),
-  primary key(`id`),
-  key(`_user-uid`)
+  primary index(`id`),
+  index(`_user-uid`)
 );
 
 DROP TABLE IF EXISTS `_user-hash-state`;
@@ -372,6 +306,6 @@ CREATE TABLE `_user-hash-state` (
   `timestamp` datetime not null,
   `remark` text null,
   `key` varchar(64),
-  primary key(`id`),
-  key(`_user-hash`)
+  primary index(`id`),
+  index(`_user-hash`)
 );

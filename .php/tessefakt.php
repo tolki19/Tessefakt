@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt;
+include('.php/helper.php');
 class tessefakt{
 	protected $_oApps;
 	protected $_oRequest;
@@ -64,8 +64,15 @@ class tessefakt{
 		throw new \Exception('Access violation');
 	}
 	public function __autoload(string $class):void{
-		if(preg_match('#^tessefakt(?:\\\\\w+)+$#i',$class,$aMatches)){
-			include_once(__DIR__.DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR,array_slice(explode('\\',$class),1)).'.php');
+		if(preg_match('#^tessefakt\\\\apps\\\\\w+$#',$class)){
+			$aPath=array_merge(array_slice($aPath=array_slice(explode('\\',$class),1),0,2),['.php'],array_slice($aPath,3),array_slice($aPath,-1));
+			include_once(compilepath(__DIR__.'/../'.implode('/',$aPath).'.php'));
+		}elseif(preg_match('#^tessefakt\\\\apps#',$class)){
+			$aPath=array_merge(array_slice($aPath=array_slice(explode('\\',$class),1),0,2),['.php'],array_slice($aPath,3));
+			include_once(compilepath(__DIR__.'/../'.implode('/',$aPath).'.php'));
+		}elseif(preg_match('#^tessefakt#',$class)){
+			$aPath=array_slice(explode('\\',$class),1);
+			include_once(compilepath(__DIR__.'/'.implode('/',$aPath).'.php'));
 		}
 	}
 	public function stats(){
