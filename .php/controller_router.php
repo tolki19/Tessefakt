@@ -9,10 +9,9 @@ class controller_router{
 		$this->_oApp=$app;
 	}
 	public function __get(string $key){
-		if(array_key_exists($key,$this->_aControllers)) return $this->_aControllers[$key];
-		include($this->_oApp->dir.\DIRECTORY_SEPARATOR.'controllers'.\DIRECTORY_SEPARATOR.$key.'.php');
-		$sClass='\tessefakt\apps\\'.$this->_oApp->name.'\controllers\\'.$key;
-		$this->_aControllers[$key]=new $sClass($this->_oTessefakt,$this->_oApp);
+		if(!array_key_exists($key,$this->_aControllers)){
+			$this->_aControllers[$key]=new ('\\tessefakt\\apps\\'.$this->_oApp->name.'\\controllers\\'.$key)($this->_oTessefakt,$this->_oApp);
+		}
 		return $this->_aControllers[$key];
 	}
 	public function __set(string $key,$value){}

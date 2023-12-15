@@ -64,14 +64,15 @@ class tessefakt{
 		throw new \Exception('Access violation');
 	}
 	public function __autoload(string $class):void{
+		$aParts=explode('\\',$class);
 		if(preg_match('#^tessefakt\\\\apps\\\\\w+$#',$class)){
-			$aPath=array_merge(array_slice($aPath=array_slice(explode('\\',$class),1),0,2),['.php'],array_slice($aPath,3),array_slice($aPath,-1));
+			$aPath=array_merge(array_slice($aParts,1,2),['.php'],array_slice($aParts,3),array_slice($aParts,-1));
 			include_once(compilepath(__DIR__.'/../'.implode('/',$aPath).'.php'));
 		}elseif(preg_match('#^tessefakt\\\\apps#',$class)){
-			$aPath=array_merge(array_slice($aPath=array_slice(explode('\\',$class),1),0,2),['.php'],array_slice($aPath,3));
+			$aPath=array_merge(array_slice($aParts,1,2),['.php'],array_slice($aParts,3));
 			include_once(compilepath(__DIR__.'/../'.implode('/',$aPath).'.php'));
 		}elseif(preg_match('#^tessefakt#',$class)){
-			$aPath=array_slice(explode('\\',$class),1);
+			$aPath=array_slice($aParts,1);
 			include_once(compilepath(__DIR__.'/'.implode('/',$aPath).'.php'));
 		}
 	}
