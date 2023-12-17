@@ -2,15 +2,15 @@
 namespace tessefakt;
 class controller_router{
 	protected $_oTessefakt;
-	protected $_oApp;
+	protected $_oLore;
 	protected $_aControllers=[];
-	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\lore $lore){
 		$this->_oTessefakt=$tessefakt;
-		$this->_oApp=$app;
+		$this->_oLore=$lore;
 	}
 	public function __get(string $key){
 		if(!array_key_exists($key,$this->_aControllers)){
-			$this->_aControllers[$key]=new ('\\tessefakt\\apps\\'.$this->_oApp->name.'\\controllers\\'.$key)($this->_oTessefakt,$this->_oApp);
+			$this->_aControllers[$key]=new ($this->_oLore->name.'\\controllers\\'.$key)($this->_oTessefakt,$this->_oLore);
 		}
 		return $this->_aControllers[$key];
 	}

@@ -3,7 +3,7 @@ namespace tessefakt;
 class app{
 	protected $_oTessefakt;
 	protected $_aSetup;
-	protected $_oControllers;
+	protected $_oLores;
 	protected $_oConnectors;
 	protected $_oHash;
 	protected $_oKey;
@@ -11,7 +11,7 @@ class app{
 	public function __construct(\tessefakt $tessefakt,array $setup){
 		$this->_oTessefakt=$tessefakt;
 		$this->_aSetup=$setup;
-		$this->_oControllers=new \tessefakt\controller_router($this->_oTessefakt,$this);
+		$this->_oLores=new \tessefakt\lore_router($this->_oTessefakt,$this);
 		$this->_oReflection=new \ReflectionClass($this);
 	}
 	public function __get(string $key){
@@ -28,11 +28,10 @@ class app{
 			case 'key':
 				if(!$this->_oKey) $this->_oKey=new \tessefakt\key($this->_oTessefakt,$this,[]);
 				return $this->_oKey;
-			case 'name': return $this->_oReflection->getShortName();
+			case 'name': return $this->_oReflection->getName();
 			case 'dir': return dirname($this->_oReflection->getFileName());
 			case 'setup': return $this->_aSetup;
-			case 'controllers': return $this->_oControllers->$key;
-			default: return $this->_oControllers->$key;
+			case 'lores': return $this->_oLores;
 		}
 	}
 	public function __set(string $key,$value){}

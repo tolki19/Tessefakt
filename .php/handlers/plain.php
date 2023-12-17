@@ -5,11 +5,10 @@ class plain extends _handler{
 		parent::handle();
 $this->reply();
 	}
-	public function reply(?int $status=200):void{
-		parent::reply($status);
+	protected function _reply(int $status):void{
 		http_response_code($status);
 		header('Content-Type: text/html');
-$this->apps->tessefakt->install->create_structure();
+		$this->apps->tessefakt->lores->plain->controllers->install->create_structure();
 ?>ok,plain<?php
 	}
 }

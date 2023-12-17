@@ -104,7 +104,7 @@ create table `_app-tables` (
   index(`table`)
 );
 
-drop table if exists `_app-db-touches`;
+drop table if exists `_app-db_touches`;
 create table `_app-db-touches` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
@@ -124,8 +124,8 @@ create table `_app-db-touches` (
   index(`field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-drop table if exists `_app-tpl-touches`;
-create table `_app-tpl-touches` (
+drop table if exists `_app-tpl_touches`;
+create table `_app-tpl_touches` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `__user` int(10) UNSIGNED NULL,
@@ -140,8 +140,8 @@ create table `_app-tpl-touches` (
   index(`tpl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-drop table if exists `_app-cm-touches`;
-create table `_app-cm-touches` (
+drop table if exists `_app-cm_touches`;
+create table `_app-cm_touches` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
   `_app` int(10) unsigned NOT NULL,
   `__user` int(10) UNSIGNED NULL,

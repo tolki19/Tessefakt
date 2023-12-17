@@ -20,6 +20,7 @@ class _handler{
 		restore_exception_handler();
 		if(headers_sent()&&$status<500) throw new \Exception('Output from other source');
 		if($this->_bSuccess===null||$status<200||$status>=300) $this->_bSuccess=false;
+		$this->_reply($status);
 	}
 	public function __get(string $key):mixed{
 		switch($key){
