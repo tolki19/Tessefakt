@@ -9,6 +9,6 @@ $this->reply();
 	protected function _reply(int $status):void{
 		http_response_code($status);
 		header('Content-Type: text/html');
-?>ok,plain<?php
+include(__DIR__.'/../../assets/.tpl/index.php');
 	}
 }
