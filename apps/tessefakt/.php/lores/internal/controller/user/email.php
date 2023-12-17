@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
-class use_email extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\lores\internal\controllers\user;
+class email extends \tessefakt\controller{
 	public function create(int $user,array $data):int{
 		return $this->_create($data['email']);
 	}

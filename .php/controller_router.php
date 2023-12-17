@@ -10,7 +10,7 @@ class controller_router{
 	}
 	public function __get(string $key){
 		if(!array_key_exists($key,$this->_aControllers)){
-			$this->_aControllers[$key]=new ($this->_oLore->name.'\\controllers\\'.$key)($this->_oTessefakt,$this->_oLore);
+			$this->_aControllers[$key]=new ($this->_oLore->name.$key)($this->_oTessefakt,$this->_oLore);
 		}
 		return $this->_aControllers[$key];
 	}

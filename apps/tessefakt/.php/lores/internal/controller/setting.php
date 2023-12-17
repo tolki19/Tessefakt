@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
+namespace tessefakt\apps\tessefakt\lores\internal\controllers;
 class setting extends \tessefakt\controller{
 	public function create(array $data):int{
 		$iSetting=$this->_create(

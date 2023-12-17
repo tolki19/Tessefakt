@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
-class app_cm_right extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\lores\internal\controllers\app;
+class cm_right extends \tessefakt\controller{
 	public function create(int $app,array $data):int{
 		return $this->_create(
 			$app,

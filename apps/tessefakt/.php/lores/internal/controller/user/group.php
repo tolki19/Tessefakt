@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
-class user_group extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\lores\internal\controllers\user;
+class group extends \tessefakt\controller{
 	public function create(int $user,int $group,array $data):int{
 		return $this->_create(
 			$user,

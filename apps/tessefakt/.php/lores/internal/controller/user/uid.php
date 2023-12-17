@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\controllers;
-class user_uid extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\lores\internal\controllers\user;
+class uid extends \tessefakt\controller{
 	public function create(int $user,array $data):int{
 		return $this->_create($user,$data['uid']);
 	}
