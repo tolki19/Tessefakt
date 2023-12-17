@@ -31,21 +31,23 @@ class _handler{
 	public function __set(string $key,$value):void{
 		switch($key){
 			case 'success': 
-				if(!is_bool($value)) trigger_error('Boolean needed',\E_USER_ERROR);
+				if(!is_bool($value)) throw new \Exception('Boolean needed',\E_USER_ERROR);
 				$this->_bSuccess=$value;
+				break;
 			case 'exception': 
-				if(!is_array($value)) trigger_error('Array needed',\E_USER_ERROR);
+				if(!is_array($value)) throw new \Exception('Array needed',\E_USER_ERROR);
 				$this->_aException[]=$value;
+				break;
 			case 'recommendation': 
-				if(!is_string($value)) trigger_error('String needed',\E_USER_ERROR);
+				if(!is_string($value)) throw new \Exception('String needed',\E_USER_ERROR);
 				$this->_aRecommendation[]=$value;
+				break;
 			case 'data': 
-				if(!is_array($value)) trigger_error('Array needed',\E_USER_ERROR);
+				if(!is_array($value)) throw new \Exception('Array needed',\E_USER_ERROR);
 				foreach($value as $mKey=>$mValue){
 					$this->_aData[$mKey]=$mValue;
-					// if(!isset($this->_aData[$mKey])) $this->_aData[$mKey]=[$mValue];
-					// elseif $this->_aData[$mKey]=$mValue;
 				}
+				break;
 		}
 	}
 	public function __exception(\Throwable $oException):bool{
