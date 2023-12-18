@@ -2,7 +2,7 @@
 namespace tessefakt\handlers;
 class _handler{
 	protected $_oTessefakt;
-	protected $_oRequest;
+	protected $_oEnvironment;
 	protected $_oOperations;
 	protected $_fStart;
 	protected $_bSuccess=null;
@@ -12,7 +12,7 @@ class _handler{
 	public function __construct(\tessefakt $tessefakt){
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
-		$this->_oRequest=new \tessefakt\request($this->_oTessefakt);
+		$this->_oEvironment=new \tessefakt\environment($this->_oTessefakt);
 		$this->_oOperations=new \tessefakt\operations($this->_oTessefakt);
 	}
 	public function handle():void{
@@ -28,7 +28,7 @@ class _handler{
 	}
 	public function __get(string $key):mixed{
 		switch($key){
-			case 'request': return $this->_oRequest;
+			case 'env': return $this->_oEnvironment;
 			case 'operations': return $this->_oOperations;
 			case 'success': return $this->_bSuccess;
 			case 'exception': return $this->_aException;

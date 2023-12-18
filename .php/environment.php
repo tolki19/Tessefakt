@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt;
-class request{
+class environment{
 	private $__oTessefakt;
 	private $__oGet;
 	private $__oPost;
