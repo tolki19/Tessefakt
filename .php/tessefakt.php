@@ -7,13 +7,13 @@ class tessefakt{
 	protected $_oHandler;
 	protected $_aSetup;
 	protected $_sMode;
-	public function __construct(){
+	public function __construct(string|array $setup){
 		http_response_code(500);
 		spl_autoload_register([$this,'__autoload']);
 		$this->_oApps=new \tessefakt\app_router($this);
 		$this->_oRequest=new \tessefakt\request($this);
 		$this->_oOperations=new \tessefakt\operations($this);
-		$this->_aSetup=$this->_setup();
+		$this->_aSetup=$this->_setup($setup);
 		$this->_sMode=$this->_mode();
 		$this->_oHandler=new ('\\tessefakt\\handlers\\'.$this->_sMode)($this);
 		$this->_oHandler->handle();
@@ -37,15 +37,15 @@ class tessefakt{
 		}
 		return $aJson;
 	}
-	protected function _setup():array{
-		$aJsonConfigPrototype=$this->_decodeJson(dirname(__DIR__).'/.php/config.prototype.json');
-		$aJsonSetup=$this->_decodeJson(dirname(__DIR__).'/.setup.json');
+	protected function _setup(string|array $setup):array{
+		$aJsonConfigPrototype=$this->_decodeJson(compilepath(__DIR__.'/config.prototype.json'));
+		$aJsonSetup=is_array($setup)?$setup:$this->_decodeJson(compilepath(__DIR__.'/../'.$setup));
 		$aSetup=array_merge_deep($aJsonConfigPrototype,$aJsonSetup);
 		foreach($aSetup['paths'] as &$sPath){
 			$sPath=compilepath(__DIR__.'/../'.$sPath);
 		}
 		foreach($aSetup['apps'] as $sApp=>$aSetting){
-			$aJsonConfigApp=$this->_decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
+			$aJsonConfigApp=$this->_decodeJson(compilepath(__DIR__.'/../'.$aSetting['config']));
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
 		}
 		foreach($aSetup['apps'] as $sApp=>$aSetting){

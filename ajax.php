@@ -1,3 +1,3 @@
 <?php
 include('.php/tessefakt.php');
-new tessefakt();
+new tessefakt('.plain.setup.json');
