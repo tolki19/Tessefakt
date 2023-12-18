@@ -41,6 +41,9 @@ class tessefakt{
 		$aJsonConfigPrototype=$this->_decodeJson(dirname(__DIR__).'/.php/config.prototype.json');
 		$aJsonSetup=$this->_decodeJson(dirname(__DIR__).'/.setup.json');
 		$aSetup=array_merge_deep($aJsonConfigPrototype,$aJsonSetup);
+		foreach($aSetup['paths'] as &$sPath){
+			$sPath=compilepath(__DIR__.'/../'.$sPath);
+		}
 		foreach($aSetup['apps'] as $sApp=>$aSetting){
 			$aJsonConfigApp=$this->_decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
