@@ -2,6 +2,8 @@
 namespace tessefakt\handlers;
 class _handler{
 	protected $_oTessefakt;
+	protected $_oRequest;
+	protected $_oOperations;
 	protected $_fStart;
 	protected $_bSuccess=null;
 	protected $_aException=[];
@@ -10,6 +12,8 @@ class _handler{
 	public function __construct(\tessefakt $tessefakt){
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
+		$this->_oRequest=new \tessefakt\request($this->_oTessefakt);
+		$this->_oOperations=new \tessefakt\operations($this->_oTessefakt);
 	}
 	public function handle():void{
 		set_error_handler([$this,'__error']);
@@ -24,8 +28,12 @@ class _handler{
 	}
 	public function __get(string $key):mixed{
 		switch($key){
-			case 'exception': return !!count($this->_aException);
-			default: return $this->_oTessefakt->$key;
+			case 'request': return $this->_oRequest;
+			case 'operations': return $this->_oOperations;
+			case 'success': return $this->_bSuccess;
+			case 'exception': return $this->_aException;
+			case 'recommendation': return $this->_aRecommendation;
+			case 'data': return $this->_aData;
 		}
 	}
 	public function __set(string $key,$value):void{

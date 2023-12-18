@@ -2,8 +2,6 @@
 include('.php/helper.php');
 class tessefakt{
 	protected $_oApps;
-	protected $_oRequest;
-	protected $_oOperations;
 	protected $_oHandler;
 	protected $_aSetup;
 	protected $_sMode;
@@ -11,8 +9,6 @@ class tessefakt{
 		http_response_code(500);
 		spl_autoload_register([$this,'__autoload']);
 		$this->_oApps=new \tessefakt\app_router($this);
-		$this->_oRequest=new \tessefakt\request($this);
-		$this->_oOperations=new \tessefakt\operations($this);
 		$this->_aSetup=$this->_setup($setup);
 		$this->_sMode=$this->_mode();
 		$this->_oHandler=new ('\\tessefakt\\handlers\\'.$this->_sMode)($this);
@@ -59,9 +55,6 @@ class tessefakt{
 			case 'setup': return $this->_aSetup;
 			case 'mode': return $this->_sMode;
 			case 'apps': return $this->_oApps;
-			case 'request': return $this->_oRequest;
-			case 'operations': return $this->_oOperations;
-			case 'hash': return $this->_bHash;
 			case 'handler': return $this->_oHandler;
 		}
 		throw new \Exception('Access violation');
