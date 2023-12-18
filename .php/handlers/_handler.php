@@ -3,7 +3,6 @@ namespace tessefakt\handlers;
 class _handler{
 	protected $_oTessefakt;
 	protected $_oEnvironment;
-	protected $_oOperations;
 	protected $_fStart;
 	protected $_bSuccess=null;
 	protected $_aException=[];
@@ -12,12 +11,11 @@ class _handler{
 	public function __construct(\tessefakt $tessefakt){
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
-		$this->_oEvironment=new \tessefakt\environment($this->_oTessefakt);
-		$this->_oOperations=new \tessefakt\operations($this->_oTessefakt);
 	}
 	public function handle():void{
 		set_error_handler([$this,'__error']);
 		set_exception_handler([$this,'__exception']);
+		$this->_handle();
 	}
 	public function reply(?int $status=200):void{
 		restore_error_handler();
@@ -29,7 +27,6 @@ class _handler{
 	public function __get(string $key):mixed{
 		switch($key){
 			case 'env': return $this->_oEnvironment;
-			case 'operations': return $this->_oOperations;
 			case 'success': return $this->_bSuccess;
 			case 'exception': return $this->_aException;
 			case 'recommendation': return $this->_aRecommendation;

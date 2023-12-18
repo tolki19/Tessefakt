@@ -1,8 +1,11 @@
 <?php
 namespace tessefakt\handlers;
 class json extends _handler{
-	public function handle():void{
-		parent::handle();
+	public function __construct(\tessefakt $tessefakt){
+		parent::__construct($tessefakt);
+		$this->_oEvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','operations']);
+	}
+	protected function _handle():void{
 		if(isset($_GET['action'])&&$_GET['action']==='bootstrap'){
 			$this->apps->tessefakt->controllers->system->bootstrap();
 			$this->reply();
@@ -20,8 +23,7 @@ class json extends _handler{
 		}
 		throw new \Exception('No query received');
 	}
-	public function reply(?int $status=200):void{
-		parent::reply($status);
+	public function _reply(?int $status=200):void{
 		$iFlags=\JSON_THROW_ON_ERROR;
 		if($this->tessefakt->config['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
 		$aMetrics=$this->_oTessefakt->stats();

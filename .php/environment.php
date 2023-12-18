@@ -1,31 +1,46 @@
 <?php
 namespace tessefakt;
 class environment{
-	private $__oTessefakt;
-	private $__oGet;
-	private $__oPost;
-	private $__oServer;
-	private $__oHeader;
-	public function __construct(\tessefakt $tessefakt){
-		$this->__oTessefakt=$tessefakt;
+	protected $_oTessefakt;
+	protected $_aSubjects;
+	protected $_aAllowed;
+	public function __construct(\tessefakt $tessefakt,array $allowed){
+		$this->_oTessefakt=$tessefakt;
+		$this->_aAllowed=$allowed;
 	}
-	public function __get(string $key){
+	public function &__get(string $key){
 		switch($key){
 			case 'get':
-				if(!this->__oGet) $this->__oGet=new \tessefakt\requests\get($this->__oTessefakt);
-				return $this->__oGet;
+				if(!array_key_exists($key,$this->_aSubjects)){
+					$this->_aSubjects[$key]=$_GET;
+				}
+				return $this->_aSubjects[$key];
 			case 'post':
-				if(!this->__oPost) $this->__oPost=new \tessefakt\requests\post($this->__oTessefakt);
-				return $this->__oPost;
+				if(!array_key_exists($key,$this->_aSubjects)){
+					$this->_aSubjects[$key]=$_POST;
+				}
+				return $this->_aSubjects[$key];
 			case 'server':
-				if(!this->__oServer) $this->__oServer=new \tessefakt\requests\server($this->__oTessefakt);
-				return $this->__oServer;
+				if(!array_key_exists($key,$this->_aSubjects)){
+					$this->_aSubjects[$key]=$_SERVER;
+				}
+				return $this->_aSubjects[$key];
 			case 'header':
-				if(!this->__oHeader) $this->__oHeader=new \tessefakt\requests\header($this->__oTessefakt);
-				return $this->__oHeader;
+				if(!array_key_exists($key,$this->_aSubjects)){
+					$this->_aSubjects[$key]=apache_request_headers();
+				}
+				return $this->_aSubjects[$key];
 			case 'session':
-				if(!this->__oSession) $this->__oSession=new \tessefakt\requests\session($this->__oTessefakt);
-				return $this->__oSession;
+				if(!array_key_exists($key,$this->_aSubjects)){
+					session_start();
+					$this->_aSubjects[$key]=&$_SESSION;
+				}
+				return $this->_aSubjects[$key];
+			case 'operations':
+				if(!array_key_exists($key,$this->_aSubjects)){
+					$this->_aSubjects[$key]=[];
+				}
+				return $this->_aSubjects[$key];
 		}
 	}
 }
