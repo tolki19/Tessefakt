@@ -15,18 +15,21 @@ class mysqli extends _connector{
 		$this->_aSetup=$setup;
 		$this->__bFormerAutocommit=&$this->__bAutocommit;
 	}
-	protected function __connection(){
-		if(!$this->__oConnection){
-			\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
-			$this->__oConnection=new \mysqli($this->_aSetup['host'],$this->_aSetup['username'],$this->_aSetup['password'],$this->_aSetup['dbname']);
-			$this->__oConnection->set_charset('utf8mb4');
-		};
-		return $this->__oConnection;
+	public function __get(string $key){
+		switch($key){
+			case 'connection':
+				if(!$this->__oConnection){
+					\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
+					$this->__oConnection=new \mysqli($this->_aSetup['host'],$this->_aSetup['username'],$this->_aSetup['password'],$this->_aSetup['dbname']);
+					$this->__oConnection->set_charset('utf8mb4');
+				};
+				return $this->__oConnection;
+		}
 	}
 	public function query(string $query){
 		try{
 			$fStart=\microtime(true);
-			$oResult=$this->__connection()->query($query);
+			$oResult=$this->connection->query($query);
 			if($oResult===true) return $oResult;
 			$aReturn=[];
 			while($aRow=$oResult->fetch_assoc()) $aReturn[]=$aRow;
@@ -42,7 +45,7 @@ class mysqli extends _connector{
 	public function insert(){
 		try{
 			$fStart=\microtime(true);
-			return $this->__connection()->insert_id;
+			return $this->connection->insert_id;
 		}catch(\mysqli_sql_exception $ex){
 			throw $ex;
 		}finally{
@@ -51,12 +54,12 @@ class mysqli extends _connector{
 		}
 	}
 	public function escape(string $string){
-		return $this->__connection()->real_escape_string($string);
+		return $this->connection->real_escape_string($string);
 	}
 	public function autocommit(bool $state=true){
 		try{
 			$fStart=\microtime(true);
-			$this->__connection()->autocommit($state);
+			$this->connection->autocommit($state);
 			$this->__bAutocommit=$state;
 			$bReturn=$this->__bAutocommit;
 			return $bReturn;
@@ -70,7 +73,7 @@ class mysqli extends _connector{
 	public function transaction(?string $name=null){
 		try{
 			$fStart=\microtime(true);
-			$bReturn=$this->__connection()->begin_transaction(0,$name);
+			$bReturn=$this->connection->begin_transaction(0,$name);
 			$this->__bFormerAutocommit=$this->__bAutocommit;
 			$this->__bAutocommit=false;
 			return $bReturn;
@@ -84,7 +87,7 @@ class mysqli extends _connector{
 	public function savepoint(string $name){
 		try{
 			$fStart=\microtime(true);
-			$bReturn=$this->__connection()->savepoint($name);
+			$bReturn=$this->connection->savepoint($name);
 			return $bReturn;
 		}catch(\mysqli_sql_exception $ex){
 			throw $ex;
@@ -96,7 +99,7 @@ class mysqli extends _connector{
 	public function commit(?string $name=null){
 		try{
 			$fStart=\microtime(true);
-			$bReturn=$this->__connection()->commit(0,$name);
+			$bReturn=$this->connection->commit(0,$name);
 			return $bReturn;
 		}catch(\mysqli_sql_exception $ex){
 			throw $ex;
@@ -110,7 +113,7 @@ class mysqli extends _connector{
 	public function rollback(?string $name=null){
 		try{
 			$fStart=\microtime(true);
-			$bReturn=$this->__connection()->rollback(0,$name);
+			$bReturn=$this->connection->rollback(0,$name);
 			return $bReturn;
 		}catch(\mysqli_sql_exception $ex){
 			throw $ex;
