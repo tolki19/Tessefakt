@@ -14,11 +14,11 @@ class system extends \tessefakt\controller{
 		$aTransmit=[
 			'construct'=>$aConfig['construct'],
 			'settings'=>[
-				'defaults'=>$aConfig['settings']['defaults']
+				'defaults'=>$aConfig['defaults']
 			],
 			'apps'=>$aApps
 		];
-		if(array_search('frontend',$aConfig['settings']['dev']['level']??[])!==false){
+		if(array_search('frontend',$aConfig['dev']['level']??[])!==false){
 			$aTransmit['apps']['tessefakt']['navigation']['navigation'][]=[
 				'type'=>'sep'
 			];
@@ -37,8 +37,8 @@ class system extends \tessefakt\controller{
 					]
 				]
 			];
-			$aTransmit['settings']['dev']=$aConfig['settings']['dev'];
-			if(isset($aConfig['settings']['credentials'])) $aTransmit['settings']['credentials']=$aConfig['settings']['credentials'];
+			$aTransmit['dev']=$aConfig['dev'];
+			if(isset($aConfig['credentials'])) $aTransmit['credentials']=$aConfig['credentials'];
 		}
 		$this->tessefakt->response->data=['config'=>$aTransmit];
 		$this->tessefakt->response->success=true;

@@ -19,8 +19,8 @@ class tessefakt{
 		$this->_oHandler->handle();
 	}
 	protected function _mode():string{
-		if(isset($this->setup['settings']['mode'])){
-			if(array_search($this->setup['settings']['mode'],['json','html','plain'])!==false) return $this->setup['settings']['mode'];
+		if(isset($this->setup['mode'])){
+			if(array_search($this->setup['mode'],['json','html','plain'])!==false) return $this->setup['mode'];
 		}elseif(preg_match('#application/json|text/html#is',$this->request->server->HTTP_ACCEPT,$aMatches)){
 			switch($aMatches[0]){
 				case 'application/json': return 'json';
@@ -41,11 +41,11 @@ class tessefakt{
 		$aJsonConfigPrototype=$this->_decodeJson(dirname(__DIR__).'/.php/config.prototype.json');
 		$aJsonSetup=$this->_decodeJson(dirname(__DIR__).'/.setup.json');
 		$aSetup=array_merge_deep($aJsonConfigPrototype,$aJsonSetup);
-		foreach($aSetup['settings']['apps'] as $sApp=>$aSetting){
+		foreach($aSetup['apps'] as $sApp=>$aSetting){
 			$aJsonConfigApp=$this->_decodeJson(dirname(__DIR__).DIRECTORY_SEPARATOR.$aSetting['config']);
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
 		}
-		foreach($aSetup['settings']['apps'] as $sApp=>$aSetting){
+		foreach($aSetup['apps'] as $sApp=>$aSetting){
 			if(isset($aSetting['db'])) $aSetup['apps'][$sApp]['db']=$aSetting['db'];
 			if(isset($aSetting['hash'])) $aSetup['apps'][$sApp]['hash']=$aSetting['hash'];
 		}

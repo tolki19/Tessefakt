@@ -23,7 +23,7 @@ class json extends _handler{
 	public function reply(?int $status=200):void{
 		parent::reply($status);
 		$iFlags=\JSON_THROW_ON_ERROR;
-		if($this->tessefakt->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
+		if($this->tessefakt->config['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
 		$aMetrics=$this->_oTessefakt->stats();
 		$aMetrics=[
 			'db-queries'=>$aMetrics['db']['queries'],

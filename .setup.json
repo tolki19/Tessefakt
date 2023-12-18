@@ -1,68 +1,66 @@
 {
-	"settings": {
-		"apps": {
-			"tessefakt": {
-				"config": "apps/tessefakt/.config/tessefakt.json",
-				"connectors": {
-					"db": {
-						"type": "mysqli",
-						"username": "tessefakt_13",
-						"password": "5AHENkIRUHOvrQHI",
-						"dbname": "tessefakt_13_230925",
-						"host": "localhost"
-					}
-				},
-				"hash": {
-					"pepper": "Jn4D8y8kLA9n!39Y"
+	"apps": {
+		"tessefakt": {
+			"config": "apps/tessefakt/.config/tessefakt.json",
+			"connectors": {
+				"db": {
+					"type": "mysqli",
+					"username": "tessefakt_13",
+					"password": "5AHENkIRUHOvrQHI",
+					"dbname": "tessefakt_13_230925",
+					"host": "localhost"
 				}
 			},
-			"hwdb": {
-				"config": "apps/hwdb/.config/hwdb.json",
-				"connectors": {
-					"db": {
-						"type": "mysqli",
-						"username": "tessefakt_13",
-						"password": "5AHENkIRUHOvrQHI",
-						"dbname": "tessefakt_13_230925",
-						"host": "localhost"
-					}
-				}
-			},
-            "nutzerplatzantrag":{
-                "config": "apps/nutzerplatzantrag/.config/nutzerplatz.json",
-                "connectors": {
-					"db": {
-						"type": "mysqli",
-						"username": "root",
-						"password": "c19x?47z",
-						"dbname": "nutzerplatzantrag",
-						"host": "localhost"
-					}
-				}
-            }
+			"hash": {
+				"pepper": "Jn4D8y8kLA9n!39Y"
+			}
 		},
-		"defaults": {
-			"key": {
-				"app": "hwdb",
-				"index": "allocDetailsEdit"
-			},
-			"delivery": [
-				{
-					"name":"test-sequence",
-					"value": [ "219" ]
+		"hwdb": {
+			"config": "apps/hwdb/.config/hwdb.json",
+			"connectors": {
+				"db": {
+					"type": "mysqli",
+					"username": "tessefakt_13",
+					"password": "5AHENkIRUHOvrQHI",
+					"dbname": "tessefakt_13_230925",
+					"host": "localhost"
 				}
-			]
+			}
 		},
-		"mode": "plain",
-		"dev": {
-			"level": [
-				"frontend",
-				"backend"
-			]
-		},
-		"credentials": {
-			"uid": "FlorianKerl",
-			"password": "abcABC123!!!"
+		"nutzerplatzantrag":{
+			"config": "apps/nutzerplatzantrag/.config/nutzerplatz.json",
+			"connectors": {
+				"db": {
+					"type": "mysqli",
+					"username": "root",
+					"password": "c19x?47z",
+					"dbname": "nutzerplatzantrag",
+					"host": "localhost"
+				}
+			}
 		}
+	},
+	"defaults": {
+		"key": {
+			"app": "hwdb",
+			"index": "allocDetailsEdit"
+		},
+		"delivery": [
+			{
+				"name":"test-sequence",
+				"value": [ "219" ]
+			}
+		]
+	},
+	"mode": "plain",
+	"dev": {
+		"level": [
+			"frontend",
+			"backend"
+		]
+	},
+	"credentials": {
+		"uid": "FlorianKerl",
+		"password": "abcABC123!!!"
 	}
 }

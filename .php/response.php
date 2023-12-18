@@ -17,7 +17,7 @@ class response{
 		if($this->__oTessefakt->load){
 			$aMetrics=$this->__oTessefakt->stats();
 			$iFlags=\JSON_THROW_ON_ERROR;
-			if($this->tessefakt->config['settings']['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
+			if($this->tessefakt->config['dev']['state']) $iFlags|=\JSON_PRETTY_PRINT;
 			\preg_match('#application\/json|\*\/\*#is',$this->tessefakt->request->header->Accept,$aMatches);
 			$sMime=$aMatches[0];
 		}else{
