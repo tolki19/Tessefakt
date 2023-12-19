@@ -39,15 +39,21 @@ class tessefakt{
 		$aSetup=array_merge_deep($aJsonConfigPrototype,$aJsonSetup);
 		foreach($aSetup['paths'] as &$sPath){
 			$sPath=compilepath(__DIR__.'/../'.$sPath);
-		}
-		foreach($aSetup['apps'] as $sApp=>$aSetting){
-			$aJsonConfigApp=$this->_decodeJson(compilepath(__DIR__.'/../'.$aSetting['config']));
+		} unset($sPath);
+		foreach($aSetup['apps'] as &$aApp){
+			$aApp['root']=compilepath(__DIR__.'/../apps/'.$aApp['root']);
+			foreach($aApp['paths'] as &$sPath){
+				$sPath=compilepath($aApp['root'].'/'.$sPath);
+			} unset($sPath);
+		} unset($aApp);
+		foreach($aSetup['apps'] as $sApp=>&$aApp){
+			$aJsonConfigApp=$this->_decodeJson($aApp['paths']['config']);
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
-		}
-		foreach($aSetup['apps'] as $sApp=>$aSetting){
-			if(isset($aSetting['db'])) $aSetup['apps'][$sApp]['db']=$aSetting['db'];
-			if(isset($aSetting['hash'])) $aSetup['apps'][$sApp]['hash']=$aSetting['hash'];
-		}
+		} unset($aApp);
+		// foreach($aSetup['apps'] as $sApp=>$aApp){
+		// 	if(isset($aApp['db'])) $aSetup['apps'][$sApp]['db']=$aSetting['db'];
+		// 	if(isset($aA['hash'])) $aSetup['apps'][$sApp]['hash']=$aSetting['hash'];
+		// }
 		return $aSetup;
 	}
 	public function __get(string $key):mixed{

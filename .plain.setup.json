@@ -1,7 +1,10 @@
 {
 	"apps": {
 		"tessefakt": {
-			"config": "apps/tessefakt/.config/tessefakt.json",
+			"root": "tessefakt",
+			"paths": {
+				"config": ".config/tessefakt.json"
+			},
 			"connectors": {
 				"db": {
 					"type": "mysqli",
@@ -15,8 +18,11 @@
 				"pepper": "Jn4D8y8kLA9n!39Y"
 			}
 		},
-		"hwdb": {
-			"config": "apps/hwdb/.config/hwdb.json",
+		"hebaz": {
+			"root": "hebaz",
+			"paths": {
+				"config": ".config/hebaz.json"
+			},
 			"connectors": {
 				"db": {
 					"type": "mysqli",
@@ -26,24 +32,12 @@
 					"host": "localhost"
 				}
 			}
-		},
-		"nutzerplatzantrag":{
-			"config": "apps/nutzerplatzantrag/.config/nutzerplatz.json",
-			"connectors": {
-				"db": {
-					"type": "mysqli",
-					"username": "root",
-					"password": "c19x?47z",
-					"dbname": "nutzerplatzantrag",
-					"host": "localhost"
-				}
-			}
 		}
 	},
 	"defaults": {
 		"key": {
-			"app": "hwdb",
-			"index": "allocDetailsEdit"
+			"app": "hebaz",
+			"index": "overview"
 		},
 		"delivery": [
 			{
