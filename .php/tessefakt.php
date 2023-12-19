@@ -40,14 +40,15 @@ class tessefakt{
 		foreach($aSetup['paths'] as &$sPath){
 			$sPath=compilepath(__DIR__.'/../'.$sPath);
 		} unset($sPath);
-		foreach($aSetup['apps'] as &$aApp){
+		foreach($aSetup['apps'] as $sApp=>&$aApp){
 			$aApp['root']=compilepath(__DIR__.'/../apps/'.$aApp['root']);
 			foreach($aApp['paths'] as &$sPath){
 				$sPath=compilepath($aApp['root'].'/'.$sPath);
 			} unset($sPath);
-		} unset($aApp);
-		foreach($aSetup['apps'] as $sApp=>&$aApp){
 			$aJsonConfigApp=$this->_decodeJson($aApp['paths']['config']);
+			foreach($aJsonConfigApp['paths'] as &$sPath){
+				$sPath=compilepath($aApp['root'].'/'.$sPath);
+			} unset($sPath);
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
 		} unset($aApp);
 		// foreach($aSetup['apps'] as $sApp=>$aApp){

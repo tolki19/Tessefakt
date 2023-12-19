@@ -8,6 +8,9 @@
 		"build": "x",
 		"caption": "Komisch"
 	},
+	"paths": {
+		"sql": ".sql"
+	},
 	"navigation": {
 		"caption": "tessefakt",
 		"navigation": [
