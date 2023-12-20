@@ -2,6 +2,7 @@
 namespace tessefakt\handlers;
 class _handler{
 	protected $_oTessefakt;
+	protected $_oApps;
 	protected $_oEnvironment;
 	protected $_fStart;
 	protected $_bSuccess=null;
@@ -11,6 +12,7 @@ class _handler{
 	public function __construct(\tessefakt $tessefakt){
 		$this->_fStart=microtime(true);
 		$this->_oTessefakt=$tessefakt;
+		$this->_oApps=new \tessefakt\app_router($this->_oTessefakt,$this);
 	}
 	public function handle():void{
 		set_error_handler([$this,'__error']);
@@ -24,8 +26,12 @@ class _handler{
 		if($this->_bSuccess===null||$status<200||$status>=300) $this->_bSuccess=false;
 		$this->_reply($status);
 	}
+	public function stats(){
+		return $this->_oApps->stats();
+	}
 	public function __get(string $key):mixed{
 		switch($key){
+			case 'apps': return $this->_oApps;
 			case 'env': return $this->_oEnvironment;
 			case 'success': return $this->_bSuccess;
 			case 'exception': return $this->_aException;

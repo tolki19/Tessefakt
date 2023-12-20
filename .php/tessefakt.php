@@ -1,14 +1,12 @@
 <?php
 include('.php/helper.php');
 class tessefakt{
-	protected $_oApps;
 	protected $_oHandler;
 	protected $_aSetup;
 	protected $_sMode;
 	public function __construct(string|array $setup){
 		http_response_code(500);
 		spl_autoload_register([$this,'__autoload']);
-		$this->_oApps=new \tessefakt\app_router($this);
 		$this->_aSetup=$this->_setup($setup);
 		$this->_sMode=$this->_mode();
 		$this->_oHandler=new ('\\tessefakt\\handlers\\'.$this->_sMode)($this);
@@ -61,10 +59,9 @@ class tessefakt{
 		switch($key){
 			case 'setup': return $this->_aSetup;
 			case 'mode': return $this->_sMode;
-			case 'apps': return $this->_oApps;
 			case 'handler': return $this->_oHandler;
 		}
-		throw new \Exception('Access violation');
+		throw new \Exception('Unknown key');
 	}
 	public function __autoload(string $class):void{
 		$aParts=explode('\\',$class);
@@ -78,8 +75,5 @@ class tessefakt{
 			$aPath=array_slice($aParts,1);
 			include_once(compilepath(__DIR__.'/'.implode('/',$aPath).'.php'));
 		}
-	}
-	public function stats(){
-		return $this->_oApps->stats();
 	}
 }
