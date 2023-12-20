@@ -1,16 +1,21 @@
 {
 	"app": {
-		"name": "Hardware-Datenbank"
+		"name": "Hebammenzentrale"
 	},
 	"version": {
-		"major": "1",
+		"major": "3",
 		"minor": "0",
-		"build": "1812",
-		"caption": "la paloma"
+		"build": "3512",
+		"caption": "Gifhorn"
 	},
-	"paths": {},
+	"paths": {
+		"tpl": "assets/.tpl"
+	},
+	"defaults": {
+		"index": "overview"
+	},
 	"navigation": {
-		"caption": "Hardware-Datenbank",
+		"caption": "Hebammenzentrale",
 		"navigation": [
 			{
 				"type": "group",
@@ -20,7 +25,7 @@
 						"type": "page",
 						"caption": "Registrieren",
 						"key": {
-							"app": "hwdb",
+							"app": "hebaz",
 							"index": "allocRegister"
 						}
 					},
@@ -28,7 +33,7 @@
 						"type": "page",
 						"caption": "Suchen",
 						"key": {
-							"app": "hwdb",
+							"app": "hebaz",
 							"index": "allocSearch"
 						}
 					}
@@ -46,7 +51,7 @@
 								"type": "page",
 								"caption": "Anlegen",
 								"key": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"index": "persCreate"
 								}
 							},
@@ -54,7 +59,7 @@
 								"type": "page",
 								"caption": "Suchen",
 								"key": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"index": "persSearch"
 								}
 							}
@@ -68,7 +73,7 @@
 								"type": "page",
 								"caption": "Anlegen",
 								"key": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"index": "roomCreate"
 								}
 							},
@@ -76,7 +81,7 @@
 								"type": "page",
 								"caption": "Suchen",
 								"key": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"index": "roomSearch"
 								}
 							}
@@ -90,7 +95,7 @@
 								"type": "page",
 								"caption": "Anlegen",
 								"key": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"index": "matCreate"
 								}
 							},
@@ -98,7 +103,7 @@
 								"type": "page",
 								"caption": "Suchen",
 								"key": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"index": "matSearch"
 								}
 							}
@@ -114,7 +119,7 @@
 			"bucket": "page",
 			"request": {
 				"get": {
-					"app": "hwdb",
+					"app": "hebaz",
 					"controller": "test",
 					"method": "details"
 				},
@@ -210,7 +215,7 @@
 							"caption": "Speichern",
 							"action": {
 								"get": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"controller": "test",
 									"method": "save"
 								},
@@ -241,7 +246,7 @@
 							"caption": "Abbrechen",
 							"action": {
 								"get": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"controller": "test",
 									"method": "cancel"
 								}
@@ -312,7 +317,7 @@
 							"bucket": "control",
 							"request": {
 								"get": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"controller": "test",
 									"method": "list"
 								},
@@ -492,7 +497,7 @@
 							"bucket": "control",
 							"request": {
 								"get": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"controller": "test",
 									"method": "list"
 								},
@@ -703,7 +708,7 @@
 			"bucket": "page",
 			"request": {
 				"get": {
-					"app": "hwdb",
+					"app": "hebaz",
 					"controller": "test",
 					"method": "complex"
 				},
@@ -763,7 +768,7 @@
 							"caption": "Anlegen",
 							"action": {
 								"get": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"controller": "test",
 									"method": "create"
 								}
@@ -807,7 +812,7 @@
 							},
 							"action": {
 								"get": {
-									"app": "hwdb",
+									"app": "hebaz",
 									"controller": "test",
 									"method": "delete"
 								},
@@ -866,7 +871,7 @@
 								}
 							},
 							"key": {
-								"app": "hwdb",
+								"app": "hebaz",
 								"index": "allocDetailsEdit"
 							},
 							"delivery": [
