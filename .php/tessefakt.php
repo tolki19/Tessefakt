@@ -46,7 +46,7 @@ class tessefakt{
 				$sPath=compilepath($aApp['root'].'/'.$sPath);
 			} unset($sPath);
 			$aJsonConfigApp=$this->_decodeJson($aApp['paths']['config']);
-			foreach($aJsonConfigApp['paths'] as &$sPath){
+			foreach($aApp['paths'] as &$sPath){
 				$sPath=compilepath($aApp['root'].'/'.$sPath);
 			} unset($sPath);
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);

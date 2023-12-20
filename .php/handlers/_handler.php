@@ -32,6 +32,7 @@ class _handler{
 			case 'recommendation': return $this->_aRecommendation;
 			case 'data': return $this->_aData;
 		}
+		throw new \Exception('Unknown key');
 	}
 	public function __set(string $key,$value):void{
 		switch($key){

@@ -8,7 +8,7 @@ class app_router{
 	}
 	public function __get(string $key){
 		if(!array_key_exists($key,$this->_aApps)){
-			$this->_aApps[$key]=new ('\\tessefakt\\apps\\'.$key)($this->_oTessefakt,$this->_oTessefakt->setup['apps'][$key]);
+			$this->_aApps[$key]=new ('\\tessefakt\\apps\\'.$key)($this->_oTessefakt,$this,$this->_oTessefakt->setup['apps'][$key]);
 		}
 		return $this->_aApps[$key];
 	}
