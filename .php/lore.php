@@ -6,7 +6,7 @@ class lore{
 	protected $_oApp;
 	protected $_oControllers;
 	protected $_oReflection;
-	public function __construct(\tessefakt $tessefakt,\tessefakt\lore_router $lores,\tessefakt\app $app){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,\tessefakt\lore_router $lores){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oLores=$lores;
 		$this->_oApp=$app;
