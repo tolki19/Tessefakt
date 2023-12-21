@@ -6,7 +6,6 @@ class lore_router{
 	protected $_aLores=[];
 	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app){
 		$this->_oTessefakt=$tessefakt;
-		$this->_oApps=$apps;
 		$this->_oApp=$app;
 	}
 	public function __get(string $key){
