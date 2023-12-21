@@ -80,7 +80,7 @@ class _handler{
 			$errstr,
 			$errfile,
 			$errline,
-			array_slice(debug_backtrace(),1)
+			array_slice(debug_backtrace(0),1)
 		);
 	}
 	protected function _fault($code,$message,$file,$line,$trace,$previous_message=null):bool{

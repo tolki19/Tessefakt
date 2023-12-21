@@ -6,7 +6,7 @@ class plain extends _handler{
 		$this->_oEvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session','operations']);
 	}
 	protected function _handle():void{
-var_dump($this->apps);
+// var_dump($this->apps);
 $this->apps->tessefakt->lores->plain->controllers->install->create_structure();
 var_dump(3);
 		$this->reply();
