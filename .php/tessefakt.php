@@ -35,20 +35,20 @@ class tessefakt{
 		$aJsonConfigPrototype=$this->_decodeJson(compilepath(__DIR__.'/config.prototype.json'));
 		$aJsonSetup=is_array($setup)?$setup:$this->_decodeJson(compilepath(__DIR__.'/../'.$setup));
 		$aSetup=array_merge_deep($aJsonConfigPrototype,$aJsonSetup);
-		foreach($aSetup['paths'] as &$sPath){
-			$sPath=compilepath(__DIR__.'/../'.$sPath);
-		} unset($sPath);
-		foreach($aSetup['apps'] as $sApp=>&$aApp){
-			$aApp['root']=compilepath(__DIR__.'/../apps/'.$aApp['root']);
-			foreach($aApp['paths'] as &$sPath){
-				$sPath=compilepath($aApp['root'].'/'.$sPath);
-			} unset($sPath);
+		foreach($aSetup['paths'] as $iPath=>$sPath){
+			$aSetup['paths'][$iPath]=compilepath(__DIR__.'/../'.$sPath);
+		};
+		foreach($aSetup['apps'] as $sApp=>$aApp){
+			$aSetup['apps'][$sApp]['root']=compilepath(__DIR__.'/../apps/'.$aApp['root']);
+			foreach($aApp['paths'] as $iPath=>$sPath){
+				$aApp['paths'][$iPath]=compilepath($aSetup['apps'][$sApp]['root'].'/'.$sPath);
+			}
 			$aJsonConfigApp=$this->_decodeJson($aApp['paths']['config']);
-			foreach($aApp['paths'] as &$sPath){
-				$sPath=compilepath($aApp['root'].'/'.$sPath);
-			} unset($sPath);
+			foreach($aJsonConfigApp['paths'] as $iPath=>$sPath){
+				$aJsonConfigApp['paths'][$iPath]=compilepath($aSetup['apps'][$sApp]['root'].'/'.$sPath);
+			}
 			$aSetup=array_merge_deep(['apps'=>[$sApp=>$aJsonConfigApp]],$aSetup);
-		} unset($aApp);
+		}
 		// foreach($aSetup['apps'] as $sApp=>$aApp){
 		// 	if(isset($aApp['db'])) $aSetup['apps'][$sApp]['db']=$aSetting['db'];
 		// 	if(isset($aA['hash'])) $aSetup['apps'][$sApp]['hash']=$aSetting['hash'];
