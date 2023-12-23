@@ -20,8 +20,8 @@ class app{
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'apps': return $this->_oApps;
-			case 'db':
-				if(!$this->_aSetup['db']) return null;
+			case 'connectors':
+				if(!$this->_aSetup['connectors']) return null;
 				if(!$this->_oConnectors) $this->_oConnectors=new \tessefakt\connector_router($this->_oTessefakt,$this,$this->_aSetup['connectors']);
 				return $this->_oConnectors;
 			case 'hash':

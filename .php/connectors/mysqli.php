@@ -26,6 +26,27 @@ class mysqli extends _connector{
 				return $this->__oConnection;
 		}
 	}
+	public function multi(string $query){
+		try{
+			$fStart=\microtime(true);
+			$this->connection->multi_query($query);
+			if($oResult===true) return $oResult;
+			$aReturn=[];
+			while($this->connection->more_results()){
+				$oResult=$this->connection->store_result();
+				$aRows=[];
+				while($aRow=$oResult->fetch_assoc()) $aRows[]=$aRow;
+				$oResult->free();
+				$aReturn[]=$aRows;
+			}
+			return $aReturn;
+		}catch(\mysqli_sql_exception $ex){
+			throw $ex;
+		}finally{
+			++$this->_iQueries;
+			$this->_fTime+=\microtime(true)-$fStart;
+		}
+	}
 	public function query(string $query){
 		try{
 			$fStart=\microtime(true);
@@ -139,82 +160,5 @@ class mysqli extends _connector{
 		$sIndex=$index;
 		\array_walk($array,function($aValue,$iKey)use(&$aReturn,$sIndex){$aReturn[$aValue[$sIndex]===null?'null':(string)$aValue[$sIndex]]=$aValue;});
 		return $aReturn;
-	}
-	public function searchCross($value,array $fields){
-		if(!$value) return '1';
-		$values=\explode(' ',(string)$value);
-		$aReturn=[];
-		foreach($fields as $field){
-			$oSet=$this->searchAggr($values,$field);
-			if($oSet) $aReturn[]=$oSet;
-		}
-		foreach($values as $value){
-			$aSet=[];
-			foreach($fields as $field){
-				$oSet=$this->searchScalar($value,$field);
-				if($oSet) $aSet[]=$oSet;
-			}
-			if(count($aSet)) $aReturn[]=$aSet;
-		}
-		return $aReturn;
-	}
-	public function searchAggr(array $values,array $field){
-		\array_walk($values,function(&$value,$key){$value='"'.$this->escape($value).'"';});
-		switch($field['op']){
-			case 'in':
-			case 'not in':
-				return $field['db'].' '.$field['op'].' ('.\implode(',',$values).')';
-		}
-		return false;
-	}
-	public function searchScalar(string $value,array $field){
-		switch($field['op']){
-			case '<':
-			case '<=':
-			case '=':
-			case '>=':
-			case '>':
-			case '!=':
-			case '<>':
-				return $field['db'].$field['op'].'"'.$this->escape($value).'"';
-			case 'like':
-			case 'not like':
-				return $field['db'].' '.$field['op'].' "%'.$this->escape($value).'%"';
-			case 'rlike':
-			case 'not rlike':
-			case 'regexp':
-			case 'not regexp':
-				return $field['db'].' '.$field['op'].' "'.$this->escape($value).'"';
-			case 'null':
-			case 'not null':
-				return $field['db'].' is '.$field['op'];
-		}
-		return false;
-	}
-	public function searchCombine($sets,array $ops){
-		if(!is_array($sets)) return $sets;
-		$aSets=[];
-		foreach($sets as $set){
-			if(is_array($set)) $aSets[]=$this->searchCombine($set,array_slice($ops,1));
-			else $aSets[]=$set;
-		}
-		return '('.implode(' '.$ops[0].' ',$aSets).')';
-	}
-	public function sort(string $value,array $fields=null,string $alt='1'):string{
-		if(isset($fields[$value])) $sReturn=$fields[$value];
-		else $sReturn=$alt;
-		return $sReturn;
-	}
-	public function assign($value,$field=null,bool $defaultable=true,bool $nullable=false):string{
-		$sReturn='';
-		if(\is_array($field)){
-			$aDimensions=[];
-			\array_walk($field,function($aValue,$iKey)use(&$aDimensions){$aDimensions[]='`'.$aValue.'`';});
-			$sReturn.=\implode('.',$aDimensions).'=';
-		}elseif(isset($field)) $sReturn.='`'.$field.'`=';
-		if($value) $sReturn.='"'.$this->escape((string)$value).'"';
-		elseif($value==null&&$nullable) $sReturn.='null';
-		elseif($defaultable) $sReturn.='default';
-		return $sReturn;
 	}
 }

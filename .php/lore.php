@@ -19,6 +19,7 @@ class lore{
 			case 'apps': return $this->_oApp->apps;
 			case 'app': return $this->_oApp;
 			case 'lores': return $this->_oLores;
+			case 'connectors': return $this->_oApp->connectors;
 			case 'name': return $this->_oReflection->getName();
 			case 'dir': return dirname($this->_oReflection->getFileName());
 			case 'controllers': return $this->_oControllers;

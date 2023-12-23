@@ -21,6 +21,25 @@
 		<link rel="stylesheet" href="<?=compileurl($this->env->operations['urls']['current'].'/assets/css/desktop/standard.css'); ?>" type="text/css">
 	</head>
 	<body>
-		<?php if(isset($this->env->operations['tpls']['page'])) include($this->env->operations['tpls']['page']); ?>
+		<header>
+			<menu data-tessefakt-role="apps-menu">
+				<nav>
+					<?php foreach($this->tessefakt->setup['apps'] as $sApp=>$aApp){ ?>
+						<li>
+							<a href="<?=compileurl($this->env->operations['urls']['current'].'?app='.$sApp); ?>">
+								<span><?=htmlentities($aApp['app']['name'],\ENT_QUOTES); ?></span>
+							</a>
+						</li>
+					<?php } ?>
+				</nav>
+			</menu>
+		</header>
+		<main>
+			<?php if(isset($this->env->operations['tpls']['dialog'])){ ?>
+				<?php include($this->env->operations['tpls']['dialog']); ?>
+			<?php }elseif(isset($this->env->operations['tpls']['page'])){ ?>
+				<?php include($this->env->operations['tpls']['page']); ?>
+			<?php } ?>
+		</main>
 	</body>
 </html>
