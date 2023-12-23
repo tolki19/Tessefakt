@@ -19,7 +19,6 @@ class _handler{
 		set_exception_handler([$this,'__exception']);
 		$this->env->operations['urls']['canonical']=compileurl($this->tessefakt->setup['urls']['canonical']);
 		$this->env->operations['urls']['current']=compileurl((isset($this->env->server['HTTPS'])&&$this->env->server['HTTPS']==='on'?'https://':'http://').$this->env->server['HTTP_HOST'].$this->env->server['REQUEST_URI'].'/..');
-var_dump($this->env->operations['urls']);
 		$this->_handle();
 	}
 	public function reply(?int $status=200):void{
