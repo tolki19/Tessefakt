@@ -26,7 +26,7 @@ function compileurl(string $url):string{
 	preg_match(preg_replace('#(?:\t|\r\n|\r|\n)#','',file_get_contents(compilepath(__DIR__.'/compileurl.regex'))),$url,$aParts);
 // var_dump(array_filter($aParts,'is_string',ARRAY_FILTER_USE_KEY));
 	$sReturn='';
-	if(array_key_exists('scheme',$aParts)) $sReturn.=$aParts['scheme'];
+	if(array_key_exists('scheme',$aParts)&&$aParts['scheme']) $sReturn.=$aParts['scheme'].':';
 	$sReturn.=$aParts['separator'];
 	if(array_key_exists('authority',$aParts)){
 		if(array_key_exists('userinfo',$aParts)&&$aParts['userinfo']){

@@ -2,8 +2,8 @@
 namespace tessefakt;
 class environment{
 	protected $_oTessefakt;
-	protected $_aSubjects;
-	protected $_aAllowed;
+	protected $_aSubjects=[];
+	protected $_aAllowed=[];
 	public function __construct(\tessefakt $tessefakt,array $allowed){
 		$this->_oTessefakt=$tessefakt;
 		$this->_aAllowed=$allowed;

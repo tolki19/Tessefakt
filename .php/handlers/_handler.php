@@ -17,6 +17,9 @@ class _handler{
 	public function handle():void{
 		set_error_handler([$this,'__error']);
 		set_exception_handler([$this,'__exception']);
+		$this->env->operations['urls']['canonical']=compileurl($this->tessefakt->setup['urls']['canonical']);
+		$this->env->operations['urls']['current']=compileurl((isset($this->env->server['HTTPS'])&&$this->env->server['HTTPS']==='on'?'https://':'http://').$this->env->server['HTTP_HOST'].$this->env->server['REQUEST_URI'].'/..');
+var_dump($this->env->operations['urls']);
 		$this->_handle();
 	}
 	public function reply(?int $status=200):void{
@@ -31,6 +34,7 @@ class _handler{
 	}
 	public function __get(string $key):mixed{
 		switch($key){
+			case 'tessefakt': return $this->_oTessefakt;
 			case 'apps': return $this->_oApps;
 			case 'env': return $this->_oEnvironment;
 			case 'success': return $this->_bSuccess;

@@ -59,5 +59,8 @@
 	},
 	"paths": {
 		"tpl": "assets/.tpl"
+	},
+	"urls": {
+		"canonical": "http://localhost/tessefakt/13"
 	}
 }
