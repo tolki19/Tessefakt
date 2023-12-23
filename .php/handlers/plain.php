@@ -13,10 +13,11 @@ $this->apps->tessefakt->lores->plain->controllers->install->create_structure();
 		http_response_code($status);
 		header('Content-Type: text/html');
 		if(count($this->exception)){
-			include($this->_oTessefakt->setup['paths']['tpl'].'/plain/exception.php');
+			$this->env->operations['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/exception.php');
 		}else{
-			include($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php');
+			$this->env->operations['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php');
 		}
+		include($this->env->operations['tpls']['index']);
 		die();
 	}
 }

@@ -21,6 +21,6 @@
 		<link rel="stylesheet" href="<?=compileurl($this->env->operations['urls']['current'].'/assets/css/desktop/standard.css'); ?>" type="text/css">
 	</head>
 	<body>
-Great work!
+		<?php if(isset($this->env->operations['tpls']['page'])) include($this->env->operations['tpls']['page']); ?>
 	</body>
 </html>
