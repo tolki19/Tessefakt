@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\lores\plain\controllers;
+namespace tessefakt\apps\tessefakt\lores\internal\controllers;
 class install extends \tessefakt\controller{
 	public function create_structure():void{
 	}
