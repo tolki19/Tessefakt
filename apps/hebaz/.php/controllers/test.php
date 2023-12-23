@@ -164,7 +164,6 @@ class test extends \tessefakt\controller{
 		$this->tessefakt->response->data=$aData;
 	}
 	public function details(){
-// var_dump($this->app->rights);
 		$sSearch=$this->connectors->db->searchCombine($this->connectors->db->searchCross(\implode(' ',$this->tessefakt->request->post->{'test-sequence'}),
 			[
 				['db'=>'t1.`id`','op'=>'in']

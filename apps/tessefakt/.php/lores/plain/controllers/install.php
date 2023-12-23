@@ -2,7 +2,6 @@
 namespace tessefakt\apps\tessefakt\lores\plain\controllers;
 class install extends \tessefakt\controller{
 	public function create_structure():void{
-var_dump(8);
 	}
 	public function create_data():void{
 		$aSettings=[];
