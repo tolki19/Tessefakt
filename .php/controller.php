@@ -5,7 +5,6 @@ class controller{
 	protected $_oEntrance;
 	protected $_oControllers;
 	protected $_oReflection;
-	protected $_aSubs=[];
 	public function __construct(\tessefakt $tessefakt,\tessefakt\entrance $entrance,\tessefakt\controller_router $controllers){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oEntrance=$entrance;
@@ -25,11 +24,6 @@ class controller{
 			case 'key': return $this->_oEntrance->_oApp->key;
 			case 'name': return $this->_oReflection->getName();
 			case 'dir': return dirname($this->_oReflection->getFileName());
-			case 'subs':
-				if(!array_key_exists($key,$this->_aSubs)){
-					$this->_aSubs[$key]=new ($this->_oReflection->getName().'\\'.$key)($this->_oTessefakt,$this->_oEntrance);
-				}
-				return $this->_aSubs[$key];
 		}
 		throw new \Exception('Unknown key');
 	}
