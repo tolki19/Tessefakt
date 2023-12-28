@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\handlers;
-class json extends _handler{
+class json extends \tessefakt\_handler{
 	public function __construct(\tessefakt $tessefakt){
 		parent::__construct($tessefakt);
 		$this->_oEvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','operations']);

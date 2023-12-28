@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\handlers;
+namespace tessefakt;
 class _handler{
 	protected $_oTessefakt;
 	protected $_oApps;
