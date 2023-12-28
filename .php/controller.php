@@ -20,8 +20,8 @@ class controller{
 			case 'entrance': return $this->_oEntrance;
 			case 'controllers': return $this->_oControllers;
 			case 'connectors': return $this->_oEntrance->connectors;
-			case 'hash': return $this->_oEntrance->_oApp->hash;
-			case 'key': return $this->_oEntrance->_oApp->key;
+			case 'hash': return $this->_oEntrance->app->hash;
+			case 'key': return $this->_oEntrance->app->key;
 			case 'name': return $this->_oReflection->getName();
 			case 'dir': return dirname($this->_oReflection->getFileName());
 		}

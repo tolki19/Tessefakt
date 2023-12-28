@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt;
-class _handler{
+class handler{
 	protected $_oTessefakt;
 	protected $_oApps;
 	protected $_oEnvironment;

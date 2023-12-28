@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\handlers;
-class plain extends \tessefakt\_handler{
+class plain extends \tessefakt\handler{
 	public function __construct(\tessefakt $tessefakt){
 		parent::__construct($tessefakt);
 		$this->_oEnvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session','operations']);

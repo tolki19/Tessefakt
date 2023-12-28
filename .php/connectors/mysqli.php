@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\connectors;
-class mysqli extends \tessefakt\_connector{
+class mysqli extends \tessefakt\connector{
 	protected $_oTessefakt;
 	protected $_oApp;
 	protected $_aSetup;
