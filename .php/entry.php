@@ -1,14 +1,14 @@
 <?php
 namespace tessefakt;
-class lore{
+class entry{
 	protected $_oTessefakt;
-	protected $_oLores;
+	protected $_oEntrys;
 	protected $_oApp;
 	protected $_oControllers;
 	protected $_oReflection;
-	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,\tessefakt\lore_router $lores){
+	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,\tessefakt\entry_router $entries){
 		$this->_oTessefakt=$tessefakt;
-		$this->_oLores=$lores;
+		$this->_oEntrys=$entries;
 		$this->_oApp=$app;
 		$this->_oControllers=new \tessefakt\controller_router($this->_oTessefakt,$this);
 		$this->_oReflection=new \ReflectionClass($this);
@@ -18,7 +18,7 @@ class lore{
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'apps': return $this->_oApp->apps;
 			case 'app': return $this->_oApp;
-			case 'lores': return $this->_oLores;
+			case 'entries': return $this->_oEntrys;
 			case 'connectors': return $this->_oApp->connectors;
 			case 'name': return $this->_oReflection->getName();
 			case 'dir': return dirname($this->_oReflection->getFileName());

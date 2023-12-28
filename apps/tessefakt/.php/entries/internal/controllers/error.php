@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\lores\internal\controllers;
+namespace tessefakt\apps\tessefakt\entries\internal\controllers;
 class error extends \tessefakt\controller{
 	public function create(int|string|null $user,array $data):int{
 		return $this->_create(
