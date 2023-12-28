@@ -35,10 +35,7 @@
 		}
 	},
 	"defaults": {
-		"key": {
-			"app": "hebaz",
-			"index": "overview"
-		},
+		"app": "hebaz",
 		"delivery": [
 			{
 				"name":"test-sequence",

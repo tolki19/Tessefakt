@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\hwdb\controllers;
-class test extends \tessefakt\controller{
+namespace tessefakt\apps\hebaz\libraries;
+class test extends \tessefakt\library{
 	public function simple(){
 		$aRawdata=[
 			[
