@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\entries\internal\controllers;
+namespace tessefakt\apps\tessefakt\entrances\internal\controllers;
 class system extends \tessefakt\controller{
 	public function auth(){
 		if(!$this->tessefakt->request->header->Authorization) return false;

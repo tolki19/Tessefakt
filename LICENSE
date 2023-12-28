@@ -88,13 +88,13 @@ public, and in some countries other activities as well.
 parties to make or receive copies.  Mere interaction with a user through
 a computer network, with no transfer of a copy, is not conveying.
 
-  An interactive user entry displays "Appropriate Legal Notices"
+  An interactive user entrance displays "Appropriate Legal Notices"
 to the extent that it includes a convenient and prominently visible
 feature that (1) displays an appropriate copyright notice, and (2)
 tells the user that there is no warranty for the work (except to the
 extent that warranties are provided), that licensees may convey the
 work under this License, and how to view a copy of this License.  If
-the entry presents a list of user commands or options, such as a
+the entrance presents a list of user commands or options, such as a
 menu, a prominent item in the list meets this criterion.
 
   1. Source Code.
@@ -103,16 +103,16 @@ menu, a prominent item in the list meets this criterion.
 for making modifications to it.  "Object code" means any non-source
 form of a work.
 
-  A "Standard Entry" means an entry that either is an official
+  A "Standard Entrance" means an entrance that either is an official
 standard defined by a recognized standards body, or, in the case of
-entries specified for a particular programming language, one that
+entrances specified for a particular programming language, one that
 is widely used among developers working in that language.
 
   The "System Libraries" of an executable work include anything, other
 than the work as a whole, that (a) is included in the normal form of
 packaging a Major Component, but which is not part of that Major
 Component, and (b) serves only to enable use of the work with that
-Major Component, or to implement a Standard Entry for which an
+Major Component, or to implement a Standard Entrance for which an
 implementation is available to the public in source code form.  A
 "Major Component", in this context, means a major essential component
 (kernel, window system, and so on) of the specific operating system
@@ -126,7 +126,7 @@ control those activities.  However, it does not include the work's
 System Libraries, or general-purpose tools or generally available free
 programs which are used unmodified in performing those activities but
 which are not part of the work.  For example, Corresponding Source
-includes entry definition files associated with source files for
+includes entrance definition files associated with source files for
 the work, and the source code for shared libraries and dynamically
 linked subprograms that the work is specifically designed to require,
 such as by intimate data communication or control flow between those
@@ -215,9 +215,9 @@ terms of section 4, provided that you also meet all of these conditions:
     permission to license the work in any other way, but it does not
     invalidate such permission if you have separately received it.
 
-    d) If the work has interactive user entries, each must display
+    d) If the work has interactive user entrances, each must display
     Appropriate Legal Notices; however, if the Program has interactive
-    entries that do not display Appropriate Legal Notices, your
+    entrances that do not display Appropriate Legal Notices, your
     work need not make them do so.
 
   A compilation of a covered work with other separate and independent
@@ -650,7 +650,7 @@ Also add information on how to contact you by electronic and paper mail.
   If your software can interact with users remotely through a computer
 network, you should also make sure that it provides a way for users to
 get its source.  For example, if your program is a web application, its
-entry could display a "Source" link that leads users to an archive
+entrance could display a "Source" link that leads users to an archive
 of the code.  There are many ways you could offer source, and different
 solutions will be better for different programs; see section 13 for the
 specific requirements.

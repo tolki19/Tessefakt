@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\entries\internal\controllers\user;
+namespace tessefakt\apps\tessefakt\entrances\internal\controllers\user;
 class hash extends \tessefakt\controller{
 	public function create(int $user,array $data):int{
 		return $this->_create($user,$data['password']);

@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\entries\internal\controllers;
+namespace tessefakt\apps\tessefakt\entrances\internal\controllers;
 class tpl_right extends \tessefakt\controller{
 	public function create(int $app,array $data):int{
 		return $this->_create(

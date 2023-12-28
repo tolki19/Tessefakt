@@ -4,7 +4,7 @@ class app{
 	protected $_oTessefakt;
 	protected $_oApps;
 	protected $_aSetup;
-	protected $_oEntrys;
+	protected $_oEntrances;
 	protected $_oConnectors;
 	protected $_oHash;
 	protected $_oKey;
@@ -13,7 +13,7 @@ class app{
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApps=$apps;
 		$this->_aSetup=$setup;
-		$this->_oEntrys=new \tessefakt\entry_router($this->_oTessefakt,$this);
+		$this->_oEntrances=new \tessefakt\entrance_router($this->_oTessefakt,$this);
 		$this->_oReflection=new \ReflectionClass($this);
 	}
 	public function __get(string $key){
@@ -34,7 +34,7 @@ class app{
 			case 'name': return $this->_oReflection->getName();
 			case 'dir': return dirname($this->_oReflection->getFileName());
 			case 'setup': return $this->_aSetup;
-			case 'entries': return $this->_oEntrys;
+			case 'entrances': return $this->_oEntrances;
 		}
 		throw new \Exception('Unknown key');
 	}

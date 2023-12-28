@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\entries\plain\controllers;
+namespace tessefakt\apps\tessefakt\entrances\plain\controllers;
 class system extends \tessefakt\controller{
 	public function bootstrap(){
 		$aConfig=$this->tessefakt->config;

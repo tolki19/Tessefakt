@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\entries\internal\controllers\group;
+namespace tessefakt\apps\tessefakt\entrances\internal\controllers\group;
 class setting extends \tessefakt\controller{
 	public function create(int $group,int $setting,array $data):int{
 		$iSetting=$this->_create(
