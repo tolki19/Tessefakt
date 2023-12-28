@@ -5,6 +5,7 @@ class app{
 	protected $_oApps;
 	protected $_aSetup;
 	protected $_oEntrances;
+	protected $_oLibraries;
 	protected $_oConnectors;
 	protected $_oHash;
 	protected $_oKey;
@@ -13,13 +14,12 @@ class app{
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApps=$apps;
 		$this->_aSetup=$setup;
-		$this->_oEntrances=new \tessefakt\entrance_router($this->_oTessefakt,$this);
-		$this->_oReflection=new \ReflectionClass($this);
 	}
 	public function __get(string $key){
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'apps': return $this->_oApps;
+			case 'setup': return $this->_aSetup;
 			case 'connectors':
 				if(!$this->_aSetup['connectors']) return null;
 				if(!$this->_oConnectors) $this->_oConnectors=new \tessefakt\connector_router($this->_oTessefakt,$this,$this->_aSetup['connectors']);
@@ -31,10 +31,18 @@ class app{
 			case 'key':
 				if(!$this->_oKey) $this->_oKey=new \tessefakt\key($this->_oTessefakt,$this,[]);
 				return $this->_oKey;
-			case 'name': return $this->_oReflection->getName();
-			case 'dir': return dirname($this->_oReflection->getFileName());
-			case 'setup': return $this->_aSetup;
-			case 'entrances': return $this->_oEntrances;
+			case 'name':
+				if(!$this->_oReflection) $this->_oReflection=new \ReflectionClass($this);
+				return $this->_oReflection->getName();
+			case 'dir':
+				if(!$this->_oReflection) $this->_oReflection=new \ReflectionClass($this);
+				return dirname($this->_oReflection->getFileName());
+			case 'entrances':
+				if(!$this->_oEntrance) $this->_oEntrances=new \tessefakt\entrance_router($this->_oTessefakt,$this);
+				return $this->_oEntrances;
+			case 'libraries':
+				if(!$this->_oLibraries) $this->_oLibraries=new \tessefakt\library_router($this->_oTessefakt,$this);
+				return $this->_oLibraries;
 		}
 		throw new \Exception('Unknown key');
 	}

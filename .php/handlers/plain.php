@@ -6,7 +6,7 @@ class plain extends \tessefakt\_handler{
 		$this->_oEnvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session','operations']);
 	}
 	protected function _handle():void{
-$this->apps->tessefakt->entrances->internal->controllers->install->create_structure();
+$this->apps->tessefakt->libraries->install->create_structure();
 		$this->reply();
 	}
 	protected function _reply(int $status):void{

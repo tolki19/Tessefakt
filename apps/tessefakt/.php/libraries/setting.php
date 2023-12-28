@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\entrances\internal\controllers;
-class setting extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\libraries;
+class setting extends \tessefakt\library{
 	public function create(array $data):int{
 		$iSetting=$this->_create(
 			$data['key'],

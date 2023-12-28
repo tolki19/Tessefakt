@@ -1,9 +1,9 @@
 <?php
 namespace tessefakt\apps\tessefakt\controllers;
-class users extends \tessefakt\controller{
+class apps extends \tessefakt\library{
 	public function create(array $data):array{
 		$aReturn=[];
-		foreach($data as $aUser) $aReturn[]=$this->user->create($aUser);
+		foreach($data as $aApp) $aReturn[]=$this->app->apps->create($aApp);
 		return $aReturn;
 	}
 }

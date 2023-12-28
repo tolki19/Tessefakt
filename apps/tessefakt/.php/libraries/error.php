@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\entrances\internal\controllers;
-class error extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\libraries;
+class error extends \tessefakt\library{
 	public function create(int|string|null $user,array $data):int{
 		return $this->_create(
 			$user,

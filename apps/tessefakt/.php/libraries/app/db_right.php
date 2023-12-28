@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\entrances\internal\controllers\app;
-class db_right extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\libraries\app;
+class db_right extends \tessefakt\library{
 	public function create(int $app,array $data):int{
 		return $this->_create(
 			$app,

@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\entrances\internal\controllers;
-class system extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\libraries;
+class system extends \tessefakt\library{
 	public function auth(){
 		if(!$this->tessefakt->request->header->Authorization) return false;
 		\preg_match('#^(basic):(\S+)#is',$this->tessefakt->request->header->Authorization,$matches);

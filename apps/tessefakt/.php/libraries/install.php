@@ -1,6 +1,6 @@
 <?php
-namespace tessefakt\apps\tessefakt\entrances\internal\controllers;
-class install extends \tessefakt\controller{
+namespace tessefakt\apps\tessefakt\libraries;
+class install extends \tessefakt\library{
 	public function create_structure():void{
 $aFiles=$this->_fs(compilepath($this->app->setup['paths']['sql'].'/create'));
 foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile));

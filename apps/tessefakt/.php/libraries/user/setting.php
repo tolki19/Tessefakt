@@ -1,20 +1,20 @@
 <?php
-namespace tessefakt\apps\tessefakt\entrances\internal\controllers\group;
-class setting extends \tessefakt\controller{
-	public function create(int $group,int $setting,array $data):int{
+namespace tessefakt\apps\tessefakt\libraries\user;
+class setting extends \tessefakt\library{
+	public function create(int $user,int $setting,array $data):int{
 		$iSetting=$this->_create(
-			$group,
+			$user,
 			$setting,
 			$data['value'],
 			$data['remark']
 		);
 		return $iSetting;
 	}
-	protected function _create(int $group,int $setting,string $key,string $value,?string $remark):int{
+	protected function _create(int $user,int $setting,string $value,?string $remark):int{
 		$this->connectors->db->query('
-			insert into `_group-_settings`
+			insert into `_user-_setting`
 			set 
-				`_group`='.$group.',
+				`_user`='.$user.',
 				`_setting`='.$setting.',
 				`value`="'.$this->connectors->db->escape($value).'",
 				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
