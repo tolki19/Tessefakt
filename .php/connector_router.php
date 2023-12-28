@@ -11,8 +11,9 @@ class connector_router{
 		$this->_aSetup=$setup;
 	}
 	public function __get(string $key){
-		if(array_key_exists($key,$this->_oConnectors)) return $this->_oConnectors[$key];
-		$this->_oConnectors[$key]=new ('\\tessefakt\\connectors\\'.$this->_aSetup[$key]['type'])($this->_oTessefakt,$this->_oApp,$this->_aSetup[$key]);
+		if(!array_key_exists($key,$this->_oConnectors)){
+			$this->_oConnectors[$key]=new ('\\tessefakt\\connectors\\'.$this->_aSetup[$key]['type'])($this->_oTessefakt,$this->_oApp,$this->_aSetup[$key]);
+		}
 		return $this->_oConnectors[$key];
 	}
 	public function __set(string $key,$value){}

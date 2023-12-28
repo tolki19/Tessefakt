@@ -18,8 +18,8 @@ class mysqli extends _connector{
 	public function __get(string $key){
 		switch($key){
 			case 'connection':
+				mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
 				if(!$this->__oConnection){
-					\mysqli_report(\MYSQLI_REPORT_ERROR|\MYSQLI_REPORT_STRICT);
 					$this->__oConnection=new \mysqli($this->_aSetup['host'],$this->_aSetup['username'],$this->_aSetup['password'],$this->_aSetup['dbname']);
 					$this->__oConnection->set_charset('utf8mb4');
 				};
@@ -30,15 +30,14 @@ class mysqli extends _connector{
 		try{
 			$fStart=\microtime(true);
 			$this->connection->multi_query($query);
-			if($oResult===true) return $oResult;
 			$aReturn=[];
-			while($this->connection->more_results()){
-				$oResult=$this->connection->store_result();
-				$aRows=[];
-				while($aRow=$oResult->fetch_assoc()) $aRows[]=$aRow;
-				$oResult->free();
-				$aReturn[]=$aRows;
-			}
+			do{
+				if($oResult=$this->connection->store_result()){
+					$aRows=[];
+					foreach($oResult as $oRow) $aRows[]=$oRow;
+					$aReturn=$aRows;
+				}
+			}while($this->connection->more_results()&&$this->connection->next_result());
 			return $aReturn;
 		}catch(\mysqli_sql_exception $ex){
 			throw $ex;

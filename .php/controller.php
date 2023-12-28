@@ -20,7 +20,7 @@ class controller{
 			case 'lores': return $this->_oLore->lores;
 			case 'lore': return $this->_oLore;
 			case 'controllers': return $this->_oControllers;
-			case 'connectors': return $this->_oLore->_oApp->connectors;
+			case 'connectors': return $this->_oLore->connectors;
 			case 'hash': return $this->_oLore->_oApp->hash;
 			case 'key': return $this->_oLore->_oApp->key;
 			case 'name': return $this->_oReflection->getName();

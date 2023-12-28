@@ -3,7 +3,7 @@ namespace tessefakt\apps\tessefakt\lores\internal\controllers;
 class install extends \tessefakt\controller{
 	public function create_structure():void{
 $aFiles=$this->_fs(compilepath($this->app->setup['paths']['sql'].'/create'));
-foreach($aFiles as $sFile) $this->connectors->db(file_get_contents($sFile));
+foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile));
 	}
 	public function create_data():void{
 		$aSettings=[];
