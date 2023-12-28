@@ -35,7 +35,10 @@ class handler{
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'apps': return $this->_oApps;
-			case 'env': return $this->_oEnvironment;
+			case 'setup': return $this->_oTessefakt->setup;
+			case 'env':
+				if(!$this->_oEnvironment) $this->_oEnvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session','operations']);
+				return $this->_oEnvironment;
 			case 'success': return $this->_bSuccess;
 			case 'exception': return $this->_aException;
 			case 'recommendation': return $this->_aRecommendation;

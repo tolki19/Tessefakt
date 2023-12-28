@@ -41,9 +41,9 @@ class tessefakt{
 		foreach($aSetup['apps'] as $sApp=>$aApp){
 			$aSetup['apps'][$sApp]['root']=compilepath(__DIR__.'/../apps/'.$aApp['root']);
 			foreach($aApp['paths'] as $iPath=>$sPath){
-				$aApp['paths'][$iPath]=compilepath($aSetup['apps'][$sApp]['root'].'/'.$sPath);
+				$aSetup['apps'][$sApp]['paths'][$iPath]=compilepath($aSetup['apps'][$sApp]['root'].'/'.$sPath);
 			}
-			$aJsonConfigApp=$this->_decodeJson($aApp['paths']['config']);
+			$aJsonConfigApp=$this->_decodeJson($aSetup['apps'][$sApp]['paths']['config']);
 			foreach($aJsonConfigApp['paths'] as $iPath=>$sPath){
 				$aJsonConfigApp['paths'][$iPath]=compilepath($aSetup['apps'][$sApp]['root'].'/'.$sPath);
 			}

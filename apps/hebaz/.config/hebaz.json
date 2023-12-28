@@ -12,7 +12,12 @@
 		"tpl": "assets/.tpl"
 	},
 	"defaults": {
-		"index": "overview"
+		"entrances": {
+			"plain": {
+				"controller": "test",
+				"method": "test"
+			}
+		}
 	},
 	"navigation": {
 		"caption": "Hebammenzentrale",

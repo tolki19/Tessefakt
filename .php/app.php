@@ -38,7 +38,7 @@ class app{
 				if(!$this->_oReflection) $this->_oReflection=new \ReflectionClass($this);
 				return dirname($this->_oReflection->getFileName());
 			case 'entrances':
-				if(!$this->_oEntrance) $this->_oEntrances=new \tessefakt\entrance_router($this->_oTessefakt,$this);
+				if(!$this->_oEntrances) $this->_oEntrances=new \tessefakt\entrance_router($this->_oTessefakt,$this);
 				return $this->_oEntrances;
 			case 'libraries':
 				if(!$this->_oLibraries) $this->_oLibraries=new \tessefakt\library_router($this->_oTessefakt,$this);
