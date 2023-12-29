@@ -15,6 +15,7 @@ class controller{
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 			case 'env': return $this->_oTessefakt->handler->env;
+			case 'response': return $this->_oTessefakt->handler->response;
 			case 'apps': return $this->_oEntrance->apps;
 			case 'app': return $this->_oEntrance->app;
 			case 'entrances': return $this->_oEntrance->entrances;

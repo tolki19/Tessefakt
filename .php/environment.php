@@ -13,7 +13,7 @@ class environment{
 		$this->_aAllowed=$allowed;
 	}
 	public function &__get(string $key){
-		if(array_search($key,this->_aAllowed)===false) throw new \Exception('Disallowed key');
+		if(array_search($key,$this->_aAllowed)===false) throw new \Exception('Disallowed key');
 		switch($key){
 			case 'get':
 				if(!$this->_aGet) $this->_aGet=$_GET;
