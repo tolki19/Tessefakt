@@ -1,4 +1,4 @@
-<?php foreach($this->exception as $aException){ ?> 
+<?php foreach($this->response->exception as $aException){ ?> 
 	<p>
 		<b><?=htmlentities($aException['title'].': ',\ENT_QUOTES); ?> </b>
 		<?=htmlentities($aException['message'].': ',\ENT_QUOTES); ?> 

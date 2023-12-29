@@ -9,7 +9,7 @@ class plain extends \tessefakt\handler{
 	public function __get(string $key):mixed{
 		switch($key){
 			case 'response':
-				if(!$this->_oResponse) $this->_oResponse=new \tessefakt\response($this->_oTessefakt,['success','exception','recommend','data','tpl','operations']);
+				if(!$this->_oResponse) $this->_oResponse=new \tessefakt\response($this->_oTessefakt,['success','exception','recommend','data','tpl','op']);
 				return $this->_oResponse;
 			case 'env':
 				if(!$this->_oEnvironment) $this->_oEnvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session']);
@@ -18,15 +18,15 @@ class plain extends \tessefakt\handler{
 		return parent::__get($key);
 	}
 	protected function _handle():void{
-		$this->response->operations['urls']['folder']=compileurl($this->tessefakt->setup['urls']['folder']);
-		$this->response->operations['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
+		$this->response->op['urls']['folder']=compileurl($this->tessefakt->setup['urls']['folder']);
+		$this->response->op['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
 $this->apps->tessefakt->libraries->install->create_structure();
 		$sApp=$this->setup['defaults']['app'];
 		$sEntrance='plain';
 		$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
 		$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
 		$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
-		$this->response->operations['address']=[
+		$this->response->op['address']=[
 			'app'=>$sApp,
 			'entrance'=>$sEntrance,
 			'controller'=>$sController,
@@ -40,12 +40,12 @@ $this->apps->tessefakt->libraries->install->create_structure();
 		if($this->response->success===null||$status<200||$status>=300) $this->response->success=false;
 		http_response_code($status);
 		header('Content-Type: text/html');
-		if(count($this->exception)){
-			$this->env->operations['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/exception.php');
+		if(count($this->response->exception)){
+			$this->response->op['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/exception.php');
 		}else{
-			$this->env->operations['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php');
+			$this->response->op['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php');
 		}
-		include($this->env->operations['tpls']['index']);
+		include($this->response->op['tpls']['index']);
 		die();
 	}
 }

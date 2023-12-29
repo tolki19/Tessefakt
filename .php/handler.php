@@ -65,7 +65,7 @@ class handler{
 			case \E_ALL: $sTitle='General';
 			default: $sTitle='Unknown error ('.$code.')'; break;
 		}
-		$this->exception=[
+		$this->response->exception=[
 			'title'=>$sTitle,
 			'message'=>$message.' in '.$file.' on line '.$line.($previous_message?' (Previous: '.$previous_message.')':''),
 			'trace'=>$trace,

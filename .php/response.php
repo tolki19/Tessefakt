@@ -17,7 +17,7 @@ class response{
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 		}
-		if(array_search($key,this->_aAllowed)===false) throw new \Exception('Disallowed key');
+		if(array_search($key,$this->_aAllowed)===false) throw new \Exception('Disallowed key');
 		switch($key){
 			case 'success': return $this->_bSuccess;
 			case 'exception': return $this->_aException;
@@ -29,7 +29,7 @@ class response{
 		throw new \Exception('Unknown key');
 	}
 	public function __set(string $key,$value):void{
-		if(array_search($key,this->_aAllowed)===false) throw new \Exception('Disallowed key');
+		if(array_search($key,$this->_aAllowed)===false) throw new \Exception('Disallowed key');
 		switch($key){
 			case 'success': 
 				if(!is_bool($value)) throw new \Exception('Boolean needed');
