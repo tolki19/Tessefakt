@@ -7,12 +7,13 @@ class response{
 	protected $_aException=[];
 	protected $_aRecommendation=[];
 	protected $_aData=[];
-	protected $_sTemplate;
+	protected $_aTemplate;
+	protected $_aOperations;
 	public function __construct(\tessefakt $tessefakt,array $allowed){
 		$this->_oTessefakt=$tessefakt;
 		$this->_aAllowed=$allowed;
 	}
-	public function __get(string $key):mixed{
+	public function &__get(string $key):mixed{
 		switch($key){
 			case 'tessefakt': return $this->_oTessefakt;
 		}
@@ -22,7 +23,8 @@ class response{
 			case 'exception': return $this->_aException;
 			case 'recommendation': return $this->_aRecommendation;
 			case 'data': return $this->_aData;
-			case 'tpl': return $this->_sTemplate;
+			case 'tpl': return $this->_aTemplate;
+			case 'op': return $this->_aOperations;
 		}
 		throw new \Exception('Unknown key');
 	}
@@ -46,8 +48,8 @@ class response{
 				foreach($value as $mKey=>$mValue) $this->_aData[$mKey]=$mValue;
 				break;
 			case 'tpl':
-				if(!is_string($value)) throw new \Exception('String needed');
-				$this->_sTemplate=$value;
+				if(!is_array($value)) throw new \Exception('Array needed');
+				foreach($value as $mKey=>$mValue) $this->_aTemplate[$mKey]=$mValue;
 				break;
 		}
 	}

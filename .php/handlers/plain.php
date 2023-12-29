@@ -9,29 +9,29 @@ class plain extends \tessefakt\handler{
 	public function __get(string $key):mixed{
 		switch($key){
 			case 'response':
-				if(!$this->_oResponse) $this->_oResponse=new \tessefakt\response($this->_oTessefakt,['success','exception','recommend','data','tpl']);
+				if(!$this->_oResponse) $this->_oResponse=new \tessefakt\response($this->_oTessefakt,['success','exception','recommend','data','tpl','operations']);
 				return $this->_oResponse;
 			case 'env':
-				if(!$this->_oEnvironment) $this->_oEnvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session','operations']);
+				if(!$this->_oEnvironment) $this->_oEnvironment=new \tessefakt\environment($this->_oTessefakt,['get','post','server','header','session']);
 				return $this->_oEnvironment;
 		}
-		return parent::__getg($key);
+		return parent::__get($key);
 	}
 	protected function _handle():void{
-		$this->env->operations['urls']['folder']=compileurl($this->tessefakt->setup['urls']['folder']);
-		$this->env->operations['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
+		$this->response->operations['urls']['folder']=compileurl($this->tessefakt->setup['urls']['folder']);
+		$this->response->operations['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
 $this->apps->tessefakt->libraries->install->create_structure();
-	$sApp=$this->setup['defaults']['app'];
-	$sEntrance='plain';
-	$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
-	$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
-	$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
-	$this->env->operations['address']=[
-		'app'=>$sApp,
-		'entrance'=>$sEntrance,
-		'controller'=>$sController,
-		'method'=>$sMethod
-	];
+		$sApp=$this->setup['defaults']['app'];
+		$sEntrance='plain';
+		$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
+		$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
+		$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
+		$this->response->operations['address']=[
+			'app'=>$sApp,
+			'entrance'=>$sEntrance,
+			'controller'=>$sController,
+			'method'=>$sMethod
+		];
 // $this->apps
 		$this->reply();
 	}
