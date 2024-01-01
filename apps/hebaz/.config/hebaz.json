@@ -20,24 +20,28 @@
 		}
 	},
 	"navigation": {
+		"type": "group",
 		"caption": "Hebammenzentrale",
+		"address": {
+			"app": "hebaz"
+		},
 		"navigation": [
 			{
 				"type": "group",
 				"caption": "Zuweisung",
 				"navigation": [
 					{
-						"type": "page",
+						"type": "link",
 						"caption": "Registrieren",
-						"key": {
+						"address": {
 							"app": "hebaz",
 							"index": "allocRegister"
 						}
 					},
 					{
-						"type": "page",
+						"type": "link",
 						"caption": "Suchen",
-						"key": {
+						"address": {
 							"app": "hebaz",
 							"index": "allocSearch"
 						}
@@ -53,17 +57,17 @@
 						"caption": "Personal",
 						"navigation": [
 							{
-								"type": "page",
+								"type": "link",
 								"caption": "Anlegen",
-								"key": {
+								"address": {
 									"app": "hebaz",
 									"index": "persCreate"
 								}
 							},
 							{
-								"type": "page",
+								"type": "link",
 								"caption": "Suchen",
-								"key": {
+								"address": {
 									"app": "hebaz",
 									"index": "persSearch"
 								}
@@ -75,17 +79,17 @@
 						"caption": "Raum",
 						"navigation": [
 							{
-								"type": "page",
+								"type": "link",
 								"caption": "Anlegen",
-								"key": {
+								"address": {
 									"app": "hebaz",
 									"index": "roomCreate"
 								}
 							},
 							{
-								"type": "page",
+								"type": "link",
 								"caption": "Suchen",
-								"key": {
+								"address": {
 									"app": "hebaz",
 									"index": "roomSearch"
 								}
@@ -97,17 +101,17 @@
 						"caption": "Material",
 						"navigation": [
 							{
-								"type": "page",
+								"type": "link",
 								"caption": "Anlegen",
-								"key": {
+								"address": {
 									"app": "hebaz",
 									"index": "matCreate"
 								}
 							},
 							{
-								"type": "page",
+								"type": "link",
 								"caption": "Suchen",
-								"key": {
+								"address": {
 									"app": "hebaz",
 									"index": "matSearch"
 								}
@@ -120,7 +124,7 @@
 	},
 	"entities": {
 		"allocDetailsEdit": {
-			"type": "page",
+			"type": "link",
 			"bucket": "page",
 			"request": {
 				"get": {
@@ -364,7 +368,7 @@
 										"replacement"
 									]
 								},
-								"key":{
+								"address":{
 									"type": "rod",
 									"trace": [
 										"control",
@@ -562,7 +566,7 @@
 										"replacement"
 									]
 								},
-								"key":{
+								"address":{
 									"type": "rod",
 									"trace": [
 										"control",
@@ -709,7 +713,7 @@
 			]
 		},
 		"allocRegister": {
-			"type": "page",
+			"type": "link",
 			"bucket": "page",
 			"request": {
 				"get": {
@@ -875,7 +879,7 @@
 									"value":1
 								}
 							},
-							"key": {
+							"address": {
 								"app": "hebaz",
 								"index": "allocDetailsEdit"
 							},
@@ -1230,31 +1234,31 @@
 			]
 		},
 		"allocSearch": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		},
 		"persCreate": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		},
 		"persSearch": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		},
 		"roomCreate": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		},
 		"roomSearch": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		},
 		"matCreate": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		},
 		"matSearch": {
-			"type": "page",
+			"type": "link",
 			"contents": []
 		}
 	}

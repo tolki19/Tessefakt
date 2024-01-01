@@ -45,7 +45,32 @@ $this->apps->tessefakt->libraries->install->create_structure();
 		}else{
 			$this->response->op['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php');
 		}
-		include($this->response->op['tpls']['index']);
+		$this->_include($this->response->op['tpls']['index']);
 		die();
+	}
+	protected function _include(string $path,array $space=[],bool $return=false):string|bool{
+		if(!$return) ob_start();
+		if($space){
+			$aFormer=$this->_compact($space);
+			$this->_extract($space);
+		}
+		$bReturn=include $path;
+		if($space) $this->_extract($aFormer);
+		if($return) return ob_get_clean();
+		return $bReturn;
+	}
+	protected function _compact(array $space):array{
+		$aKeys=array_keys($space);
+		$aReturn=[];
+		foreach($aKeys as $mKey){
+			if(!isset($this->response->op[$mKey])) continue;
+			$aReturn[$mKey]=$this->response->op[$mKey];
+		}
+		return $aReturn;
+	}
+	protected function _extract(array $space):bool{
+		$aReturn=[];
+		foreach($space as $mKey=>$mValue) $this->response->op[$mKey]=$mValue;
+		return true;
 	}
 }

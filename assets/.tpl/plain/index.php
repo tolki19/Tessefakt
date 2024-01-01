@@ -22,22 +22,16 @@
 	</head>
 	<body>
 		<header>
-			<menu data-tessefakt-role="apps-menu">
+			<menu>
 				<nav>
 					<?php foreach($this->tessefakt->setup['apps'] as $sApp=>$aApp){ ?>
-						<li>
-							<a href="<?=compileurl($this->response->op['urls']['target'].'?app='.$sApp); ?>">
-								<span><?=htmlentities($aApp['app']['name'],\ENT_QUOTES); ?></span>
-							</a>
-						</li>
+						<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation.php'),['navigation'=>$aApp['navigation'],'iterator'=>$sApp]); ?>
 					<?php } ?>
 				</nav>
 			</menu>
 		</header>
 		<main>
-			<?php if(isset($this->response->op['tpls']['dialog'])){ ?>
-				<?php include($this->response->op['tpls']['dialog']); ?>
-			<?php }elseif(isset($this->response->op['tpls']['page'])){ ?>
+			<?php if(isset($this->response->op['tpls']['page'])){ ?>
 				<?php include($this->response->op['tpls']['page']); ?>
 			<?php } ?>
 		</main>
