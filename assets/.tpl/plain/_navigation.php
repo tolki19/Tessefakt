@@ -1,21 +1,25 @@
 <?php switch($this->response->op['navigation']['type']){ 
 	case 'group': ?> 
 		<li>
-			<input type="checkbox" id="chk-<?=$this->response->op['iterator']; ?>">
-			<label for="chk-<?=$this->response->op['iterator']; ?>">
+			<input type="checkbox" id="menu-<?=$this->response->op['iterator']; ?>">
+			<label for="menu-<?=$this->response->op['iterator']; ?>">
 				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation-link.php')); ?>
 			</label>
 			<nav>
-				<?php foreach($this->response->op['navigation']['navigation'] as $iNav=>$aNav){ ?>
-					<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation.php'),['navigation'=>$aNav,'iterator'=>$this->response->op['iterator'].'-'.$iNav]); ?>
-				<?php } ?>
+				<menu>
+					<?php foreach($this->response->op['navigation']['navigation'] as $iNav=>$aNav){ ?>
+						<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation.php'),['navigation'=>$aNav,'iterator'=>$this->response->op['iterator'].'-'.$iNav]); ?>
+					<?php } ?>
+				</menu>
 			</nav>
 		</li>
 		<?php break; ?> 
 	<?php case 'link': ?> 
 	<?php case 'action': ?> 
 		<li>
-			<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation-link.php')); ?>
+			<div>
+				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation-link.php')); ?>
+			</div>
 		</li>
 		<?php break; ?> 
 	<?php case 'sep': ?> 

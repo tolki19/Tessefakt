@@ -22,13 +22,13 @@
 	</head>
 	<body>
 		<header>
-			<menu>
-				<nav>
+			<nav>
+				<menu>
 					<?php foreach($this->tessefakt->setup['apps'] as $sApp=>$aApp){ ?>
 						<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation.php'),['navigation'=>$aApp['navigation'],'iterator'=>$sApp]); ?>
 					<?php } ?>
-				</nav>
-			</menu>
+				</menu>
+			</nav>
 		</header>
 		<main>
 			<?php if(isset($this->response->op['tpls']['page'])){ ?>

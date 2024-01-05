@@ -29,12 +29,6 @@
 	box-sizing:border-box;
 }
 
-*:focus{
-	outline-width:.25rem;
-	outline-style:solid;
-	outline-offset:-.25rem;
-}
-
 h1{ font-size:2.4rem; line-height:1.1; }
 h2{ font-size:2rem; line-height:1.1; }
 h3{ font-size:1.6rem; line-height:1.2; }
@@ -244,20 +238,20 @@ em{ font-style:italic; }
 	cursor:pointer;
 }
 
-[data-tessefakt-gadgets~="sortable"]::after{
+[data-tessefakt-gadgets~="sortable"]::before{
 	content:"";
 	display:inline-block;
 	width:1rem;
 	opacity:.56;
 }
 
-[data-tessefakt-gadgets~="sortable"][data-tessefakt-sort="up"]::after{ content:"\25B2"; }
-[data-tessefakt-gadgets~="sortable"][data-tessefakt-sort="down"]::after{ content:"\25BC"; }
+[data-tessefakt-gadgets~="sortable"][data-tessefakt-sort="up"]::before{ content:"\25B2"; }
+[data-tessefakt-gadgets~="sortable"][data-tessefakt-sort="down"]::before{ content:"\25BC"; }
 
 [data-tessefakt-gadgets~="verifiable"][data-tessefakt-verification="rejected"]{ display:none !important; }
 
 html{
-	font-size:clamp(16px,1.5vmin,24px);
+	font-size:var(--tessefakt-font-size);
 	line-height:var(--tessefakt-line-height);
 	font-family:'Inter';
 	font-style:normal;
@@ -268,7 +262,8 @@ html{
 	--tessefakt-mode-gen-back:normal;
 	--tessefakt-color-header-menu-fore:rgb(30,30,30);
 	--tessefakt-color-header-menu-back:rgb(225,225,225);
-	--tessefakt-color-header-menu-outline:rgb(0,68,113);
+	--tessefakt-color-header-menu-hover-fore:rgb(225,225,225);
+	--tessefakt-color-header-menu-hover-back:rgb(0,68,113);
 	--tessefakt-color-header-menu-active-back:rgb(220,220,220);
 	--tessefakt-color-main-header-back:rgb(174,187,196);
 	--tessefakt-color-main-header-menu-outline:rgb(245,245,245);
@@ -288,9 +283,9 @@ html{
 	--tessefakt-color-zebra-back-odd-hover:rgba(174,187,196,.56);
 	--tessefakt-color-zebra-back-even-select:rgba(198,214,222,.56);
 	--tessefakt-color-zebra-back-odd-select:rgba(166,184,195,.56);
-	--tessefakt-transition-time:200ms;
 	--tessefakt-icon-transform:scale(1.2);
 	--tessefakt-line-height:1.4;
+	--tessefakt-font-size:clamp(16px,1.5vmin,24px);
 }
 
 @media (prefers-color-scheme:dark){
@@ -356,155 +351,152 @@ body>header{
 	left:0;
 }
 
-body>header>menu{
-	display:block;
-	margin-bottom:2rem;
-}
-
-body>header>menu[data-tessefakt-role="apps-menu"]{
-}
-
-body>header>menu[data-tessefakt-role="app-menu"]{
-}
-
-body>header>menu li{
+body>header>nav menu{
 	display:block;
 }
 
-body>header>menu div{
+body>header>nav menu>li{
 	display:grid;
-	grid-template-rows:0fr;
-	opacity:0;
-	transform:translatey(5rem);
-	transform-origin:50% 0;
-	transition:grid-template-rows var(--tessefakt-transition-time),transform var(--tessefakt-transition-time),opacity var(--tessefakt-transition-time);
 }
 
-body>header>menu div>menu{
+body>header>nav menu>li>nav{
+	display:none;
+	grid-column:1/2;
+	grid-row:2/3;
+	margin-left:1rem;
+}
+
+body>header>nav menu>li>nav>menu{
 	overflow:hidden;
 }
 
-body>header>menu input[type="checkbox"],
-body>header>menu input[type="radio"]{
-	display:none;
+body>header>nav menu>li>input[type="checkbox"],
+body>header>nav menu>li>input[type="radio"]{
+	grid-column:1/2;
+	grid-row:1/2;
+	transform:translatex(-100vw);
 }
 
-body>header>menu input[type="checkbox"]+label,
-body>header>menu input[type="radio"]+label,
-body>header>menu a{
+body>header>nav menu>li>label,
+body>header>nav menu>li>div{
 	display:grid;
-	grid-template-columns:1rem auto 1rem;
+	grid-column:1/2;
+	grid-row:1/2;
+	grid-template-columns:calc(var(--tessefakt-font-size) * var(--tessefakt-line-height) + 2 * .25rem) calc(var(--tessefakt-font-size) * var(--tessefakt-line-height) + 2 * .25rem) auto;
+}
+
+body>header>nav menu>li>label{
+	cursor:pointer;
+}
+
+body>header>nav menu>li>label>*,
+body>header>nav menu>li>div>*{
+	display:grid;
+	grid-column:2/4;
+	grid-template-columns:subgrid;
 	gap:.5rem;
 	padding:.25rem .5rem;
 	cursor:pointer;
-	outline-color:var(--tessefakt-color-header-menu-outline);
+	outline:none;
 	align-items:center;
 }
 
-body>header>menu[data-tessefakt-role="appmenu"] input[type="checkbox"]+label,
-body>header>menu[data-tessefakt-role="appmenu"] input[type="radio"]+label,
-body>header>menu[data-tessefakt-role="appmenu"] a{
-	grid-template-columns:1.5rem auto 1rem;
-}
-
-body>header>menu a[data-tessefakt-state="active"]{
+body>header>nav menu>li>label>a[data-tessefakt-state="active"],
+body>header>nav menu>li>div>a[data-tessefakt-state="active"]{
 	background:var(--tessefakt-color-header-menu-active-back);
 }
 
-body>header>menu input[type="checkbox"]+label>i,
-body>header>menu input[type="radio"]+label>i,
-body>header>menu a>i{
+body>header>nav menu>li>label>*>i,
+body>header>nav menu>li>div>*>i{
 	display:block;
 	grid-column:1/2;
 	grid-row:1/2;
-	aspect-ratio:1/1;
+	aspect-ratio:1;
 	position:relative;
-	transition:transform var(--tessefakt-transition-time);
 	transform-origin:50% 50%;
+	text-align:center;
 }
 
-body>header>menu input[type="checkbox"]+label>i.url,
-body>header>menu input[type="radio"]+label>i.url,
-body>header>menu a>i.url{
+body>header>nav menu>li>label>*>i.url,
+body>header>nav menu>li>div>*>i.url{
 	background-color:var(--tessefakt-color-header-menu-fore);
 	-webkit-mask-size:100%;
 	mask-size:100%;
 }
 
-body>header>menu input[type="checkbox"]+label>span,
-body>header>menu input[type="radio"]+label>span,
-body>header>menu a>span{
+body>header>nav menu>li>label>*>span,
+body>header>nav menu>li>div>*>span{
 	display:block;
 	grid-column:2/3;
 	grid-row:1/2;
 }
 
-body>header>menu menu input[type="checkbox"]+label,
-body>header>menu menu input[type="radio"]+label{
-	padding-left:2rem;
-}
-
-body>header>menu menu menu input[type="checkbox"]+label,
-body>header>menu menu menu input[type="radio"]+label{
-	padding-left:3rem;
-}
-
-body>header>menu menu a{ padding-left:2rem; }
-body>header>menu menu menu a{ padding-left:3rem; }
-
-body>header>menu hr{
+body>header>nav menu>li>hr{
 	display:block;
 	appearance:none;
 	margin-top:.5rem;
 }
 
-body>header>menu input[type="checkbox"]+label:hover>i,
-body>header>menu input[type="radio"]+label:hover>i,
-body>header>menu a:hover>i{
+body>header>nav menu>li>input[type="checkbox"]:focus+label:not(:has(>a)),
+body>header>nav menu>li>input[type="radio"]:focus+label:not(:has(>a)),
+body>header>nav menu>li>label:hover:not(:has(>a)),
+body>header>nav menu>li>label:focus:not(:has(>a)),
+body>header>nav menu>li>label>a:hover,
+body>header>nav menu>li>label>a:focus,
+body>header>nav menu>li>div:has(>a:hover),
+body>header>nav menu>li>div:has(>a:focus){
+	color:var(--tessefakt-color-header-menu-hover-fore);
+	background:var(--tessefakt-color-header-menu-hover-back);
+}
+
+body>header>nav menu>li>label>a:hover>i,
+body>header>nav menu>li>div>a:hover>i{
 	transform:var(--tessefakt-icon-transform);
 }
 
-body>header>menu input[type="checkbox"]+label:hover>span,
-body>header>menu input[type="radio"]+label:hover>span,
-body>header>menu a:hover>span{
+body>header>nav menu>li>label>a:hover>span,
+body>header>nav menu>li>div>a:hover>span{
 	text-decoration:underline;
 }
 
-body>header>menu input[type="checkbox"]+label:focus>i,
-body>header>menu input[type="radio"]+label:focus>i,
-body>header>menu a:focus>i{
+body>header>nav menu>li>label>a:focus>i,
+body>header>nav menu>li>div>a:focus>i{
 	transform:var(--tessefakt-icon-transform);
 }
 
-body>header>menu input[type="checkbox"]+label:focus>span,
-body>header>menu input[type="radio"]+label:focus>span,
-body>header>menu a:focus>span{
+body>header>nav menu>li>label>a:focus>span,
+body>header>nav menu>li>div>a:focus>span{
 	text-decoration:underline;
 }
 
-body>header>menu a[data-tessefakt-state="active"]>i{
+body>header>nav menu>li>label>a[data-tessefakt-state="active"]>i,
+body>header>nav menu>li>div>a[data-tessefakt-state="active"]>i{
 	transform:var(--tessefakt-icon-transform);
 }
 
-body>header>menu input[type="checkbox"]+label::after{
+body>header>nav menu>li>input[type="checkbox"]+label::before{
 	content:'\2bc8';
-	display:block;
-	grid-column:3/4;
+	display:inline-block;
+	grid-column:1/2;
 	grid-row:1/2;
+	line-height:calc(var(--tessefakt-font-size) * var(--tessefakt-line-height) + 2 * .25rem);
 	font-size:.75em;
 	text-align:center;
 	transform-origin:50% 50%;
-	transition:transform var(--tessefakt-transition-time);
 }
 
-body>header>menu input[type="checkbox"]:checked+label::after{
+body>header>nav menu>li>input[type="checkbox"]:focus+label::before,
+body>header>nav menu>li>label:not(:has(a:hover)):hover::before{
+	color:var(--tessefakt-color-header-menu-hover-fore);
+	background:var(--tessefakt-color-header-menu-hover-back);
+}
+
+body>header>nav menu>li>input[type="checkbox"]:checked+label::before{
 	transform:rotate(90deg);
 }
 
-body>header>menu input[type="checkbox"]:checked+label+div{
-	grid-template-rows:1fr;
-	opacity:1;
-	transform:none;
+body>header>nav menu>li>input[type="checkbox"]:checked+label+nav{
+	display:block;
 }
 
 body>main{

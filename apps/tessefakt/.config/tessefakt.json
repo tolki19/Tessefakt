@@ -31,9 +31,6 @@
 				}
 			},
 			{
-				"type": "sep"
-			},
-			{
 				"type": "group",
 				"caption": "Einstellungen",
 				"icon": {
@@ -66,9 +63,6 @@
 						}
 					}
 				]
-			},
-			{
-				"type": "sep"
 			},
 			{
 				"type": "group",
