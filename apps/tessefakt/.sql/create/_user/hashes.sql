@@ -8,4 +8,4 @@ CREATE TABLE `_user-hashes` (
   `valid_till` date default null,
   primary key(`id`),
   key(`_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci comment="tessefakt_13.0-tessefakt_13.0";
