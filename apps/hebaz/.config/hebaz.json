@@ -9,7 +9,8 @@
 		"caption": "Gifhorn"
 	},
 	"paths": {
-		"tpl": "assets/.tpl"
+		"tpl": "assets/.tpl",
+		"sql": ".sql"
 	},
 	"defaults": {
 		"entrances": {

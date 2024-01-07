@@ -9,6 +9,7 @@
 		"caption": "Komisch"
 	},
 	"paths": {
+		"tpl": "assets/.tpl",
 		"sql": ".sql"
 	},
 	"navigation": {
