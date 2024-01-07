@@ -6,6 +6,6 @@ CREATE TABLE `midwife-vacancy-services` (
 	`public-remark` text NULL,
 	`internal-remark` text NULL,
 	primary key(`id`),
-	key(`midwife-service`),
+	key(`midwife-vacancy`),
 	key(`service`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4-unicode-ci comment="tessefakt_13.0-hebaz_5.0";
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci comment="tessefakt_13.0-hebaz_5.0";

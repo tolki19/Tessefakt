@@ -6,5 +6,5 @@ CREATE TABLE `statics` (
 	`internal-caption` varchar(255) NOT NULL,
 	`internal-remark` text NULL,
 	primary key(`id`),
-	primary key(`keystring`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4-unicode-ci comment="tessefakt_13.0-hebaz_5.0";
+	key(`keystring`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci comment="tessefakt_13.0-hebaz_5.0";

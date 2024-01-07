@@ -5,7 +5,7 @@ CREATE TABLE `applications` (
 	`last_name` varchar(255) NOT NULL,
 	`birthdate` date NOT NULL,
 	`deliverydate` date NULL,
-	`public-remark` text NULL,
+	`remark` text NULL,
 	`agreement-gtoc` date NOT NULL,
 	`agreement-gdpr` date NOT NULL,
 	`agreement-email` date NULL,
@@ -14,6 +14,5 @@ CREATE TABLE `applications` (
 	`withdrawal-email` date NULL,
 	`public-remark` text NULL,
 	`internal-remark` text NULL,
-	primary key(`id`),
-	key(`keystring`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4-unicode-ci comment="tessefakt_13.0-hebaz_5.0";
+	primary key(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci comment="tessefakt_13.0-hebaz_5.0";
