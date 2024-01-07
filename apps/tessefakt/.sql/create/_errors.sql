@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `_errors`;
 CREATE TABLE `_errors` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `__user` int(10) UNSIGNED DEFAULT NULL,
+  `__user` int(10) UNSIGNED NULL,
   `timestamp` datetime not null,
   `error` text not null,
   `remark` text null,

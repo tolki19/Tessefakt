@@ -1,11 +1,11 @@
 DROP TABLE IF EXISTS `_user-emails`;
 CREATE TABLE `_user-emails` (
   `id` int(10) UNSIGNED NOT NULL auto_increment,
-  `_user` int(10) UNSIGNED DEFAULT NULL,
+  `_user` int(10) UNSIGNED not NULL,
   `email` varchar(255) NOT NULL,
-  `order` int(10) not null default 0,
+  `order` int(10) not null,
   `valid_from` date not null,
-  `valid_till` date default null,
+  `valid_till` date null,
   primary key(`id`),
   key(`_user`),
   key(`email`)
