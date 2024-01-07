@@ -6,6 +6,7 @@ create table `_app-tpl_touches` (
 	`timestamp` datetime not null,
 	`touch` enum("create","read","update","delete"),
 	`tpl` varchar(64) not null,
+	`div` varchar(64) null,
 	`remark` text null,
 	primary key(`id`),
 	key(`_app`),
