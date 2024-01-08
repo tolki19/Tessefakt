@@ -1,6 +1,7 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
-class hash extends \tessefakt\library{
+class hashes
+ extends \tessefakt\library{
 	public function create(int $user,array $data):int{
 		return $this->_create($user,$data['password']);
 	}

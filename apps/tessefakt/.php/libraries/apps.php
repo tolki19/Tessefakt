@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
-class app extends \tessefakt\library{
+class apps extends \tessefakt\library{
 	public function create(array $data):int{
 		return $this->_create(
 			$data['key'],

@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
-class error extends \tessefakt\library{
+class errors extends \tessefakt\library{
 	public function create(int|string|null $user,array $data):int{
 		return $this->_create(
 			$user,

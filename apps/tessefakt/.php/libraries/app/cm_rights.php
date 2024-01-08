@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\app;
-class cm_right extends \tessefakt\library{
+class cm_rights extends \tessefakt\library{
 	public function create(int $app,array $data):int{
 		return $this->_create(
 			$app,

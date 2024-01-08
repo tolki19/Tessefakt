@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
-class email extends \tessefakt\library{
+class emails extends \tessefakt\library{
 	public function create(int $user,array $data):int{
 		return $this->_create($data['email']);
 	}

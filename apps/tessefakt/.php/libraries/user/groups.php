@@ -1,6 +1,6 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
-class group extends \tessefakt\library{
+class groups extends \tessefakt\library{
 	public function create(int $user,int $group,array $data):int{
 		return $this->_create(
 			$user,
