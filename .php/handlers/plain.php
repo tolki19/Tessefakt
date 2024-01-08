@@ -22,41 +22,63 @@ class plain extends \tessefakt\handler{
 		$this->response->op['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
 $this->apps->tessefakt->libraries->install->create_structure();
 $this->apps->hebaz->libraries->install->create_structure();
-		if(isset($this->env->get['app'])) $sApp=$this->env->get['app'];
-		else $sApp=$this->setup['defaults']['app'];
-		$sEntrance='plain';
-		if(isset($this->env->get['controller'])&&isset($this->env->get['controller'])){
+		if(
+			isset($this->env->get['app'])&&
+			isset($this->env->get['controller'])&&
+			isset($this->env->get['method'])
+		){
+			$sApp=$this->env->get['app'];
+			$sEntrance='plain';
 			$sController=$this->env->get['controller'];
 			$sMethod=$this->env->get['method'];
-		}elseif(isset($this->setup['defaults']['controller'])&&isset($this->setup['defaults']['method'])){
+			$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
+			$this->response->op['address']=[
+				'app'=>$sApp,
+				'entrance'=>$sEntrance,
+				'controller'=>$sController,
+				'method'=>$sMethod
+			];
+			$this->reply();
+		}
+		if(isset($this->env->get['app'])){
+			 $sApp=$this->env->get['app'];
+		}else{
+			$sApp=$this->setup['defaults']['app'];
+		}
+		$sEntrance='plain';
+		if(
+			isset($this->setup['defaults']['controller'])&&
+			isset($this->setup['defaults']['method'])
+		){
 			$sController=$this->setup['defaults']['controller'];
 			$sMethod=$this->setup['defaults']['method'];
 		}else{
 			$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
 			$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
 		}
-		$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
-		$this->response->op['address']=[
-			'app'=>$sApp,
-			'entrance'=>$sEntrance,
-			'controller'=>$sController,
-			'method'=>$sMethod
-		];
-// $this->apps
-		$this->reply();
+		$this->response->data=['location'=>compileurl($this->tessefakt->setup['urls']['target'].'?app='.$sApp.'&controller='.$sController.'&method='.$sMethod)];
+		$this->reply(303);
 	}
 	protected function _reply(int $status):void{
-		if(headers_sent()&&$status<500) throw new \Exception('Output from other source');
-		if($this->response->success===null||$status<200||$status>=300) $this->response->success=false;
-		http_response_code($status);
-		header('Content-Type: text/html');
-		if(count($this->response->exception)){
-			$this->response->op['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/exception.php');
-		}else{
-			$this->response->op['tpls']['index']=compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php');
+		switch(floor($status/100)*100){
+			case 200:
+				if(headers_sent()) throw new \Exception('Output from other source');
+				http_response_code($status);
+				header('Content-Type: text/html');
+				$this->_include(compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/index.php'));
+				die();
+			case 300:
+				http_response_code($status);
+				header('Location: '.$this->response->data['location']);
+				die();
+			default:
+				if(headers_sent()) throw new \Exception('Output from other source');
+				if(is_null($this->response->success)) $this->response->success=false;
+				http_response_code($status);
+				header('Content-Type: text/html');
+				$this->_include(compilepath($this->_oTessefakt->setup['paths']['tpl'].'/plain/exception.php'));
+				die();
 		}
-		$this->_include($this->response->op['tpls']['index']);
-		die();
 	}
 	protected function _include(string $path,array $space=[],bool $return=false):string|bool{
 		if(!$return) ob_start();
