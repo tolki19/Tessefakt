@@ -7,6 +7,7 @@ CREATE TABLE `_app-cm_rights` (
 	`controller` varchar(64) not null,
 	`method` varchar(64) null,
 	`right_execute` tinyint(1) NULL,
+	`remark` text null,
 	primary key(`id`),
 	key(`_app`),
 	key(`_group`),

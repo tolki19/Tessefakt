@@ -11,6 +11,7 @@ CREATE TABLE `_app-db_rights` (
 	`right_read` tinyint(1) NULL,
 	`right_update` tinyint(1) NULL,
 	`right_delete` tinyint(1) NULL,	primary key(`id`),
+	`remark` text null,
 	key(`_app`),
 	key(`_group`),
 	key(`_user`),
