@@ -8,6 +8,7 @@ class install extends \tessefakt\library{
 	public function create_data():void{
 	}
 	public function translate_data():void{
+var_dump($this->connectors->migrate->query('select * from midwives'));
 	}
 	protected function _filesystem(string $path):array|false{
 		if(!($aFiles=scandir($path))) return false;
