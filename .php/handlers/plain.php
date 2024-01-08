@@ -22,10 +22,19 @@ class plain extends \tessefakt\handler{
 		$this->response->op['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
 $this->apps->tessefakt->libraries->install->create_structure();
 $this->apps->hebaz->libraries->install->create_structure();
-		$sApp=$this->setup['defaults']['app'];
+		if(isset($this->env->get['app'])) $sApp=$this->env->get['app'];
+		else $sApp=$this->setup['defaults']['app'];
 		$sEntrance='plain';
-		$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
-		$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
+		if(isset($this->env->get['controller'])&&isset($this->env->get['controller'])){
+			$sController=$this->env->get['controller'];
+			$sMethod=$this->env->get['method'];
+		}elseif(isset($this->setup['defaults']['controller'])&&isset($this->setup['defaults']['method'])){
+			$sController=$this->setup['defaults']['controller'];
+			$sMethod=$this->setup['defaults']['method'];
+		}else{
+			$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
+			$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
+		}
 		$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
 		$this->response->op['address']=[
 			'app'=>$sApp,

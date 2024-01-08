@@ -15,8 +15,8 @@
 	"defaults": {
 		"entrances": {
 			"plain": {
-				"controller": "test",
-				"method": "test"
+				"controller": "main",
+				"method": "index"
 			}
 		}
 	},

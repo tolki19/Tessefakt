@@ -12,6 +12,14 @@
 		"tpl": "assets/.tpl",
 		"sql": ".sql"
 	},
+	"defaults": {
+		"entrances": {
+			"plain": {
+				"controller": "main",
+				"method": "index"
+			}
+		}
+	},
 	"navigation": {
 		"type": "group",
 		"caption": "tessefakt",
