@@ -1,7 +1,7 @@
 <?php switch($this->response->op['navigation']['type']){ 
 	case 'group': ?> 
 		<li>
-			<input type="checkbox" id="menu-<?=$this->response->op['iterator']; ?>">
+			<input type="checkbox" id="menu-<?=$this->response->op['iterator']; ?>" <?php if(true){ ?>checked<?php } ?>>
 			<label for="menu-<?=$this->response->op['iterator']; ?>">
 				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation-link.php')); ?>
 			</label>
@@ -27,7 +27,5 @@
 			<hr>
 		</li>
 		<?php break; ?> 
-	<?php default: ?> 
-<?php var_dump($this->response->op['navigation']); ?> 
-		<?php break; ?> 
+	<?php default: var_dump($this->response->op['navigation']); break; ?> 
 <?php } ?> 

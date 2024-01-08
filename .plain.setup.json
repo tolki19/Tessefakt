@@ -30,6 +30,13 @@
 					"password": "5AHENkIRUHOvrQHI",
 					"dbname": "tessefakt_13_230925",
 					"host": "localhost"
+				},
+				"migrate": {
+					"type": "mysqli",
+					"username": "tessefakt_13",
+					"password": "5AHENkIRUHOvrQHI",
+					"dbname": "tessefakt_13-hebaz_alt",
+					"host": "localhost"
 				}
 			}
 		}
