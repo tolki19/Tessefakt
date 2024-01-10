@@ -5,6 +5,7 @@ CREATE TABLE `application-states` (
 	`state` enum("public","internal","secret") not null,
 	`from` date NULL,
 	`till` date NULL,
+	`public-remark` text null,
 	`internal-remark` text null,
 	primary key(`id`),
 	key(`application`)
