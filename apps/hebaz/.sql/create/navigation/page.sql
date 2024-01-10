@@ -4,7 +4,7 @@ CREATE TABLE `navigation-page` (
 	`navigation` int(10) unsigned NOT NULL,
 	`sort` int(10) unsigned NOT NULL,
 	`type` enum('homepage','page','midwives','events','caption') NOT NULL,
-	`page` int(10) unsigned not NULL,
+	`page` int(10) unsigned NULL,
 	`auto-speaking-url` tinyint(1) NOT NULL,
 	`speaking-url` varchar(255) NULL,
 	`auto-home` tinyint(1) NOT NULL,

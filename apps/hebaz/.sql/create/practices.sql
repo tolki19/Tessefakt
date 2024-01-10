@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS `practices`;
 CREATE TABLE `practices` (
 	`id` int(10) unsigned NOT NULL auto_increment,
 	`name` varchar(255) NOT NULL,
+	`keywords` text NULL,
 	`public-caption` varchar(255) NULL,
 	`public-remark` text NULL,
 	`internal-caption` varchar(255) NULL,

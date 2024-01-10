@@ -3,7 +3,7 @@ CREATE TABLE `statics` (
 	`id` int(10) unsigned NOT NULL auto_increment,
 	`keystring` varchar(255) NOT NULL,
 	`content` text NOT NULL,
-	`internal-caption` varchar(255) NOT NULL,
+	`internal-caption` varchar(255) NULL,
 	`internal-remark` text NULL,
 	primary key(`id`),
 	key(`keystring`)

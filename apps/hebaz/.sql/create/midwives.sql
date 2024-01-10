@@ -3,6 +3,7 @@ CREATE TABLE `midwives` (
 	`id` int(10) unsigned NOT NULL auto_increment,
 	`first_name` varchar(255) NOT NULL,
 	`last_name` varchar(255) NOT NULL,
+	`keywords` text NULL,
 	`public-caption` varchar(255) NULL,
 	`public-remark` text NULL,
 	`internal-caption` varchar(255) NULL,
