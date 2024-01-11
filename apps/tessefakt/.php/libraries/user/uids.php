@@ -1,10 +1,19 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
 class uids extends \tessefakt\library{
-	public function create(int $user,array $data):int{
-		return $this->_create($user,$data['uid']);
+	public function create(
+		int $user,
+		string $uid
+	):int{
+		return $this->_create(
+			user:$user,
+			uid:$uid
+		);
 	}
-	protected function _create_uid(int $user,string $uid):int{
+	protected function _create(
+		int $user,
+		string $uid
+	):int{
 		$this->connectors->db->query('
 			insert into `_user-uids`
 			set 

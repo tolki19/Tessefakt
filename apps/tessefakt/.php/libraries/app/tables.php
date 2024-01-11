@@ -1,15 +1,25 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\app;
 class tables extends \tessefakt\library{
-	public function create(int $app,array $data):int{
+	public function create(
+		int $app,
+		string $table,
+		string $state,
+		int $version
+	):int{
 		return $this->_create(
-			$app,
-			$data['table'],
-			'active',
-			1
+			app:$app,
+			table:$table,
+			state:$state,
+			version:$version
 		);
 	}
-	protected function _create(int $app,string $table,string $state,int $version):int{
+	protected function _create(
+		int $app,
+		string $table,
+		string $state,
+		int $version
+	):int{
 		$this->connectors->db->query('
 			insert into `_app-tables`
 			set

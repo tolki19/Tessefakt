@@ -1,10 +1,18 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
 class emails extends \tessefakt\library{
-	public function create(int $user,array $data):int{
-		return $this->_create($data['email']);
+	public function create(
+		int $user,
+		string $email
+	):int{
+		return $this->_create(
+			email:$email
+		);
 	}
-	protected function _create(int $user,string $email):int{
+	protected function _create(
+		int $user,
+		string $email
+	):int{
 		$this->connectors->db->query('
 			insert into `_user-emails` 
 			set 

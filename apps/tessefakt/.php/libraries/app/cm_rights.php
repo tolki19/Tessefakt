@@ -1,18 +1,34 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\app;
 class cm_rights extends \tessefakt\library{
-	public function create(int $app,int|null $group,int|null $user,array $data):int{
+	public function create(
+		int $app,
+		string $controller,
+		int|null $group=null,
+		int|null $user=null,
+		string|null $method=null,
+		string|int|null $right_execute=null,
+		string|null $remark=null
+	):int{
 		return $this->_create(
-			$app,
-			$group,
-			$user,
-			$data['controller'],
-			$data['method'],
-			$data['right_execute'],
-			$data['remark']
+			app:$app,
+			controller:$controller,
+			group:$group,
+			user:$user,
+			method:$method,
+			right_execute:$right_execute,
+			remark:$remark
 		);
 	}
-	protected function _create(int $app,int|null $group,int|null $user,string $controller,string|null $method,string|int|null $right_execute,string|null $remark):int{
+	protected function _create(
+		int $app,
+		string $controller,
+		int|null $group,
+		int|null $user,
+		string|null $method,
+		string|int|null $right_execute,
+		string|null $remark
+	):int{
 		$this->connectors->db->query('
 			insert into `_app-cm-rights`
 			set

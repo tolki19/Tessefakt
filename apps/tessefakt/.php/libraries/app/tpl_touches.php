@@ -1,18 +1,34 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\app;
 class tpl_touches extends \tessefakt\library{
-	public function create(int $app,int|null $user,array $data):int{
+	public function create(
+		int $app,
+		string $touch,
+		string $tpl,
+		int|null $user=null,
+		int|string|null $timestamp=null,
+		string|null $div=null,
+		string|null $remark=null
+	):int{
 		return $this->_create(
-			$app,
-			$user,
-			$data['timestamp'],
-			$data['touch'],
-			$data['tpl'],
-			$data['div'],
-			$data['remark']
+			app:$app,
+			touch:$touch,
+			tpl:$tpl,
+			user:$user,
+			timestamp:$timestamp,
+			div:$div,
+			remark:$remark
 		);
 	}
-	protected function _create(int $app,int|null $user,int|string|null $timestamp,string $touch,string $tpl,string|null $div,string|null $remark):int{
+	protected function _create(
+		int $app,
+		string $touch,
+		string $tpl,
+		int|null $user,
+		int|string|null $timestamp,
+		string|null $div,
+		string|null $remark
+	):int{
 		$this->connectors->db->query('
 			insert into `_app-tpl_touches`
 			set

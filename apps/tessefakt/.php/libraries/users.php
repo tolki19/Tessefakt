@@ -1,11 +1,24 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
 class users extends \tessefakt\library{
-	public function create(array $data):int{
+	public function create(
+		string|null $email=null,
+		string|null $uid=null,
+		string|null $password=null
+	):int{
 		$iUser=$this->_create();
-		$iEmail=$this->app->user_email->create($iUser,$data['email']);
-		$iUid=$this->app->user_uid->create($iUser,$data['uid']);
-		$iHash=$this->app->user_hash->create($iUser,$data['password']);
+		$iEmail=$this->app->user_email->create(
+			user:$iUser,
+			email:$email
+		);
+		$iUid=$this->app->user_uid->create(
+			user:$iUser,
+			uid:$uid
+		);
+		$iHash=$this->app->user_hash->create(
+			user:$iUser,
+			password:$password
+		);
 	}
 	protected function _create():int{
 		$this->connectors->db->query('

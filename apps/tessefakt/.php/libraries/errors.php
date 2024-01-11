@@ -1,15 +1,25 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
 class errors extends \tessefakt\library{
-	public function create(int|string|null $user,array $data):int{
+	public function create(
+		string $error,
+		int|string|null $user=null,
+		int|null $timestamp=null,
+		string|null $remark=null
+	):int{
 		return $this->_create(
-			$user,
-			$data['timestamp'],
-			$data['error'],
-			$data['remark']
+			error:$error,
+			user:$user,
+			timestamp:$timestamp,
+			remark:$remark
 		);
 	}
-	protected function _create(int|string|null $user,?int $timestamp,string $error,?string $remark):int{
+	protected function _create(
+		string $error,
+		int|string|null $user=null,
+		int|null $timestamp=null,
+		string|null $remark=null
+	):int{
 		$this->connectors->db->query('
 			insert into `_errors`
 			set 

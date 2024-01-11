@@ -1,20 +1,38 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
 class settings extends \tessefakt\library{
-	public function create(array $data):int{
+	public function create(
+		string $key,
+		string $caption,
+		string $keywords,
+		string $value,
+		int|null $app=null,
+		int|null $group=null,
+		int|null $user=null,
+		string|null $remark=null
+	):int{
 		$iSetting=$this->_create(
-			$data['_app']??null,
-			$data['_group']??null,
-			$data['_user']??null,
-			$data['key'],
-			$data['caption'],
-			$data['keywords'],
-			$data['value'],
-			$data['remark']??null
+			key:$key,
+			caption:$caption,
+			keywords:$keywords,
+			value:$value,
+			app:$app,
+			group:$group,
+			user:$user,
+			remark:$remark
 		);
 		return $iSetting;
 	}
-	protected function _create(int|null $app,int|null $group,int|null $user,string $key,string $caption,string $keywords,string $value,string|null $remark):int{
+	protected function _create(
+		string $key,
+		string $caption,
+		string $keywords,
+		string $value,
+		int|null $app,
+		int|null $group,
+		int|null $user,
+		string|null $remark
+	):int{
 		$this->connectors->db->query('
 			insert into `_settings`
 			set 

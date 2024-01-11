@@ -1,19 +1,37 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
 class tpl_rights extends \tessefakt\library{
-	public function create(int $app,int|null $group,int|null $user,array $data):int{
+	public function create(
+		int $app,
+		string $tpl,
+		int|null $group=null,
+		int|null $user=null,
+		string|null $div=null,
+		string|int|null $right_display=null,
+		string|int|null $right_input=null,
+		string|null $remark=null
+	):int{
 		return $this->_create(
-			$app,
-			$group,
-			$user,
-			$data['tpl'],
-			$data['div'],
-			$data['right_display'],
-			$data['right_input'],
-			$data['remark']
+			app:$app,
+			tpl:$tpl,
+			group:$group,
+			user:$user,
+			div:$div,
+			right_display:$right_display,
+			right_input:$right_input,
+			remark:$remark
 		);
 	}
-	protected function _create(int $app,int|null $group,int|null $user,string $tpl,string|null $div,string|int|null $right_display,string|int|null $right_input):int{
+	protected function _create(
+		int $app,
+		string $tpl,
+		int|null $group,
+		int|null $user,
+		string|null $div,
+		string|int|null $right_display,
+		string|int|null $right_input,
+		string|null $remark
+	):int{
 		$this->connectors->db->query('
 			insert into `_app-tpl-rights`
 			set

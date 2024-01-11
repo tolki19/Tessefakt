@@ -1,11 +1,19 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
-class hashes
- extends \tessefakt\library{
-	public function create(int $user,array $data):int{
-		return $this->_create($user,$data['password']);
+class hashes extends \tessefakt\library{
+	public function create(
+		int $user,
+		string $password
+	):int{
+		return $this->_create(
+			user:$user,
+			password:$password
+		);
 	}
-	protected function _create(int $user,string $password):int{
+	protected function _create(
+		int $user,
+		string $password
+	):int{
 		$this->connectors->db->query('
 			insert into `_user-hashes` 
 			set 

@@ -1,19 +1,37 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\app;
 class db_touches extends \tessefakt\library{
-	public function create(int $app,int|null $user,array $data):int{
+	public function create(
+		int $app,
+		string $touch,
+		string $table,
+		int|null $user=null,
+		int|string|null $timestamp=null,
+		int|null $set=null,
+		string|null $field=null,
+		string|null $remark=null
+	):int{
 		return $this->_create(
-			$app,
-			$user,
-			$data['timestamp'],
-			$data['touch'],
-			$data['table'],
-			$data['set'],
-			$data['field'],
-			$data['remark']
+			app:$app,
+			touch:$touch,
+			table:$table,
+			user:$user,
+			timestamp:$timestamp,
+			set:$set,
+			field:$field,
+			remark:$remark
 		);
 	}
-	protected function _create(int $app,int|null $user,int|string|null $timestamp,string $touch,string $table,int|null $set,string|null $field,string|null $remark):int{
+	protected function _create(
+		int $app,
+		string $touch,
+		string $table,
+		int|null $user,
+		int|string|null $timestamp,
+		int|null $set,
+		string|null $field,
+		string|null $remark
+	):int{
 		$this->connectors->db->query('
 			insert into `_app-db_touches`
 			set

@@ -1,12 +1,16 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
 class groups extends \tessefakt\library{
-	public function create(array $data):int{
+	public function create(
+		string $name
+	):int{
 		return $this->_create(
-			$data['name']
+			name:$name
 		);
 	}
-	protected function _create(string $name):int{
+	protected function _create(
+		string $name
+	):int{
 		$this->connectors->db->query('
 			insert into `_groups`
 			set 

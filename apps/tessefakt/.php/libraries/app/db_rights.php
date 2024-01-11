@@ -1,22 +1,46 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\app;
 class db_rights extends \tessefakt\library{
-	public function create(int $app,int|null $group,int|null $user,array $data):int{
+	public function create(
+		int $app,
+		string $table,
+		int|null $group=null,
+		int|null $user=null,
+		string|int|null $set=null,
+		string|null $field=null,
+		string|int|null $right_create=null,
+		string|int|null $right_read=null,
+		string|int|null $right_update=null,
+		string|int|null $right_delete=null,
+		string|null $remark=null
+	):int{
 		return $this->_create(
-			$app,
-			$group,
-			$user,
-			$data['table'],
-			$data['set'],
-			$data['field'],
-			$data['right_create'],
-			$data['right_read'],
-			$data['right_update'],
-			$data['right_delete'],
-			$data['remark']
+			app:$app,
+			table:$table,
+			group:$group,
+			user:$user,
+			set:$set,
+			field:$field,
+			right_create:$right_create,
+			right_read:$right_read,
+			right_update:$right_update,
+			right_delete:$right_delete,
+			remark:$remark
 		);
 	}
-	protected function _create(int $app,int|null $group,int|null $user,string $table,string|int|null $set,string|null $field,string|int|null $right_create,string|int|null $right_read,string|int|null $right_update,string|int|null $right_delete,string|null $remark):int{
+	protected function _create(
+		int $app,
+		string $table,
+		int|null $group,
+		int|null $user,
+		string|int|null $set,
+		string|null $field,
+		string|int|null $right_create,
+		string|int|null $right_read,
+		string|int|null $right_update,
+		string|int|null $right_delete,
+		string|null $remark
+	):int{
 		$this->connectors->db->query('
 			insert into `_app-db-rights`
 			set

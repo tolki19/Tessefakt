@@ -1,15 +1,25 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\user;
 class groups extends \tessefakt\library{
-	public function create(int $user,int $group,array $data):int{
+	public function create(
+		int $user,
+		int $group,
+		string|null $valid_from=null,
+		string|null $valid_till=null
+	):int{
 		return $this->_create(
-			$user,
-			$group,
-			$data['valid_from']??null,
-			$data['valid_till']??null
+			user:$user,
+			group:$group,
+			valid_from:$valid_from,
+			valid_till:$valid_till
 		);
 	}
-	protected function _create(int $user,int $group,?string $valid_from,?string $valid_till):int{
+	protected function _create(
+		int $user,
+		int $group,
+		string|null $valid_from,
+		string|null $valid_till
+	):int{
 		return $this->connectors->db->query('
 			insert into `_user-_group`
 			set 
