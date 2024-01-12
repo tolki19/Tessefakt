@@ -1,18 +1,29 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\midwife;
 class rights extends \tessefakt\library{
-	public function create(int $midwife,array $data):int{
+	public function create(
+		int $midwife,
+		int|null $_group,
+		int|null $_user,
+		int|string|null $from=null,
+		int|string|null $till=null,
+		string|null $internal_remark=null,
+		bool|int|null $right_create=null,
+		bool|int|null $right_read=null,
+		bool|int|null $right_update=null,
+		bool|int|null $right_delete=null
+	):int{
 		return $this->_create(
 			$midwife,
-			$data['_group']??null,
-			$data['_user']??null,
-			$data['from']??null,
-			$data['till']??null,
-			$data['internal-remark']??null,
-			$data['right_create']??null,
-			$data['right_read']??null,
-			$data['right_update']??null,
-			$data['right_delete']??null
+			_group:$_group,
+			_user:$_user,
+			from:$from,
+			till:$till,
+			internal_remark:$internal_remark,
+			right_create:$right_create,
+			right_read:$right_read,
+			right_update:$right_update,
+			right_delete:$right_delete
 		);
 	}
 	protected function _create(int $midwife,int|null $_group,int|null $_user,int|string|null $from,int|string|null $till,string|null $internal_remark,bool|int|null $right_create,bool|int|null $right_read,bool|int|null $right_update,bool|int|null $right_delete):int{

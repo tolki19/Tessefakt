@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `statics`;
 CREATE TABLE `statics` (
 	`id` int(10) unsigned NOT NULL auto_increment,
+	`keystring` varchar(64) NOT NULL,
 	`content` text NOT NULL,
 	`internal-caption` varchar(255) NULL,
 	`internal-remark` text NULL,

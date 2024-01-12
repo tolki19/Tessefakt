@@ -1,12 +1,17 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\application;
 class services extends \tessefakt\library{
-	public function create(int $application,array $data):int{
+	public function create(
+		int $application,
+		int $service,
+		string|null $public_remark=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$application,
-			$data['service'],
-			$data['public-remark']??null,
-			$data['internal-remark']??null
+			service:$service,
+			public_remark:$public_remark,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $application,int $service,string|null $public_remark,string|null $internal_remark):int{

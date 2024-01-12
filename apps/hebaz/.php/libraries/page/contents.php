@@ -1,15 +1,23 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\page;
 class contents extends \tessefakt\library{
-	public function create(int $page,array $data):int{
+	public function create(
+		int $page,
+		int $sort,
+		string $content,
+		int|string|null $from=null,
+		int|string|null $till=null,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$page,
-			$data['sort'],
-			$data['from']??null,
-			$data['till']??null,
-			$data['content'],
-			$data['internal-caption']??null,
-			$data['internal-remark']??null
+			sort:$sort,
+			from:$from,
+			till:$till,
+			content:$content,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $page,int $sort,int|string|null $from,int|string|null $till,string $content,string|null $internal_caption,string|null $internal_remark):int{

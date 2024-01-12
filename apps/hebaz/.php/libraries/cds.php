@@ -1,14 +1,21 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries;
 class cds extends \tessefakt\library{
-	public function create(array $data):int{
+	public function create(
+		int $sort,
+		string $name,
+		string|null $public_caption=null,
+		string|null $public_remark=null,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
-			$data['sort'],
-			$data['name'],
-			$data['public-caption']??null,
-			$data['public-remark']??null,
-			$data['internal-caption']??null,
-			$data['internal-remark']??null
+			sort:$sort,
+			name:$name,
+			public_caption:$public_caption,
+			public_remark:$public_remark,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $sort,string $name,string|null $public_caption,string|null $public_remark,string|null $internal_caption,string|null $internal_remark):int{

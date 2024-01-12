@@ -1,14 +1,21 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\application;
 class states extends \tessefakt\library{
-	public function create(int $application,array $data):int{
+	public function create(
+		int $application,
+		string $state,
+		int|string|null $from=null,
+		int|string|null $till=null,
+		string|null $public_remark=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$application,
-			$data['state'],
-			$data['from']??null,
-			$data['till']??null,
-			$data['public-remark']??null,
-			$data['internal-remark']??null
+			state:$state,
+			from:$from,
+			till:$till,
+			public_remark:$public_remark,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $application,string $state,int|string|null $from,int|string|null $till,string|null $public_remark,string|null $internal_remark):int{

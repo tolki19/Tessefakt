@@ -1,15 +1,23 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\page;
 class statics extends \tessefakt\library{
-	public function create(int $page,array $data):int{
+	public function create(
+		int $page,
+		int $static,
+		int $sort,
+		int|string|null $from=null,
+		int|string|null $till=null,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$page,
-			$data['static'],
-			$data['sort'],
-			$data['from']??null,
-			$data['till']??null,
-			$data['internal-caption']??null,
-			$data['internal-remark']??null
+			static:$static,
+			sort:$sort,
+			from:$from,
+			till:$till,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $page,int $static,int $sort,int|string|null $from,int|string|null $till,string|null $internal_caption,string|null $internal_remark):int{

@@ -1,19 +1,37 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries;
 class services extends \tessefakt\library{
-	public function create(int|null $service,array $data):int{
+	public function create(
+		int $sort,
+		string $name,
+		int|null $service=null,
+		string|null $keywords=null,
+		string|null $public_caption=null,
+		string|null $public_remark=null,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
-			$service,
-			$data['sort'],
-			$data['name'],
-			$data['keywords']??null,
-			$data['public-caption']??null,
-			$data['public-remark']??null,
-			$data['internal-caption']??null,
-			$data['internal-remark']??null,
+			sort:$sort,
+			name:$name,
+			service:$service,
+			keywords:$keywords,
+			public_caption:$public_caption,
+			public_remark:$public_remark,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark,
 		);
 	}
-	protected function _create(int|null $service,int $sort,string $name,string|null $keywords,string|null $public_caption,string|null $public_remark,string|null $internal_caption,string|null $internal_remark):int{
+	protected function _create(
+		int $sort,
+		string $name,
+		int|null $service,
+		string|null $keywords,
+		string|null $public_caption,
+		string|null $public_remark,
+		string|null $internal_caption,
+		string|null $internal_remark
+	):int{
 		$this->connectors->db->query('
 			insert into `services`
 			set

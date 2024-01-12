@@ -1,14 +1,21 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\application;
 class midwives extends \tessefakt\library{
-	public function create(int $application,array $data):int{
+	public function create(
+		int $application,
+		int $midwife,
+		int|string $bid_date,
+		int|string $award_date,
+		string|null $public_remark=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$application,
-			$data['midwife'],
-			$data['bid-date'],
-			$data['award-date'],
-			$data['public-remark']??null,
-			$data['internal-remark']??null
+			midwife:$midwife,
+			bid_date:$bid_date,
+			award_date:$award_date,
+			public_remark:$public_remark,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $application,int $midwife,int|string $bid_date,int|string $award_date,string|null $public_remark,string|null $internal_remark):int{

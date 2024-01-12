@@ -1,12 +1,17 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\midwife;
 class services extends \tessefakt\library{
-	public function create(int $midwife,array $data):int{
+	public function create(
+		int $midwife,
+		int $service,
+		string|null $public_remark=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$midwife,
-			$data['service'],
-			$data['public-remark']??null,
-			$data['internal_remark']??null
+			service:$service,
+			public_remark:$public_remark,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(int $midwife,int $service,string|null $public_remark,string $internal_remark):int{

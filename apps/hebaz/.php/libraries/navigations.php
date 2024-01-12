@@ -1,14 +1,22 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries;
 class navigations extends \tessefakt\library{
-	public function create(array $data):int{
+	public function create(
+		string $keystring,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
-			$data['keystring'],
-			$data['internal-caption']??null,
-			$data['internal-remark']??null
+			keystring:$keystring,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark
 		);
 	}
-	protected function _create(string $keystring,string|null $internal_caption,string|null $internal_remark):int{
+	protected function _create(
+		string $keystring,
+		string|null $internal_caption,
+		string|null $internal_remark
+	):int{
 		$this->connectors->db->query('
 			insert into `navigations`
 			set

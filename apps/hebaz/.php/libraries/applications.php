@@ -1,21 +1,35 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries;
 class applications extends \tessefakt\library{
-	public function create(array $data):int{
+	public function create(
+			string $first_name,
+			string $last_name,
+			int|string $birthdate,
+			int|string $agreement_gtoc,
+			int|string $agreement_gdpr,
+			int|string|null $deliverydate=null,
+			string|null $remark=null,
+			int|string|null $agreement_email=null,
+			int|string|null $withdrawal_gtoc=null,
+			int|string|null $withdrawal_gdpr=null,
+			int|string|null $withdrawal_email=null,
+			string|null $public_remark=null,
+			string|null $internal_remark=null
+		):int{
 		return $this->_create(
-			$data['first_name'],
-			$data['last_name'],
-			$data['birthdate'],
-			$data['deliverydate']??null,
-			$data['remark']??null,
-			$data['agreement-gtoc'],
-			$data['agreement-gdpr'],
-			$data['agreement-email']??null,
-			$data['withdrawal-gtoc']??null,
-			$data['withdrawal-gdpr']??null,
-			$data['withdrawal-email']??null,
-			$data['public-remark']??null,
-			$data['internal-remark']??null
+			first_name:$first_name,
+			last_name:$last_name,
+			birthdate:$birthdate,
+			deliverydate:$deliverydate,
+			remark:$remark,
+			agreement_gtoc:$agreement_gtoc,
+			agreement_gdpr:$agreement_gdpr,
+			agreement_email:$agreement_email,
+			withdrawal_gtoc:$withdrawal_gtoc,
+			withdrawal_gdpr:$withdrawal_gdpr,
+			withdrawal_email:$withdrawal_email,
+			public_remark:$public_remark,
+			internal_remark:$internal_remark
 		);
 	}
 	protected function _create(string $first_name,string $last_name,int|string $birthdate,int|string|null $deliverydate,string|null $remark,int|string $agreement_gtoc,int|string $agreement_gdpr,int|string|null $agreement_email,int|string|null $withdrawal_gtoc,int|string|null $withdrawal_gdpr,int|string|null $withdrawal_email,string|null $public_remark,string|null $internal_remark):int{

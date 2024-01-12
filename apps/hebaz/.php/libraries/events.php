@@ -1,17 +1,27 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries;
 class events extends \tessefakt\library{
-	public function create(int|null $event,array $data):int{
+	public function create(
+		string $name,
+		int|null $event=null,
+		string|int|null $from=null,
+		string|int|null $till=null,
+		string|null $keywords=null,
+		string|null $public_caption=null,
+		string|null $public_remark=null,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$event,
-			$data['name'],
-			$data['from']??null,
-			$data['till']??null,
-			$data['keywords']??null,
-			$data['public-caption']??null,
-			$data['public-remark']??null,
-			$data['internal-caption']??null,
-			$data['internal-remark']??null,
+			name:$name,
+			from:$from,
+			till:$till,
+			keywords:$keywords,
+			public_caption:$public_caption,
+			public_remark:$public_remark,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _create(int|null $event,string $name,string|int|null $from,string|int|null $till,string|null $keywords,string|null $public_caption,string|null $public_remark,string|null $internal_caption,string|null $internal_remark):int{

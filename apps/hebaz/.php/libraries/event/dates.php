@@ -1,12 +1,17 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries\event;
 class dates extends \tessefakt\library{
-	public function create(int $event,array $data):int{
+	public function create(
+		int $event,
+		int|string $datetime,
+		string|null $public_remark=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$event,
-			$data['datetime'],
-			$data['public-remark']??null,
-			$data['internal-remark']??null,
+			datetime:$datetime,
+			public_remark:$public_remark,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _create(int $event,int|string $datetime,string|null $public_remark,string|null $internal_remark):int{

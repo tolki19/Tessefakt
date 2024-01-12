@@ -1,19 +1,37 @@
 <?php
 namespace tessefakt\apps\hebaz\libraries;
 class languages extends \tessefakt\library{
-	public function create(int|null $language,array $data):int{
+	public function create(
+		int $sort,
+		string $name,
+		int|null $language=null,
+		string|null $keywords=null,
+		string|null $public_caption=null,
+		string|null $public_remark=null,
+		string|null $internal_caption=null,
+		string|null $internal_remark=null
+	):int{
 		return $this->_create(
 			$language,
-			$data['sort'],
-			$data['name'],
-			$data['keywords']??null,
-			$data['public-caption']??null,
-			$data['public-remark']??null,
-			$data['internal-caption']??null,
-			$data['internal-remark']??null,
+			sort:$sort,
+			name:$name,
+			keywords:$keywords,
+			public_caption:$public_caption,
+			public_remark:$public_remark,
+			internal_caption:$internal_caption,
+			internal_remark:$internal_remark,
 		);
 	}
-	protected function _create(int|null $language,int $sort,string $name,string|null $keywords,string|null $public_caption,string|null $public_remark,string|null $internal_caption,string|null $internal_remark):int{
+	protected function _create(
+		int $sort,
+		string $name,
+		int|null $language,
+		string|null $keywords,
+		string|null $public_caption,
+		string|null $public_remark,
+		string|null $internal_caption,
+		string|null $internal_remark
+	):int{
 		$this->connectors->db->query('
 			insert into `languages`
 			set
