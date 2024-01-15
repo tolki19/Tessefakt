@@ -54,12 +54,28 @@ class errors extends \tessefakt\library{
 		string|null $remark=null
 	):int{
 		$this->connectors->db->query('
-			insert into `_errors`
+			update `_errors`
 			set 
 				`__user`='.(is_null($user)?'null':'"'.$this->connectors->db->escape($user).'"').',
 				`timestamp`='.(is_null($timestamp)?'now()':'"'.$this->connectors->db->escape($timestamp).'"').',
 				`error`="'.$this->connectors->db->escape($error).'",
 				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
+			where `id`='.$id.'
+		');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_errors`
 			where `id`='.$id.'
 		');
 		return $id;

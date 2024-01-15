@@ -74,7 +74,7 @@ class cm_rights extends \tessefakt\library{
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			insert into `_app-cm-rights`
+			update `_app-cm-rights`
 			set
 				`_app`='.$app.',
 				`_group`='.($group??'null').',
@@ -83,6 +83,22 @@ class cm_rights extends \tessefakt\library{
 				`method`='.(is_null($method)?'null':'"'.$this->connectors->db->escape($method).'"').',
 				`right_execute`='.(is_null($right_execute)?'null':'"'.$this->connectors->db->escape($right_execute).'"').',
 				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
+			where `id`='.$id.'
+		');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_app-cm-rights`
 			where `id`='.$id.'
 		');
 		return $id;

@@ -98,4 +98,21 @@ class settings extends \tessefakt\library{
 		');
 		return $id;
 	}
+	public function delete(
+		int $id,
+	):int{
+		$iSetting=$this->_delete(
+			id:$id,
+		);
+		return $iSetting;
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_settings`
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }

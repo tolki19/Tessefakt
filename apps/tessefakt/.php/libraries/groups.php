@@ -39,4 +39,20 @@ class groups extends \tessefakt\library{
 		');
 		return $this->connectors->db->insert();
 	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_groups`
+			where `id`='.$id.'
+		');
+		return $this->connectors->db->insert();
+	}
 }

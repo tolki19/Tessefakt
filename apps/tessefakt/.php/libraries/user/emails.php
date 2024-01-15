@@ -6,6 +6,7 @@ class emails extends \tessefakt\library{
 		string $email
 	):int{
 		return $this->_create(
+			user:$user,
 			email:$email
 		);
 	}
@@ -40,6 +41,7 @@ class emails extends \tessefakt\library{
 	):int{
 		return $this->_update(
 			id:$id,
+			user:$user,
 			email:$email
 		);
 	}
@@ -55,6 +57,22 @@ class emails extends \tessefakt\library{
 				`email`="'.$this->connectors->db->escape($email).'",
 				`order`=0,
 				`valid_from`=curdate()
+			where `id`='.$id.'
+		');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_user-emails` 
 			where `id`='.$id.'
 		');
 		return $id;

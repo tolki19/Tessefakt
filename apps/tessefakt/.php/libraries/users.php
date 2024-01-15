@@ -42,8 +42,24 @@ class users extends \tessefakt\library{
 	):int{
 		// $this->connectors->db->query('
 		// 	update `_users`
-		// 	where `id`=default
+		// 	where `id`='.$id.'
 		// ');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_users`
+			where `id`='.$id.'
+		');
 		return $id;
 	}
 }

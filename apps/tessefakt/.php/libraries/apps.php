@@ -68,7 +68,7 @@ class apps extends \tessefakt\library{
 		string $caption
 	):int{
 		$this->connectors->db->query('
-			insert into `_apps`
+			update `_apps`
 			set 
 				`key`="'.$this->connectors->db->escape($key).'",
 				`name`="'.$this->connectors->db->escape($name).'",
@@ -76,6 +76,22 @@ class apps extends \tessefakt\library{
 				`minor`="'.$this->connectors->db->escape($minor).'",
 				`build`="'.$this->connectors->db->escape($build).'",
 				`caption`="'.$this->connectors->db->escape($caption).'"
+			where `id`='.$id.'
+		');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+		 	id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `_apps`
 			where `id`='.$id.'
 		');
 		return $id;
