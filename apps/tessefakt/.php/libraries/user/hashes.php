@@ -34,4 +34,31 @@ class hashes extends \tessefakt\library{
 		');
 		return $iId;
 	}
+	public function update(
+		int $id,
+		int $user,
+		string $password
+	):int{
+		return $this->_update(
+			id:$id,
+			user:$user,
+			password:$password
+		);
+	}
+	protected function _update(
+		int $id,
+		int $user,
+		string $password
+	):int{
+		$this->connectors->db->query('
+			update `_user-hashes` 
+			set 
+				`_user`='.$user.',
+				`type`="bcrypt",
+				`hash`="'.$this->hash->create($password).'",
+				`valid_from`=curdate()
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }

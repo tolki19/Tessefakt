@@ -31,4 +31,37 @@ class tables extends \tessefakt\library{
 		$iId=$this->connectors->db->insert();
 		return $iId;
 	}
+	public function update(
+		int $id,
+		int $app,
+		string $table,
+		string $state,
+		int $version
+	):int{
+		return $this->_update(
+			id:$id,
+			app:$app,
+			table:$table,
+			state:$state,
+			version:$version
+		);
+	}
+	protected function _update(
+		int $id,
+		int $app,
+		string $table,
+		string $state,
+		int $version
+	):int{
+		$this->connectors->db->query('
+			update `_app-tables`
+			set
+				`_app`='.$app.',
+				`table`="'.$this->connectors->db->escape($table).'",
+				`state`="'.$this->connectors->db->escape($state).'",
+				`version`="'.$this->connectors->db->escape($version).'"
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }

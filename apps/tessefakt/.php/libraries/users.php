@@ -19,6 +19,7 @@ class users extends \tessefakt\library{
 			user:$iUser,
 			password:$password
 		);
+		return $iUser;
 	}
 	protected function _create():int{
 		$this->connectors->db->query('
@@ -27,15 +28,22 @@ class users extends \tessefakt\library{
 				`id`=default
 		');
 		$iId=$this->connectors->db->insert();
-		foreach($groups as $iGroup){
-			$this->connectors->db->query('
-				insert into `_user-_group`
-				set 
-					`_user`='.$iId.',
-					`_group`='.$iGroup.',
-					`valid_from`=curdate()
-			');
-		}
 		return $iId;
+	}
+	public function update(
+		int $id,
+	):int{
+		return $this->_update(
+			id:$id
+		);
+	}
+	protected function _update(
+		int $id,
+	):int{
+		// $this->connectors->db->query('
+		// 	update `_users`
+		// 	where `id`=default
+		// ');
+		return $id;
 	}
 }

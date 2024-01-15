@@ -33,4 +33,30 @@ class emails extends \tessefakt\library{
 		');
 		return $iId;
 	}
+	public function update(
+		int $id,
+		int $user,
+		string $email
+	):int{
+		return $this->_update(
+			id:$id,
+			email:$email
+		);
+	}
+	protected function _update(
+		int $id,
+		int $user,
+		string $email
+	):int{
+		$this->connectors->db->query('
+			update `_user-emails` 
+			set 
+				`_user`='.$user.',
+				`email`="'.$this->connectors->db->escape($email).'",
+				`order`=0,
+				`valid_from`=curdate()
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }

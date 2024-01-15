@@ -33,4 +33,30 @@ class uids extends \tessefakt\library{
 		');
 		return $iId;
 	}
+	public function update(
+		int $id,
+		int $user,
+		string $uid
+	):int{
+		return $this->_update(
+			id:$id,
+			user:$user,
+			uid:$uid
+		);
+	}
+	protected function _update(
+		int $id,
+		int $user,
+		string $uid
+	):int{
+		$this->connectors->db->query('
+			update `_user-uids`
+			set 
+				`_user`='.$user.',
+				`uid`="'.$this->connectors->db->escape($uid).'",
+				`valid_from`=curdate()
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }
