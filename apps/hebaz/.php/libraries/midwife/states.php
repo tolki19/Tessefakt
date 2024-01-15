@@ -65,7 +65,24 @@ class states extends \tessefakt\library{
 				`midwife`='.$midwife.',
 				`state`="'.$this->connectors->db->escape($state).'",
 				`from`='.(is_null($from)?'null':(is_int($from)?'"'.date('Y-m-d H:i:s').'"':'"'.$this->connectors->db->escape($from).'"')).',
+				`till`='.(is_null($till)?'null':(is_int($till)?'"'.date('Y-m-d H:i:s').'"':'"'.$this->connectors->db->escape($till).'"')).',
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
+			where `id`='.$id.'
+		');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `midwife-states`
 			where `id`='.$id.'
 		');
 		return $id;

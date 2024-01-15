@@ -3,6 +3,7 @@ namespace tessefakt\apps\hebaz\libraries\midwife\occupancy;
 class midwives extends \tessefakt\library{
 	public function create(
 		int $midwife_occupancy,
+		int $midwife,
 		string|null $public_caption=null,
 		string|null $public_remark=null,
 		string|null $internal_caption=null,
@@ -19,6 +20,7 @@ class midwives extends \tessefakt\library{
 	}
 	protected function _create(
 		int $midwife_occupancy,
+		int $midwife,
 		string|null $public_caption,
 		string|null $public_remark,
 		string|null $internal_caption,
@@ -28,6 +30,7 @@ class midwives extends \tessefakt\library{
 			insert into `midwife-occupancy-midwives`
 			set
 				`midwife-occupancy`='.$midwife_occupancy.',
+				`midwife`='.$midwife.',
 				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').',
 				`public-remark`='.(is_null($public_remark)?'null':'"'.$this->connectors->db->escape($public_remark).'"').',
 				`internal-caption`='.(is_null($internal_caption)?'null':'"'.$this->connectors->db->escape($internal_caption).'"').',
@@ -39,6 +42,7 @@ class midwives extends \tessefakt\library{
 	public function update(
 		int $id,
 		int $midwife_occupancy,
+		int $midwife,
 		string|null $public_caption=null,
 		string|null $public_remark=null,
 		string|null $internal_caption=null,
@@ -57,6 +61,7 @@ class midwives extends \tessefakt\library{
 	protected function _update(
 		int $id,
 		int $midwife_occupancy,
+		int $midwife,
 		string|null $public_caption,
 		string|null $public_remark,
 		string|null $internal_caption,
@@ -66,10 +71,27 @@ class midwives extends \tessefakt\library{
 			update `midwife-occupancy-midwives`
 			set
 				`midwife-occupancy`='.$midwife_occupancy.',
+				`midwife`='.$midwife.',
 				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').',
 				`public-remark`='.(is_null($public_remark)?'null':'"'.$this->connectors->db->escape($public_remark).'"').',
 				`internal-caption`='.(is_null($internal_caption)?'null':'"'.$this->connectors->db->escape($internal_caption).'"').',
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
+			where `id`='.$id.'
+		');
+		return $id;
+	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `midwife-occupancy-midwives`
 			where `id`='.$id.'
 		');
 		return $id;

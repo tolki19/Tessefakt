@@ -88,4 +88,20 @@ class midwives extends \tessefakt\library{
 		');
 		return $id;
 	}
+	public function delete(
+		int $id,
+	):int{
+		return $this->_delete(
+			id:$id,
+		);
+	}
+	protected function _delete(
+		int $id,
+	):int{
+		$this->connectors->db->query('
+			delete `regions`
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }

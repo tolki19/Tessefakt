@@ -102,4 +102,23 @@ class page extends \tessefakt\library{
 		');
 		return $id;
 	}
+	public function delete(
+		int $id,
+		string|null $internal_remark=null
+	):int{
+		return $this->_delete(
+			id:$id,
+			internal_remark:$internal_remark
+		);
+	}
+	protected function _delete(
+		int $id,
+		string|null $internal_remark
+	):int{
+		$this->connectors->db->query('
+			delete `navigation-pages`
+			where `id`='.$id.'
+		');
+		return $id;
+	}
 }
