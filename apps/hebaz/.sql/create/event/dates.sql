@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS `event-dates`;
 CREATE TABLE `event-dates` (
 	`id` int(10) unsigned NOT NULL auto_increment,
 	`event` int(10) unsigned not NULL,
-	`datetime` date NULL,
+	`from` datetime NULL,
+	`till` datetime NULL,
 	`public-remark` text NULL,
 	`internal-remark` text NULL,
 	primary key(`id`),
