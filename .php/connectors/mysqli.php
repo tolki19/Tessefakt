@@ -26,7 +26,7 @@ class mysqli extends \tessefakt\connector{
 				return $this->__oConnection;
 		}
 	}
-	public function multi(string $query){
+	public function multi(string $query):array{
 		try{
 			$fStart=\microtime(true);
 			$this->connection->multi_query($query);
@@ -46,7 +46,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function query(string $query){
+	public function query(string $query):array{
 		try{
 			$fStart=\microtime(true);
 			$oResult=$this->connection->query($query);
@@ -62,7 +62,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function insert(){
+	public function insert():int{
 		try{
 			$fStart=\microtime(true);
 			return $this->connection->insert_id;
@@ -73,10 +73,10 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function escape(string $string){
+	public function escape(string $string):string{
 		return $this->connection->real_escape_string($string);
 	}
-	public function autocommit(bool $state=true){
+	public function autocommit(bool $state=true):bool{
 		try{
 			$fStart=\microtime(true);
 			$this->connection->autocommit($state);
@@ -90,7 +90,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function transaction(?string $name=null){
+	public function transaction(?string $name=null):bool{
 		try{
 			$fStart=\microtime(true);
 			$bReturn=$this->connection->begin_transaction(0,$name);
@@ -104,7 +104,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function savepoint(string $name){
+	public function savepoint(string $name):bool{
 		try{
 			$fStart=\microtime(true);
 			$bReturn=$this->connection->savepoint($name);
@@ -116,7 +116,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function commit(?string $name=null){
+	public function commit(?string $name=null):bool{
 		try{
 			$fStart=\microtime(true);
 			$bReturn=$this->connection->commit(0,$name);
@@ -130,7 +130,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function rollback(?string $name=null){
+	public function rollback(?string $name=null):bool{
 		try{
 			$fStart=\microtime(true);
 			$bReturn=$this->connection->rollback(0,$name);
@@ -142,7 +142,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function stats(){
+	public function stats():array{
 		return [
 			'queries'=>$this->_iQueries,
 			'time'=>$this->_fTime
