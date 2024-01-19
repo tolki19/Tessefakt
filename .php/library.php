@@ -5,12 +5,11 @@ class library{
 	protected $_oApp;
 	protected $_oLibraries;
 	protected $_oReflection;
-	protected $_aSubs=[];
+	protected $_oSubs;
 	public function __construct(\tessefakt $tessefakt,\tessefakt\app $app,\tessefakt\library_router $libraries){
 		$this->_oTessefakt=$tessefakt;
 		$this->_oApp=$app;
 		$this->_oLibraries=$libraries;
-		$this->_oReflection=new \ReflectionClass($this);
 	}
 	public function __get(string $key){
 		switch($key){
@@ -21,13 +20,19 @@ class library{
 			case 'connectors': return $this->_oApp->connectors;
 			case 'hash': return $this->_oApp->hash;
 			case 'key': return $this->_oApp->key;
-			case 'name': return $this->_oReflection->getName();
-			case 'dir': return dirname($this->_oReflection->getFileName());
+			case 'name':
+				if(!$this->_oReflection) $this->_oReflection=new \ReflectionClass($this);
+				return $this->_oReflection->getName();
+			case 'dir':
+				if(!$this->_oReflection) $this->_oReflection=new \ReflectionClass($this);
+				return dirname($this->_oReflection->getFileName());
 			case 'subs':
-				if(!array_key_exists($key,$this->_aSubs)){
-					$this->_aSubs[$key]=new ($this->_oReflection->getName().'\\'.$key)($this->_oTessefakt,$this->_oEntrance);
-				}
-				return $this->_aSubs[$key];
+				if(!$this->_oSubs) $this->_oSubs=new \tessefakt\library_router(
+					tessefakt:$this->_oTessefakt,
+					app:$this->_oApp,
+					library:$this,
+				);
+				return $this->_oSubs;
 		}
 		throw new \Exception('Unknown key');
 	}

@@ -46,7 +46,7 @@ class mysqli extends \tessefakt\connector{
 			$this->_fTime+=\microtime(true)-$fStart;
 		}
 	}
-	public function query(string $query):array{
+	public function query(string $query):array|true{
 		try{
 			$fStart=\microtime(true);
 			$oResult=$this->connection->query($query);

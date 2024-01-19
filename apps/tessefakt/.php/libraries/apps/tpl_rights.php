@@ -1,43 +1,47 @@
 <?php
-namespace tessefakt\apps\tessefakt\libraries\app;
-class tpl_touches extends \tessefakt\library{
+namespace tessefakt\apps\tessefakt\libraries\apps;
+class tpl_rights extends \tessefakt\library{
 	public function create(
 		int $app,
-		string $touch,
 		string $tpl,
+		int|null $group=null,
 		int|null $user=null,
-		int|string|null $timestamp=null,
 		string|null $div=null,
+		string|int|null $right_display=null,
+		string|int|null $right_input=null,
 		string|null $remark=null
 	):int{
 		return $this->_create(
 			app:$app,
-			touch:$touch,
 			tpl:$tpl,
+			group:$group,
 			user:$user,
-			timestamp:$timestamp,
 			div:$div,
+			right_display:$right_display,
+			right_input:$right_input,
 			remark:$remark
 		);
 	}
 	protected function _create(
 		int $app,
-		string $touch,
 		string $tpl,
+		int|null $group,
 		int|null $user,
-		int|string|null $timestamp,
 		string|null $div,
+		string|int|null $right_display,
+		string|int|null $right_input,
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			insert into `_app-tpl_touches`
+			insert into `_app-tpl-rights`
 			set
 				`_app`='.$app.',
-				`__user`='.($user??'null').',
-				`timestamp`='.(is_null($timestamp)?'curdate()':(is_int($timestamp)?'"'.date('Y-m-d H:i:s',$timestamp).'"':'"'.$this->connectors->db->escape($controller).'"')).',
-				`touch`="'.$this->connectors->db->escape($touch).'",
-				`tpl`="'.$this->connectors->db->escape($tpl).'",
+				`_group`='.($group??'null').',
+				`_user`='.($user??'null').',
+				`tpl`="'.$this->connectors->db->escape($table).'",
 				`div`='.(is_null($div)?'null':'"'.$this->connectors->db->escape($div).'"').',
+				`right_display`='.(is_null($right_display)?'null':'"'.$this->connectors->db->escape($right_display).'"').',
+				`right_input`='.(is_null($right_input)?'null':'"'.$this->connectors->db->escape($right_input).'"').',
 				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
 		');
 		$iId=$this->connectors->db->insert();
@@ -46,43 +50,47 @@ class tpl_touches extends \tessefakt\library{
 	public function update(
 		int $id,
 		int $app,
-		string $touch,
 		string $tpl,
+		int|null $group=null,
 		int|null $user=null,
-		int|string|null $timestamp=null,
 		string|null $div=null,
+		string|int|null $right_display=null,
+		string|int|null $right_input=null,
 		string|null $remark=null
 	):int{
 		return $this->_update(
 			id:$id,
 			app:$app,
-			touch:$touch,
 			tpl:$tpl,
+			group:$group,
 			user:$user,
-			timestamp:$timestamp,
 			div:$div,
+			right_display:$right_display,
+			right_input:$right_input,
 			remark:$remark
 		);
 	}
 	protected function _update(
 		int $id,
 		int $app,
-		string $touch,
 		string $tpl,
+		int|null $group,
 		int|null $user,
-		int|string|null $timestamp,
 		string|null $div,
+		string|int|null $right_display,
+		string|int|null $right_input,
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			update `_app-tpl_touches`
+			update `_app-tpl-rights`
 			set
 				`_app`='.$app.',
-				`__user`='.($user??'null').',
-				`timestamp`='.(is_null($timestamp)?'curdate()':(is_int($timestamp)?'"'.date('Y-m-d H:i:s',$timestamp).'"':'"'.$this->connectors->db->escape($controller).'"')).',
-				`touch`="'.$this->connectors->db->escape($touch).'",
-				`tpl`="'.$this->connectors->db->escape($tpl).'",
+				`_group`='.($group??'null').',
+				`_user`='.($user??'null').',
+				`tpl`="'.$this->connectors->db->escape($table).'",
 				`div`='.(is_null($div)?'null':'"'.$this->connectors->db->escape($div).'"').',
+				`right_display`='.(is_null($right_display)?'null':'"'.$this->connectors->db->escape($right_display).'"').',
+				`right_input`='.(is_null($right_input)?'null':'"'.$this->connectors->db->escape($right_input).'"').',
 				`remark`='.(is_null($remark)?'null':'"'.$this->connectors->db->escape($remark).'"').'
 			where `id`='.$id.'
 		');
@@ -99,7 +107,7 @@ class tpl_touches extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_app-tpl_touches`
+			delete `_app-tpl-rights`
 			where `id`='.$id.'
 		');
 		return $id;

@@ -21,8 +21,9 @@ class plain extends \tessefakt\handler{
 		$this->response->op['urls']['folder']=compileurl($this->tessefakt->setup['urls']['folder']);
 		$this->response->op['urls']['target']=compileurl($this->tessefakt->setup['urls']['target']);
 $this->apps->tessefakt->libraries->install->create_structure();
-$this->apps->hebaz->libraries->install->create_structure();
-$this->apps->hebaz->libraries->install->translate_data();
+$this->apps->tessefakt->libraries->install->create_data();
+// $this->apps->hebaz->libraries->install->create_structure();
+// $this->apps->hebaz->libraries->install->translate_data();
 		if(
 			isset($this->env->get['app'])&&
 			isset($this->env->get['controller'])&&

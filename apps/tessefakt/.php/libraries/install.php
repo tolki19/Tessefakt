@@ -13,7 +13,7 @@ foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile
 		// foreach(whatever){
 		// 	$aSettings=$this->app->settings->create();
 		// }
-		$aApps['tessefakt']=$this->app->libraries->app->create(
+		$aApps['tessefakt']=$this->app->libraries->apps->create(
 			key:'tessefakt',
 			name:$this->tessefakt->setup['apps']['tessefakt']['app']['name'],
 			major:$this->tessefakt->setup['apps']['tessefakt']['version']['major'],
@@ -21,19 +21,47 @@ foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile
 			build:$this->tessefakt->setup['apps']['tessefakt']['version']['build'],
 			caption:$this->tessefakt->setup['apps']['tessefakt']['version']['caption']
 		);
-		$this->app->libraries->app->tables->create(
-			$aApps['tessefakt'],
-			['_apps','_groups','_users','_user-_group','_errors','_user-uids','_user-emails','_user-hashes','_app-tables','_app-db-touches','_app-tpl-touches','_app-controller-method-touches','_app-tpl-rights','_app-_group-tpl-rights','_app-_user-tpl-rights','_app-db-rights','_app-_group-db-rights','_app-_user-db-rights','_app-controller-method-rights','_app-_group-controller-method-rights','_app-_user-controller-method-rights','_settings','_group-_setting','_user-_setting','_user-email-state','_user-uid-state','_user-hash-state']
-		);
-		$aGroups['admin']=$this->app->libraries->group->create(
+		$aTables=['_apps','_groups','_users','_user-_group','_errors','_user-uids','_user-emails','_user-hashes','_app-tables','_app-db-touches','_app-tpl-touches','_app-controller-method-touches','_app-tpl-rights','_app-_group-tpl-rights','_app-_user-tpl-rights','_app-db-rights','_app-_group-db-rights','_app-_user-db-rights','_app-controller-method-rights','_app-_group-controller-method-rights','_app-_user-controller-method-rights','_settings','_group-_setting','_user-_setting','_user-email-state','_user-uid-state','_user-hash-state'];
+		foreach($aTables as $sTable){
+			$this->app->libraries->apps->subs->tables->create(
+				app:$aApps['tessefakt'],
+				table:$sTable,
+				version:"1.0.0",
+			);
+		}
+		$aGroups['admin']=$this->app->libraries->groups->create(
 			name:'Admins'
 		);
-		$aUsers['florian']=$this->app->libraries->user->create(
+		$aUsers['florian']=$this->app->libraries->users->create();
+		$this->app->libraries->users->subs->emails->create(
+			user:$aUsers['florian'],
 			email:'florian.kerl@gadvelop.de',
-			uid:'Florian',
-			password:'Sxuyq783!'
+			sort:0,
 		);
-		$this->app->libraries->user->groups->create(
+		$this->app->libraries->users->subs->emails->create(
+			user:$aUsers['florian'],
+			email:'info@gadvelop.de',
+			sort:0,
+		);
+		$this->app->libraries->users->subs->emails->create(
+			user:$aUsers['florian'],
+			email:'info@tolk.de',
+			sort:-10,
+		);
+		$this->app->libraries->users->subs->emails->create(
+			user:$aUsers['florian'],
+			email:'ft@tolk.de',
+			sort:758,
+		);
+		$this->app->libraries->users->subs->uids->create(
+			user:$aUsers['florian'],
+			uid:'Florian',
+		);
+		$this->app->libraries->users->subs->hashes->create(
+			user:$aUsers['florian'],
+			password:'Sxuyq783!',
+		);
+		$this->app->libraries->users->subs->groups->create(
 			user:$aUsers['florian'],
 			group:$aGroups['admin']
 		);

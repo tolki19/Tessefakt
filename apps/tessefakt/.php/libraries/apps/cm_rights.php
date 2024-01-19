@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\libraries\app;
+namespace tessefakt\apps\tessefakt\libraries\apps;
 class cm_rights extends \tessefakt\library{
 	public function create(
 		int $app,

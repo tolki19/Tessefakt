@@ -1,31 +1,32 @@
 <?php
-namespace tessefakt\apps\tessefakt\libraries\user;
-class uids extends \tessefakt\library{
+namespace tessefakt\apps\tessefakt\libraries\users;
+class hashes extends \tessefakt\library{
 	public function create(
 		int $user,
-		string $uid
+		string $password
 	):int{
 		return $this->_create(
 			user:$user,
-			uid:$uid
+			password:$password
 		);
 	}
 	protected function _create(
 		int $user,
-		string $uid
+		string $password
 	):int{
 		$this->connectors->db->query('
-			insert into `_user-uids`
+			insert into `_user-hashes` 
 			set 
 				`_user`='.$user.',
-				`uid`="'.$this->connectors->db->escape($uid).'",
+				`type`="bcrypt",
+				`hash`="'.$this->hash->create($password).'",
 				`valid_from`=curdate()
-		');
+			');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
-			insert into `_user-uid-state`
+			insert into `_user-hash-state`
 			set
-				`_user-uid`='.$iId.',
+				`_user-hash`='.$iId.',
 				`state`="waiting",
 				`timestamp`=now(),
 				`remark`=null,
@@ -36,24 +37,25 @@ class uids extends \tessefakt\library{
 	public function update(
 		int $id,
 		int $user,
-		string $uid
+		string $password
 	):int{
 		return $this->_update(
 			id:$id,
 			user:$user,
-			uid:$uid
+			password:$password
 		);
 	}
 	protected function _update(
 		int $id,
 		int $user,
-		string $uid
+		string $password
 	):int{
 		$this->connectors->db->query('
-			update `_user-uids`
+			update `_user-hashes` 
 			set 
 				`_user`='.$user.',
-				`uid`="'.$this->connectors->db->escape($uid).'",
+				`type`="bcrypt",
+				`hash`="'.$this->hash->create($password).'",
 				`valid_from`=curdate()
 			where `id`='.$id.'
 		');
@@ -70,7 +72,7 @@ class uids extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_user-uids`
+			delete `_user-hashes` 
 			where `id`='.$id.'
 		');
 		return $id;

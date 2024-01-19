@@ -9,20 +9,22 @@
 			<li>
 				<i><?=htmlentities($aTrace['file'],\ENT_QUOTES); ?>:<?=htmlentities($aTrace['line'],\ENT_QUOTES); ?></i>
 				<sub>
-					<?=htmlentities($aTrace['class'],\ENT_QUOTES); ?>=&gt;<?=htmlentities($aTrace['function'],\ENT_QUOTES); ?>
-					(<?=htmlentities(implode(',',
-						array_map(
-							function($value)use(&$aArrays){ 
-								if(is_object($value)) return '(object) ['.(new ReflectionClass($value))->getName().']'; 
-								elseif(is_array($value)){ 
-									$aArrays[]=$value;
-									return '(array) [#'.count($aArrays).']';
-								}elseif(is_string($value)) return'(string) ["'.$value.'"]';
-								return '('.gettype($value).') ['.$value.']';
-							},
-							$aTrace['args']
-						)
-					),\ENT_QUOTES);	?>)
+					<?php if(isset($aTrace['class'])) echo htmlentities($aTrace['class'],\ENT_QUOTES); ?>=&gt;<?=htmlentities($aTrace['function'],\ENT_QUOTES); ?> 
+					<?php if(isset($aTrace['args'])){ ?> 
+						(<?=htmlentities(implode(',',
+							array_map(
+								function($value)use(&$aArrays){ 
+									if(is_object($value)) return '(object) ['.(new ReflectionClass($value))->getName().']'; 
+									elseif(is_array($value)){ 
+										$aArrays[]=$value;
+										return '(array) [#'.count($aArrays).']';
+									}elseif(is_string($value)) return'(string) ["'.$value.'"]';
+									return '('.gettype($value).') ['.$value.']';
+								},
+								$aTrace['args']
+							)
+						),\ENT_QUOTES);	?>)
+					<?php } ?> 
 				</sub>
 			</li>
 		<?php } ?> 

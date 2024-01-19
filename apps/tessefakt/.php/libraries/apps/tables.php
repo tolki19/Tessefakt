@@ -1,11 +1,11 @@
 <?php
-namespace tessefakt\apps\tessefakt\libraries\app;
+namespace tessefakt\apps\tessefakt\libraries\apps;
 class tables extends \tessefakt\library{
 	public function create(
 		int $app,
 		string $table,
-		string $state,
-		int $version
+		string $version,
+		string $state="active",
 	):int{
 		return $this->_create(
 			app:$app,
@@ -17,8 +17,8 @@ class tables extends \tessefakt\library{
 	protected function _create(
 		int $app,
 		string $table,
+		string $version,
 		string $state,
-		int $version
 	):int{
 		$this->connectors->db->query('
 			insert into `_app-tables`
@@ -35,8 +35,8 @@ class tables extends \tessefakt\library{
 		int $id,
 		int $app,
 		string $table,
-		string $state,
-		int $version
+		string $version,
+		string $state="active",
 	):int{
 		return $this->_update(
 			id:$id,
@@ -50,8 +50,8 @@ class tables extends \tessefakt\library{
 		int $id,
 		int $app,
 		string $table,
+		string $version,
 		string $state,
-		int $version
 	):int{
 		$this->connectors->db->query('
 			update `_app-tables`

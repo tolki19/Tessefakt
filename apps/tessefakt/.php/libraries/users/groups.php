@@ -1,5 +1,5 @@
 <?php
-namespace tessefakt\apps\tessefakt\libraries\user;
+namespace tessefakt\apps\tessefakt\libraries\users;
 class groups extends \tessefakt\library{
 	public function create(
 		int $user,
@@ -25,8 +25,8 @@ class groups extends \tessefakt\library{
 			set 
 				`_user`='.$user.',
 				`_group`='.$group.',
-				`valid_from`='.(isnull($valid_from)?'curdate()':'"'.$this->connectors->db->escape($valid_from).'"').',
-				`valid_till`='.(isnull($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').'
+				`valid_from`='.(is_null($valid_from)?'curdate()':'"'.$this->connectors->db->escape($valid_from).'"').',
+				`valid_till`='.(is_null($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').'
 		');
 	}
 	public function update(
