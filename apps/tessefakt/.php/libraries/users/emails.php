@@ -100,7 +100,7 @@ class emails extends \tessefakt\library{
 				`sort`>@sort
 		');
 		$this->connectors->db->query('
-			select @sort:=least(greatest('.$sort.',0),ifnull(`reflection`.`count`,1))
+			select @sort:=least(greatest('.$sort.',0),ifnull(`reflection`.`count`,1)-if(`reflection`.`_user`='.$user.',1,0))
 			from `_users`
 			left join (
 				select
