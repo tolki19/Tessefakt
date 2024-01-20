@@ -61,3 +61,8 @@ function compileurl(string $url):string{
 	if(array_key_exists('fragment',$aParts)&&$aParts['fragment']) $sReturn.='#'.$aParts['fragment'];
 	return $sReturn;
 }
+function array_recombine(array $array,callable $callable):array{
+	$aReturn=[];
+	foreach($array as $mKey=>$mValue) $aReturn[]=$callable($mKey,$mValue);
+	return $aReturn;
+}
