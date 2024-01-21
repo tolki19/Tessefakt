@@ -29,7 +29,7 @@ class cds extends \tessefakt\library{
 		$this->connectors->db->query('
 			insert into `cds`
 			set
-				`sort`=$sort.',
+				`sort`='.$sort.',
 				`name`="'.$this->connectors->db->escape($name).'",
 				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').'
 				`public-remark`='.(is_null($public_remark)?'null':'"'.$this->connectors->db->escape($public_remark).'"').'
