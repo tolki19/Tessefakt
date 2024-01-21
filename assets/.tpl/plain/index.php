@@ -11,8 +11,8 @@
 		<link rel="manifest" href="<?=compileurl($this->response->op['urls']['folder'].'/assets/layout/site.webmanifest'); ?>">
 		<link rel="mask-icon" href="<?=compileurl($this->response->op['urls']['folder'].'/assets/layout/safari-pinned-tab.svg'); ?>" color="#5bbad5">
 		<link rel="shortcut icon" href="<?=compileurl($this->response->op['urls']['folder'].'/assets/layout/favicon.ico'); ?>">
-		<meta name="msapplication-TileColor" content="#2b5797">
-		<meta name="msapplication-config" content="<?=compileurl($this->response->op['urls']['folder'].'/assets/layout/browserconfig.xml'); ?>">
+		<meta name="msapplications-TileColor" content="#2b5797">
+		<meta name="msapplications-config" content="<?=compileurl($this->response->op['urls']['folder'].'/assets/layout/browserconfig.xml'); ?>">
 		<meta name="theme-color" content="#ffffff">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" href="<?=compileurl($this->response->op['urls']['folder'].'/assets/css/fonts/inter.css'); ?>" type="text/css">

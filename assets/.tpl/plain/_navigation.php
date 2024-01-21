@@ -3,7 +3,7 @@
 		<li>
 			<input type="checkbox" id="menu-<?=$this->response->op['iterator']; ?>" <?php if(true){ ?>checked<?php } ?>>
 			<label for="menu-<?=$this->response->op['iterator']; ?>">
-				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation-link.php')); ?>
+				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigations-link.php')); ?>
 			</label>
 			<nav>
 				<menu>
@@ -18,7 +18,7 @@
 	<?php case 'action': ?> 
 		<li>
 			<div>
-				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation-link.php')); ?>
+				<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigations-link.php')); ?>
 			</div>
 		</li>
 		<?php break; ?> 
