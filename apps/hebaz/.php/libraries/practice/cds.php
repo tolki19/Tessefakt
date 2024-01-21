@@ -107,7 +107,7 @@ class cds extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `practice-cds`
+			delete from `practice-cds`
 			where `id`='.$id.'
 		');
 		return $id;

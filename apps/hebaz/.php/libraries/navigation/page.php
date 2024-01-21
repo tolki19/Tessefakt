@@ -116,7 +116,7 @@ class page extends \tessefakt\library{
 		string|null $internal_remark
 	):int{
 		$this->connectors->db->query('
-			delete `navigation-pages`
+			delete from `navigation-pages`
 			where `id`='.$id.'
 		');
 		return $id;

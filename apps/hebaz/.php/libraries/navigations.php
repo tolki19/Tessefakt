@@ -67,7 +67,7 @@ class navigations extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `navigations`
+			delete from `navigations`
 			where `id`='.$id.'
 		');
 		return $id;

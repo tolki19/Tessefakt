@@ -77,7 +77,7 @@ class groups extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_groups`
+			delete from `_groups`
 			where `id`='.$id.'
 		');
 		return $this->connectors->db->insert();

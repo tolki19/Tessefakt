@@ -134,7 +134,7 @@ class tpl_rights extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_app-tpl_rights`
+			delete from `_app-tpl_rights`
 			where `id`='.$id.'
 		');
 		return $id;

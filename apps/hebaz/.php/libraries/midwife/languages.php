@@ -75,7 +75,7 @@ class languages extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `midwife-languages`
+			delete from `midwife-languages`
 			where `id`='.$id.'
 		');
 		return $id;

@@ -83,7 +83,7 @@ class emails extends \tessefakt\library{
 	):array{
 		return $this->connectors->db->query('
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
-			from `_app-cm_rights`
+			from `_user-emails`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
 			'.(is_null($order)||!count($order)?'':'order '.implode(',',array_recombine($order,function($key,$value){ return '`'.$key.'` '.(is_null($value)?'asc':$value); }))).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
@@ -148,7 +148,7 @@ class emails extends \tessefakt\library{
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
-			update `_user_emails`
+			update `_user-emails`
 			set `sort`=`sort`+1
 			where
 				`_user`='.$user.' and
@@ -173,7 +173,7 @@ class emails extends \tessefakt\library{
 			select 
 				@sort:=`sort`,
 				@dependency:=`_user`
-			from `user_emails`
+			from `_user-emails`
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
@@ -184,9 +184,14 @@ class emails extends \tessefakt\library{
 				`sort`>@sort
 		');
 		$this->connectors->db->query('
-			delete `_user-emails` 
+			delete from `_user-emails` 
 			where `id`='.$id.'
 		');
+		$this->connectors->db->query('
+			delete from `_user-email-state`
+			where `_user-email`='.$id.'
+		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 }

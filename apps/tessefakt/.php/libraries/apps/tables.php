@@ -102,7 +102,7 @@ class tables extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_app-tables`
+			delete from `_app-tables`
 			where `id`='.$id.'
 		');
 		return $id;

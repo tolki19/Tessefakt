@@ -126,7 +126,7 @@ class cm_touches extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_app-cm_touches`
+			delete from `_app-cm_touches`
 			where `id`='.$id.'
 		');
 		return $id;

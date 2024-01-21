@@ -75,7 +75,7 @@ class services extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `event-services`
+			delete from `event-services`
 			where `id`='.$id.'
 		');
 		return $id;

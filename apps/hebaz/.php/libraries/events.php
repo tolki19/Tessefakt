@@ -115,7 +115,7 @@ class events extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `events`
+			delete from `events`
 			where `id`='.$id.'
 		');
 		return $id;

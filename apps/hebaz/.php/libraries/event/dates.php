@@ -83,7 +83,7 @@ class dates extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `event-dates`
+			delete from `event-dates`
 			where `id`='.$id.'
 		');
 		return $id;

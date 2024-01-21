@@ -91,7 +91,7 @@ class cds extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `cds`
+			delete from `cds`
 			where `id`='.$id.'
 		');
 		return $id;

@@ -97,7 +97,7 @@ class uids extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_user-uids`
+			delete from `_user-uids`
 			where `id`='.$id.'
 		');
 		return $id;

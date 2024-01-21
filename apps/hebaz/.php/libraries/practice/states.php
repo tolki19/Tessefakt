@@ -83,7 +83,7 @@ class states extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `practice-states`
+			delete from `practice-states`
 			where `id`='.$id.'
 		');
 		return $id;

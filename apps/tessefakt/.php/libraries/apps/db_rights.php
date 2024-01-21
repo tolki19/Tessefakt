@@ -158,7 +158,7 @@ class db_rights extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_app-db_rights`
+			delete from `_app-db_rights`
 			where `id`='.$id.'
 		');
 		return $id;

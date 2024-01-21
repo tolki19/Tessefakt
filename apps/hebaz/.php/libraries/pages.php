@@ -67,7 +67,7 @@ class pages extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `pages`
+			delete from `pages`
 			where `id`='.$id.'
 		');
 		return $id;

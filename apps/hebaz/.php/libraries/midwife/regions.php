@@ -75,7 +75,7 @@ class regions extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `midwife-regions`
+			delete from `midwife-regions`
 			where `id`='.$id.'
 		');
 		return $id;

@@ -100,7 +100,7 @@ class groups extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_user-_group`
+			delete from `_user-_group`
 			where `id`='.$id.'
 		');
 		return $id;

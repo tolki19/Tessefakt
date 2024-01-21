@@ -99,7 +99,7 @@ class contents extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `page-contents`
+			delete from `page-contents`
 			where `id`='.$id.'
 		');
 		return $id;

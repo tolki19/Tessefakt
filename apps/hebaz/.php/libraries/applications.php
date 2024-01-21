@@ -147,7 +147,7 @@ class applications extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `applications`
+			delete from `applications`
 			where `id`='.$id.'
 		');
 		return $id;

@@ -83,7 +83,7 @@ class vacancies extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `midwife-vacancies`
+			delete from `midwife-vacancies`
 			where `id`='.$id.'
 		');
 		return $id;

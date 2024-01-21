@@ -99,7 +99,7 @@ class hashes extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_user-hashes` 
+			delete from `_user-hashes` 
 			where `id`='.$id.'
 		');
 		return $id;

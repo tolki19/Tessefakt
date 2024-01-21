@@ -123,7 +123,7 @@ class rights extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `midwife-rights`
+			delete from `midwife-rights`
 			where `id`='.$id.'
 		');
 		return $id;

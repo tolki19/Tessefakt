@@ -126,7 +126,7 @@ class tpl_touches extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_app-tpl_touches`
+			delete from `_app-tpl_touches`
 			where `id`='.$id.'
 		');
 		return $id;

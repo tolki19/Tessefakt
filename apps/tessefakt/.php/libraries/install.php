@@ -65,6 +65,7 @@ foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile
 			user:$aUsers['florian'],
 			group:$aGroups['admin']
 		);
+		$this->app->libraries->users->delete(id:$aUsers['florian']);
 	}
 	protected function _fs(string $path):array|false{
 		if(!($aFiles=scandir($path))) return false;

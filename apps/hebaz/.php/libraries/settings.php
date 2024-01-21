@@ -75,7 +75,7 @@ class settings extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `settings`
+			delete from `settings`
 			where `id`='.$id.'
 		');
 		return $id;

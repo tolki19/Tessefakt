@@ -95,7 +95,7 @@ class practices extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `practices`
+			delete from `practices`
 			where `id`='.$id.'
 		');
 		return $id;

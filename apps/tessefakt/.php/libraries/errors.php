@@ -102,7 +102,7 @@ class errors extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_errors`
+			delete from `_errors`
 			where `id`='.$id.'
 		');
 		return $id;

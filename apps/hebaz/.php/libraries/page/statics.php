@@ -99,7 +99,7 @@ class statics extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `page-statics`
+			delete from `page-statics`
 			where `id`='.$id.'
 		');
 		return $id;

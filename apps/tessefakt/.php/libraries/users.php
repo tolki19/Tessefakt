@@ -60,6 +60,10 @@ class users extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
+		foreach($this->subs->emails->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
+		foreach($this->subs->groups->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->groups->delete(id:$aSet['id']);
+		foreach($this->subs->hashes->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->hashes->delete(id:$aSet['id']);
+		foreach($this->subs->uids->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->uids->delete(id:$aSet['id']);
 		return $this->_delete(
 			id:$id
 		);
@@ -68,7 +72,7 @@ class users extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete `_users`
+			delete from `_users`
 			where `id`='.$id.'
 		');
 		return $id;
