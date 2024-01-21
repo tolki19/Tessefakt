@@ -2,7 +2,6 @@
 namespace tessefakt\apps\hebaz\libraries;
 class practices extends \tessefakt\library{
 	public function create(
-		int $sort,
 		string $name,
 		string|null $keywords=null,
 		string|null $public_caption=null,
@@ -20,7 +19,6 @@ class practices extends \tessefakt\library{
 		);
 	}
 	protected function _create(
-		int $sort,
 		string $name,
 		string|null $keywords,
 		string|null $public_caption,
@@ -43,7 +41,6 @@ class practices extends \tessefakt\library{
 	}
 	public function update(
 		int $id,
-		int $sort,
 		string $name,
 		string|null $keywords=null,
 		string|null $public_caption=null,
@@ -63,7 +60,6 @@ class practices extends \tessefakt\library{
 	}
 	protected function _update(
 		int $id,
-		int $sort,
 		string $name,
 		string|null $keywords,
 		string|null $public_caption,
