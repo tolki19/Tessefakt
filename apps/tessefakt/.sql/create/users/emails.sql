@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_user-emails`;
-CREATE TABLE `_user-emails` (
+DROP TABLE IF EXISTS `_users-emails`;
+CREATE TABLE `_users-emails` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_user` int(10) UNSIGNED not NULL,
 	`email` varchar(255) NOT NULL,

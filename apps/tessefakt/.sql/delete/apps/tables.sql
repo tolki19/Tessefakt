@@ -1,1 +1,1 @@
-drop table if exists `_app-tables`;
+drop table if exists `_apps-tables`;

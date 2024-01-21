@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_app-cm_rights`;
-CREATE TABLE `_app-cm_rights` (
+DROP TABLE IF EXISTS `_apps-cm_rights`;
+CREATE TABLE `_apps-cm_rights` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_app` int(10) unsigned NOT NULL,
 	`_group` int(10) UNSIGNED NULL,

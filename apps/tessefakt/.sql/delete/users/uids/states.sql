@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `_user-uid-state`;
+DROP TABLE IF EXISTS `_users-uids-state`;

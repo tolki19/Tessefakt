@@ -42,7 +42,7 @@ class db_rights extends \tessefakt\library{
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			insert into `_app-db_rights`
+			insert into `_apps-db_rights`
 			set
 				`_app`='.$app.',
 				`_group`='.($group??'null').',
@@ -80,7 +80,7 @@ class db_rights extends \tessefakt\library{
 	):array{
 		return $this->connectors->db->query('
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
-			from `_app-db_rights`
+			from `_apps-db_rights`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
 			'.(is_null($order)||!count($order)?'':'order '.implode(',',array_recombine($order,function($key,$value){ return '`'.$key.'` '.(is_null($value)?'asc':$value); }))).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
@@ -130,7 +130,7 @@ class db_rights extends \tessefakt\library{
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			update `_app-db_rights`
+			update `_apps-db_rights`
 			set
 				`_app`='.$app.',
 				`_group`='.($group??'null').',
@@ -158,7 +158,7 @@ class db_rights extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete from `_app-db_rights`
+			delete from `_apps-db_rights`
 			where `id`='.$id.'
 		');
 		return $id;

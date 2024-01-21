@@ -21,7 +21,7 @@ foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile
 			build:$this->tessefakt->setup['apps']['tessefakt']['version']['build'],
 			caption:$this->tessefakt->setup['apps']['tessefakt']['version']['caption']
 		);
-		$aTables=['_apps','_groups','_users','_user-_group','_errors','_user-uids','_user-emails','_user-hashes','_app-tables','_app-db-touches','_app-tpl-touches','_app-controller-method-touches','_app-tpl-rights','_app-_group-tpl-rights','_app-_user-tpl-rights','_app-db-rights','_app-_group-db-rights','_app-_user-db-rights','_app-controller-method-rights','_app-_group-controller-method-rights','_app-_user-controller-method-rights','_settings','_group-_setting','_user-_setting','_user-email-state','_user-uid-state','_user-hash-state'];
+		$aTables=['_apps','_groups','_users','_users-_group','_errors','_users-uids','_users-emails','_users-hashes','_apps-tables','_apps-db-touches','_apps-tpl-touches','_apps-controller-method-touches','_apps-tpl-rights','_apps-_group-tpl-rights','_apps-_users-tpl-rights','_apps-db-rights','_apps-_group-db-rights','_apps-_users-db-rights','_apps-controller-method-rights','_apps-_group-controller-method-rights','_apps-_users-controller-method-rights','_settings','_group-_setting','_users-_setting','_users-emails-state','_users-uids-state','_users-hashes-state'];
 		foreach($aTables as $sTable){
 			$this->app->libraries->apps->subs->tables->create(
 				app:$aApps['tessefakt'],

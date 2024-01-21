@@ -30,7 +30,7 @@ class tpl_touches extends \tessefakt\library{
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			insert into `_app-tpl_touches`
+			insert into `_apps-tpl_touches`
 			set
 				`_app`='.$app.',
 				`__user`='.($user??'null').',
@@ -64,7 +64,7 @@ class tpl_touches extends \tessefakt\library{
 	):array{
 		return $this->connectors->db->query('
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
-			from `_app-tpl_touches`
+			from `_apps-tpl_touches`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
 			'.(is_null($order)||!count($order)?'':'order '.implode(',',array_recombine($order,function($key,$value){ return '`'.$key.'` '.(is_null($value)?'asc':$value); }))).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
@@ -102,7 +102,7 @@ class tpl_touches extends \tessefakt\library{
 		string|null $remark
 	):int{
 		$this->connectors->db->query('
-			update `_app-tpl_touches`
+			update `_apps-tpl_touches`
 			set
 				`_app`='.$app.',
 				`__user`='.($user??'null').',
@@ -126,7 +126,7 @@ class tpl_touches extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete from `_app-tpl_touches`
+			delete from `_apps-tpl_touches`
 			where `id`='.$id.'
 		');
 		return $id;

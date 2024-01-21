@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `_user-_group`;
+DROP TABLE IF EXISTS `_users-_group`;

@@ -1,1 +1,1 @@
-drop table if exists `_app-db_touches`;
+drop table if exists `_apps-db_touches`;

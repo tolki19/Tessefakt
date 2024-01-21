@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `_user-hashes`;
+DROP TABLE IF EXISTS `_users-hashes`;

@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_app-tpl_rights`;
-CREATE TABLE `_app-tpl_rights` (
+DROP TABLE IF EXISTS `_apps-tpl_rights`;
+CREATE TABLE `_apps-tpl_rights` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_app` int(10) unsigned NOT NULL,
 	`_group` int(10) UNSIGNED NULL,

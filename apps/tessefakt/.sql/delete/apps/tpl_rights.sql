@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `_app-tpl_rights`;
+DROP TABLE IF EXISTS `_apps-tpl_rights`;

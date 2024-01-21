@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_user-hashes`;
-CREATE TABLE `_user-hashes` (
+DROP TABLE IF EXISTS `_users-hashes`;
+CREATE TABLE `_users-hashes` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_user` int(10) UNSIGNED not NULL,
 	`type` varchar(255) NOT NULL,

@@ -1,5 +1,5 @@
-drop table if exists `_app-tpl_touches`;
-create table `_app-tpl_touches` (
+drop table if exists `_apps-tpl_touches`;
+create table `_apps-tpl_touches` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_app` int(10) unsigned NOT NULL,
 	`__user` int(10) UNSIGNED NULL,

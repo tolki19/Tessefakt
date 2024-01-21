@@ -28,13 +28,13 @@ class emails extends \tessefakt\library{
 				select
 					`_user`,
 					count(*) `count`
-				from `_user-emails` `reflection`
+				from `_users-emails` `reflection`
 				group by `_user`
 			) `reflection` on `reflection`.`_user`=`_users`.`id`
 			where `_users`.`id`='.$user.'
 		');
 		$this->connectors->db->query('
-			insert into `_user-emails` 
+			insert into `_users-emails` 
 			set 
 				`_user`='.$user.',
 				`email`="'.$this->connectors->db->escape($email).'",
@@ -43,7 +43,7 @@ class emails extends \tessefakt\library{
 		');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
-			update `_user-emails`
+			update `_users-emails`
 			set `sort`=`sort`+1
 			where
 				`_user`='.$user.' and
@@ -51,9 +51,9 @@ class emails extends \tessefakt\library{
 				`id`!='.$iId.'
 		');
 		$this->connectors->db->query('
-			insert into `_user-email-state`
+			insert into `_users-emails-state`
 			set
-				`_user-email`='.$iId.',
+				`_users-email`='.$iId.',
 				`state`="waiting",
 				`timestamp`=now(),
 				`remark`=null,
@@ -83,7 +83,7 @@ class emails extends \tessefakt\library{
 	):array{
 		return $this->connectors->db->query('
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
-			from `_user-emails`
+			from `_users-emails`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
 			'.(is_null($order)||!count($order)?'':'order '.implode(',',array_recombine($order,function($key,$value){ return '`'.$key.'` '.(is_null($value)?'asc':$value); }))).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
@@ -116,11 +116,11 @@ class emails extends \tessefakt\library{
 			select 
 				@sort:=`sort`,
 				@dependency:=`_user`
-			from `_user-emails`
+			from `_users-emails`
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
-			update `_user-emails`
+			update `_users-emails`
 			set `sort`=`sort`-1
 			where
 				`_user`=@dependency and
@@ -133,13 +133,13 @@ class emails extends \tessefakt\library{
 				select
 					`_user`,
 					count(*) `count`
-				from `_user-emails` `reflection`
+				from `_users-emails` `reflection`
 				group by `_user`
 			) `reflection` on `reflection`.`_user`=`_users`.`id`
 			where `_users`.`id`='.$user.'
 		');
 		$this->connectors->db->query('
-			update `_user-emails` 
+			update `_users-emails` 
 			set 
 				`_user`='.$user.',
 				`email`="'.$this->connectors->db->escape($email).'",
@@ -148,7 +148,7 @@ class emails extends \tessefakt\library{
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
-			update `_user-emails`
+			update `_users-emails`
 			set `sort`=`sort`+1
 			where
 				`_user`='.$user.' and
@@ -173,23 +173,23 @@ class emails extends \tessefakt\library{
 			select 
 				@sort:=`sort`,
 				@dependency:=`_user`
-			from `_user-emails`
+			from `_users-emails`
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
-			update `_user-emails`
+			update `_users-emails`
 			set `sort`=`sort`-1
 			where
 				`_user`=@dependency and
 				`sort`>@sort
 		');
 		$this->connectors->db->query('
-			delete from `_user-emails` 
+			delete from `_users-emails` 
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
-			delete from `_user-email-state`
-			where `_user-email`='.$id.'
+			delete from `_users-emails-state`
+			where `_users-email`='.$id.'
 		');
 		$this->connectors->db->commit();
 		return $id;

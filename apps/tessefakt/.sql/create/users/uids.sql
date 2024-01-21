@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_user-uids`;
-CREATE TABLE `_user-uids` (
+DROP TABLE IF EXISTS `_users-uids`;
+CREATE TABLE `_users-uids` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_user` int(10) UNSIGNED NULL,
 	`uid` varchar(255) NOT NULL,

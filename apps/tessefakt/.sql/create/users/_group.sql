@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `_user-_group`;
-CREATE TABLE `_user-_group` (
+DROP TABLE IF EXISTS `_users-_group`;
+CREATE TABLE `_users-_group` (
 	`id` int(10) UNSIGNED NOT NULL auto_increment,
 	`_user` int(10) UNSIGNED NULL,
 	`_group` int(10) UNSIGNED NULL,

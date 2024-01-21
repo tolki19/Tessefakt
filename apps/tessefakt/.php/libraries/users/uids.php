@@ -15,7 +15,7 @@ class uids extends \tessefakt\library{
 		string $uid
 	):int{
 		$this->connectors->db->query('
-			insert into `_user-uids`
+			insert into `_users-uids`
 			set 
 				`_user`='.$user.',
 				`uid`="'.$this->connectors->db->escape($uid).'",
@@ -23,9 +23,9 @@ class uids extends \tessefakt\library{
 		');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
-			insert into `_user-uid-state`
+			insert into `_users-uids-state`
 			set
-				`_user-uid`='.$iId.',
+				`_users-uid`='.$iId.',
 				`state`="waiting",
 				`timestamp`=now(),
 				`remark`=null,
@@ -54,7 +54,7 @@ class uids extends \tessefakt\library{
 	):array{
 		return $this->connectors->db->query('
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
-			from `_user-uids`
+			from `_users-uids`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
 			'.(is_null($order)||!count($order)?'':'order '.implode(',',array_recombine($order,function($key,$value){ return '`'.$key.'` '.(is_null($value)?'asc':$value); }))).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
@@ -77,7 +77,7 @@ class uids extends \tessefakt\library{
 		string $uid
 	):int{
 		$this->connectors->db->query('
-			update `_user-uids`
+			update `_users-uids`
 			set 
 				`_user`='.$user.',
 				`uid`="'.$this->connectors->db->escape($uid).'",
@@ -97,7 +97,7 @@ class uids extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete from `_user-uids`
+			delete from `_users-uids`
 			where `id`='.$id.'
 		');
 		return $id;

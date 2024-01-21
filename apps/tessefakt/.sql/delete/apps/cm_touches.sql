@@ -1,1 +1,1 @@
-drop table if exists `_app-cm_touches`;
+drop table if exists `_apps-cm_touches`;

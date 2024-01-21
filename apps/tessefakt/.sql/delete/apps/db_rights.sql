@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `_app-db_rights`;
+DROP TABLE IF EXISTS `_apps-db_rights`;

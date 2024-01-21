@@ -1,1 +1,1 @@
-drop table if exists `_app-tpl_touches`;
+drop table if exists `_apps-tpl_touches`;

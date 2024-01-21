@@ -15,7 +15,7 @@ class hashes extends \tessefakt\library{
 		string $password
 	):int{
 		$this->connectors->db->query('
-			insert into `_user-hashes` 
+			insert into `_users-hashes` 
 			set 
 				`_user`='.$user.',
 				`type`="bcrypt",
@@ -24,9 +24,9 @@ class hashes extends \tessefakt\library{
 			');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
-			insert into `_user-hash-state`
+			insert into `_users-hashes-state`
 			set
-				`_user-hash`='.$iId.',
+				`_users-hash`='.$iId.',
 				`state`="waiting",
 				`timestamp`=now(),
 				`remark`=null,
@@ -55,7 +55,7 @@ class hashes extends \tessefakt\library{
 	):array{
 		return $this->connectors->db->query('
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
-			from `_user-hashes`
+			from `_users-hashes`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
 			'.(is_null($order)||!count($order)?'':'order '.implode(',',array_recombine($order,function($key,$value){ return '`'.$key.'` '.(is_null($value)?'asc':$value); }))).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
@@ -78,7 +78,7 @@ class hashes extends \tessefakt\library{
 		string $password
 	):int{
 		$this->connectors->db->query('
-			update `_user-hashes` 
+			update `_users-hashes` 
 			set 
 				`_user`='.$user.',
 				`type`="bcrypt",
@@ -99,7 +99,7 @@ class hashes extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete from `_user-hashes` 
+			delete from `_users-hashes` 
 			where `id`='.$id.'
 		');
 		return $id;
