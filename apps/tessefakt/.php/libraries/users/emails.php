@@ -113,29 +113,18 @@ class emails extends \tessefakt\library{
 	):int{
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			select 
-				@sort:=`sort`,
-				@dependency:=`_user`
+			select @sort:=`sort`,@dep:=`_user`
 			from `_users-emails`
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
 			update `_users-emails`
 			set `sort`=`sort`-1
-			where
-				`_user`=@dependency and
-				`sort`>@sort
+			where `_user`=@dep and `sort`>@sort
 		');
 		$this->connectors->db->query('
-			select @sort:=least(greatest('.$sort.',0),ifnull(`reflection`.`count`,1)-if(`reflection`.`_user`='.$user.',1,0))
-			from `_users`
-			left join (
-				select
-					`_user`,
-					count(*) `count`
-				from `_users-emails` `reflection`
-				group by `_user`
-			) `reflection` on `reflection`.`_user`=`_users`.`id`
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),1))
+			from `_users-emails`
 			where `_users`.`id`='.$user.'
 		');
 		$this->connectors->db->query('
@@ -143,17 +132,14 @@ class emails extends \tessefakt\library{
 			set 
 				`_user`='.$user.',
 				`email`="'.$this->connectors->db->escape($email).'",
-				`order`='.$sort.',
+				`sort`=@sort,
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).'
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
 			update `_users-emails`
 			set `sort`=`sort`+1
-			where
-				`_user`='.$user.' and
-				`sort`>=@sort and
-				`id`!='.$iId.'
+			where `_user`='.$user.' and `sort`>=@sort and `id`!='.$iId.'
 		');
 		$this->connectors->db->commit();
 		return $id;
@@ -170,18 +156,14 @@ class emails extends \tessefakt\library{
 	):int{
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			select 
-				@sort:=`sort`,
-				@dependency:=`_user`
+			select @sort:=`sort`,@dep:=`_user`
 			from `_users-emails`
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('
 			update `_users-emails`
 			set `sort`=`sort`-1
-			where
-				`_user`=@dependency and
-				`sort`>@sort
+			where `_user`=@dep and `sort`>@sort
 		');
 		$this->connectors->db->query('
 			delete from `_users-emails` 
