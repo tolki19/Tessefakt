@@ -113,9 +113,9 @@ class emails extends \tessefakt\library{
 			where `_user`=@dep and `sort`>@sort
 		');
 		$this->connectors->db->query('
-			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),1))
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
 			from `_users-emails`
-			where `_users`.`id`='.$user.'
+			where `_user`='.$user.' and `id`!='.$id.'
 		');
 		$this->connectors->db->query('
 			update `_users-emails` 
@@ -129,7 +129,7 @@ class emails extends \tessefakt\library{
 		$this->connectors->db->query('
 			update `_users-emails`
 			set `sort`=`sort`+1
-			where `_user`='.$user.' and `sort`>=@sort and `id`!='.$iId.'
+			where `_user`='.$user.' and `sort`>=@sort and `id`!='.$id.'
 		');
 		$this->connectors->db->commit();
 		return $id;
