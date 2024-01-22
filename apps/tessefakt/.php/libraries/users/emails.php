@@ -22,16 +22,9 @@ class emails extends \tessefakt\library{
 	):int{
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			select @sort:=least(greatest('.$sort.',0),ifnull(`reflection`.`count`,1))
-			from `_users`
-			left join (
-				select
-					`_user`,
-					count(*) `count`
-				from `_users-emails` `reflection`
-				group by `_user`
-			) `reflection` on `reflection`.`_user`=`_users`.`id`
-			where `_users`.`id`='.$user.'
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `_users-emails`
+			where `_user`='.$user.'
 		');
 		$this->connectors->db->query('
 			insert into `_users-emails` 
@@ -45,10 +38,7 @@ class emails extends \tessefakt\library{
 		$this->connectors->db->query('
 			update `_users-emails`
 			set `sort`=`sort`+1
-			where
-				`_user`='.$user.' and
-				`sort`>=@sort and
-				`id`!='.$iId.'
+			where `_user`='.$user.' and `sort`>=@sort and `id`!='.$iId.'
 		');
 		$this->connectors->db->query('
 			insert into `_users-emails-state`
