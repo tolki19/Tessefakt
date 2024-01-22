@@ -32,12 +32,18 @@ class cds extends \tessefakt\library{
 		string|null $public_remark,
 		string|null $internal_remark
 	):int{
+		$this->connectors->db->transaction();
+		$this->connectors->db->query('
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `midwives-cds`
+			where `midwife`='.$midwife.'
+		');
 		$this->connectors->db->query('
 			insert into `midwives-cds`
 			set
 				`midwife`='.$midwife.',
 				`cd`='.$cd.',
-				`sort`='.$sort.',
+				`sort`=@sort,
 				`date`="'.$this->connectors->db->escape($date).'",
 				`from`='.(is_null($from)?'null':(is_int($from)?'"'.date('Y-m-d H:i:s',$from).'"':'"'.$this->connectors->db->escape($from).'"')).',
 				`till`='.(is_null($till)?'null':(is_int($till)?'"'.date('Y-m-d H:i:s',$till).'"':'"'.$this->connectors->db->escape($till).'"')).',
@@ -45,6 +51,12 @@ class cds extends \tessefakt\library{
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 		$iId=$this->connectors->db->insert();
+		$this->connectors->db->query('
+			update `midwives-cds`
+			set `sort`=`sort`+1
+			where `midwife`='.$midwife.' and `sort`>=@sort and `id`!='.$iId.'
+		');
+		$this->connectors->db->commit();
 		return $iId;
 	}
 	public function update(
@@ -80,13 +92,29 @@ class cds extends \tessefakt\library{
 		int|string|null $till,
 		string|null $public_remark,
 		string|null $internal_remark
-	):int{
+	):int{		$this->connectors->db->transaction();
+		$this->connectors->db->query('
+			select @sort:=`sort`,@dep:=`midwife`
+			from `midwives-cds`
+			where `id`='.$id.'
+		');
+		$this->connectors->db->query('
+			update `midwives-cds`
+			set `sort`=`sort`-1
+			where `midwife`=@dep and `sort`>@sort
+		');
+		$this->connectors->db->query('
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `midwives-cds`
+			where `midwife`='.$midwife.' and `id`!='.$id.'
+		');
+
 		$this->connectors->db->query('
 			update `midwives-cds`
 			set
 				`midwife`='.$midwife.',
 				`cd`='.$cd.',
-				`sort`='.$sort.',
+				`sort`=@sort,
 				`date`="'.$this->connectors->db->escape($date).'",
 				`from`='.(is_null($from)?'null':(is_int($from)?'"'.date('Y-m-d H:i:s',$from).'"':'"'.$this->connectors->db->escape($from).'"')).',
 				`till`='.(is_null($till)?'null':(is_int($till)?'"'.date('Y-m-d H:i:s',$till).'"':'"'.$this->connectors->db->escape($till).'"')).',
@@ -94,6 +122,12 @@ class cds extends \tessefakt\library{
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
+		$this->connectors->db->query('
+			update `midwives-cds`
+			set `sort`=`sort`+1
+			where `midwife`='.$midwife.' and `sort`>=@sort and `id`!='.$id.'
+		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 	public function delete(
@@ -106,10 +140,22 @@ class cds extends \tessefakt\library{
 	protected function _delete(
 		int $id,
 	):int{
+		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			delete from `midwives-cds`
+			select @sort:=`sort`,@dep:=`midwife`
+			from `midwives-cds`
 			where `id`='.$id.'
 		');
+		$this->connectors->db->query('
+			update `midwives-cds`
+			set `sort`=`sort`-1
+			where `midwife`=@dep and `sort`>@sort
+		');
+		$this->connectors->db->query('
+			delete from `midwives-cds` 
+			where `id`='.$id.'
+		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 }

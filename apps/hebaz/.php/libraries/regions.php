@@ -32,11 +32,16 @@ class regions extends \tessefakt\library{
 		string|null $internal_caption,
 		string|null $internal_remark
 	):int{
+		$this->connectors->db->transaction();
+		$this->connectors->db->query('
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `regions`
+		');
 		$this->connectors->db->query('
 			insert into `regions`
 			set
 				`region`='.($region??'null').',
-				`sort`='.$sort.',
+				`sort`=@sort,
 				`name`="'.$this->connectors->db->escape($name).'",
 				`keywords`='.(is_null($keywords)?'null':'"'.$this->connectors->db->escape($keywords).'"').',
 				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').',
@@ -45,6 +50,12 @@ class regions extends \tessefakt\library{
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 		$iId=$this->connectors->db->insert();
+		$this->connectors->db->query('
+			update `regions`
+			set `sort`=`sort`+1
+			where `sort`>=@sort and `id`!='.$iId.'
+		');
+		$this->connectors->db->commit();
 		return $iId;
 	}
 	public function update(
@@ -81,11 +92,27 @@ class regions extends \tessefakt\library{
 		string|null $internal_caption,
 		string|null $internal_remark
 	):int{
+		$this->connectors->db->transaction();
+		$this->connectors->db->query('
+			select @sort:=`sort`
+			from `regions`
+			where `id`='.$id.'
+		');
+		$this->connectors->db->query('
+			update `regions`
+			set `sort`=`sort`-1
+			where `sort`>@sort
+		');
+		$this->connectors->db->query('
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `regions`
+			where `id`!='.$id.'
+		');
 		$this->connectors->db->query('
 			update `regions`
 			set
 				`region`='.($region??'null').',
-				`sort`='.$sort.',
+				`sort`=@sort,
 				`name`="'.$this->connectors->db->escape($name).'",
 				`keywords`='.(is_null($keywords)?'null':'"'.$this->connectors->db->escape($keywords).'"').',
 				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').',
@@ -94,6 +121,12 @@ class regions extends \tessefakt\library{
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
+		$this->connectors->db->query('
+			update `regions`
+			set `sort`=`sort`+1
+			where `sort`>=@sort and `id`!='.$id.'
+		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 	public function delete(
@@ -106,10 +139,22 @@ class regions extends \tessefakt\library{
 	protected function _delete(
 		int $id,
 	):int{
+		$this->connectors->db->transaction();
+		$this->connectors->db->query('
+			select @sort:=`sort`
+			from `regions`
+			where `id`='.$id.'
+		');
+		$this->connectors->db->query('
+			update `regions`
+			set `sort`=`sort`-1
+			where `sort`>@sort
+		');
 		$this->connectors->db->query('
 			delete from `regions`
 			where `id`='.$id.'
 		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 }

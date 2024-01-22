@@ -35,10 +35,17 @@ class page extends \tessefakt\library{
 		string|null $public_caption,
 		string|null $internal_remark
 	):int{
+		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			insert into `navigations-pagess`
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `navigations-pages`
+			where `navigation`='.$navigation.'
+		');
+		$this->connectors->db->query('
+			insert into `navigations-pages`
 			set
 				`navigation`='.$navigation.',
+				`sort`=@sort,
 				`type`="'.$this->connectors->db->escape($type).'",
 				`page`='.($page??'null').',
 				`auto-speaking-url`='.$auto_speaking_url.',
@@ -48,8 +55,13 @@ class page extends \tessefakt\library{
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 		$iId=$this->connectors->db->insert();
-		return $iId;
-	}
+		$this->connectors->db->query('
+			update `navigations-pages`
+			set `sort`=`sort`+1
+			where `navigation`='.$navigation.' and `sort`>=@sort and `id`!='.$iId.'
+		');
+		$this->connectors->db->commit();
+		return $iId;	}
 	public function update(
 		int $id,
 		int $navigation,
@@ -87,10 +99,27 @@ class page extends \tessefakt\library{
 		string|null $public_caption,
 		string|null $internal_remark
 	):int{
+		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			update `navigations-pagess`
+			select @sort:=`sort`,@dep:=`navigation`
+			from `navigations-pages`
+			where `id`='.$id.'
+		');
+		$this->connectors->db->query('
+			update `navigations-pages`
+			set `sort`=`sort`-1
+			where `navigation`=@dep and `sort`>@sort
+		');
+		$this->connectors->db->query('
+			select @sort:=least(greatest('.$sort.',0),ifnull(count(*),0))
+			from `navigations-pages`
+			where `navigation`='.$navigation.' and `id`!='.$id.'
+		');
+		$this->connectors->db->query('
+			update `navigations-pages`
 			set
 				`navigation`='.$navigation.',
+				`sort`=@sort,
 				`type`="'.$this->connectors->db->escape($type).'",
 				`page`='.($page??'null').',
 				`auto-speaking-url`='.$auto_speaking_url.',
@@ -100,6 +129,12 @@ class page extends \tessefakt\library{
 				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
+		$this->connectors->db->query('
+			update `navigations-pages`
+			set `sort`=`sort`+1
+			where `navigation`='.$navigation.' and `sort`>=@sort and `id`!='.$id.'
+		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 	public function delete(
@@ -115,10 +150,22 @@ class page extends \tessefakt\library{
 		int $id,
 		string|null $internal_remark
 	):int{
+		$this->connectors->db->transaction();
 		$this->connectors->db->query('
-			delete from `navigations-pagess`
+			select @sort:=`sort`,@dep:=`navigation`
+			from `navigations-pages`
 			where `id`='.$id.'
 		');
+		$this->connectors->db->query('
+			update `navigations-pages`
+			set `sort`=`sort`-1
+			where `navigation`=@dep and `sort`>@sort
+		');
+		$this->connectors->db->query('
+			delete from `navigations-pages` 
+			where `id`='.$id.'
+		');
+		$this->connectors->db->commit();
 		return $id;
 	}
 }
