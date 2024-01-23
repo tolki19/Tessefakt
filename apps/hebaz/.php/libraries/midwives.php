@@ -118,6 +118,14 @@ class midwives extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
+		foreach($this->subs->cds->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->cds->delete(id:$aSet['id']);
+		foreach($this->subs->languages->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->languages->delete(id:$aSet['id']);
+		foreach($this->subs->occupancies->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->occupancies->delete(id:$aSet['id']);
+		foreach($this->subs->regions->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->regions->regionselete(id:$aSet['id']);
+		foreach($this->subs->rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->rights->rights(id:$aSet['id']);
+		foreach($this->subs->services->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->services->services(id:$aSet['id']);
+		foreach($this->subs->states->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->states->delete(id:$aSet['id']);
+		foreach($this->subs->vacancies->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->vacancies->delete(id:$aSet['id']);
 		return $this->_delete(
 			id:$id,
 		);

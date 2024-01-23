@@ -134,6 +134,12 @@ class events extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
+		foreach($this->subs->cds->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->cds->delete(id:$aSet['id']);
+		foreach($this->subs->dates->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->dates->delete(id:$aSet['id']);
+		foreach($this->subs->midwives->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->midwives->delete(id:$aSet['id']);
+		foreach($this->subs->rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->rights->delete(id:$aSet['id']);
+		foreach($this->subs->services->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->services->delete(id:$aSet['id']);
+		foreach($this->subs->states->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->states->delete(id:$aSet['id']);
 		return $this->_delete(
 			id:$id,
 		);

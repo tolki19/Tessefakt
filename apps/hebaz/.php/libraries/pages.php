@@ -86,6 +86,8 @@ class pages extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
+		foreach($this->subs->contents->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->contents->delete(id:$aSet['id']);
+		foreach($this->subs->statics->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->statics->delete(id:$aSet['id']);
 		return $this->_delete(
 			id:$id,
 		);

@@ -102,6 +102,7 @@ class occupancies extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
+		foreach($this->subs->midwives->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->midwives->delete(id:$aSet['id']);
 		return $this->_delete(
 			id:$id,
 		);

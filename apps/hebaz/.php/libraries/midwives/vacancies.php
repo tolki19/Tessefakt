@@ -102,6 +102,7 @@ class vacancies extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
+		foreach($this->subs->services->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->services->delete(id:$aSet['id']);
 		return $this->_delete(
 			id:$id,
 		);
