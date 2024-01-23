@@ -1,0 +1,61 @@
+{
+	"apps": {
+		"tessefakt": {
+			"root": "tessefakt",
+			"paths": {
+				"config": ".config/tessefakt.json"
+			},
+			"connectors": {
+				"db": {
+					"type": "",
+					"username": "",
+					"password": "",
+					"dbname": "",
+					"host": ""
+				}
+			},
+			"hash": {
+				"pepper": ""
+			}
+		},
+		"hebaz": {
+			"root": "hebaz",
+			"paths": {
+				"config": ".config/hebaz.json"
+			},
+			"connectors": {
+				"db": {
+					"type": "",
+					"username": "",
+					"password": "",
+					"dbname": "",
+					"host": ""
+				},
+				"migrate": {
+					"type": "",
+					"username": "",
+					"password": "",
+					"dbname": "",
+					"host": ""
+				}
+			}
+		}
+	},
+	"defaults": {
+		"app": "hebaz",
+		"delivery": [
+			{
+				"name":"test-sequence",
+				"value": [ "219" ]
+			}
+		]
+	},
+	"mode": "plain",
+	"paths": {
+		"tpl": "assets/.tpl"
+	},
+	"urls": {
+		"folder": "",
+		"target": ""
+	}
+}
