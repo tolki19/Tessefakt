@@ -64,9 +64,7 @@ class users extends \tessefakt\library{
 		foreach($this->subs->groups->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->groups->delete(id:$aSet['id']);
 		foreach($this->subs->hashes->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->hashes->delete(id:$aSet['id']);
 		foreach($this->subs->uids->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->uids->delete(id:$aSet['id']);
-		return $this->_delete(
-			id:$id
-		);
+		return $this->_delete(id:$id);
 	}
 	protected function _delete(
 		int $id,
