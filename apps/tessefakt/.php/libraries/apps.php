@@ -110,13 +110,13 @@ class apps extends \tessefakt\library{
 	public function delete(
 		int $id,
 	):int{
-		foreach($this->subs->cm_rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
-		foreach($this->subs->cm_touches->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
-		foreach($this->subs->db_rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
-		foreach($this->subs->db_touches->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
-		foreach($this->subs->tpl_rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
-		foreach($this->subs->tpl_touches->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
-		foreach($this->subs->tables->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->emails->delete(id:$aSet['id']);
+		foreach($this->subs->cm_rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->cm_rights->delete(id:$aSet['id']);
+		foreach($this->subs->cm_touches->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->cm_touches->delete(id:$aSet['id']);
+		foreach($this->subs->db_rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->db_rights->delete(id:$aSet['id']);
+		foreach($this->subs->db_touches->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->db_touches->delete(id:$aSet['id']);
+		foreach($this->subs->tpl_rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->tpl_rights->delete(id:$aSet['id']);
+		foreach($this->subs->tpl_touches->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->tpl_touches->delete(id:$aSet['id']);
+		foreach($this->subs->tables->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->tables->delete(id:$aSet['id']);
 		return $this->_delete(id:$id,);
 	}
 	protected function _delete(
