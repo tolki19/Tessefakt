@@ -5,7 +5,7 @@ class install extends \tessefakt\library{
 $aFiles=$this->_fs(compilepath($this->app->setup['paths']['sql'].'/create'));
 foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile));
 	}
-	public function create_data():void{
+	public function test():void{
 		$aSettings=[];
 		$aApps=[];
 		$aGroups=[];
@@ -53,6 +53,8 @@ foreach($aFiles as $sFile) $this->connectors->db->multi(file_get_contents($sFile
 			email:'ft@tolk.de',
 			sort:758,
 		);
+// var_dump($this->app->libraries->users->subs->emails->read(where:['_user'=>$aUsers['florian']]));
+var_dump(json_encode($this->app->libraries->users->subs->emails->read(where:['_user'=>$aUsers['florian']],order:['`sort` asc']),\JSON_THROW_ON_ERROR|\JSON_PRETTY_PRINT));
 		$this->app->libraries->users->subs->uids->create(
 			user:$aUsers['florian'],
 			uid:'Florian',
