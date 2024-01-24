@@ -78,7 +78,7 @@ class rights extends \tessefakt\library{
 			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
 			from `practices-rights`
 			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
-			'.(is_null($order)||!count($order)?'':'order '.implode(',',$order)).'
+			'.(is_null($order)||!count($order)?'':'order by '.implode(',',$order)).'
 			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
 		');
 	}
