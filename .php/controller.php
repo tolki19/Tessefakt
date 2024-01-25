@@ -30,4 +30,7 @@ class controller{
 		throw new \Exception('Unknown key');
 	}
 	public function __set(string $key,$value){}
+	public function _tpl(string $template):string{
+		return compilepath($this->app->setup['paths']['tpl'].'/'.$template);
+	}
 }

@@ -11,6 +11,17 @@ function array_merge_deep(array ...$as):array{
 	foreach($as as $v) $f($v,$r);
 	return $r;
 }
+function scandir_r(string $path):array|false{
+	if(!($aFiles=scandir($path))) return false;
+	$aReturn=[];
+	foreach($aFiles as $sFile){
+		if($sFile=='.'||$sFile=='..') continue;
+		$sPath=$path.'/'.$sFile;
+		if(is_file($sPath)) $aReturn[]=$sPath;
+		else $aReturn=array_merge($aReturn,call_user_func(__FUNCTION__,$sPath));
+	}
+	return $aReturn;
+}
 function compilepath(string $path):string{
 	$aParts=array_filter(preg_split('#(?:/|\\\\)#',$path),'strlen');
 	$aReturn=[];

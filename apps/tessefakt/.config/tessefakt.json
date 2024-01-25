@@ -10,7 +10,8 @@
 	},
 	"paths": {
 		"tpl": ".tpl",
-		"sql": ".sql"
+		"sql": ".sql",
+		"test": ".tst"
 	},
 	"defaults": {
 		"entrances": {
