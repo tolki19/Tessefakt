@@ -21,15 +21,22 @@
 		<link rel="stylesheet" href="<?=compileurl($this->response->op['urls']['folder'].'/assets/css/desktop/standard.css'); ?>" type="text/css">
 	</head>
 	<body>
-		<header>
-			<nav>
-				<menu>
-					<?php foreach($this->tessefakt->setup['apps'] as $sApp=>$aApp){ ?>
-						<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation.php'),['navigation'=>$aApp['navigation'],'iterator'=>$sApp]); ?>
-					<?php } ?>
-				</menu>
-			</nav>
-		</header>
+		<?php
+			if(
+					!isset($this->response->op['areas']['nav'])||
+					$this->response->op['areas']['nav']!==false
+			){
+		?>
+			<header>
+				<nav>
+					<menu>
+						<?php foreach($this->tessefakt->setup['apps'] as $sApp=>$aApp){ ?>
+							<?php $this->_include(compilepath($this->tessefakt->setup['paths']['tpl'].'/plain/_navigation.php'),['navigation'=>$aApp['navigation'],'iterator'=>$sApp]); ?>
+						<?php } ?>
+					</menu>
+				</nav>
+			</header>
+		<?php } ?>
 		<main>
 			<?php if(isset($this->response->op['tpls']['page'])){ ?>
 				<?php include($this->response->op['tpls']['page']); ?>

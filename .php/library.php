@@ -33,6 +33,8 @@ class library{
 					library:$this,
 				);
 				return $this->_oSubs;
+			default:
+				return $this->_oTessefakt->handler->$key;
 		}
 		throw new \Exception('Unknown key');
 	}

@@ -27,17 +27,17 @@ class plain extends \tessefakt\handler{
 			isset($this->env->get['controller'])&&
 			isset($this->env->get['method'])
 		){
-			$sApp=$this->env->get['app'];
-			$sEntrance='plain';
-			$sController=$this->env->get['controller'];
-			$sMethod=$this->env->get['method'];
-			$this->apps->{$sApp}->entrances->{$sEntrance}->controllers->{$sController}->{$sMethod}();
-			$this->response->op['address']=[
-				'app'=>$sApp,
-				'entrance'=>$sEntrance,
-				'controller'=>$sController,
-				'method'=>$sMethod
-			];
+			if(
+				!(
+					$this->env->get['app']=='tessefakt'&&
+					$this->env->get['controller']=='system'
+				)&&
+				!$this->apps->tessefakt->libraries->system->auth()
+			){
+				$this->response->data=['location'=>compileurl($this->tessefakt->setup['urls']['target'].'?app=tessefakt&controller=system&method=login')];
+				$this->reply(302);
+			}
+			$this->apps->{$this->env->get['app']}->entrances->plain->controllers->{$this->env->get['controller']}->{$this->env->get['method']}();
 			$this->reply();
 		}
 		if(isset($this->env->get['app'])){
@@ -45,7 +45,6 @@ class plain extends \tessefakt\handler{
 		}else{
 			$sApp=$this->setup['defaults']['app'];
 		}
-		$sEntrance='plain';
 		if(
 			isset($this->setup['defaults']['controller'])&&
 			isset($this->setup['defaults']['method'])
@@ -53,8 +52,8 @@ class plain extends \tessefakt\handler{
 			$sController=$this->setup['defaults']['controller'];
 			$sMethod=$this->setup['defaults']['method'];
 		}else{
-			$sController=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['controller'];
-			$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances'][$sEntrance]['method'];
+			$sController=$this->setup['apps'][$sApp]['defaults']['entrances']['plain']['controller'];
+			$sMethod=$this->setup['apps'][$sApp]['defaults']['entrances']['plain']['method'];
 		}
 		$this->response->data=['location'=>compileurl($this->tessefakt->setup['urls']['target'].'?app='.$sApp.'&controller='.$sController.'&method='.$sMethod)];
 		$this->reply(303);
