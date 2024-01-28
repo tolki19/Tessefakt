@@ -4,7 +4,7 @@ class hashes extends \tessefakt\library{
 	public function create(
 		int $user,
 		string $password,
-		string|null $type,
+		string|null $type='bcrypt',
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
 	):int{
@@ -27,8 +27,8 @@ class hashes extends \tessefakt\library{
 			insert into `_users-hashes` 
 			set 
 				`_user`='.$user.',
-				`type`="'.$this->connectors->db->escape(string:$type,algo:$type).'",
-				`hash`="'.$this->hash->create($password).'",
+				`type`="'.$this->connectors->db->escape($type).'",
+				`hash`="'.$this->hash->create(string:$password,algo:$type).'",
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
 				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
 			');
