@@ -3,7 +3,7 @@ namespace tessefakt\apps\tessefakt\libraries\install;
 class test extends \tessefakt\library{
 	public function test():bool{
 		$bReturn=true;
-		$bReturn&=$this->subs->mysqli->test();
+		$bReturn&=$this->subs->users->subs->emails->test();
 		return $bReturn;
 	}
 	public function validate(

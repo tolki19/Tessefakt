@@ -3,24 +3,34 @@ namespace tessefakt\apps\tessefakt\libraries\users;
 class hashes extends \tessefakt\library{
 	public function create(
 		int $user,
-		string $password
+		string $password,
+		string|null $type,
+		int|string|null $valid_from=null,
+		int|string|null $valid_till=null,
 	):int{
 		return $this->_create(
 			user:$user,
-			password:$password
+			password:$password,
+			type:$type??'bcrypt',
+			valid_from:$valid_from,
+			valid_till:$valid_till,
 		);
 	}
 	protected function _create(
 		int $user,
-		string $password
+		string $password,
+		string $type,
+		int|string|null $valid_from,
+		int|string|null $valid_till,
 	):int{
 		$this->connectors->db->query('
 			insert into `_users-hashes` 
 			set 
 				`_user`='.$user.',
-				`type`="bcrypt",
+				`type`="'.$this->connectors->db->escape(string:$type,algo:$type).'",
 				`hash`="'.$this->hash->create($password).'",
-				`valid_from`=curdate()
+				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
 			');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('

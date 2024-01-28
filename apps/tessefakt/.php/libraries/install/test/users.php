@@ -1,8 +1,8 @@
 <?php
-namespace tessefakt\apps\tessefakt\libraries\install\test\mysqli;
+namespace tessefakt\apps\tessefakt\libraries\install\test;
 class users extends \tessefakt\library{
 	public function probe():bool{
-		$this->app->libraries->mysqli->subs->structure->create();
+		$this->app->libraries->build->subs->structure->create();
 		$aIds=$this->_data();
 		return $this->app->libraries->install->subs->test->validate(
 			result:$this->app->libraries->users->subs->emails->read(where:['_user'=>$aIds['users']['florian']],order:['`sort` asc']),
