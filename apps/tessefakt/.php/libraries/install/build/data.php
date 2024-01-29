@@ -1,10 +1,10 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries\install\build;
-class prime extends \tessefakt\library{
-	public function create():array{
-		return $this->_data();
+class data extends \tessefakt\library{
+	public function prime():array{
+		return $this->_prime();
 	}
-	protected function _data():array{
+	protected function _prime():array{
 		$aReturn=[];
 		$aReturn['groups']['admin']=$this->app->libraries->groups->create(
 			name:'Admins'

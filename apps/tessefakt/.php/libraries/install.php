@@ -5,6 +5,6 @@ class install extends \tessefakt\library{
 		$this->subs->test->test();
 	}
 	public function prime():void{
-		$this->subs->build->build();
+		$this->subs->build->new();
 	}
 }
