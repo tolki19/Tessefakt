@@ -3,14 +3,16 @@ namespace tessefakt\apps\tessefakt\libraries\users;
 class hashes extends \tessefakt\library{
 	public function create(
 		int $user,
-		string $password,
+		string|null $hash=null,
+		string|null $password=null,
 		string|null $type='bcrypt',
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
 	):int{
+		if(is_null($password)&&is_null($hash)) throw new \Exception('Password and hash cannot be both null');
 		return $this->_create(
 			user:$user,
-			password:$password,
+			hash:(!is_null($password)?$this->hash->create(string:$password,algo:($type??'bcrypt')):$hash),
 			type:$type??'bcrypt',
 			valid_from:$valid_from,
 			valid_till:$valid_till,
@@ -18,7 +20,7 @@ class hashes extends \tessefakt\library{
 	}
 	protected function _create(
 		int $user,
-		string $password,
+		string $hash,
 		string $type,
 		int|string|null $valid_from,
 		int|string|null $valid_till,
@@ -28,7 +30,7 @@ class hashes extends \tessefakt\library{
 			set 
 				`_user`='.$user.',
 				`type`="'.$this->connectors->db->escape($type).'",
-				`hash`="'.$this->hash->create(string:$password,algo:$type).'",
+				`hash`="'.$this->connectors->db->escape($hash).'",
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
 				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
 			');
