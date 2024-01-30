@@ -6,19 +6,25 @@ class emails extends \tessefakt\library{
 		string $email,
 		int $sort,
 		int|string|null $valid_from=null,
-	):int{
-		return $this->_create(
-			user:$user,
-			email:$email,
-			sort:$sort,
-			valid_from:$valid_from,
-		);
-	}
-	protected function _create(
-		int $user,
-		string $email,
-		int $sort,
-		int|string|null $valid_from,
+		int|string|null $valid_till=null,
+		string|null $state=null,
+		):int{
+			return $this->_create(
+				user:$user,
+				email:$email,
+				sort:$sort,
+				valid_from:$valid_from,
+				valid_till:$valid_till,
+				state:$state??'queued',
+			);
+		}
+		protected function _create(
+			int $user,
+			string $email,
+			int $sort,
+			int|string|null $valid_from,
+			int|string|null $valid_till,
+			string $state,
 	):int{
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
@@ -32,7 +38,8 @@ class emails extends \tessefakt\library{
 				`_user`='.$user.',
 				`email`="'.$this->connectors->db->escape($email).'",
 				`sort`=@sort,
-				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).'
+				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
 		');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
@@ -44,12 +51,13 @@ class emails extends \tessefakt\library{
 			insert into `_users-emails-state`
 			set
 				`_users-email`='.$iId.',
-				`state`="waiting",
+				`state`="'.$this->connectors->db->escape($state).'",
 				`timestamp`=now(),
 				`remark`=null,
-				`key`="'.$this->key->create().'"
-		');
-		$this->connectors->db->commit();
+				`key`=null
+			');
+				// `key`="'.$this->key->create().'"
+				$this->connectors->db->commit();
 		return $iId;
 	}
 	public function read(
@@ -85,6 +93,7 @@ class emails extends \tessefakt\library{
 		string $email,
 		int $sort,
 		int|string|null $valid_from=null,
+		int|string|null $valid_till=null,
 	):int{
 		return $this->_update(
 			id:$id,
@@ -92,6 +101,7 @@ class emails extends \tessefakt\library{
 			email:$email,
 			sort:$sort,
 			valid_from:$valid_from,
+			valid_till:$valid_till,
 		);
 	}
 	protected function _update(
@@ -100,6 +110,7 @@ class emails extends \tessefakt\library{
 		string $email,
 		int $sort,
 		int|string|null $valid_from,
+		int|string|null $valid_till,
 	):int{
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
@@ -124,6 +135,7 @@ class emails extends \tessefakt\library{
 				`email`="'.$this->connectors->db->escape($email).'",
 				`sort`=@sort,
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).'
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
 			where `id`='.$id.'
 		');
 		$this->connectors->db->query('

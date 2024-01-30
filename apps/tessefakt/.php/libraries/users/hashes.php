@@ -8,6 +8,7 @@ class hashes extends \tessefakt\library{
 		string|null $type='bcrypt',
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
+		string|null $state=null,
 	):int{
 		if(is_null($password)&&is_null($hash)) throw new \Exception('Password and hash cannot be both null');
 		return $this->_create(
@@ -16,6 +17,7 @@ class hashes extends \tessefakt\library{
 			type:$type??'bcrypt',
 			valid_from:$valid_from,
 			valid_till:$valid_till,
+			state:$state??'queued',
 		);
 	}
 	protected function _create(
@@ -24,6 +26,7 @@ class hashes extends \tessefakt\library{
 		string $type,
 		int|string|null $valid_from,
 		int|string|null $valid_till,
+		string $state=null,
 	):int{
 		$this->connectors->db->query('
 			insert into `_users-hashes` 
@@ -39,7 +42,7 @@ class hashes extends \tessefakt\library{
 			insert into `_users-hashes-state`
 			set
 				`_users-hash`='.$iId.',
-				`state`="waiting",
+				`state`="'.$this->connectors->db->escape($state).'",
 				`timestamp`=now(),
 				`remark`=null,
 				`key`=null
@@ -76,26 +79,38 @@ class hashes extends \tessefakt\library{
 	public function update(
 		int $id,
 		int $user,
-		string $password
+		string|null $hash=null,
+		string|null $password=null,
+		string|null $type='bcrypt',
+		int|string|null $valid_from=null,
+		int|string|null $valid_till=null,
+		string|null $state=null,
 	):int{
 		return $this->_update(
 			id:$id,
 			user:$user,
-			password:$password
+			hash:(!is_null($password)?$this->hash->create(string:$password,algo:($type??'bcrypt')):$hash),
+			type:$type??'bcrypt',
+			valid_from:$valid_from,
+			valid_till:$valid_till,
 		);
 	}
 	protected function _update(
 		int $id,
 		int $user,
-		string $password
+		string $hash,
+		string $type,
+		int|string|null $valid_from,
+		int|string|null $valid_till,
 	):int{
 		$this->connectors->db->query('
 			update `_users-hashes` 
 			set 
 				`_user`='.$user.',
-				`type`="bcrypt",
-				`hash`="'.$this->hash->create($password).'",
-				`valid_from`=curdate()
+				`type`="'.$this->connectors->db->escape($type).'",
+				`hash`="'.$this->connectors->db->escape($hash).'",
+				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
 			where `id`='.$id.'
 		');
 		return $id;

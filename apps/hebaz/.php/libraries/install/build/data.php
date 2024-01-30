@@ -13,7 +13,24 @@ class data extends \tessefakt\library{
 	}
 	protected function _migrate():array{
 		$aReturn=[];
-var_dump($this->connectors->migrate->query('select * from users'));
+$aRoles=$this->connectors->migrate->query('select * from roles');
+foreach($aRoles as $aRole){
+	$aReturn['groups'][$aRole['keystring']]=$this->apps->tessefakt->libraries->groups->create(
+		name:$aRole['name']
+	);
+}
+$aUsers=$this->connectors->migrate->query('select * from users');
+var_dump($aUsers);
+foreach($aUsers as $aUser){
+	$aReturn['users'][$aUser['id']]=$this->apps->tessefakt->libraries->users->create();
+	$this->apps->tessefakt->libraries->users->subs->uids->create(
+		user:$aReturn['users'][$aUser['id']],
+		uid:$aUser['name'],
+		state:(!is_null($aUser['email_authentication'])&&!is_null($aUser['sent_password']))?'ok':null,
+	);
+	var_dump($aUser);
+}
+
 // var_dump($this->connectors->migrate->query('select * from languages'));
 // var_dump($this->connectors->migrate->query('select * from regions'));
 // var_dump($this->connectors->migrate->query('select * from services'));
