@@ -13,22 +13,40 @@ class data extends \tessefakt\library{
 	}
 	protected function _migrate():array{
 		$aReturn=[];
-$aRoles=$this->connectors->migrate->query('select * from roles');
+$aRoles=$this->connectors->migrate->query('select * from `roles`');
 foreach($aRoles as $aRole){
-	$aReturn['groups'][$aRole['keystring']]=$this->apps->tessefakt->libraries->groups->create(
+	$iGroup=$this->apps->tessefakt->libraries->groups->create(
 		name:$aRole['name']
 	);
+	$aReturn['groups']['keystring'][$aRole['keystring']]=$iGroup;
+	$aReturn['groups']['id'][$aRole['id']]=$iGroup;
 }
-$aUsers=$this->connectors->migrate->query('select * from users');
-var_dump($aUsers);
+// admin
+// midwife
+$aUsers=$this->connectors->migrate->query('select * from `users`');
 foreach($aUsers as $aUser){
-	$aReturn['users'][$aUser['id']]=$this->apps->tessefakt->libraries->users->create();
+	$aReturn['users']['id'][$aUser['id']]=$this->apps->tessefakt->libraries->users->create();
+	$this->apps->tessefakt->libraries->users->subs->emails->create(
+		user:$aReturn['users']['id'][$aUser['id']],
+		email:$aUser['email'],
+		sort:0,
+		state:(!is_null($aUser['email_authentication'])&&!is_null($aUser['sent_password']))?'ok':null,
+	);
 	$this->apps->tessefakt->libraries->users->subs->uids->create(
-		user:$aReturn['users'][$aUser['id']],
+		user:$aReturn['users']['id'][$aUser['id']],
 		uid:$aUser['name'],
 		state:(!is_null($aUser['email_authentication'])&&!is_null($aUser['sent_password']))?'ok':null,
 	);
-	var_dump($aUser);
+	$this->apps->tessefakt->libraries->users->subs->hashes->create(
+		user:$aReturn['users']['id'][$aUser['id']],
+		hash:$aUser['password'],
+		type:'sha128',
+		state:(!is_null($aUser['email_authentication'])&&!is_null($aUser['sent_password']))?'ok':null,
+	);
+	$this->apps->tessefakt->libraries->users->subs->groups->create(
+		user:$aReturn['users']['id'][$aUser['id']],
+		group:$aReturn['groups']['id'][$aUser['role']],
+	);
 }
 
 // var_dump($this->connectors->migrate->query('select * from languages'));
