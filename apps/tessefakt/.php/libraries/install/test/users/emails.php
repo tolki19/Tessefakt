@@ -61,7 +61,7 @@ class emails extends \tessefakt\library{
 		);
 		$this->app->libraries->users->subs->groups->create(
 			user:$aReturn['users']['florian'],
-			group:$aReturn['groups']['admin']
+			group:$aReturn['groups']['admin'],
 			valid_from:'2024-01-01',
 		);
 		return $aReturn;
