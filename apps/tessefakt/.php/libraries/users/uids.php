@@ -6,7 +6,7 @@ class uids extends \tessefakt\library{
 		string $uid,
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
-		string|null $state,
+		string|null $state=null,
 	):int{
 		return $this->_create(
 			user:$user,

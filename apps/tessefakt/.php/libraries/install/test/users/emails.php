@@ -2,6 +2,10 @@
 namespace tessefakt\apps\tessefakt\libraries\install\test\users;
 class emails extends \tessefakt\library{
 	public function test():bool{
+		$bReturn=true;
+		$bReturn&=$this->create();
+	}
+	public function create():bool{
 		$this->app->libraries->install->subs->build->subs->structure->create();
 		$aIds=$this->_data();
 		return $this->app->libraries->install->subs->test->validate(
@@ -20,36 +24,45 @@ class emails extends \tessefakt\library{
 			email:'florian.kerl@gadvelop.de',
 			sort:0,
 			valid_from:'2024-01-01',
+			state:'test',
 		);
 		$this->app->libraries->users->subs->emails->create(
 			user:$aReturn['users']['florian'],
 			email:'info@gadvelop.de',
 			sort:0,
 			valid_from:'2024-01-01',
+			state:'test',
 		);
 		$this->app->libraries->users->subs->emails->create(
 			user:$aReturn['users']['florian'],
 			email:'info@tolk.de',
 			sort:-10,
 			valid_from:'2024-01-01',
+			state:'test',
 		);
 		$this->app->libraries->users->subs->emails->create(
 			user:$aReturn['users']['florian'],
 			email:'ft@tolk.de',
 			sort:758,
 			valid_from:'2024-01-01',
+			state:'test',
 		);
 		$this->app->libraries->users->subs->uids->create(
 			user:$aReturn['users']['florian'],
 			uid:'Florian',
+			valid_from:'2024-01-01',
+			state:'test',
 		);
 		$this->app->libraries->users->subs->hashes->create(
 			user:$aReturn['users']['florian'],
 			password:'Sxuyq783!',
+			valid_from:'2024-01-01',
+			state:'test',
 		);
 		$this->app->libraries->users->subs->groups->create(
 			user:$aReturn['users']['florian'],
 			group:$aReturn['groups']['admin']
+			valid_from:'2024-01-01',
 		);
 		return $aReturn;
 	}
