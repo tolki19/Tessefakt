@@ -4,6 +4,7 @@ class emails extends \tessefakt\library{
 	public function test():bool{
 		$bReturn=true;
 		$bReturn&=$this->create();
+		return $bReturn;
 	}
 	public function create():bool{
 		$this->app->libraries->install->subs->build->subs->structure->create();
