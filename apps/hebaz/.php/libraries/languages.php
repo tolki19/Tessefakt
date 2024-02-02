@@ -2,8 +2,8 @@
 namespace tessefakt\apps\hebaz\libraries;
 class languages extends \tessefakt\library{
 	public function create(
-		int $sort,
 		string $name,
+		int $sort=0,
 		int|null $language=null,
 		string|null $keywords=null,
 		string|null $public_caption=null,
@@ -12,9 +12,9 @@ class languages extends \tessefakt\library{
 		string|null $internal_remark=null
 	):int{
 		return $this->_create(
-			$language,
-			sort:$sort,
 			name:$name,
+			sort:$sort,
+			language:$language,
 			keywords:$keywords,
 			public_caption:$public_caption,
 			public_remark:$public_remark,
@@ -23,8 +23,8 @@ class languages extends \tessefakt\library{
 		);
 	}
 	protected function _create(
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $language,
 		string|null $keywords,
 		string|null $public_caption,
@@ -87,8 +87,8 @@ class languages extends \tessefakt\library{
 	}
 	public function update(
 		int $id,
-		int $sort,
 		string $name,
+		int $sort=0,
 		int|null $language=null,
 		string|null $keywords=null,
 		string|null $public_caption=null,
@@ -99,8 +99,8 @@ class languages extends \tessefakt\library{
 		return $this->_update(
 			id:$id,
 			language:$language,
-			sort:$sort,
 			name:$name,
+			sort:$sort,
 			keywords:$keywords,
 			public_caption:$public_caption,
 			public_remark:$public_remark,
@@ -110,8 +110,8 @@ class languages extends \tessefakt\library{
 	}
 	protected function _update(
 		int $id,
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $language,
 		string|null $keywords,
 		string|null $public_caption,

@@ -4,7 +4,7 @@ class emails extends \tessefakt\library{
 	public function create(
 		int $user,
 		string $email,
-		int $sort,
+		int $sort=0,
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
 		string|null $state=null,
