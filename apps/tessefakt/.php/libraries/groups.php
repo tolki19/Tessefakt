@@ -2,19 +2,23 @@
 namespace tessefakt\apps\tessefakt\libraries;
 class groups extends \tessefakt\library{
 	public function create(
-		string $name
+		string $name,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_create(
-			name:$name
+			name:$name,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _create(
-		string $name
+		string $name,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			insert into `_groups`
 			set 
-				`name`="'.$this->connectors->db->escape($name).'"
+			`name`="'.$this->connectors->db->escape($name).'",
+			`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 		return $this->connectors->db->insert();
 	}
@@ -47,21 +51,25 @@ class groups extends \tessefakt\library{
 	}
 	public function update(
 		int $id,
-		string $name
+		string $name,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_update(
 			id:$id,
-			name:$name
+			name:$name,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _update(
 		int $id,
-		string $name
+		string $name,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			update `_groups`
 			set 
-				`name`="'.$this->connectors->db->escape($name).'"
+				`name`="'.$this->connectors->db->escape($name).'",
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
 		return $this->connectors->db->insert();
@@ -77,8 +85,8 @@ class groups extends \tessefakt\library{
 		int $id,
 	):int{
 		$this->connectors->db->query('
-			delete from `_groups`
-			where `id`='.$id.'
+		delete from `_groups`
+		where `id`='.$id.'
 		');
 		return $this->connectors->db->insert();
 	}

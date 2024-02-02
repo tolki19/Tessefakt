@@ -5,6 +5,7 @@ CREATE TABLE `_users-uids` (
 	`uid` varchar(255) NOT NULL,
 	`valid_from` date not null,
 	`valid_till` date null,
+	`internal-remark` text null,
 	primary key(`id`),
 	key(`_user`),
 	key(`uid`)

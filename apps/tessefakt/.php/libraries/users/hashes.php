@@ -9,6 +9,7 @@ class hashes extends \tessefakt\library{
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
 		string|null $state=null,
+		string|null $internal_remark=null,
 	):int{
 		if(is_null($password)&&is_null($hash)) throw new \Exception('Password and hash cannot be both null');
 		return $this->_create(
@@ -18,6 +19,7 @@ class hashes extends \tessefakt\library{
 			valid_from:$valid_from,
 			valid_till:$valid_till,
 			state:$state??'queued',
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _create(
@@ -26,7 +28,8 @@ class hashes extends \tessefakt\library{
 		string $type,
 		int|string|null $valid_from,
 		int|string|null $valid_till,
-		string $state=null,
+		string $state,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			insert into `_users-hashes` 
@@ -35,7 +38,8 @@ class hashes extends \tessefakt\library{
 				`type`="'.$this->connectors->db->escape($type).'",
 				`hash`="'.$this->connectors->db->escape($hash).'",
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
-				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
@@ -85,6 +89,7 @@ class hashes extends \tessefakt\library{
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
 		string|null $state=null,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_update(
 			id:$id,
@@ -93,6 +98,7 @@ class hashes extends \tessefakt\library{
 			type:$type??'bcrypt',
 			valid_from:$valid_from,
 			valid_till:$valid_till,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _update(
@@ -102,6 +108,7 @@ class hashes extends \tessefakt\library{
 		string $type,
 		int|string|null $valid_from,
 		int|string|null $valid_till,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			update `_users-hashes` 
@@ -110,7 +117,8 @@ class hashes extends \tessefakt\library{
 				`type`="'.$this->connectors->db->escape($type).'",
 				`hash`="'.$this->connectors->db->escape($hash).'",
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
-				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
 		return $id;

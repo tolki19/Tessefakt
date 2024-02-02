@@ -6,6 +6,7 @@ CREATE TABLE `_users-emails` (
 	`sort` int(10) not null,
 	`valid_from` date not null,
 	`valid_till` date null,
+	`internal-remark` text null,
 	primary key(`id`),
 	key(`_user`),
 	key(`email`)

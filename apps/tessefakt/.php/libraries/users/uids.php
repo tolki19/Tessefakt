@@ -7,6 +7,7 @@ class uids extends \tessefakt\library{
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
 		string|null $state=null,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_create(
 			user:$user,
@@ -14,14 +15,16 @@ class uids extends \tessefakt\library{
 			state:$state??'queued',
 			valid_from:$valid_from,
 			valid_till:$valid_till,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _create(
 		int $user,
 		string $uid,
-		int|string|null $valid_from=null,
-		int|string|null $valid_till=null,
+		int|string|null $valid_from,
+		int|string|null $valid_till,
 		string $state,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			insert into `_users-uids`
@@ -29,7 +32,8 @@ class uids extends \tessefakt\library{
 				`_user`='.$user.',
 				`uid`="'.$this->connectors->db->escape($uid).'",
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
-				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 		$iId=$this->connectors->db->insert();
 		$this->connectors->db->query('
@@ -76,7 +80,8 @@ class uids extends \tessefakt\library{
 		string $uid,
 		int|string|null $valid_from=null,
 		int|string|null $valid_till=null,
-		string|null $state,
+		string|null $state=null,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_update(
 			id:$id,
@@ -85,6 +90,7 @@ class uids extends \tessefakt\library{
 			valid_from:$valid_from,
 			valid_till:$valid_till,
 			state:$state??'queued',
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _update(
@@ -94,6 +100,7 @@ class uids extends \tessefakt\library{
 		int|string|null $valid_from,
 		int|string|null $valid_till,
 		string $state,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			update `_users-uids`
@@ -101,7 +108,8 @@ class uids extends \tessefakt\library{
 				`_user`='.$user.',
 				`uid`="'.$this->connectors->db->escape($uid).'",
 				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
-				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).'
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
 		return $id;

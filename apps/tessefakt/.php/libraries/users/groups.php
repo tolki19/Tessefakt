@@ -5,20 +5,23 @@ class groups extends \tessefakt\library{
 		int $user,
 		int $group,
 		string|null $valid_from=null,
-		string|null $valid_till=null
+		string|null $valid_till=null,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_create(
 			user:$user,
 			group:$group,
 			valid_from:$valid_from,
-			valid_till:$valid_till
+			valid_till:$valid_till,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _create(
 		int $user,
 		int $group,
 		string|null $valid_from,
-		string|null $valid_till
+		string|null $valid_till,
+		string|null $internal_remark,
 	):int{
 		return $this->connectors->db->query('
 			insert into `_users-_group`
@@ -26,7 +29,8 @@ class groups extends \tessefakt\library{
 				`_user`='.$user.',
 				`_group`='.$group.',
 				`valid_from`='.(is_null($valid_from)?'curdate()':'"'.$this->connectors->db->escape($valid_from).'"').',
-				`valid_till`='.(is_null($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').'
+				`valid_till`='.(is_null($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 	}
 	public function read(
@@ -61,14 +65,16 @@ class groups extends \tessefakt\library{
 		int $user,
 		int $group,
 		string|null $valid_from=null,
-		string|null $valid_till=null
+		string|null $valid_till=null,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_update(
 			id:$id,
 			user:$user,
 			group:$group,
 			valid_from:$valid_from,
-			valid_till:$valid_till
+			valid_till:$valid_till,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _update(
@@ -76,7 +82,8 @@ class groups extends \tessefakt\library{
 		int $user,
 		int $group,
 		string|null $valid_from,
-		string|null $valid_till
+		string|null $valid_till,
+		string|null $internal_remark,
 	):int{
 		$this->connectors->db->query('
 			update `_users-_group`
@@ -84,7 +91,8 @@ class groups extends \tessefakt\library{
 				`_user`='.$user.',
 				`_group`='.$group.',
 				`valid_from`='.(isnull($valid_from)?'curdate()':'"'.$this->connectors->db->escape($valid_from).'"').',
-				`valid_till`='.(isnull($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').'
+				`valid_till`='.(isnull($valid_till)?'null':'"'.$this->connectors->db>escape($valid_till).'"').',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 			where `id`='.$id.'
 		');
 		return $id;

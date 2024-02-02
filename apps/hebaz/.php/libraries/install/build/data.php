@@ -16,7 +16,7 @@ class data extends \tessefakt\library{
 		$aRoles=$this->connectors->migrate->query('select * from `roles`');
 		foreach($aRoles as $aRole){
 			$iGroup=$this->apps->tessefakt->libraries->groups->create(
-				name:$aRole['name']
+				name:$aRole['name'],
 				internal_remark:'Automatischer Import ('.date("Y-m-d H:i:s").')',
 			);
 			$aReturn['groups']['keystring'][$aRole['keystring']]=$iGroup;
