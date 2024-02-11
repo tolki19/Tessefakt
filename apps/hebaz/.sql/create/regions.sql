@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `regions`;
 CREATE TABLE `regions` (
 	`id` int(10) unsigned NOT NULL auto_increment,
-	`region` int(10) unsigned NOT NULL,
+	`region` int(10) unsigned NULL,
 	`sort` int(10) unsigned NOT NULL,
 	`name` varchar(255) NOT NULL,
 	`keywords` text NULL,

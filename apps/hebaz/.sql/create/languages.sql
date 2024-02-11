@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `languages`;
 CREATE TABLE `languages` (
 	`id` int(10) unsigned NOT NULL auto_increment,
-	`language` int(10) unsigned NOT NULL,
+	`language` int(10) unsigned NULL,
 	`sort` int(10) unsigned NOT NULL,
 	`name` varchar(255) NOT NULL,
 	`keywords` text NULL,

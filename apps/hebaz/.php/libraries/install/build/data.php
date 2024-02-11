@@ -26,7 +26,6 @@ class data extends \tessefakt\library
 				name: $aRole['name']
 			);
 		}
-		var_dump($aReturn);
 		$aUsers = $this->connectors->migrate->query('select * from users');
 		foreach ($aUsers as $aUser) {
 			$aReturn['users']['id'][$aUser['id']] = $this->apps->tessefakt->libraries->users->create();
@@ -54,7 +53,30 @@ class data extends \tessefakt\library
 				user: $aReturn['users']['id'][$aUser['id']],
 				group: $aReturn['groups']['keystring']['admin'],
 			);
-			var_dump($aUser);
+			$aServices = $this->connectors->migrate->query('select * from services');
+			foreach ($aServices as $aService) {
+				$aReturn['services']['id'][$aService['id']] = $this->apps->hebaz->libraries->services->create(
+					sort: 0,
+					name: $aService['name'],
+					internal_remark: 'Automatischer Import (' . date('d.m.Y H:i:s') . ')',
+				);
+			}
+			$aRegions = $this->connectors->migrate->query('select * from regions');
+			foreach ($aRegions as $aRegion) {
+				$aReturn['regions']['id'][$aRegion['id']] = $this->apps->hebaz->libraries->regions->create(
+					sort: 0,
+					name: $aRegion['name'],
+					internal_remark: 'Automatischer Import (' . date('d.m.Y H:i:s') . ')',
+				);
+			}
+			$aLanguages = $this->connectors->migrate->query('select * from languages');
+			foreach ($aLanguages as $aLanguage) {
+				$aReturn['languages']['id'][$aLanguage['id']] = $this->apps->hebaz->libraries->languages->create(
+					sort: 0,
+					name: $aLanguage['name'],
+					internal_remark: 'Automatischer Import (' . date('d.m.Y H:i:s') . ')',
+				);
+			}
 		}
 
 		// var_dump($this->connectors->migrate->query('select * from languages'));

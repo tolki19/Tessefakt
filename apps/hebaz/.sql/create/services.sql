@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `services`;
 CREATE TABLE `services` (
 	`id` int(10) unsigned NOT NULL auto_increment,
-	`service` int(10) unsigned NOT NULL,
+	`service` int(10) unsigned NULL,
 	`sort` int(10) unsigned NOT NULL,
 	`name` varchar(255) NOT NULL,
 	`keywords` text NULL,
