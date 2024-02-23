@@ -1,67 +1,70 @@
 <?php
+
 namespace tessefakt\apps\hebaz\libraries;
-class events extends \tessefakt\library{
+
+class events extends \tessefakt\library
+{
 	public function create(
 		string $name,
-		int|null $event=null,
-		string|int|null $from=null,
-		string|int|null $till=null,
-		string|null $keywords=null,
-		string|null $public_caption=null,
-		string|null $public_remark=null,
-		string|null $internal_caption=null,
-		string|null $internal_remark=null
-	):int{
+		string|int|null $from = null,
+		string|int|null $till = null,
+		int|null $free_place = null,
+		string|null $keywords = null,
+		string|null $public_caption = null,
+		string|null $public_remark = null,
+		string|null $internal_caption = null,
+		string|null $internal_remark = null,
+	): int {
 		return $this->_create(
-			event:$event,
-			name:$name,
-			from:$from,
-			till:$till,
-			keywords:$keywords,
-			public_caption:$public_caption,
-			public_remark:$public_remark,
-			internal_caption:$internal_caption,
-			internal_remark:$internal_remark,
+			name: $name,
+			from: $from,
+			till: $till,
+			free_place: $free_place,
+			keywords: $keywords,
+			public_caption: $public_caption,
+			public_remark: $public_remark,
+			internal_caption: $internal_caption,
+			internal_remark: $internal_remark,
 		);
 	}
 	protected function _create(
 		string $name,
-		int|null $event,
 		string|int|null $from,
 		string|int|null $till,
+		int|null $free_place,
 		string|null $keywords,
 		string|null $public_caption,
 		string|null $public_remark,
 		string|null $internal_caption,
 		string|null $internal_remark
-	):int{
+	): int {
 		$this->connectors->db->query('
 			insert into `events`
 			set
-				`event`='.($event??'null').',
-				`name`="'.$this->connectors->db->escape($name).'",
-				`from`='.(is_null($from)?'null':(is_int($from)?'"'.date('Y-m-d H:i:s',$from).'"':'"'.$this->connectors->db->escape($from)).'"').',
-				`till`='.(is_null($till)?'null':(is_int($till)?'"'.date('Y-m-d H:i:s',$till).'"':'"'.$this->connectors->db->escape($till).'"')).',
-				`keywords`='.(is_null($keywords)?'null':'"'.$this->connectors->db->escape($keywords).'"').',
-				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').',
-				`public-remark`='.(is_null($public_remark)?'null':'"'.$this->connectors->db->escape($public_remark).'"').',
-				`internal-caption`='.(is_null($internal_caption)?'null':'"'.$this->connectors->db->escape($internal_caption).'"').',
-				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
+				`name`="' . $this->connectors->db->escape($name) . '",
+				`from`=' . (is_null($from) ? 'null' : (is_int($from) ? '"' . date('Y-m-d H:i:s', $from) . '"' : '"' . $this->connectors->db->escape($from)) . '"') . ',
+				`till`=' . (is_null($till) ? 'null' : (is_int($till) ? '"' . date('Y-m-d H:i:s', $till) . '"' : '"' . $this->connectors->db->escape($till) . '"')) . ',
+				`free-place`=' . ($free_place ?? 'null') . ',
+				`keywords`=' . (is_null($keywords) ? 'null' : '"' . $this->connectors->db->escape($keywords) . '"') . ',
+				`public-caption`=' . (is_null($public_caption) ? 'null' : '"' . $this->connectors->db->escape($public_caption) . '"') . ',
+				`public-remark`=' . (is_null($public_remark) ? 'null' : '"' . $this->connectors->db->escape($public_remark) . '"') . ',
+				`internal-caption`=' . (is_null($internal_caption) ? 'null' : '"' . $this->connectors->db->escape($internal_caption) . '"') . ',
+				`internal-remark`=' . (is_null($internal_remark) ? 'null' : '"' . $this->connectors->db->escape($internal_remark) . '"') . '
 		');
-		$iId=$this->connectors->db->insert();
+		$iId = $this->connectors->db->insert();
 		return $iId;
 	}
 	public function read(
-		array|null $columns=null,
-		array|null $where=null,
-		array|null $order=null,
-		array|null $limit=null,
-	):array{
+		array|null $columns = null,
+		array|null $where = null,
+		array|null $order = null,
+		array|null $limit = null,
+	): array {
 		return $this->_read(
-			columns:$columns,
-			where:$where,
-			order:$order,
-			limit:$limit,
+			columns: $columns,
+			where: $where,
+			order: $order,
+			limit: $limit,
 		);
 	}
 	protected function _read(
@@ -69,87 +72,89 @@ class events extends \tessefakt\library{
 		array|null $where,
 		array|null $order,
 		array|null $limit,
-	):array{
+	): array {
 		return $this->connectors->db->query('
-			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
+			select ' . (is_null($columns) || !count($columns) ? '*' : '`' . implode('`,`', $columns) . '`') . '
 			from `events`
-			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
-			'.(is_null($order)||!count($order)?'':'order by '.implode(',',$order)).'
-			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
+			where ' . (is_null($where) || !count($where) ? '1' : implode(' and ', array_recombine($where, function ($key, $value) {
+			return '`' . $key . '`=' . (is_null($value) ? 'null' : '"' . $this->connectors->db->escape($value) . '"');
+		}))) . '
+			' . (is_null($order) || !count($order) ? '' : 'order by ' . implode(',', $order)) . '
+			' . (is_null($limit) || !count($limit) ? '' : implode(' ', array_filter([(isset($limit['offset']) ? 'offset ' . $limit['offset'] : ''), (isset($limit['fetch']) ? ' fetch ' . $limit['fetch'] : '')], 'strlen'))) . '
 		');
 	}
 	public function update(
 		int $id,
 		string $name,
-		int|null $event=null,
-		string|int|null $from=null,
-		string|int|null $till=null,
-		string|null $keywords=null,
-		string|null $public_caption=null,
-		string|null $public_remark=null,
-		string|null $internal_caption=null,
-		string|null $internal_remark=null
-	):int{
+		string|int|null $from = null,
+		string|int|null $till = null,
+		int|null $free_place = null,
+		string|null $keywords = null,
+		string|null $public_caption = null,
+		string|null $public_remark = null,
+		string|null $internal_caption = null,
+		string|null $internal_remark = null
+	): int {
 		return $this->_update(
-			id:$id,
-			event:$event,
-			name:$name,
-			from:$from,
-			till:$till,
-			keywords:$keywords,
-			public_caption:$public_caption,
-			public_remark:$public_remark,
-			internal_caption:$internal_caption,
-			internal_remark:$internal_remark,
+			id: $id,
+			name: $name,
+			from: $from,
+			till: $till,
+			free_place: $free_place,
+			keywords: $keywords,
+			public_caption: $public_caption,
+			public_remark: $public_remark,
+			internal_caption: $internal_caption,
+			internal_remark: $internal_remark,
 		);
 	}
 	protected function _update(
 		int $id,
 		string $name,
-		int|null $event,
 		string|int|null $from,
 		string|int|null $till,
+		int|null $free_place,
 		string|null $keywords,
 		string|null $public_caption,
 		string|null $public_remark,
 		string|null $internal_caption,
 		string|null $internal_remark
-	):int{
+	): int {
 		$this->connectors->db->query('
 			update `events`
 			set
-				`event`='.($event??'null').',
-				`name`="'.$this->connectors->db->escape($name).'",
-				`from`='.(is_null($from)?'null':(is_int($from)?'"'.date('Y-m-d H:i:s',$from).'"':'"'.$this->connectors->db->escape($from)).'"').',
-				`till`='.(is_null($till)?'null':(is_int($till)?'"'.date('Y-m-d H:i:s',$till).'"':'"'.$this->connectors->db->escape($till).'"')).',
-				`keywords`='.(is_null($keywords)?'null':'"'.$this->connectors->db->escape($keywords).'"').',
-				`public-caption`='.(is_null($public_caption)?'null':'"'.$this->connectors->db->escape($public_caption).'"').',
-				`public-remark`='.(is_null($public_remark)?'null':'"'.$this->connectors->db->escape($public_remark).'"').',
-				`internal-caption`='.(is_null($internal_caption)?'null':'"'.$this->connectors->db->escape($internal_caption).'"').',
-				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
-			where `id`='.$id.'
+				`name`="' . $this->connectors->db->escape($name) . '",
+				`from`=' . (is_null($from) ? 'null' : (is_int($from) ? '"' . date('Y-m-d H:i:s', $from) . '"' : '"' . $this->connectors->db->escape($from)) . '"') . ',
+				`till`=' . (is_null($till) ? 'null' : (is_int($till) ? '"' . date('Y-m-d H:i:s', $till) . '"' : '"' . $this->connectors->db->escape($till) . '"')) . ',
+				`free-place`=' . ($free_place ?? 'null') . ',
+				`keywords`=' . (is_null($keywords) ? 'null' : '"' . $this->connectors->db->escape($keywords) . '"') . ',
+				`public-caption`=' . (is_null($public_caption) ? 'null' : '"' . $this->connectors->db->escape($public_caption) . '"') . ',
+				`public-remark`=' . (is_null($public_remark) ? 'null' : '"' . $this->connectors->db->escape($public_remark) . '"') . ',
+				`internal-caption`=' . (is_null($internal_caption) ? 'null' : '"' . $this->connectors->db->escape($internal_caption) . '"') . ',
+				`internal-remark`=' . (is_null($internal_remark) ? 'null' : '"' . $this->connectors->db->escape($internal_remark) . '"') . '
+			where `id`=' . $id . '
 		');
 		return $id;
 	}
 	public function delete(
 		int $id,
-	):int{
-		foreach($this->subs->cds->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->cds->delete(id:$aSet['id']);
-		foreach($this->subs->dates->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->dates->delete(id:$aSet['id']);
-		foreach($this->subs->midwives->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->midwives->delete(id:$aSet['id']);
-		foreach($this->subs->rights->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->rights->delete(id:$aSet['id']);
-		foreach($this->subs->services->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->services->delete(id:$aSet['id']);
-		foreach($this->subs->states->read(columns:['id'],where:['_user'=>$id]) as $aSet) $this->subs->states->delete(id:$aSet['id']);
+	): int {
+		foreach ($this->subs->cds->read(columns: ['id'], where: ['_user' => $id]) as $aSet) $this->subs->cds->delete(id: $aSet['id']);
+		foreach ($this->subs->dates->read(columns: ['id'], where: ['_user' => $id]) as $aSet) $this->subs->dates->delete(id: $aSet['id']);
+		foreach ($this->subs->midwives->read(columns: ['id'], where: ['_user' => $id]) as $aSet) $this->subs->midwives->delete(id: $aSet['id']);
+		foreach ($this->subs->rights->read(columns: ['id'], where: ['_user' => $id]) as $aSet) $this->subs->rights->delete(id: $aSet['id']);
+		foreach ($this->subs->services->read(columns: ['id'], where: ['_user' => $id]) as $aSet) $this->subs->services->delete(id: $aSet['id']);
+		foreach ($this->subs->states->read(columns: ['id'], where: ['_user' => $id]) as $aSet) $this->subs->states->delete(id: $aSet['id']);
 		return $this->_delete(
-			id:$id,
+			id: $id,
 		);
 	}
 	protected function _delete(
 		int $id,
-	):int{
+	): int {
 		$this->connectors->db->query('
 			delete from `events`
-			where `id`='.$id.'
+			where `id`=' . $id . '
 		');
 		return $id;
 	}

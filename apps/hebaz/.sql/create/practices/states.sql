@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `practices-states`;
 CREATE TABLE `practices-states` (
 	`id` int(10) unsigned NOT NULL auto_increment,
 	`practice` int(10) unsigned not NULL,
-	`state` enum("public","internal","secret") not null,
+	`state` enum("public","internal","management","secret") not null,
 	`from` date NULL,
 	`till` date NULL,
 	`internal-remark` text null,

@@ -1,34 +1,41 @@
 <?php
+
 namespace tessefakt\apps\tessefakt\libraries;
-class groups extends \tessefakt\library{
+
+class groups extends \tessefakt\library
+{
 	public function create(
-		string $name
-	):int{
+		string $name,
+		string $keystring,
+	): int {
 		return $this->_create(
-			name:$name
+			name: $name,
+			keystring: $keystring,
 		);
 	}
 	protected function _create(
-		string $name
-	):int{
+		string $name,
+		string $keystring,
+	): int {
 		$this->connectors->db->query('
 			insert into `_groups`
 			set 
-				`name`="'.$this->connectors->db->escape($name).'"
+				`name`="' . $this->connectors->db->escape($name) . '",
+				`keystring`="' . $this->connectors->db->escape($keystring) . '"
 		');
 		return $this->connectors->db->insert();
 	}
 	public function read(
-		array|null $columns=null,
-		array|null $where=null,
-		array|null $order=null,
-		array|null $limit=null,
-	):array{
+		array|null $columns = null,
+		array|null $where = null,
+		array|null $order = null,
+		array|null $limit = null,
+	): array {
 		return $this->_read(
-			columns:$columns,
-			where:$where,
-			order:$order,
-			limit:$limit,
+			columns: $columns,
+			where: $where,
+			order: $order,
+			limit: $limit,
 		);
 	}
 	protected function _read(
@@ -36,49 +43,55 @@ class groups extends \tessefakt\library{
 		array|null $where,
 		array|null $order,
 		array|null $limit,
-	):array{
+	): array {
 		return $this->connectors->db->query('
-			select '.(is_null($columns)||!count($columns)?'*':'`'.implode('`,`',$columns).'`').'
+			select ' . (is_null($columns) || !count($columns) ? '*' : '`' . implode('`,`', $columns) . '`') . '
 			from `_groups`
-			where '.(is_null($where)||!count($where)?'1':implode(' and ',array_recombine($where,function($key,$value){ return '`'.$key.'`='.(is_null($value)?'null':'"'.$this->connectors->db->escape($value).'"'); }))).'
-			'.(is_null($order)||!count($order)?'':'order by '.implode(',',$order)).'
-			'.(is_null($limit)||!count($limit)?'':implode(' ',array_filter([(isset($limit['offset'])?'offset '.$limit['offset']:''),(isset($limit['fetch'])?' fetch '.$limit['fetch']:'')],'strlen'))).'
+			where ' . (is_null($where) || !count($where) ? '1' : implode(' and ', array_recombine($where, function ($key, $value) {
+			return '`' . $key . '`=' . (is_null($value) ? 'null' : '"' . $this->connectors->db->escape($value) . '"');
+		}))) . '
+			' . (is_null($order) || !count($order) ? '' : 'order by ' . implode(',', $order)) . '
+			' . (is_null($limit) || !count($limit) ? '' : implode(' ', array_filter([(isset($limit['offset']) ? 'offset ' . $limit['offset'] : ''), (isset($limit['fetch']) ? ' fetch ' . $limit['fetch'] : '')], 'strlen'))) . '
 		');
 	}
 	public function update(
 		int $id,
-		string $name
-	):int{
+		string $name,
+		string $keystring,
+	): int {
 		return $this->_update(
-			id:$id,
-			name:$name
+			id: $id,
+			name: $name,
+			keystring: $keystring,
 		);
 	}
 	protected function _update(
 		int $id,
-		string $name
-	):int{
+		string $name,
+		string $keystring,
+	): int {
 		$this->connectors->db->query('
 			update `_groups`
 			set 
-				`name`="'.$this->connectors->db->escape($name).'"
-			where `id`='.$id.'
+				`name`="' . $this->connectors->db->escape($name) . '",
+				`keystring`="' . $this->connectors->db->escape($keystring) . '"
+			where `id`=' . $id . '
 		');
 		return $this->connectors->db->insert();
 	}
 	public function delete(
 		int $id,
-	):int{
+	): int {
 		return $this->_delete(
-			id:$id,
+			id: $id,
 		);
 	}
 	protected function _delete(
 		int $id,
-	):int{
+	): int {
 		$this->connectors->db->query('
 			delete from `_groups`
-			where `id`='.$id.'
+			where `id`=' . $id . '
 		');
 		return $this->connectors->db->insert();
 	}
