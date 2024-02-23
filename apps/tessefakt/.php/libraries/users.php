@@ -1,15 +1,22 @@
 <?php
 namespace tessefakt\apps\tessefakt\libraries;
 class users extends \tessefakt\library{
-	public function create():int{
-		$iUser=$this->_create();
+	public function create(
+		string|null $internal_remark=null,
+	):int{
+		$iUser=$this->_create(
+			internal_remark:$internal_remark,
+		);
 		return $iUser;
 	}
-	protected function _create():int{
+	protected function _create(
+		string|null $internal_remark,
+	):int{
 		$this->connectors->db->query('
 			insert into `_users`
 			set 
-				`id`=default
+				`id`=default,
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
 		');
 		$iId=$this->connectors->db->insert();
 		return $iId;
@@ -43,18 +50,23 @@ class users extends \tessefakt\library{
 	}
 	public function update(
 		int $id,
+		string|null $internal_remark=null,
 	):int{
 		return $this->_update(
-			id:$id
+			id:$id,
+			internal_remark:$internal_remark,
 		);
 	}
 	protected function _update(
 		int $id,
+		string|null $internal_remark=null,
 	):int{
-		// $this->connectors->db->query('
-		// 	update `_users`
-		// 	where `id`='.$id.'
-		// ');
+		$this->connectors->db->query('
+			update `_users`
+			set
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
+			where `id`='.$id.'
+		');
 		return $id;
 	}
 	public function delete(

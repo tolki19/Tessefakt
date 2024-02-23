@@ -5,8 +5,8 @@ namespace tessefakt\apps\hebaz\libraries;
 class regions extends \tessefakt\library
 {
 	public function create(
-		int $sort,
 		string $name,
+		int $sort = 0,
 		int|null $region = null,
 		string|null $keywords = null,
 		string|null $public_caption = null,
@@ -16,8 +16,8 @@ class regions extends \tessefakt\library
 	): int {
 		return $this->_create(
 			region: $region,
-			sort: $sort,
 			name: $name,
+			sort: $sort,
 			keywords: $keywords,
 			public_caption: $public_caption,
 			public_remark: $public_remark,
@@ -26,8 +26,8 @@ class regions extends \tessefakt\library
 		);
 	}
 	protected function _create(
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $region,
 		string|null $keywords,
 		string|null $public_caption,
@@ -92,8 +92,8 @@ class regions extends \tessefakt\library
 	}
 	public function update(
 		int $id,
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $region = null,
 		string|null $keywords = null,
 		string|null $public_caption = null,
@@ -104,8 +104,8 @@ class regions extends \tessefakt\library
 		return $this->_update(
 			id: $id,
 			region: $region,
-			sort: $sort,
 			name: $name,
+			sort: $sort,
 			keywords: $keywords,
 			public_caption: $public_caption,
 			public_remark: $public_remark,
@@ -115,8 +115,8 @@ class regions extends \tessefakt\library
 	}
 	protected function _update(
 		int $id,
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $region,
 		string|null $keywords,
 		string|null $public_caption,

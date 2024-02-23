@@ -7,6 +7,7 @@ class emails extends \tessefakt\library
 	public function create(
 		int $user,
 		string $email,
+<<<<<<< HEAD
 		int $sort,
 		int|string|null $valid_from = null,
 		int|string|null $valid_till = null,
@@ -21,6 +22,22 @@ class emails extends \tessefakt\library
 			valid_till: $valid_till,
 			state: $state ?? 'queued',
 			state_remark: $state_remark,
+=======
+		int $sort=0,
+		int|string|null $valid_from=null,
+		int|string|null $valid_till=null,
+		string|null $state=null,
+		string|null $internal_remark=null,
+	):int{
+		return $this->_create(
+			user:$user,
+			email:$email,
+			sort:$sort,
+			valid_from:$valid_from,
+			valid_till:$valid_till,
+			state:$state??'queued',
+			internal_remark:$internal_remark,
+>>>>>>> 6ccc14ca59574d5b118e454e9bc5d3b4ff9adece
 		);
 	}
 	protected function _create(
@@ -30,8 +47,13 @@ class emails extends \tessefakt\library
 		int|string|null $valid_from,
 		int|string|null $valid_till,
 		string $state,
+<<<<<<< HEAD
 		string|null $state_remark,
 	): int {
+=======
+		string|null $internal_remark,
+	):int{
+>>>>>>> 6ccc14ca59574d5b118e454e9bc5d3b4ff9adece
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
 			select @sort:=least(greatest(' . $sort . ',0),ifnull(count(*),0))
@@ -44,8 +66,14 @@ class emails extends \tessefakt\library
 				`_user`=' . $user . ',
 				`email`="' . $this->connectors->db->escape($email) . '",
 				`sort`=@sort,
+<<<<<<< HEAD
 				`valid_from`=' . (is_null($valid_from) ? 'curdate()' : (is_int($valid_from) ? '"' . date('Y-m-d H:i:s', $valid_from) . '"' : '"' . $this->connectors->db->escape($valid_from) . '"')) . ',
 				`valid_till`=' . (is_null($valid_till) ? 'null' : (is_int($valid_till) ? '"' . date('Y-m-d H:i:s', $valid_till) . '"' : '"' . $this->connectors->db->escape($valid_till) . '"')) . '
+=======
+				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).',
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
+>>>>>>> 6ccc14ca59574d5b118e454e9bc5d3b4ff9adece
 		');
 		$iId = $this->connectors->db->insert();
 		$this->connectors->db->query('
@@ -99,6 +127,7 @@ class emails extends \tessefakt\library
 		int $user,
 		string $email,
 		int $sort,
+<<<<<<< HEAD
 		int|string|null $valid_from = null,
 		int|string|null $valid_till = null,
 		string|null $state = null,
@@ -113,6 +142,20 @@ class emails extends \tessefakt\library
 			valid_till: $valid_till,
 			state: $state ?? 'queued',
 			state_remark: $state_remark,
+=======
+		int|string|null $valid_from=null,
+		int|string|null $valid_till=null,
+		string|null $internal_remark=null,
+	):int{
+		return $this->_update(
+			id:$id,
+			user:$user,
+			email:$email,
+			sort:$sort,
+			valid_from:$valid_from,
+			valid_till:$valid_till,
+			internal_remark:$internal_remark,
+>>>>>>> 6ccc14ca59574d5b118e454e9bc5d3b4ff9adece
 		);
 	}
 	protected function _update(
@@ -122,9 +165,14 @@ class emails extends \tessefakt\library
 		int $sort,
 		int|string|null $valid_from,
 		int|string|null $valid_till,
+<<<<<<< HEAD
 		string $state,
 		string|null $state_remark,
 	): int {
+=======
+		string|null $internal_remark,
+	):int{
+>>>>>>> 6ccc14ca59574d5b118e454e9bc5d3b4ff9adece
 		$this->connectors->db->transaction();
 		$this->connectors->db->query('
 			select @sort:=`sort`,@dep:=`_user`
@@ -147,9 +195,16 @@ class emails extends \tessefakt\library
 				`_user`=' . $user . ',
 				`email`="' . $this->connectors->db->escape($email) . '",
 				`sort`=@sort,
+<<<<<<< HEAD
 				`valid_from`=' . (is_null($valid_from) ? 'curdate()' : (is_int($valid_from) ? '"' . date('Y-m-d H:i:s', $valid_from) . '"' : '"' . $this->connectors->db->escape($valid_from) . '"')) . '
 				`valid_till`=' . (is_null($valid_till) ? 'null' : (is_int($valid_till) ? '"' . date('Y-m-d H:i:s', $valid_till) . '"' : '"' . $this->connectors->db->escape($valid_till) . '"')) . '
 			where `id`=' . $id . '
+=======
+				`valid_from`='.(is_null($valid_from)?'curdate()':(is_int($valid_from)?'"'.date('Y-m-d H:i:s',$valid_from).'"':'"'.$this->connectors->db->escape($valid_from).'"')).'
+				`valid_till`='.(is_null($valid_till)?'null':(is_int($valid_till)?'"'.date('Y-m-d H:i:s',$valid_till).'"':'"'.$this->connectors->db->escape($valid_till).'"')).',
+				`internal-remark`='.(is_null($internal_remark)?'null':'"'.$this->connectors->db->escape($internal_remark).'"').'
+			where `id`='.$id.'
+>>>>>>> 6ccc14ca59574d5b118e454e9bc5d3b4ff9adece
 		');
 		$this->connectors->db->query('
 			update `_users-emails`

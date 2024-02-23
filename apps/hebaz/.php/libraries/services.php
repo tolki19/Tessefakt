@@ -5,8 +5,8 @@ namespace tessefakt\apps\hebaz\libraries;
 class services extends \tessefakt\library
 {
 	public function create(
-		int $sort,
 		string $name,
+		int $sort = 0,
 		int|null $service = null,
 		string|null $keywords = null,
 		string|null $public_caption = null,
@@ -15,8 +15,8 @@ class services extends \tessefakt\library
 		string|null $internal_remark = null
 	): int {
 		return $this->_create(
-			sort: $sort,
 			name: $name,
+			sort: $sort,
 			service: $service,
 			keywords: $keywords,
 			public_caption: $public_caption,
@@ -26,8 +26,8 @@ class services extends \tessefakt\library
 		);
 	}
 	protected function _create(
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $service,
 		string|null $keywords,
 		string|null $public_caption,
@@ -92,8 +92,8 @@ class services extends \tessefakt\library
 	}
 	public function update(
 		int $id,
-		int $sort,
 		string $name,
+		int $sort = 0,
 		int|null $service = null,
 		string|null $keywords = null,
 		string|null $public_caption = null,
@@ -103,8 +103,8 @@ class services extends \tessefakt\library
 	): int {
 		return $this->_update(
 			id: $id,
-			sort: $sort,
 			name: $name,
+			sort: $sort,
 			service: $service,
 			keywords: $keywords,
 			public_caption: $public_caption,
@@ -115,8 +115,8 @@ class services extends \tessefakt\library
 	}
 	protected function _update(
 		int $id,
-		int $sort,
 		string $name,
+		int $sort,
 		int|null $service,
 		string|null $keywords,
 		string|null $public_caption,
